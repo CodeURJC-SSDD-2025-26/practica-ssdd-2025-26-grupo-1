@@ -3,10 +3,10 @@
 ## 👥 Miembros del Equipo
 | Nombre y Apellidos | Correo URJC | Usuario GitHub |
 |:--- |:--- |:--- |
-| [Nombre 1] | [email1]@alumnos.urjc.es | [User1] |
-| [Nombre 2] | [email2]@alumnos.urjc.es | [User2] |
-| [Nombre 3] | [email3]@alumnos.urjc.es | [User3] |
-| [Nombre 4] | [email4]@alumnos.urjc.es | [User4] |
+| Weisheng Zheng | w.zheng1.2023@alumnos.urjc.es | [User1] |
+| Alejandro González Blanco | [email2]@alumnos.urjc.es | [User2] |
+| Pablo Sainz Lopez | [email3]@alumnos.urjc.es | [User3] |
+| Dani | [email4]@alumnos.urjc.es | [User4] |
 
 ---
 
