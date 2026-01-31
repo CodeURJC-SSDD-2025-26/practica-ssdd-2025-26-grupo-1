@@ -3,7 +3,7 @@
 ## 👥 Miembros del Equipo
 | Nombre y Apellidos | Correo URJC | Usuario GitHub |
 |:--- |:--- |:--- |
-| Weisheng Zheng | w.zheng1.2023@alumnos.urjc.es | [User1] |
+| Weisheng Zheng | w.zheng1.2023@alumnos.urjc.es | WeishengZheng |
 | Alejandro González Blanco | a.gonzalezbl.2023@alumnos.urjc.es | alexgogb |
 | Pablo Sainz López | p.sainz.2023@alumnos.urjc.es | Escipion48 (Pablo Sainz López) |
 | Dani | [email4]@alumnos.urjc.es | [User4] |
