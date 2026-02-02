@@ -36,11 +36,9 @@ An advanced **Real-Time Railway Monitoring & Intelligence Platform** designed to
 
 4.   **Train:** Represents the active rolling stock units. It captures real-time data including current GPS coordinates, operational status, and its association with a specific scheduled trip.
 
-5.   **Schedule (Timetable):** The backbone of the delay-tracking system. It stores the theoretical arrival and departure times for trains at various stations, allowing the system to calculate real-time deviations.
+5.   **Incident:** Records any disruption in the service. It includes details such as the root cause, severity level, affected tracks, and the timestamp, enabling both real-time alerting and historical data analysis.
 
-6.   **Incident:** Records any disruption in the service. It includes details such as the root cause, severity level, affected tracks, and the timestamp, enabling both real-time alerting and historical data analysis.
-
-7.   **Alert Subscription:** Represents the specific monitoring criteria set by a user. It stores the parameters that trigger a notification, such as the target Line, a specific time window (start and end time), and the communication channel (e.g., Gmail). It acts as the bridge between the user's interests and the real-time incident engine.
+6.   **Alert Subscription:** Represents the specific monitoring criteria set by a user. It stores the parameters that trigger a notification, such as the target Line, a specific time window (start and end time), and the communication channel (e.g., Gmail). It acts as the bridge between the user's interests and the real-time incident engine.
   
 **Relaciones entre entidades:**
 *   **User — Alert Subscription (1:N):** Each user can manage multiple personalized subscriptions to track different routes and timeframes.
@@ -50,10 +48,6 @@ An advanced **Real-Time Railway Monitoring & Intelligence Platform** designed to
 *   **Line — Incident (N:M):** A single incident (e.g., infrastructure failure) can impact multiple lines simultaneously. Conversely, one line can suffer multiple incidents during a specific period.
 
 *   **Line — Train (1:N):** A line serves as a container for all trains currently operating on that specific route.
-
-*   **Train — Schedule (1:1):** Each active train is mapped to a specific trip in the timetable to calculate real-time performance and delays.
-
-*   **Schedule — Station (N:1):** Theoretical arrival and departure records are anchored to specific stations.
 
 *   **Alert Subscription — Line (N:1):** A subscription targets a specific line that the user wants to monitor within their preferred time window.
 
