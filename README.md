@@ -26,6 +26,7 @@ An advanced **Real-Time Railway Monitoring & Intelligence Platform** designed to
 *   **For Administrators:** Provides a centralized command center with **Role-Based Access Control (RBAC)** to manage system integrity and high-level operational data.
 
 ### **Entidades**
+*This may change in the future as the project progresses, this is only the first aproach, however we will try to follow it as much as possible*
 
 1.   **User:** Manages authentication and authorization. It stores profile details, account roles (Anonymous
  Vs. Standard vs. Administrator), and specific notification preferences, such as subscribed lines and time-window alerts.
@@ -34,11 +35,14 @@ An advanced **Real-Time Railway Monitoring & Intelligence Platform** designed to
 
 3.   **Line (Track/Segment):** Defines the physical or logical segments of the railway. It groups stations into specific routes and serves as the primary entity for categorizing location-based incidents.
 
-4.   **Incident:** Records any disruption in the service. It includes details such as the root cause, severity level, affected tracks, and the timestamp, enabling both real-time alerting and historical data analysis.
+4.   **Incidence:** Records any disruption in the service. It includes details such as the root cause, severity level, affected tracks, and the timestamp, enabling both real-time alerting and historical data analysis.
 
 5.   **Alert Subscription:** Represents the specific monitoring criteria set by a user. It stores the parameters that trigger a notification, such as the target Line, a specific time window (start and end time), and the communication channel (e.g., Gmail). It acts as the bridge between the user's interests and the real-time incident engine.
   
 **Relaciones entre entidades:**
+
+*This may change in the future as the project progresses, this is only the first aproach, however we will try to follow it as much as possible*
+
 *   **User — Alert Subscription (1:N):** Each user can manage multiple personalized subscriptions to track different routes and timeframes.
 
 *   **Line — Station (N:M):** Lines are composed of several stations, and hubs (major stations) link multiple lines. This is managed via a junction entity that also defines the stop sequence.
@@ -50,6 +54,7 @@ An advanced **Real-Time Railway Monitoring & Intelligence Platform** designed to
 *   **Incident — Alert Subscription (N:M):** This is the logic engine; an incident triggers all subscriptions associated with the affected lines, provided the incident occurs within the user's specified time range.
 
 ### **Permisos de los Usuarios**
+*This may change in the future as the project progresses, this is only the first aproach, however we will try to follow it as much as possible*
 
 *   **Anonymous User:**
     -   **Permissions:** Can access the interactive map to view real-time train positions and active incidents. They can perform basic searches for specific lines and view public reliability charts.
@@ -64,6 +69,7 @@ An advanced **Real-Time Railway Monitoring & Intelligence Platform** designed to
     -   **Ownership:** System-level entities such as **Lines**, **Stations**, and **Incidents**. They have the authority to manage or override any **Alert Subscription** or **User Profile** for moderation and system maintenance purposes.
 
 ### **Imágenes**
+*This may change in the future as the project progresses, this is only the first aproach, however we will try to follow it as much as possible*
 
 -   **User:** One profile image (avatar): Supports identity management and personalizes the user experience. It can be integrated via Google OAuth or uploaded directly to the user profile.
 
@@ -74,6 +80,7 @@ An advanced **Real-Time Railway Monitoring & Intelligence Platform** designed to
 -   **Station:** One representative photo per station: Used to improve the visual context of the search results and to help users recognize the physical location of the stops.
 
 ### **Gráficos**
+*This may change in the future as the project progresses, this is only the first aproach, however we will try to follow it as much as possible*
 
 *   **Chart 1: Incident Distribution by Line and Time (Bar Chart):** 
     *   **Target Audience:** All users (Public/Registered).
@@ -92,6 +99,7 @@ An advanced **Real-Time Railway Monitoring & Intelligence Platform** designed to
     *   **Purpose:** Displays the frequency of incidents across different time slots. Essential for identifying if most problems occur during rush hours, which is critical for operational planning.
 
 ### **Tecnología Complementaria**
+*This may change in the future as the project progresses, this is only the first aproach, however we will try to follow it as much as possible*
 
 -   **Advanced Geospatial Rendering (MapLibre GL JS):** Use of high-performance, WebGL-based vector maps to visualize the railway network. This allows for smooth interaction with complex line geometries and real-time marker updates for train positions.
 
@@ -102,6 +110,7 @@ An advanced **Real-Time Railway Monitoring & Intelligence Platform** designed to
 -   **Real-Time State Management (WebSockets):** To maintain a persistent connection between the server and the front-end, ensuring that as soon as the Renfe Data feed updates an incident or a train's location, it is reflected on the user's map without delay.
 
 ### **Algoritmo o Consulta Avanzada**
+*This may change in the future as the project progresses, this is only the first aproach, however we will try to follow it as much as possible*
 
 **Algorithm: Real-Time Incident Propagation & Matching Engine**
 
