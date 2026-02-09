@@ -1,0 +1,378 @@
+/* ========================================
+   METROPOLIS PULSE - Spring Boot CSS
+   Identidad Visual: Industrial / Urbano
+   ======================================== */
+
+/* === VARIABLES DE COLOR === */
+:root {
+    /* Colores Primarios */
+    --color-primario: #E67E22;          /* Naranja Quemado */
+    --color-primario-oscuro: #D35400;   /* Naranja Óxido */
+    --color-primario-claro: #F39C12;
+
+    /* Secundarios */
+    --color-secundario: #2C3E50;        /* Gris Carbón */
+    --color-secundario-claro: #34495E;
+    --color-secundario-oscuro: #1A252F;
+
+    /* Acentos */
+    --color-amarillo: #F1C40F;          /* Amarillo Tráfico */
+    --color-rojo: #C0392B;              /* Rojo Alarma */
+    --color-verde: #27AE60;             /* Verde Success (opcional) */
+
+    /* Neutros */
+    --color-fondo: #FDF2E9;             /* Arena Suave */
+    --color-fondo-alt: #ECF0F1;         /* Blanco Hueso */
+    --color-texto: #2C3E50;
+    --color-texto-claro: #7F8C8D;
+
+    /* Sombras */
+    --sombra-suave: 0 2px 4px rgba(44, 62, 80, 0.1);
+    --sombra-media: 0 4px 8px rgba(44, 62, 80, 0.15);
+    --sombra-fuerte: 0 8px 16px rgba(44, 62, 80, 0.2);
+}
+
+/* === ESTILOS GLOBALES === */
+body {
+    background-color: var(--color-fondo);
+    color: var(--color-texto);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    line-height: 1.6;
+}
+
+/* === NAVBAR === */
+.navbar {
+    background-color: var(--color-secundario) !important;
+    box-shadow: var(--sombra-media);
+    border-bottom: 3px solid var(--color-primario);
+}
+
+.navbar-brand {
+    color: var(--color-primario) !important;
+    font-weight: 700;
+    font-size: 1.5rem;
+    transition: color 0.3s ease;
+}
+
+.navbar-brand:hover {
+    color: var(--color-primario-claro) !important;
+}
+
+.navbar-dark .navbar-nav .nav-link {
+    color: var(--color-fondo-alt) !important;
+    transition: all 0.3s ease;
+    border-bottom: 2px solid transparent;
+}
+
+.navbar-dark .navbar-nav .nav-link:hover,
+.navbar-dark .navbar-nav .nav-link.active {
+    color: var(--color-primario) !important;
+    border-bottom: 2px solid var(--color-primario);
+}
+
+/* === BOTONES === */
+.btn-primary {
+    background-color: var(--color-primario);
+    border-color: var(--color-primario);
+    color: white;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.btn-primary:hover,
+.btn-primary:focus {
+    background-color: var(--color-primario-oscuro);
+    border-color: var(--color-primario-oscuro);
+    transform: translateY(-2px);
+    box-shadow: var(--sombra-media);
+}
+
+.btn-secondary {
+    background-color: var(--color-secundario);
+    border-color: var(--color-secundario);
+    color: white;
+}
+
+.btn-secondary:hover,
+.btn-secondary:focus {
+    background-color: var(--color-secundario-claro);
+    border-color: var(--color-secundario-claro);
+}
+
+.btn-warning {
+    background-color: var(--color-amarillo);
+    border-color: var(--color-amarillo);
+    color: var(--color-secundario);
+    font-weight: 600;
+}
+
+.btn-warning:hover {
+    background-color: #F4D03F;
+    border-color: #F4D03F;
+    color: var(--color-secundario);
+}
+
+.btn-danger {
+    background-color: var(--color-rojo);
+    border-color: var(--color-rojo);
+}
+
+.btn-danger:hover {
+    background-color: #A93226;
+    border-color: #A93226;
+}
+
+/* === CARDS === */
+.card {
+    background-color: white;
+    border: none;
+    border-left: 4px solid var(--color-primario);
+    box-shadow: var(--sombra-suave);
+    transition: all 0.3s ease;
+}
+
+.card:hover {
+    box-shadow: var(--sombra-fuerte);
+    transform: translateY(-4px);
+}
+
+.card-header {
+    background-color: var(--color-secundario);
+    color: white;
+    font-weight: 600;
+    border-bottom: 2px solid var(--color-primario);
+}
+
+.card-footer {
+    background-color: var(--color-fondo-alt);
+    border-top: 1px solid #ddd;
+}
+
+/* === ALERTAS === */
+.alert-success {
+    background-color: #D5F4E6;
+    border-left: 4px solid var(--color-verde);
+    color: #1E8449;
+}
+
+.alert-warning {
+    background-color: #FCF3CF;
+    border-left: 4px solid var(--color-amarillo);
+    color: #7D6608;
+}
+
+.alert-danger {
+    background-color: #F2D7D5;
+    border-left: 4px solid var(--color-rojo);
+    color: var(--color-rojo);
+    font-weight: 600;
+}
+
+.alert-info {
+    background-color: #D6EAF8;
+    border-left: 4px solid var(--color-primario);
+    color: var(--color-primario-oscuro);
+}
+
+/* === FORMULARIOS === */
+.form-control {
+    border: 2px solid var(--color-fondo-alt);
+    transition: all 0.3s ease;
+}
+
+.form-control:focus {
+    border-color: var(--color-primario);
+    box-shadow: 0 0 0 0.2rem rgba(230, 126, 34, 0.25);
+}
+
+.form-label {
+    color: var(--color-secundario);
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.form-control.is-invalid {
+    border-color: var(--color-rojo);
+}
+
+.form-control.is-valid {
+    border-color: var(--color-verde);
+}
+
+/* === TABLAS === */
+.table {
+    background-color: white;
+    box-shadow: var(--sombra-suave);
+}
+
+.table thead {
+    background-color: var(--color-secundario);
+    color: white;
+}
+
+.table thead th {
+    border-bottom: 3px solid var(--color-primario);
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.875rem;
+    letter-spacing: 0.5px;
+}
+
+.table tbody tr {
+    transition: background-color 0.2s ease;
+}
+
+.table tbody tr:hover {
+    background-color: var(--color-fondo);
+}
+
+.table-striped tbody tr:nth-of-type(odd) {
+    background-color: var(--color-fondo-alt);
+}
+
+/* === BADGES === */
+.badge-primary {
+    background-color: var(--color-primario);
+}
+
+.badge-secondary {
+    background-color: var(--color-secundario);
+}
+
+.badge-warning {
+    background-color: var(--color-amarillo);
+    color: var(--color-secundario);
+}
+
+.badge-danger {
+    background-color: var(--color-rojo);
+}
+
+/* === PAGINACIÓN === */
+.pagination .page-link {
+    color: var(--color-primario);
+    border-color: var(--color-fondo-alt);
+}
+
+.pagination .page-link:hover {
+    color: var(--color-primario-oscuro);
+    background-color: var(--color-fondo);
+    border-color: var(--color-primario);
+}
+
+.pagination .page-item.active .page-link {
+    background-color: var(--color-primario);
+    border-color: var(--color-primario);
+}
+
+/* === BREADCRUMBS === */
+.breadcrumb {
+    background-color: white;
+    border-left: 4px solid var(--color-primario);
+    box-shadow: var(--sombra-suave);
+}
+
+.breadcrumb-item.active {
+    color: var(--color-primario);
+}
+
+.breadcrumb-item a {
+    color: var(--color-secundario);
+    text-decoration: none;
+}
+
+.breadcrumb-item a:hover {
+    color: var(--color-primario);
+}
+
+/* === MODALS === */
+.modal-header {
+    background-color: var(--color-secundario);
+    color: white;
+    border-bottom: 3px solid var(--color-primario);
+}
+
+.modal-header .btn-close {
+    filter: invert(1);
+}
+
+.modal-footer {
+    background-color: var(--color-fondo-alt);
+}
+
+/* === SPINNER / LOADER === */
+.spinner-border-primary {
+    color: var(--color-primario);
+}
+
+/* === UTILIDADES PERSONALIZADAS === */
+.bg-primario {
+    background-color: var(--color-primario) !important;
+    color: white;
+}
+
+.bg-secundario {
+    background-color: var(--color-secundario) !important;
+    color: white;
+}
+
+.text-primario {
+    color: var(--color-primario) !important;
+}
+
+.text-secundario {
+    color: var(--color-secundario) !important;
+}
+
+.border-primario {
+    border-color: var(--color-primario) !important;
+}
+
+/* === CONTENEDOR PRINCIPAL === */
+.container-main {
+    padding: 2rem 0;
+    min-height: calc(100vh - 200px);
+}
+
+/* === FOOTER === */
+footer {
+    background-color: var(--color-secundario);
+    color: var(--color-fondo-alt);
+    padding: 2rem 0;
+    margin-top: 3rem;
+    border-top: 4px solid var(--color-primario);
+}
+
+footer a {
+    color: var(--color-primario);
+    text-decoration: none;
+}
+
+footer a:hover {
+    color: var(--color-primario-claro);
+}
+
+/* === ANIMACIONES === */
+@keyframes pulse-metropolis {
+    0%, 100% {
+        box-shadow: 0 0 0 0 rgba(230, 126, 34, 0.4);
+    }
+    50% {
+        box-shadow: 0 0 0 10px rgba(230, 126, 34, 0);
+    }
+}
+
+.pulse-effect {
+    animation: pulse-metropolis 2s infinite;
+}
+
+/* === RESPONSIVE === */
+@media (max-width: 768px) {
+    .navbar-brand {
+        font-size: 1.25rem;
+    }
+
+    .card {
+        margin-bottom: 1rem;
+    }
+}
