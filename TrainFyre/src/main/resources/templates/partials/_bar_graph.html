@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grafico de barras</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+
+            <!-- MARCO METROPOLIS (Identidad Industrial) -->
+            <div class="card shadow-media">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <h6 class="mb-0 text-uppercase">Distribución de Incidencias por Línea</h6>
+                    <span class="badge bg-primario pulse-effect">Total: 100%</span>
+                </div>
+
+                <div class="card-body">
+                    <!-- Contenedor con fondo tipo 'arena suave' de tu CSS -->
+                    <div class="d-flex justify-content-around align-items-end p-4"
+                         style="height: 350px; background-color: var(--color-fondo); border-radius: 4px; border: 1px solid #ddd;">
+
+                        <!-- LÍNEA 1 (Naranja Quemado) -->
+                        <div class="d-flex flex-column align-items-center h-100" style="width: 15%;">
+                            <div class="progress flex-column-reverse w-100 h-100" style="background-color: rgba(0,0,0,0.05); border-radius: 2px;">
+                                <!-- Supongamos 50% de las incidencias -->
+                                <div class="progress-bar" role="progressbar"
+                                     style="height: 50%; width: 100%; background-color: var(--color-primario); transition: 0.5s;"
+                                     title="Línea 1: 50%">
+                                </div>
+                            </div>
+                            <span class="small mt-2 font-weight-bold text-secundario">L1 (50%)</span>
+                        </div>
+
+                        <!-- LÍNEA 2 (Gris Carbón) -->
+                        <div class="d-flex flex-column align-items-center h-100" style="width: 15%;">
+                            <div class="progress flex-column-reverse w-100 h-100" style="background-color: rgba(0,0,0,0.05); border-radius: 2px;">
+                                <!-- Supongamos 30% de las incidencias -->
+                                <div class="progress-bar" role="progressbar"
+                                     style="height: 30%; width: 100%; background-color: var(--color-secundario);"
+                                     title="Línea 2: 30%">
+                                </div>
+                            </div>
+                            <span class="small mt-2 font-weight-bold text-secundario">L2 (30%)</span>
+                        </div>
+
+                        <!-- LÍNEA 3 (Amarillo Tráfico) -->
+                        <div class="d-flex flex-column align-items-center h-100" style="width: 15%;">
+                            <div class="progress flex-column-reverse w-100 h-100" style="background-color: rgba(0,0,0,0.05); border-radius: 2px;">
+                                <!-- Supongamos 20% de las incidencias -->
+                                <div class="progress-bar" role="progressbar"
+                                     style="height: 20%; width: 100%; background-color: var(--color-amarillo);"
+                                     title="Línea 3: 20%">
+                                </div>
+                            </div>
+                            <span class="small mt-2 font-weight-bold text-secundario">L3 (20%)</span>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="card-footer bg-secundario text-white-50 small text-center">
+                    Cálculo basado en el volumen total de reportes registrados.
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+</html>
