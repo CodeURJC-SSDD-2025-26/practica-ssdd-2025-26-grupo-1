@@ -376,3 +376,72 @@ footer a:hover {
         margin-bottom: 1rem;
     }
 }
+
+/* === HEADER === */
+header {
+    background-color: var(--color-secundario);
+    box-shadow: var(--sombra-media);
+    border-bottom: 3px solid var(--color-primario);
+}
+
+/* === NAV === */
+nav {
+    font-weight: 500;
+}
+
+/* Enlaces generales de navegación */
+.nav-link {
+    color: var(--color-fondo-alt);
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.nav-link:hover,
+.nav-link:focus {
+    color: var(--color-primario);
+    text-decoration: none;
+}
+
+/* Estado activo general */
+.nav-link.active {
+    color: var(--color-primario);
+    font-weight: 600;
+}
+
+/* === DROPDOWN === */
+.dropdown-menu {
+    background-color: white;
+    border: none;
+    border-left: 4px solid var(--color-primario);
+    box-shadow: var(--sombra-media);
+    padding: 0.5rem 0;
+}
+
+.dropdown-item {
+    color: var(--color-secundario);
+    font-weight: 500;
+    padding: 0.5rem 1.25rem;
+    transition: all 0.2s ease;
+}
+
+.dropdown-item:hover,
+.dropdown-item:focus {
+    background-color: var(--color-fondo);
+    color: var(--color-primario);
+}
+
+/* Flecha del dropdown */
+.dropdown-item.active {
+    background-color: var(--color-primario);
+    color: white;
+}
+
+.dropdown-toggle::after {
+    border-top-color: var(--color-fondo-alt);
+}
+
+.dropdown-toggle:hover::after,
+.dropdown-toggle:focus::after,
+.dropdown-toggle.active::after {
+    border-top-color: var(--color-primario);
+}
