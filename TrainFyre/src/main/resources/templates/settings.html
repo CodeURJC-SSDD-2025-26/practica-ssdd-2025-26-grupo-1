@@ -10,19 +10,29 @@
     <link rel="stylesheet" href="../static/css/style.css">
   </head>
 
-  <!--HEADER-->
-  <div id="_header"></div>
-
   <body>
+    <!--HEADER-->
+    <div id="_header"></div>
+
     <main class="container-main">
     
     </main>
+
+    <!-- Footer -->
+    <div id="_footer"></div>
   </body>
 
-  <!-- Footer -->
-  <div id="_footer"></div>
-
-   <script>
+  <script>
+    // Cargamos el contenido de _header.html
+    fetch('./partials/_header.html')
+        .then(response => response.text())
+        .then(data => {
+            // Lo inyectamos en el div que creamos arriba
+            document.getElementById('_header').innerHTML = data;
+        })
+        .catch(error => console.error('Error al cargar el header:', error));
+  </script>
+  <script>
     // Cargamos el contenido de _footer.html
     fetch('./partials/_footer.html')
         .then(response => response.text())
@@ -31,25 +41,5 @@
             document.getElementById('_footer').innerHTML = data;
         })
         .catch(error => console.error('Error al cargar el footer:', error));
-  </script>
-  <script>
-    // Cargamos el contenido de _footer.html
-    fetch('./partials/_bar_graph.html')
-        .then(response => response.text())
-        .then(data => {
-            // Lo inyectamos en el div que creamos arriba
-            document.getElementById('_bar_graph').innerHTML = data;
-        })
-        .catch(error => console.error('Error al cargar el grafico de barras:', error));
-  </script>
-  <script>
-    // Cargamos el contenido de _footer.html
-    fetch('./partials/_header.html')
-        .then(response => response.text())
-        .then(data => {
-            // Lo inyectamos en el div que creamos arriba
-            document.getElementById('_header').innerHTML = data;
-        })
-        .catch(error => console.error('Error al cargar el header:', error));
   </script>
 </html>
