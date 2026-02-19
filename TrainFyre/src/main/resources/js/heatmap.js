@@ -23,7 +23,7 @@ Highcharts.chart('container', {
     xAxis: {
         categories: [
             'C-1', 'C-2', 'C-3', 'C-4', 'C-5',
-            'C-7', 'C-8', 'C-9', 'C-10', 'Civis'
+            'C-7', 'C-8', 'C-9', 'C-10', 'CIVIS'
         ]
     },
 
