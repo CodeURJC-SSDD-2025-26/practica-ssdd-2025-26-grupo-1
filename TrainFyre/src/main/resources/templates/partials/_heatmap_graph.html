@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Heatmap</title>
+  <link rel="stylesheet" href="TrainFyre/src/main/resources/static/css/heatmap_style.css">
+</head>
+
+<body>
+
+  <script src="https://code.highcharts.com/highcharts.js"></script>
+  <script src="https://code.highcharts.com/modules/heatmap.js"></script>
+  <script src="https://code.highcharts.com/modules/exporting.js"></script>
+  <script src="https://code.highcharts.com/modules/export-data.js"></script>
+  <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+  <script src="https://code.highcharts.com/themes/adaptive.js"></script>
+
+  <figure class="highcharts-figure">
+    <div id="container"></div>
+    <p class="highcharts-description">
+      Heatmap showing incidents per line per weekday. Heatmaps are commonly used to
+      visualize hot spots within data sets, and to show patterns or correlations.
+      Due to their compact nature, they are often used with large sets of data.
+    </p>
+  </figure>
+
+  <script src="TrainFyre/src/main/resources/javascript/heatmap.js"></script>
+</body>
+
+</html>
