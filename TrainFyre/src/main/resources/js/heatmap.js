@@ -28,7 +28,7 @@ Highcharts.chart('container', {
     },
 
     yAxis: {
-        categories: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+        categories: ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes'],
         title: null,
         reversed: true
     },
