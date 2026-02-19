@@ -6,7 +6,7 @@
     <title>Incidencies page</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    <link rel="stylesheet" href="partials/style.css">
+    <link rel="stylesheet" href="../static/css/style.css">
 </head>
 <body>
 
@@ -20,7 +20,7 @@
         <div class="row d-flex justify-content-center align-items-center ms-3">
             <div class="col-12">
                 <h1>Estadísticas de las incidencias</h1>
-                <p>Aquí podras encontrar todas las estadisticas de las incidencias del sistema.</p>
+                <p>Aquí podrás encontrar todas las estadisticas de las incidencias del sistema.</p>
             </div>
         </div>
 
@@ -29,8 +29,8 @@
         <!-- Texto -->
         <div class="row d-flex justify-content-center align-items-center mt-5 ms-5">
             <div class="col-12">
-                <h2>Porcentaje de incidencias por linea</h2>
-                <p>Muestra el porcentaje de incidencias de cada linea dentro de un rango de tiempo determinado.</p>
+                <h2>Porcentaje de incidencias por línea</h2>
+                <p>Muestra el porcentaje de incidencias de cada línea dentro de un rango de tiempo determinado.</p>
             </div>
         </div>
 
@@ -41,8 +41,8 @@
         <!-- Texto -->
         <div class="row d-flex justify-content-center align-items-center mt-5 ms-5">
             <div class="col-12">
-                <h2>Retraso promedio de las lineas</h2>
-                <p>Muestra el retraso promedio de cada linea en un periodo de tiempo.</p>
+                <h2>Retraso promedio de las líneas</h2>
+                <p>Muestra el retraso promedio de cada línea en un periodo de tiempo.</p>
             </div>
         </div>
 
@@ -58,8 +58,18 @@
 </body>
 
 <script>
+    // Cargamos el contenido de _header.html
+    fetch('./partials/_header.html')
+        .then(response => response.text())
+        .then(data => {
+            // Lo inyectamos en el div que creamos arriba
+            document.getElementById('_header').innerHTML = data;
+        })
+        .catch(error => console.error('Error al cargar el header:', error));
+</script>
+<script>
     // Cargamos el contenido de _footer.html
-    fetch('../../templates/partials/_footer.html')
+    fetch('./partials/_footer.html')
         .then(response => response.text())
         .then(data => {
             // Lo inyectamos en el div que creamos arriba
@@ -68,8 +78,8 @@
         .catch(error => console.error('Error al cargar el footer:', error));
 </script>
 <script>
-    // Cargamos el contenido de _footer.html
-    fetch('../../templates/partials/_pie_graph.html')
+    // Cargamos el contenido de _pie_graph.html
+    fetch('./partials/_pie_graph.html')
         .then(response => response.text())
         .then(data => {
             // Lo inyectamos en el div que creamos arriba
@@ -78,23 +88,13 @@
         .catch(error => console.error('Error al cargar el grafico de barras:', error));
 </script>
 <script>
-    // Cargamos el contenido de _footer.html
-    fetch('../../templates/partials/_bar_graph.html')
+    // Cargamos el contenido de _bar_graph.html
+    fetch('./partials/_bar_graph.html')
         .then(response => response.text())
         .then(data => {
             // Lo inyectamos en el div que creamos arriba
             document.getElementById('_bar_graph').innerHTML = data;
         })
         .catch(error => console.error('Error al cargar el grafico de barras:', error));
-</script>
-<script>
-    // Cargamos el contenido de _footer.html
-    fetch('../../templates/partials/_header.html')
-        .then(response => response.text())
-        .then(data => {
-            // Lo inyectamos en el div que creamos arriba
-            document.getElementById('_header').innerHTML = data;
-        })
-        .catch(error => console.error('Error al cargar el header:', error));
 </script>
 </html>
