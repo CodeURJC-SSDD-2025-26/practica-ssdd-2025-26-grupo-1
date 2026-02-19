@@ -11,80 +11,7 @@
 <body>
 
     <!--HEADER-->
-    <header class="p-3 border-bottom">
-        <div class="container-fluid">
-            <div class="d-flex align-items-center">
-                <!-- Logo -->
-                <div class="mb-md-0">
-                    <a href="#" class="d-inline-flex link-body-emphasis text-decoration-none">
-                        <img
-                                src="../../static/img/logo.jpg"
-                                width="56"
-                                height="56"
-                                class="rounded-circle"
-                        />
-                    </a>
-                </div>
-
-                <!-- Menú -->
-                <ul class="nav me-auto mb-2 mb-md-0 ms-3">
-                    <li>
-                        <a href="#" class="nav-link px-2">Inicio</a>
-                    </li>
-                    <li>
-                        <a href="incidencies.html" class="nav-link px-2">Incidencias</a>
-                    </li>
-                    <li>
-                        <a href="#" class="nav-link px-2">Panel de administrador</a>
-                    </li>
-                </ul>
-
-                <!-- Perfil -->
-                <div class="dropdown ms-auto">
-                    <a
-                            href="#"
-                            class="d-block text-decoration-none dropdown-toggle"
-                            data-bs-toggle="dropdown"
-                            aria-expanded="false"
-                    >
-                        <img
-                                src="../../static/img/perfil.jpg"
-                                width="32"
-                                height="32"
-                                class="rounded-circle"
-                        />
-                    </a>
-
-                    <ul class="dropdown-menu" role="menu">
-                        <li><a class="dropdown-item" href="settings.html">
-                            Configuración
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-gear-fill" viewBox="0 0 16 16">
-                                <path d="M9.405 1.05c-.413-1.4-2.397-1.4-2.81 0l-.1.34a1.464 1.464 0 0 1-2.105.872l-.31-.17c-1.283-.698-2.686.705-1.987 1.987l.169.311c.446.82.023 1.841-.872 2.105l-.34.1c-1.4.413-1.4 2.397 0 2.81l.34.1a1.464 1.464 0 0 1 .872 2.105l-.17.31c-.698 1.283.705 2.686 1.987 1.987l.311-.169a1.464 1.464 0 0 1 2.105.872l.1.34c.413 1.4 2.397 1.4 2.81 0l.1-.34a1.464 1.464 0 0 1 2.105-.872l.31.17c1.283.698 2.686-.705 1.987-1.987l-.169-.311a1.464 1.464 0 0 1 .872-2.105l.34-.1c1.4-.413 1.4-2.397 0-2.81l-.34-.1a1.464 1.464 0 0 1-.872-2.105l.17-.31c.698-1.283-.705-2.686-1.987-1.987l-.311.169a1.464 1.464 0 0 1-2.105-.872zM8 10.93a2.929 2.929 0 1 1 0-5.86 2.929 2.929 0 0 1 0 5.858z"/>
-                            </svg>
-                        </a>
-                        </li>
-                        <li><a class="dropdown-item" href="#">
-                            Mis alertas
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bell-fill" viewBox="0 0 16 16">
-                                <path d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2m.995-14.901a1 1 0 1 0-1.99 0A5 5 0 0 0 3 6c0 1.098-.5 6-2 7h14c-1.5-1-2-5.902-2-7 0-2.42-1.72-4.44-4.005-4.901"/>
-                            </svg>
-                        </a>
-                        </li>
-                        <li><hr class="dropdown-divider"></li>
-                        <li><a class="dropdown-item" href="#">
-                            Cerrar sesión
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-right" viewBox="0 0 16 16">
-                                <path fill-rule="evenodd" d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0z"/>
-                                <path fill-rule="evenodd" d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708z"/>
-                            </svg>
-                        </a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </header>
-
+    <div id="_header"></div>
 
     <!-- MAIN -->
     <main class="container-main">
@@ -108,64 +35,8 @@
         </div>
 
 
-        <!-- Grafico barras -->
-        <div class="container mt-5">
-            <div class="row justify-content-center">
-                <div class="col-md-6">
-
-                    <!-- MARCO METROPOLIS -->
-                    <div class="card shadow-media">
-                        <div class="card-header">
-                            <h6 class="mb-0 text-uppercase text-center">Reparto de Incidencias (Total 100%)</h6>
-                        </div>
-
-                        <div class="card-body d-flex flex-column align-items-center">
-
-                            <!-- GRÁFICO DE TARTA (Pie Chart) -->
-                            <!-- Usamos un gradiente cónico para definir los sectores -->
-                            <div class="pie-chart-container pulse-effect"
-                                 style="
-                            width: 250px;
-                            height: 250px;
-                            border-radius: 50%;
-                            border: 4px solid var(--color-secundario);
-                            background: conic-gradient(
-                                var(--color-primario) 0% 50%,
-                                var(--color-secundario) 50% 80%,
-                                var(--color-amarillo) 80% 100%
-                            );
-                         ">
-                            </div>
-
-                            <!-- LEYENDA (Debajo del gráfico) -->
-                            <div class="mt-4 w-100">
-                                <div class="d-flex justify-content-between border-bottom py-2">
-                                    <span><strong style="color: var(--color-primario);">■</strong> Línea 1</span>
-                                    <span class="font-weight-bold">50%</span>
-                                </div>
-                                <div class="d-flex justify-content-between border-bottom py-2">
-                                    <span><strong style="color: var(--color-secundario);">■</strong> Línea 2</span>
-                                    <span class="font-weight-bold">30%</span>
-                                </div>
-                                <div class="d-flex justify-content-between py-2">
-                                    <span><strong style="color: var(--color-amarillo);">■</strong> Línea 3</span>
-                                    <span class="font-weight-bold">20%</span>
-                                </div>
-                            </div>
-
-                        </div>
-
-                        <div class="card-footer text-center bg-fondo-alt">
-                            <small class="text-texto-claro text-uppercase" style="letter-spacing: 1px;">
-                                Visualización Industrial de Datos
-                            </small>
-                        </div>
-                    </div>
-                    <!-- FIN MARCO -->
-
-                </div>
-            </div>
-        </div>
+        <!-- Grafico circular -->
+        <div id="_pie_graph"></div>
 
         <!-- Texto -->
         <div class="row d-flex justify-content-center align-items-center mt-5 ms-5">
@@ -176,127 +47,54 @@
         </div>
 
         <!-- Grafico Barras -->
-        <div class="container mt-5">
-            <div class="row justify-content-center">
-                <div class="col-md-8">
-
-                    <!-- MARCO METROPOLIS (Identidad Industrial) -->
-                    <div class="card shadow-media">
-                        <div class="card-header d-flex justify-content-between align-items-center">
-                            <h6 class="mb-0 text-uppercase">Distribución de Incidencias por Línea</h6>
-                            <span class="badge bg-primario pulse-effect">Total: 100%</span>
-                        </div>
-
-                        <div class="card-body">
-                            <!-- Contenedor con fondo tipo 'arena suave' de tu CSS -->
-                            <div class="d-flex justify-content-around align-items-end p-4"
-                                 style="height: 350px; background-color: var(--color-fondo); border-radius: 4px; border: 1px solid #ddd;">
-
-                                <!-- LÍNEA 1 (Naranja Quemado) -->
-                                <div class="d-flex flex-column align-items-center h-100" style="width: 15%;">
-                                    <div class="progress flex-column-reverse w-100 h-100" style="background-color: rgba(0,0,0,0.05); border-radius: 2px;">
-                                        <!-- Supongamos 50% de las incidencias -->
-                                        <div class="progress-bar" role="progressbar"
-                                             style="height: 50%; width: 100%; background-color: var(--color-primario); transition: 0.5s;"
-                                             title="Línea 1: 50%">
-                                        </div>
-                                    </div>
-                                    <span class="small mt-2 font-weight-bold text-secundario">L1 (50%)</span>
-                                </div>
-
-                                <!-- LÍNEA 2 (Gris Carbón) -->
-                                <div class="d-flex flex-column align-items-center h-100" style="width: 15%;">
-                                    <div class="progress flex-column-reverse w-100 h-100" style="background-color: rgba(0,0,0,0.05); border-radius: 2px;">
-                                        <!-- Supongamos 30% de las incidencias -->
-                                        <div class="progress-bar" role="progressbar"
-                                             style="height: 30%; width: 100%; background-color: var(--color-secundario);"
-                                             title="Línea 2: 30%">
-                                        </div>
-                                    </div>
-                                    <span class="small mt-2 font-weight-bold text-secundario">L2 (30%)</span>
-                                </div>
-
-                                <!-- LÍNEA 3 (Amarillo Tráfico) -->
-                                <div class="d-flex flex-column align-items-center h-100" style="width: 15%;">
-                                    <div class="progress flex-column-reverse w-100 h-100" style="background-color: rgba(0,0,0,0.05); border-radius: 2px;">
-                                        <!-- Supongamos 20% de las incidencias -->
-                                        <div class="progress-bar" role="progressbar"
-                                             style="height: 20%; width: 100%; background-color: var(--color-amarillo);"
-                                             title="Línea 3: 20%">
-                                        </div>
-                                    </div>
-                                    <span class="small mt-2 font-weight-bold text-secundario">L3 (20%)</span>
-                                </div>
-
-                            </div>
-                        </div>
-
-                        <div class="card-footer bg-secundario text-white-50 small text-center">
-                            Cálculo basado en el volumen total de reportes registrados.
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </div>
+        <div id="_bar_graph"></div>
 
     </main>
 
-
-
     <!-- Footer -->
-    <footer class="footer">
-        <!-- Grid container -->
-        <div class="container p-4">
-
-            <!-- Section: Social media -->
-            <section class="d-flex justify-content-center gap-3 mb-4" >
-                <!-- Twitter -->
-                <a href="#" class="text-decoration-none">
-                    TrainFyre
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#1DA1F2" class="bi bi-twitter" viewBox="0 0 16 16">
-                        <path d="M5.026 15c6.038 0 9.341-5.003 9.341-9.334q.002-.211-.006-.422A6.7 6.7 0 0 0 16 3.542a6.7 6.7 0 0 1-1.889.518 3.3 3.3 0 0 0 1.447-1.817 6.5 6.5 0 0 1-2.087.793A3.286 3.286 0 0 0 7.875 6.03a9.32 9.32 0 0 1-6.767-3.429 3.29 3.29 0 0 0 1.018 4.382A3.3 3.3 0 0 1 .64 6.575v.045a3.29 3.29 0 0 0 2.632 3.218 3.2 3.2 0 0 1-.865.115 3 3 0 0 1-.614-.057 3.28 3.28 0 0 0 3.067 2.277A6.6 6.6 0 0 1 .78 13.58a6 6 0 0 1-.78-.045A9.34 9.34 0 0 0 5.026 15"></path>
-                    </svg>
-                </a>
-
-                <!-- Instagram -->
-                <a href="https://www.instagram.com/trainfyre/" class="text-decoration-none">
-                    TrainFyre
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#833AB4" class="bi bi-instagram" viewBox="0 0 16 16">
-                        <path d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.9 3.9 0 0 0-1.417.923A3.9 3.9 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.9 3.9 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.9 3.9 0 0 0-.923-1.417A3.9 3.9 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599s.453.546.598.92c.11.281.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.5 2.5 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.5 2.5 0 0 1-.92-.598 2.5 2.5 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.233s.008-2.388.046-3.231c.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92s.546-.453.92-.598c.282-.11.705-.24 1.485-.276.738-.034 1.024-.044 2.515-.045zm4.988 1.328a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92m-4.27 1.122a4.109 4.109 0 1 0 0 8.217 4.109 4.109 0 0 0 0-8.217m0 1.441a2.667 2.667 0 1 1 0 5.334 2.667 2.667 0 0 1 0-5.334"/>
-                    </svg>
-                </a>
-
-                <!-- Github -->
-                <a href="https://github.com/CodeURJC-SSDD-2025-26/practica-ssdd-2025-26-grupo-1" class="text-decoration-none" target="_blank" title="ir a github">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-github" viewBox="0 0 16 16">
-                        <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8"></path>
-                    </svg>
-                </a>
-
-            </section>
-            <!-- Section: Social media -->
-
-            <!-- Section: Text -->
-            <section class="mb-4">
-                <p>
-                    Esta página web forma parte de un proyecto universitario de la URJC. No podemos asegurar la veracidad y validez de los datos, ya que de momento este proyecto se mantiene
-                    en desarrollo. Esperemos que en un futuro podamos ofrecer las funcionalidades presentadas en esta página.
-                </p>
-            </section>
-            <!-- Section: Text -->
-
-        </div>
-        <!-- Grid container -->
-
-        <!-- Copyright -->
-        <div class="text-center p-3">
-            <span>© 2026 Copyright: </span>
-            <a href="https://trainfyre.com/">trainfyre.com</a>
-        </div>
-        <!-- Copyright -->
-
-    </footer>
+    <div id="_footer"></div>
     <!-- Footer -->
+
 </body>
+
+<script>
+    // Cargamos el contenido de _footer.html
+    fetch('../../templates/partials/_footer.html')
+        .then(response => response.text())
+        .then(data => {
+            // Lo inyectamos en el div que creamos arriba
+            document.getElementById('_footer').innerHTML = data;
+        })
+        .catch(error => console.error('Error al cargar el footer:', error));
+</script>
+<script>
+    // Cargamos el contenido de _footer.html
+    fetch('../../templates/partials/_pie_graph.html')
+        .then(response => response.text())
+        .then(data => {
+            // Lo inyectamos en el div que creamos arriba
+            document.getElementById('_pie_graph').innerHTML = data;
+        })
+        .catch(error => console.error('Error al cargar el grafico de barras:', error));
+</script>
+<script>
+    // Cargamos el contenido de _footer.html
+    fetch('../../templates/partials/_bar_graph.html')
+        .then(response => response.text())
+        .then(data => {
+            // Lo inyectamos en el div que creamos arriba
+            document.getElementById('_bar_graph').innerHTML = data;
+        })
+        .catch(error => console.error('Error al cargar el grafico de barras:', error));
+</script>
+<script>
+    // Cargamos el contenido de _footer.html
+    fetch('../../templates/partials/_header.html')
+        .then(response => response.text())
+        .then(data => {
+            // Lo inyectamos en el div que creamos arriba
+            document.getElementById('_header').innerHTML = data;
+        })
+        .catch(error => console.error('Error al cargar el header:', error));
+</script>
 </html>
