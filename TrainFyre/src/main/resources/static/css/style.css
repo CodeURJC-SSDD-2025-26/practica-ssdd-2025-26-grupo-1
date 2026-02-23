@@ -445,3 +445,21 @@ nav {
 .dropdown-toggle.active::after {
     border-top-color: var(--color-primario);
 }
+
+/* === INTERACTIVE MAP === */
+.map-container {
+    background-color: #ffffff;
+    padding: 1rem;
+    border: 1rem solid var(--color-fondo-alt);
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+}
+
+.interactive-map-buttons {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-left: 1rem;
+}
