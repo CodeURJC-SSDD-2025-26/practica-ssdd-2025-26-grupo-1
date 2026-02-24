@@ -40,6 +40,21 @@
                         <div class="row">
                             <div class="form-group col-12">
                                 <label class="form-label" for="date">Introduzca las horas de la alerta:</label>
+                                <div class="range-slider">
+                                    <span class="range-selected"></span>
+                                </div>
+                                <div class="range-input">
+                                    <input type="range" class="min form-control" id="slider-min" min="0" max="1439"
+                                        value="480" step="5">
+                                    <input type="range" class="max form-control" id="slider-max" min="0" max="1439"
+                                        value="560" step="5">
+                                </div>
+                                <div class="range-price">
+                                    <label for="min">Inicio</label>
+                                    <input type="time" id="min-input" name="min" value="08:00">
+                                    <label for="max">Fin</label>
+                                    <input type="time" id="max-input" name="max" value="09:00">
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -54,36 +69,16 @@
             </div>
 
 
-            <div class="d-flex flex-wrap justify-content-center gap-3 mb-4">
 
-                <div class="row">
+
+            <!--Button row-->
+            <div class="row">
+                <div class="d-flex justify-content-center gap-3 mb-4">
                     <div class="col-12">
-                        <div class="range">
-                            <div class="range-slider">
-                                <span class="range-selected"></span>
-                            </div>
-                            <div class="range-input">
-                                <input type="range" class="min" id="slider-min" min="0" max="1439" value="480" step="5">
-                                <input type="range" class="max" id="slider-max" min="0" max="1439" value="560" step="5">
-                            </div>
-                            <div class="range-price">
-                                <label for="min">Inicio</label>
-                                <input type="time" id="min-input" name="min" value="08:00">
-                                <label for="max">Fin</label>
-                                <input type="time" id="max-input" name="max" value="09:00">
-                            </div>
-                        </div>
+                        <button type="submit" class="btn-primary">Confirmar</button>
                     </div>
                 </div>
-
-                <!--Button row-->
-                <div class="row">
-                    <div class="d-flex justify-content-center gap-3 mb-4">
-                        <div class="col-12">
-                            <button type="submit" class="btn-primary">Confirmar</button>
-                        </div>
-                    </div>
-                </div>
+            </div>
 
 
             </div>
