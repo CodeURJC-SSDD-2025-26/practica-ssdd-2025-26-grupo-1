@@ -49,6 +49,18 @@
         <!-- Grafico Barras -->
         <div id="_bar_graph"></div>
 
+
+        <!-- Texto -->
+        <div class="row d-flex justify-content-center align-items-center mt-5 ms-5">
+            <div class="col-12">
+                <h2>Mapa de calor de incidencias por lineas y tiempo</h2>
+                <p>Muestra en un mapa de calor las incidencias por linea en un rango de tiempo determinado</p>
+            </div>
+        </div>
+
+        <!-- Mapa de calor -->
+        <div id="_heatmap_graph"></div>
+
     </main>
 
     <!-- Footer -->
@@ -95,5 +107,15 @@
             document.getElementById('_bar_graph').innerHTML = data;
         })
         .catch(error => console.error('Error al cargar el grafico de barras:', error));
+</script>
+<script>
+    // Cargamos el contenido de _heatmap_graph.html
+    fetch('./partials/_heatmap_graph.html')
+        .then(response => response.text())
+        .then(data => {
+            // Lo inyectamos en el div que creamos arriba
+            document.getElementById('_heatmap_graph').innerHTML = data;
+        })
+        .catch(error => console.error('Error al cargar el mapa de calor:', error));
 </script>
 </html>
