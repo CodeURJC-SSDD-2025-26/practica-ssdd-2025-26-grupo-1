@@ -5,28 +5,23 @@
 
 /* === VARIABLES DE COLOR === */
 :root {
-    /* Colores Primarios */
-    --color-primario: #E67E22;          /* Naranja Quemado */
-    --color-primario-oscuro: #D35400;   /* Naranja Óxido */
+    --color-primario: #E67E22;         
+    --color-primario-oscuro: #D35400;   
     --color-primario-claro: #F39C12;
 
-    /* Secundarios */
-    --color-secundario: #2C3E50;        /* Gris Carbón */
+    --color-secundario: #2C3E50;        
     --color-secundario-claro: #34495E;
     --color-secundario-oscuro: #1A252F;
 
-    /* Acentos */
-    --color-amarillo: #F1C40F;          /* Amarillo Tráfico */
-    --color-rojo: #C0392B;              /* Rojo Alarma */
-    --color-verde: #27AE60;             /* Verde Success (opcional) */
+    --color-amarillo: #F1C40F;          
+    --color-rojo: #C0392B;              
+    --color-verde: #27AE60;            
 
-    /* Neutros */
-    --color-fondo: #FDF2E9;             /* Arena Suave */
-    --color-fondo-alt: #ECF0F1;         /* Blanco Hueso */
+    --color-fondo: #FDF2E9;            
+    --color-fondo-alt: #ECF0F1;         
     --color-texto: #2C3E50;
     --color-texto-claro: #7F8C8D;
 
-    /* Sombras */
     --sombra-suave: 0 2px 4px rgba(44, 62, 80, 0.1);
     --sombra-media: 0 4px 8px rgba(44, 62, 80, 0.15);
     --sombra-fuerte: 0 8px 16px rgba(44, 62, 80, 0.2);
