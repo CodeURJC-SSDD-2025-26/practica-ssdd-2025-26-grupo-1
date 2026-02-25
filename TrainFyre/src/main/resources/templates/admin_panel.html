@@ -13,6 +13,8 @@
   <body>
     <!--HEADER-->
     <div id="_header"></div>
+    
+    <div id="_subheader"></div>
 
     <main class="container-main">
       
@@ -31,6 +33,16 @@
             document.getElementById('_header').innerHTML = data;
         })
         .catch(error => console.error('Error al cargar el header:', error));
+  </script>
+  <script>
+    // Cargamos el contenido de _subheader.html
+    fetch('./partials/_subheader.html')
+        .then(response => response.text())
+        .then(data => {
+            // Lo inyectamos en el div que creamos arriba
+            document.getElementById('_subheader').innerHTML = data;
+        })
+        .catch(error => console.error('Error al cargar el subheader:', error));
   </script>
   <script>
     // Cargamos el contenido de _footer.html

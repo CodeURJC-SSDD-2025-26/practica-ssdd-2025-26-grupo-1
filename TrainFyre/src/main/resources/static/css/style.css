@@ -471,3 +471,24 @@ nav {
 .highcharts-background {
     fill: var(--color-fondo);
 }
+
+/* === SUBHEADER / SUBNAV === */
+.subnavbar {
+    background-color: var(--color-secundario-claro);
+    border-top: 1px solid rgba(255,255,255,0.1);
+    border-bottom: 2px solid var(--color-primario-claro);
+    padding: 0.4rem 0;
+}
+
+.subnavbar .nav-link {
+    color: var(--color-fondo-alt);
+    font-size: 0.9rem;
+    font-weight: 500;
+    padding: 0.3rem 0.75rem;
+    transition: all 0.2s ease;
+}
+
+.subnavbar .nav-link:hover,
+.subnavbar .nav-link.active {
+    color: var(--color-amarillo);
+}
