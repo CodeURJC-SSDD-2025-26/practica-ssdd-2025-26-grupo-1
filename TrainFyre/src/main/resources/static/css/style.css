@@ -467,3 +467,8 @@ nav {
 .map-container {
     background-color: var(--color-fondo);
 }
+
+.td_center {
+    text-align: center;
+    vertical-align: center;
+}
