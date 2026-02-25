@@ -472,3 +472,7 @@ nav {
     text-align: center;
     vertical-align: center;
 }
+
+.highcharts-background {
+    fill: var(--color-fondo);
+}
