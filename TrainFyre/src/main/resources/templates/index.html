@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="author" content="alexgogb"/>
+    <title>Settings</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="../static/css/style.css">
+  </head>
+
+  <body>
+    <!--HEADER-->
+    <div id="_header"></div>
+
+    <div id="_interactive_map"></div>
+
+    <!-- Footer -->
+    <div id="_footer"></div>
+  </body>
+
+  <script>
+    // Cargamos el contenido de _header.html
+    fetch('./partials/_header.html')
+        .then(response => response.text())
+        .then(data => {
+            // Lo inyectamos en el div que creamos arriba
+            document.getElementById('_header').innerHTML = data;
+        })
+        .catch(error => console.error('Error al cargar el header:', error));
+  </script>
+  <script>
+    // Cargamos el contenido de _footer.html
+    fetch('./partials/_footer.html')
+        .then(response => response.text())
+        .then(data => {
+            // Lo inyectamos en el div que creamos arriba
+            document.getElementById('_footer').innerHTML = data;
+        })
+        .catch(error => console.error('Error al cargar el footer:', error));
+  </script>
+  <script>
+    // Cargamos el contenido de _interactive_map.html
+    fetch('./partials/_interactive_map.html')
+        .then(response => response.text())
+        .then(data => {
+            // Lo inyectamos en el div que creamos arriba
+            document.getElementById('_interactive_map').innerHTML = data;
+        })
+        .catch(error => console.error('Error al cargar el mapa interactivo:', error));
+    </script>
+</html>
