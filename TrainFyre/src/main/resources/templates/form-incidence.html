@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Partial de bootstrap</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../static/css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+
+<body>
+    <!--HEADER-->
+    <div id="_header"></div>
+
+    <main class="container-main">
+
+        <form role="form" action="alert_table.html" target="_blank">
+
+            <!--Lines-->
+<div class="row">
+                <div class="d-flex flex-wrap justify-content-center gap-3 mb-4">
+                    <div class="form-group col-auto">
+                        <h2>Añadir incidencia</h2>
+
+                        <label class="form-label" for="line">Línea(s) afectada(s):</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="d-flex flex-wrap justify-content-center gap-3 mb-4">
+                    <div class="col-auto">
+                            <label><input type="checkbox" id="C-1">C-1</label>
+                    </div>
+                    <div class="col-auto">
+                            <label><input type="checkbox" id="C-2">C-2</label>
+                    </div>
+                            <div class="col-auto">
+                            <label><input type="checkbox" id="C-3">C-3</label>
+                            </div>
+                            <div class="col-auto">
+                            <label><input type="checkbox" id="C-4">C-4</label>
+                            </div>
+                            <div class="col-auto">
+                            <label><input type="checkbox" id="C-5">C-5</label>
+                            </div>
+                            <div class="col-auto">
+                            <label><input type="checkbox" id="C-7">C-7</label>
+                            </div>
+                            <div class="col-auto">
+                            <label><input type="checkbox" id="C-8">C-8</label>
+                            </div>
+                            <div class="col-auto">
+                            <label><input type="checkbox" id="C-9">C-9</label>
+                            </div>
+                            <div class="col-auto">
+                            <label><input type="checkbox" id="C-10">C-10</label>
+                            </div>
+                            <div class="col-auto">
+                            <label><input type="checkbox" id="CIVIS">CIVIS</label>
+                            </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--Severity-->
+            <div class="row">
+                <div class="d-flex flex-wrap justify-content-center gap-3 mb-4">
+                    <div class="form-group col-auto">
+
+                        <label class="form-label" for="severity">Severidad:</label>
+                        <select class="form-control" id="severity">
+                            <option value="Leve" selected>Leve</option>
+                            <option value="Moderado">Moderado</option>
+                            <option value="Serio">Serio</option>
+                            <option value="Critico">Crítico</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <!--Type-->
+            <div class="row">
+                <div class="d-flex flex-wrap justify-content-center gap-3 mb-4">
+                    <div class="form-group col-auto">
+
+                        <label class="form-label" for="type">Tipo:</label>
+                        <select class="form-control" id="type">
+                            <option value="Mantenimiento" selected>Mantenimiento</option>
+                            <option value="Accidente">Accidente</option>
+                            <option value="Otro">Otro</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <!--Description-->
+
+            <div class="row">
+                <div class="d-flex flex-wrap justify-content-center gap-3 mb-4">
+                    <div class="form-group col-10">
+                        <label class="form-label" for="descrpition">Describa la incidencia:</label>
+                        <input type="text" class="form-control" id="description" placeholder="Descripción" required>
+                    </div>
+                </div>
+            </div>
+
+            <!--Image-->
+            <div class="row">
+                <div class="d-flex flex-wrap justify-content-center gap-3 mb-4">
+                    <div class="form-group col-auto">
+                        <label class="form-label" for="image">Introduzca una fotografía de la incidencia (opcional):</label>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="d-flex flex-wrap justify-content-center gap-3 mb-4">
+                    <div class="form-group col-auto">
+                        <input type="file" class="form-control-file" id="image">
+
+                    </div>
+                </div>
+            </div>
+
+            
+            <!--Button row-->
+            <div class="row">
+                <div class="d-flex justify-content-center gap-3 mb-4">
+                    <div class="col-auto">
+                        <button type="submit" class="btn btn-primary">Confirmar</button>
+                    </div>
+                </div>
+            </div>
+
+            </div>
+
+
+            </div>
+
+
+
+
+
+        </form>
+
+
+    </main>
+
+    <!-- Footer -->
+    <div id="_footer"></div>
+</body>
+
+<script src="../js/js_slider.js"></script>
+<script>
+    // Cargamos el contenido de _header.html
+    fetch('./partials/_header.html')
+        .then(response => response.text())
+        .then(data => {
+            // Lo inyectamos en el div que creamos arriba
+            document.getElementById('_header').innerHTML = data;
+        })
+        .catch(error => console.error('Error al cargar el header:', error));
+</script>
+<script>
+    // Cargamos el contenido de _footer.html
+    fetch('./partials/_footer.html')
+        .then(response => response.text())
+        .then(data => {
+            // Lo inyectamos en el div que creamos arriba
+            document.getElementById('_footer').innerHTML = data;
+        })
+        .catch(error => console.error('Error al cargar el footer:', error));
+</script>
+
+</html>
