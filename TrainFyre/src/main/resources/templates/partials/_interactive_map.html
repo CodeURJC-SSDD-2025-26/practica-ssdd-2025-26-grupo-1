@@ -1004,48 +1004,17 @@
         </svg>
     </div>
     <div class="interactive-map-buttons">
-        <button class="btn btn-primary" data-action="C-1">C-1</button>
-        <button class="btn btn-primary" data-action="C-2">C-2</button>
-        <button class="btn btn-primary" data-action="C-3">C-3</button>
-        <button class="btn btn-primary" data-action="C-4">C-4</button>
-        <button class="btn btn-primary" data-action="C-5">C-5</button>
-        <button class="btn btn-primary" data-action="C-7">C-7</button>
-        <button class="btn btn-primary" data-action="C-8">C-8</button>
-        <button class="btn btn-primary" data-action="C-9">C-9</button>
-        <button class="btn btn-primary" data-action="C-10">C-10</button>
-        <button class="btn btn-primary" data-action="CIVIS">CIVIS</button>
+        <button class="btn btn-primary" id="lines" data-action="C-1">C-1</button>
+        <button class="btn btn-primary" id="lines" data-action="C-2">C-2</button>
+        <button class="btn btn-primary" id="lines" data-action="C-3">C-3</button>
+        <button class="btn btn-primary" id="lines" data-action="C-4">C-4</button>
+        <button class="btn btn-primary" id="lines" data-action="C-5">C-5</button>
+        <button class="btn btn-primary" id="lines" data-action="C-7">C-7</button>
+        <button class="btn btn-primary" id="lines" data-action="C-8">C-8</button>
+        <button class="btn btn-primary" id="lines" data-action="C-9">C-9</button>
+        <button class="btn btn-primary" id="lines" data-action="C-10">C-10</button>
+        <button class="btn btn-primary" id="lines" data-action="CIVIS">CIVIS</button>
     </div>
 </div>
 
-<script>
-    let effect = null;
-    function highlightPath(pathName) {
-        const highlightedPath = document.querySelector(`[inkscape\\:label="${pathName}"]`);
-        if (effect !== highlightedPath) {
-            effect = highlightedPath;
-            nodos.style.opacity = 0;
-            allPaths.forEach(path => {
-                if (path !== highlightedPath) {
-                    path.style.opacity = 0.2;
-                } else {
-                    path.style.opacity = 1;
-                }
-            });
-        } else {
-            effect = null;
-            nodos.style.opacity = 1;
-            allPaths.forEach(path => {
-                path.style.opacity = 1;
-            });
-        }
-    }
-    const allPaths = document.querySelectorAll(`g[inkscape\\:label^="C-"], g[inkscape\\:label^="CIVIS"]`);
-    const nodos = document.querySelector(`[inkscape\\:label="Nodos"]`);
-    const bottons = document.querySelectorAll('.btn.btn-primary');
-    bottons.forEach(button => {
-        button.addEventListener('click', () => {
-            const name = button.innerText;
-            highlightPath(name);
-        });
-    });
-</script>
+<script src="js/interactive_map.js"></script>
