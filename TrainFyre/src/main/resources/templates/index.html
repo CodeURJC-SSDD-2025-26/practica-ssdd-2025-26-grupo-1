@@ -47,37 +47,38 @@
         .then(data => {
             // Lo inyectamos en el div que creamos arriba
             document.getElementById('_interactive_map').innerHTML = data;
+            // Ahora que el HTML está en el DOM, inicializamos el mapa
+            let effect = null;
+            function highlightPath(pathName) {
+                const highlightedPath = document.querySelector(`[inkscape\\:label="${pathName}"]`);
+                if (effect !== highlightedPath) {
+                    effect = highlightedPath;
+                    nodos.style.opacity = 0;
+                    allPaths.forEach(path => {
+                        if (path !== highlightedPath) {
+                            path.style.opacity = 0.2;
+                        } else {
+                            path.style.opacity = 1;
+                        }
+                    });
+                } else {
+                    effect = null;
+                    nodos.style.opacity = 1;
+                    allPaths.forEach(path => {
+                        path.style.opacity = 1;
+                    });
+                }
+            }
+            const allPaths = document.querySelectorAll(`g[inkscape\\:label^="C-"], g[inkscape\\:label^="CIVIS"]`);
+            const nodos = document.querySelector(`[inkscape\\:label="Nodos"]`);
+            const buttons = document.querySelectorAll('#lines');
+            buttons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const name = button.dataset.action;
+                    highlightPath(name);
+                });
+            });
         })
         .catch(error => console.error('Error al cargar el mapa interactivo:', error));
-        let effect = null;
-        function highlightPath(pathName) {
-            const highlightedPath = document.querySelector(`[inkscape\\:label="${pathName}"]`);
-            if (effect !== highlightedPath) {
-                effect = highlightedPath;
-                nodos.style.opacity = 0;
-                allPaths.forEach(path => {
-                    if (path !== highlightedPath) {
-                        path.style.opacity = 0.2;
-                    } else {
-                        path.style.opacity = 1;
-                    }
-                });
-            } else {
-                effect = null;
-                nodos.style.opacity = 1;
-                allPaths.forEach(path => {
-                    path.style.opacity = 1;
-                });
-            }
-        }
-        const allPaths = document.querySelectorAll(`g[inkscape\\:label^="C-"], g[inkscape\\:label^="CIVIS"]`);
-        const nodos = document.querySelector(`[inkscape\\:label="Nodos"]`);
-        const bottons = document.querySelectorAll('#lines');
-        bottons.forEach(button => {
-            button.addEventListener('click', () => {
-                const name = button.dataset.action;
-                highlightPath(name);
-            });
-        });
     </script>
 </html>
