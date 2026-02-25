@@ -463,3 +463,7 @@ nav {
     gap: 0.5rem;
     margin-left: 1rem;
 }
+
+.map-container {
+    background-color: var(--color-fondo);
+}
