@@ -14,15 +14,35 @@
     <!--HEADER-->
     <div id="_header"></div>
 
-    <section class="container-main">
+    <main class="container-main">
 
         <form role="form">
 
             <div class="row">
                 <div class="d-flex flex-wrap justify-content-center gap-3 mb-4">
-                    <div class="form-group col-10">
+                    <div class="form-group col-auto">
                         <h2>Añadir alerta</h2>
 
+                        <label class="form-label" for="line">Línea:</label>
+                        <select class="form-control" id="date">
+                            <option value="C-1" selected>C-1</option>
+                            <option value="C-2">C-2</option>
+                            <option value="C-3">C-3</option>
+                            <option value="C-4">C-4</option>
+                            <option value="C-5">C-5</option>
+                            <option value="C-7">C-7</option>
+                            <option value="C-8">C-8</option>
+                            <option value="C-9">C-9</option>
+                            <option value="C-10">C-10</option>
+                            <option value="CIVIS">CIVIS</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="d-flex flex-wrap justify-content-center gap-3 mb-4">
+                    <div class="form-group col-10">
                         <label class="form-label" for="date">Introduzca la fecha de inicio de la alerta:</label>
                         <input type="date" class="form-control" id="date" required>
                     </div>
@@ -47,9 +67,11 @@
                             <span class="range-selected"></span>
                         </div>
                         <div class="range-input">
+                                <label class="form-label" for="date">Inicio:</label>
                             <input type="range" class="min form-control" id="slider-min" min="0" max="1439" value="480"
                                 step="5">
-                            <input type="range" class="max form-control" id="slider-max" min="0" max="1439" value="560"
+                                <label class="form-label" for="date">Fin:</label>
+                            <input type="range" class="max form-control" id="slider-max" min="0" max="1439" value="540"
                                 step="5">
                         </div>
                         
@@ -104,7 +126,7 @@
         </form>
 
 
-    </section>
+    </main>
 
     <!-- Footer -->
     <div id="_footer"></div>
