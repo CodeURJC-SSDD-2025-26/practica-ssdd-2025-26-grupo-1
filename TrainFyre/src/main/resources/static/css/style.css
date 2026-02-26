@@ -443,7 +443,7 @@ nav {
 
 /* === INTERACTIVE MAP === */
 .map-container {
-    background-color: #ffffff;
+    background-color: var(--color-fondo);
     padding: 1rem;
     box-shadow: rgba(0, 0, 0, 0.8);
     display: flex;
@@ -459,17 +459,9 @@ nav {
     margin-left: 1rem;
 }
 
-.map-container {
-    background-color: var(--color-fondo);
-}
-
 .td_center {
     text-align: center;
     vertical-align: center;
-}
-
-.highcharts-background {
-    fill: var(--color-fondo);
 }
 
 /* === SUBHEADER / SUBNAV === */
@@ -489,4 +481,12 @@ nav {
 .subnavbar .nav-link.active {
     color: var(--color-primario);
     border-bottom: 2px solid var(--color-primario);
+}
+
+.bi-ban {
+    fill: red;
+}
+
+.bi-pencil-square {
+    fill: var(--color-primario);
 }
