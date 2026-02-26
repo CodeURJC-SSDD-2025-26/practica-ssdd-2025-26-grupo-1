@@ -74,10 +74,21 @@ body {
     transition: all 0.3s ease;
 }
 
+.btn-success {
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
 .btn-primary:hover,
 .btn-primary:focus {
     background-color: var(--color-primario-oscuro);
     border-color: var(--color-primario-oscuro);
+    transform: translateY(-2px);
+    box-shadow: var(--sombra-media);
+}
+
+.btn-success:hover,
+.btn-success:focus {
     transform: translateY(-2px);
     box-shadow: var(--sombra-media);
 }
