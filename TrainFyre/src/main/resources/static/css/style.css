@@ -94,6 +94,14 @@ body {
     box-shadow: var(--sombra-media);
 }
 
+.btn-outline-primary:hover,
+.btn-outline-primary:focus {
+    background-color: var(--color-primario-oscuro);
+    border-color: var(--color-primario-oscuro);
+    transform: translateY(-2px);
+    box-shadow: var(--sombra-media);
+}
+
 .btn-success:hover,
 .btn-success:focus {
     transform: translateY(-2px);
