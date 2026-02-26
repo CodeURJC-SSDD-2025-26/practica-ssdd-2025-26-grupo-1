@@ -522,3 +522,7 @@ nav {
 .bi-pencil-square {
     fill: var(--color-primario);
 }
+
+.highcharts-background {
+    fill: var(--color-fondo)
+}
