@@ -459,6 +459,8 @@ nav {
     margin-left: 1rem;
 }
 
+/* === Table centering === */
+
 .td_center {
     text-align: center;
     vertical-align: center;
