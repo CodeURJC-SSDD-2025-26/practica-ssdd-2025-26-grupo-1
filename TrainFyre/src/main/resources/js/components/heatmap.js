@@ -14,7 +14,7 @@ Highcharts.chart('container', {
 
 
     title: {
-        text: 'Incidents per line per weeday',
+        text: 'Incidents per line per day',
         style: {
             fontSize: '1em'
         }
