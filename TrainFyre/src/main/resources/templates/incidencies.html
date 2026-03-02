@@ -58,8 +58,18 @@
             </div>
         </div>
 
-        <!-- Mapa de calor -->
-        <div id="_heatmap_graph"></div>
+
+        <script src="https://code.highcharts.com/highcharts.js"></script>
+        <script src="https://code.highcharts.com/modules/heatmap.js"></script>
+        <script src="https://code.highcharts.com/modules/exporting.js"></script>
+        <script src="https://code.highcharts.com/modules/export-data.js"></script>
+        <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+        <script src="https://code.highcharts.com/themes/adaptive.js"></script>
+
+        <figure class="highcharts-figure">
+            <div id="container"></div>
+        </figure>
+
 
     </main>
 
@@ -68,54 +78,7 @@
 
 </body>
 
-<script>
-    // Cargamos el contenido de _header.html
-    fetch('./partials/_header.html')
-        .then(response => response.text())
-        .then(data => {
-            // Lo inyectamos en el div que creamos arriba
-            document.getElementById('_header').innerHTML = data;
-        })
-        .catch(error => console.error('Error al cargar el header:', error));
-</script>
-<script>
-    // Cargamos el contenido de _footer.html
-    fetch('./partials/_footer.html')
-        .then(response => response.text())
-        .then(data => {
-            // Lo inyectamos en el div que creamos arriba
-            document.getElementById('_footer').innerHTML = data;
-        })
-        .catch(error => console.error('Error al cargar el footer:', error));
-</script>
-<script>
-    // Cargamos el contenido de _pie_graph.html
-    fetch('./partials/_pie_graph.html')
-        .then(response => response.text())
-        .then(data => {
-            // Lo inyectamos en el div que creamos arriba
-            document.getElementById('_pie_graph').innerHTML = data;
-        })
-        .catch(error => console.error('Error al cargar el grafico de barras:', error));
-</script>
-<script>
-    // Cargamos el contenido de _bar_graph.html
-    fetch('./partials/_bar_graph.html')
-        .then(response => response.text())
-        .then(data => {
-            // Lo inyectamos en el div que creamos arriba
-            document.getElementById('_bar_graph').innerHTML = data;
-        })
-        .catch(error => console.error('Error al cargar el grafico de barras:', error));
-</script>
-<script>
-    // Cargamos el contenido de _heatmap_graph.html
-    fetch('./partials/_heatmap_graph.html')
-        .then(response => response.text())
-        .then(data => {
-            // Lo inyectamos en el div que creamos arriba
-            document.getElementById('_heatmap_graph').innerHTML = data;
-        })
-        .catch(error => console.error('Error al cargar el mapa de calor:', error));
-</script>
+<script type="module" src="../../resources/js/pages/incidencies.js"></script>
+
+<script src="../../resources/js/components/heatmap.js"></script>
 </html>
