@@ -538,6 +538,26 @@ nav {
     fill: var(--color-primario);
 }
 
+.highcharts-figure{
+    background-color: white;
+    border: none;
+    border-left: 4px solid var(--color-primario);
+    box-shadow: var(--sombra-suave);
+    transition: all 0.3s ease;
+}
+
 .highcharts-background {
     fill: var(--color-fondo)
+}
+
+.pie-chart-container{
+    width: 250px;
+    height: 250px;
+    border-radius: 50%;
+    border: 4px solid var(--color-secundario);
+    background: conic-gradient(
+            var(--color-primario) 0% 50%,
+            var(--color-secundario) 50% 80%,
+            var(--color-amarillo) 80% 100%
+    );
 }
