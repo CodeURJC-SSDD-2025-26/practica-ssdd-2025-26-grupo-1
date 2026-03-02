@@ -29,25 +29,6 @@
 
 </body>
 
+<script type= "module" src="../../resources/js/pages/index.js"></script>
 
-<script>
-  // Cargamos el contenido de _header.html
-  fetch('./partials/_header.html')
-          .then(response => response.text())
-          .then(data => {
-            // Lo inyectamos en el div que creamos arriba
-            document.getElementById('_header').innerHTML = data;
-          })
-          .catch(error => console.error('Error al cargar el header:', error));
-</script>
-<script>
-  // Cargamos el contenido de _footer.html
-  fetch('./partials/_footer.html')
-          .then(response => response.text())
-          .then(data => {
-            // Lo inyectamos en el div que creamos arriba
-            document.getElementById('_footer').innerHTML = data;
-          })
-          .catch(error => console.error('Error al cargar el footer:', error));
-</script>
 </html>
