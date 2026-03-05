@@ -18,15 +18,9 @@ export function initInteractiveMap() {
                 path.style.opacity = 0.2;
             }
         })
-
-        timeout = setTimeout(() => {
-            allPaths.forEach(path => {
-                path.style.opacity = "1";
-            });
-        }, 3000);
     }
 
     linesButtons.forEach(lineButton => {
-        lineButton.addEventListener('click', highlightLine);
+        lineButton.addEv2entListener('click', highlightLine);
     });
 }
