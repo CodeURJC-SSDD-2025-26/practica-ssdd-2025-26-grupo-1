@@ -21,6 +21,6 @@ export function initInteractiveMap() {
     }
 
     linesButtons.forEach(lineButton => {
-        lineButton.addEv2entListener('click', highlightLine);
+        lineButton.addEventListener('click', highlightLine);
     });
 }
