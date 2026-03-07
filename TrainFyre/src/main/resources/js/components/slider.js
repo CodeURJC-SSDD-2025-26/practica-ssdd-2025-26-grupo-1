@@ -2,9 +2,7 @@
 
 document.addEventListener("DOMContentLoaded", function () {
      function update_min_input() { //It makes input-min match the time set in slider-min.
-        /*if (slider_minimo.value > slider_maximo.value) {
-            slider_minimo.value = slider_maximo.value;
-        }*/
+
         h_min = Math.floor(slider_min.value / 60);
         h_min = h_min.toString();
         if (h_min < 10) {
@@ -35,9 +33,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     function update_max_input() { //It makes input-max match the time set in slider-max.
-        /*if (slider_maximo.value < slider_minimo.value) {
-            slider_maximo.value = slider_minimo.value;
-        }*/
+
         h_max = Math.floor(slider_max.value / 60);
         h_max = h_max.toString();
         if (h_max < 10) {

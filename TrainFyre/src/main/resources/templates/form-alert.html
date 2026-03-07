@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="es">
 
 <head>
@@ -8,7 +8,6 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../static/css/style.css">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="../js/components/js-slider.js"></script>
 </head>
 
 <body>
@@ -17,9 +16,8 @@
 
     <main class="container-main">
 
-        <form role="form" action="user_alerts.html" target="_blank">
+        <form role="form" action="alert_table.html" target="_blank">
 
-            <!--Line(s) selection-->
             <div class="row">
                 <div class="d-flex flex-wrap justify-content-center gap-3 mb-4">
                     <div class="form-group col-auto">
@@ -42,7 +40,6 @@
                 </div>
             </div>
 
-            <!--Beginning date-->
             <div class="row">
                 <div class="d-flex flex-wrap justify-content-center gap-3 mb-4">
                     <div class="form-group col-10">
@@ -52,7 +49,6 @@
                 </div>
             </div>
 
-            <!--Ending date-->
             <div class="row">
                 <div class="d-flex flex-wrap justify-content-center gap-3 mb-4">
                     <div class="form-group col-10">
@@ -63,7 +59,6 @@
                 </div>
             </div>
 
-            <!--Sliders-->
             <div class="row">
                 <div class="d-flex flex-wrap justify-content-center gap-3 mb-4">
                     <div class="form-group col-10">
@@ -72,31 +67,43 @@
                             <span class="range-selected"></span>
                         </div>
                         <div class="range-input">
-                            <label class="form-label" for="date">Inicio:</label>
+                                <label class="form-label" for="date">Inicio:</label>
                             <input type="range" class="min form-control" id="slider-min" min="0" max="1439" value="480"
                                 step="5">
-                            <label class="form-label" for="date">Fin:</label>
+                                <label class="form-label" for="date">Fin:</label>
                             <input type="range" class="max form-control" id="slider-max" min="0" max="1439" value="540"
                                 step="5">
                         </div>
-
+                        
                     </div>
                 </div>
             </div>
 
-            <!--Time inputs-->
             <div class="row">
                 <div class="d-flex flex-wrap justify-content-center gap-3 mb-4">
                     <div class="form-group col-auto">
                         <div class="range-price">
                             <label for="min">Inicio</label>
-                            <input type="time" id="input-min" name="min" value="08:00">
+                            <input type="time" id="min-input" name="min" value="08:00">
                             <label for="max">Fin</label>
-                            <input type="time" id="input-max" name="max" value="09:00">
+                            <input type="time" id="max-input" name="max" value="09:00">
                         </div>
                     </div>
                 </div>
             </div>
+
+
+
+            </div>
+
+
+
+
+
+            </div>
+
+
+
 
             <!--Button row-->
             <div class="row">
@@ -107,6 +114,15 @@
                 </div>
             </div>
 
+            </div>
+
+
+            </div>
+
+
+
+
+
         </form>
 
 
@@ -116,7 +132,7 @@
     <div id="_footer"></div>
 </body>
 
-
+<script src="../js/slider.js"></script>
 <script>
     // Cargamos el contenido de _header.html
     fetch('./partials/_header.html')
