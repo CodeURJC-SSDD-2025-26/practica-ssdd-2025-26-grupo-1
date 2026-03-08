@@ -1,106 +1,78 @@
-// Substring template helper for the responsive labels
-Highcharts.Templating.helpers.substr = (s, from, length) =>
-    s.substr(from, length);
 
-// Create the chart
-Highcharts.chart('container', {
+function getHue(value, min, max) {
+    const ratio = value / max;
+    const r = Math.round(255 * ratio);
+    const g = Math.round(255 * (1 - ratio));
+    const b = 50;
+    return `rgb(${r},${g},${b})`;
+}
 
-    chart: {
-        type: 'heatmap',
-        marginTop: 40,
-        marginBottom: 80,
-        plotBorderWidth: 1
-    },
+const heatmap_info = {
+    "title": 'Incidencias durante la semana',
+    "rows": 10,
+    "columns": 7,
+    "row_labels": ["C-1", "C-2", "C-3", "C-4", "C-5", "C-7", "C-8", "C-9", "C-10", "CIVIS"],
+    "row_colors": ["rgb(50, 214, 255)", "green", "purple", "blue", "rgb(255, 230, 0)", "red", "grey", "brown", "greenyellow", "rgb(255, 111, 135)"],
+    "column_labels": ["Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabat", "Domingo"],
+    "cells": [
+      {"id": 1, "value": 0}, {"id": 2, "value": 0}, {"id": 3, "value": 1}, {"id": 4, "value": 0}, {"id": 5, "value": 0}, {"id": 6, "value": 2}, {"id": 7, "value": 0},
+      {"id": 8, "value": 0}, {"id": 9, "value": 1}, {"id": 10, "value": 0}, {"id": 11, "value": 0}, {"id": 12, "value": 3}, {"id": 13, "value": 0}, {"id": 14, "value": 0},
+      {"id": 15, "value": 1}, {"id": 16, "value": 0}, {"id": 17, "value": 0}, {"id": 18, "value": 0}, {"id": 19, "value": 5}, {"id": 20, "value": 0}, {"id": 21, "value": 1}, 
+      {"id": 22, "value": 0}, {"id": 23, "value": 0}, {"id": 24, "value": 2}, {"id": 25, "value": 0}, {"id": 26, "value": 0}, {"id": 27, "value": 1}, {"id": 28, "value": 0},
+      {"id": 29, "value": 0}, {"id": 30, "value": 0}, {"id": 31, "value": 4}, {"id": 32, "value": 0}, {"id": 33, "value": 1}, {"id": 34, "value": 0}, {"id": 35, "value": 0},
+      {"id": 36, "value": 0}, {"id": 37, "value": 2}, {"id": 38, "value": 0}, {"id": 39, "value": 0}, {"id": 40, "value": 1}, {"id": 41, "value": 0}, {"id": 42, "value": 0},
+      {"id": 43, "value": 0}, {"id": 44, "value": 3}, {"id": 45, "value": 0}, {"id": 46, "value": 1}, {"id": 47, "value": 0}, {"id": 48, "value": 0}, {"id": 49, "value": 0}, 
+      {"id": 50, "value": 0}, {"id": 51, "value": 2}, {"id": 52, "value": 0}, {"id": 53, "value": 1}, {"id": 54, "value": 0}, {"id": 55, "value": 0}, {"id": 56, "value": 0},
+      {"id": 57, "value": 0}, {"id": 58, "value": 4}, {"id": 59, "value": 0}, {"id": 60, "value": 0}, {"id": 61, "value": 1}, {"id": 62, "value": 0}, {"id": 63, "value": 0}, 
+      {"id": 64, "value": 0}, {"id": 65, "value": 0}, {"id": 66, "value": 2}, {"id": 67, "value": 1}, {"id": 68, "value": 0}, {"id": 69, "value": 0}, {"id": 70, "value": 0}
+    ] 
+};
 
+const heatmap = document.getElementById("_heatmap_graph");
 
-    title: {
-        text: 'Incidents per line per day',
-        style: {
-            fontSize: '1em'
-        }
-    },
+const title = document.createElement('div');
+title.className = 'text-center fw-bold';
+title.textContent = heatmap_info.title;
+heatmap.appendChild(title);
 
-    xAxis: {
-        categories: [
-            'C-1', 'C-2', 'C-3', 'C-4', 'C-5',
-            'C-7', 'C-8', 'C-9', 'C-10', 'CIVIS'
-        ]
-    },
-
-    yAxis: {
-        categories: ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes'],
-        title: null,
-        reversed: true
-    },
-
-    accessibility: {
-        point: {
-            descriptionFormat: '{(add index 1)}. ' +
-                '{series.xAxis.categories.(x)} sales ' +
-                '{series.yAxis.categories.(y)}, {value}.'
-        }
-    },
-
-    colorAxis: {
-        min: 0,
-        minColor: '#00FF00', // A vibrant Green for the lowest values
-        maxColor: '#FF0000', // A stark Red for the highest values
-        stops: [
-            [0, '#00FF00'],   // Green at 0%
-            [0.5, '#FFFF00'], // Yellow at 50% (Optional: facilitates a smoother transition)
-            [1, '#FF0000']    // Red at 100%
-        ]
-    },
-
-    legend: {
-        align: 'right',
-        layout: 'vertical',
-        margin: 0,
-        verticalAlign: 'top',
-        y: 25,
-        symbolHeight: 280
-    },
-
-    tooltip: {
-        format: '<b>{series.xAxis.categories.(point.x)}</b> Line<br>' +
-            '<b>{point.value}</b> Incidents <br>' +
-            '<b>{series.yAxis.categories.(point.y)}</b>'
-    },
-
-    series: [{
-        name: 'Incidents per line per weeday',
-        borderWidth: 1,
-        data: [
-            [0, 0, 10], [0, 1, 19], [0, 2, 8], [0, 3, 24], [0, 4, 67],
-            [1, 0, 92], [1, 1, 58], [1, 2, 78], [1, 3, 117], [1, 4, 48],
-            [2, 0, 35], [2, 1, 15], [2, 2, 123], [2, 3, 64], [2, 4, 52],
-            [3, 0, 72], [3, 1, 132], [3, 2, 114], [3, 3, 19], [3, 4, 16],
-            [4, 0, 38], [4, 1, 5], [4, 2, 8], [4, 3, 117], [4, 4, 115],
-            [5, 0, 88], [5, 1, 32], [5, 2, 12], [5, 3, 6], [5, 4, 120],
-            [6, 0, 13], [6, 1, 44], [6, 2, 88], [6, 3, 98], [6, 4, 96],
-            [7, 0, 31], [7, 1, 1], [7, 2, 82], [7, 3, 32], [7, 4, 30],
-            [8, 0, 85], [8, 1, 97], [8, 2, 123], [8, 3, 64], [8, 4, 84],
-            [9, 0, 47], [9, 1, 114], [9, 2, 31], [9, 3, 48], [9, 4, 91]
-        ],
-        dataLabels: {
-            enabled: true,
-            color: 'contrast'
-        }
-    }],
-
-    responsive: {
-        rules: [{
-            condition: {
-                maxWidth: 500
-            },
-            chartOptions: {
-                yAxis: {
-                    labels: {
-                        format: '{substr value 0 1}'
-                    }
-                }
-            }
-        }]
+let max = 0;
+let min = 0;
+for (let i = 0; i < heatmap_info.rows * heatmap_info.columns; i++) {
+    if (max < heatmap_info.cells[i].value) {
+    max = heatmap_info.cells[i].value;
     }
+}
 
-});
+const column_labels = document.createElement('div');
+column_labels.className = 'd-flex flex-row justify-content-around align-items-center text-black';
+for (let i = 0; i < heatmap_info.columns + 1; i++) {
+    const label = document.createElement('div');
+    label.className = 'd-flex justify-content-center align-items-center border col';
+    if (i != 0) {
+    label.textContent = heatmap_info.column_labels[i-1];
+    }
+    column_labels.appendChild(label)
+}
+heatmap.appendChild(column_labels);
+
+for (let i = 0; i < heatmap_info.rows; i++) {
+    const row = document.createElement('div');
+    row.className = 'd-flex flex-row justify-content-between align-items-center text-black';
+    
+    for (let j = 0; j < heatmap_info.columns + 1; j++) {
+    const column = document.createElement('div');
+    if (j == 0) {
+        column.textContent = heatmap_info.row_labels[i];
+        column.className = 'd-flex justify-content-center align-items-center border col text-white fw-bold';
+        column.style.backgroundColor = heatmap_info.row_colors[i];
+    } else {
+        value = heatmap_info.cells[i*heatmap_info.columns + j - 1].value;
+        column.textContent = value;
+        column.className = 'd-flex justify-content-center align-items-center border col';
+        column.style.backgroundColor = getHue(value, min, max);
+    }
+        column.style.aspectRatio = '2/1';
+        row.appendChild(column);
+    }
+    heatmap.appendChild(row);
+}
