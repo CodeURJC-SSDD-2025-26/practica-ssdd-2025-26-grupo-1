@@ -1,4 +1,3 @@
-
 function getHue(value, min, max) {
     const ratio = value / max;
     const r = Math.round(255 * ratio);
@@ -8,12 +7,12 @@ function getHue(value, min, max) {
 }
 
 const heatmap_info = {
-    "title": 'Incidencias durante la semana',
+    "title": 'INCIDENCIAS SEMANALES',
     "rows": 10,
     "columns": 7,
     "row_labels": ["C-1", "C-2", "C-3", "C-4", "C-5", "C-7", "C-8", "C-9", "C-10", "CIVIS"],
     "row_colors": ["rgb(50, 214, 255)", "green", "purple", "blue", "rgb(255, 230, 0)", "red", "grey", "brown", "greenyellow", "rgb(255, 111, 135)"],
-    "column_labels": ["Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabat", "Domingo"],
+    "column_labels": ["Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabado", "Domingo"],
     "cells": [
       {"id": 1, "value": 0}, {"id": 2, "value": 0}, {"id": 3, "value": 1}, {"id": 4, "value": 0}, {"id": 5, "value": 0}, {"id": 6, "value": 2}, {"id": 7, "value": 0},
       {"id": 8, "value": 0}, {"id": 9, "value": 1}, {"id": 10, "value": 0}, {"id": 11, "value": 0}, {"id": 12, "value": 3}, {"id": 13, "value": 0}, {"id": 14, "value": 0},
@@ -28,12 +27,26 @@ const heatmap_info = {
     ] 
 };
 
-const heatmap = document.getElementById("_heatmap_graph");
+let heatmap = document.getElementById("_heatmap_graph");
 
-const title = document.createElement('div');
+const container = document.createElement('div');
+container.className = 'card shoadow-media';
+heatmap.appendChild(container);
+
+heatmap = container;
+
+cardHeader = document.createElement('div');
+cardHeader.className = 'card-header';
+heatmap.appendChild(cardHeader);
+
+const title = document.createElement('h6');
 title.className = 'text-center fw-bold';
 title.textContent = heatmap_info.title;
-heatmap.appendChild(title);
+cardHeader.appendChild(title);
+
+const cardBody = document.createElement('div');
+cardBody.className = 'card-body';
+heatmap.appendChild(cardBody);
 
 let max = 0;
 let min = 0;
@@ -47,13 +60,15 @@ const column_labels = document.createElement('div');
 column_labels.className = 'd-flex flex-row justify-content-around align-items-center text-black';
 for (let i = 0; i < heatmap_info.columns + 1; i++) {
     const label = document.createElement('div');
-    label.className = 'd-flex justify-content-center align-items-center border col';
+    label.className = 'd-flex justify-content-center align-items-center border col rounded-top';
     if (i != 0) {
-    label.textContent = heatmap_info.column_labels[i-1];
+        label.textContent = heatmap_info.column_labels[i-1];
+    } else {
+        label.textContent = 'LINEAS/DIAS';
     }
     column_labels.appendChild(label)
 }
-heatmap.appendChild(column_labels);
+cardBody.appendChild(column_labels);
 
 for (let i = 0; i < heatmap_info.rows; i++) {
     const row = document.createElement('div');
@@ -63,16 +78,17 @@ for (let i = 0; i < heatmap_info.rows; i++) {
     const column = document.createElement('div');
     if (j == 0) {
         column.textContent = heatmap_info.row_labels[i];
-        column.className = 'd-flex justify-content-center align-items-center border col text-white fw-bold';
+        column.className = 'd-flex justify-content-center align-items-center col text-white fw-bold rounded-start';
         column.style.backgroundColor = heatmap_info.row_colors[i];
     } else {
         value = heatmap_info.cells[i*heatmap_info.columns + j - 1].value;
         column.textContent = value;
-        column.className = 'd-flex justify-content-center align-items-center border col';
+        column.className = 'd-flex justify-content-center align-items-center col';
         column.style.backgroundColor = getHue(value, min, max);
+        column.title = `Estación: ${heatmap_info.row_labels[i]}, Día: ${heatmap_info.column_labels[j-1]}, Incidencias: ${value}`;
     }
         column.style.aspectRatio = '2/1';
         row.appendChild(column);
     }
-    heatmap.appendChild(row);
+    cardBody.appendChild(row);
 }
