@@ -136,12 +136,82 @@ Diagrama que muestra cómo se navega entre las diferentes páginas de la aplicac
 
 ### **Capturas de Pantalla y Descripción de Páginas**
 
-#### **1. Página Principal / Home**
-![Página Principal](images/home-page.png)
+#### **1. Página Principal / Index**
+![Página Principal](images/index.png)
 
-> [Descripción breve: Ej: "Página de inicio que muestra los productos destacados, categorías principales y un banner promocional. Incluye barra de navegación y acceso a registro/login para usuarios no autenticados."]
+> Starting page to see the last incidences in any line using an intuitive map.
 
-#### **AQUÍ AÑADIR EL RESTO DE PÁGINAS**
+#### **2. Register form**
+![Página Principal](images/form-register.png)
+
+> Form to create an account for a new user.
+
+#### **3. Login form**
+![Página Principal](images/login.png)
+
+> Form to let users log in with their data and password.
+
+#### **4. Alert table**
+![Página Principal](images/user-alerts.png)
+
+> Table with the alerts set by the user and the option to create new ones, as well as modify existing ones.
+
+#### **5. Alert form**
+![Página Principal](images/form-alert.png)
+
+> Form to let users define new alerts by their starting and ending dates, as well as their timetable.
+
+#### **6. User settings**
+![Página Principal](images/settings.png)
+
+> Page with the user's data and the option to change it.
+
+#### **7. Session ended**
+![Página Principal](images/session-end.png)
+
+> Confirmation of a successful logout.
+
+#### **8. Incidence statistics**
+![Página Principal](images/incidences1.png)
+![Página Principal](images/incidences2.png)
+![Página Principal](images/incidences3.png)
+
+> Page with different graphs to show valuable information about the incidences.
+
+#### **9. Administrator table - Users**
+![Página Principal](images/admin-table-users.png)
+
+> Table with the users and their information, as well as the option to modify or remove them.
+
+#### **10. Administrator table - Incidences**
+![Página Principal](images/admin-table-incidence.png)
+
+> Table with the incidences and their information, as well as the option to modify, create or remove them.
+
+#### **11. Administrator table - Lines**
+![Página Principal](images/admin-table-lines.png)
+
+> Table with the lines and their information, as well as the option to modify, create or remove them.
+
+#### **12. Incidence form**
+![Página Principal](images/form-incidence.png)
+
+> Form to create new incidences with the affected lines, a description and more information.
+
+#### **13. Line form**
+![Página Principal](images/form-line.png)
+
+> Form to create new lines with their name and location.
+
+#### **Extra 1. Header**
+![Página Principal](images/header.png)
+
+> Header present in every page.
+
+#### **Extra 2. Footer**
+![Página Principal](images/footer.png)
+
+> Footer present in every page.
 
 ### **Participación de Miembros en la Práctica 1**
 
