@@ -227,11 +227,11 @@ Diagrama que muestra cómo se navega entre las diferentes páginas de la aplicac
 
 | Nº    | Commits      | Files      |
 |:------------: |:------------:| :------------:|
-|1| [Descripción commit 1](URL_commit_1)  | [Archivo1](URL_archivo_1)   |
-|2| [Descripción commit 2](URL_commit_2)  | [Archivo2](URL_archivo_2)   |
-|3| [Descripción commit 3](URL_commit_3)  | [Archivo3](URL_archivo_3)   |
-|4| [Descripción commit 4](URL_commit_4)  | [Archivo4](URL_archivo_4)   |
-|5| [Descripción commit 5](URL_commit_5)  | [Archivo5](URL_archivo_5)   |
+|1| [Lógina javascript para el mapa interactivo](https://github.com/CodeURJC-SSDD-2025-26/practica-ssdd-2025-26-grupo-1/commit/6aad309d67bf9040ecc62cef8fd93e9dca53a5e2)  | [interactive-map.js](https://github.com/CodeURJC-SSDD-2025-26/practica-ssdd-2025-26-grupo-1/blob/fc34148b30c20c3b2da0ba677c2b57829c4c46d8/TrainFyre/src/main/resources/js/components/interactive-map.js)   |
+|2| [Lógica javascript del heatmap implementado](https://github.com/CodeURJC-SSDD-2025-26/practica-ssdd-2025-26-grupo-1/commit/fd69ce32604245e9a60c681669748bc8ffa9de77)  | [heatmap.js](https://github.com/CodeURJC-SSDD-2025-26/practica-ssdd-2025-26-grupo-1/blob/fc34148b30c20c3b2da0ba677c2b57829c4c46d8/TrainFyre/src/main/resources/js/components/heatmap.js)   |
+|3| [Implementación de la página index](https://github.com/CodeURJC-SSDD-2025-26/practica-ssdd-2025-26-grupo-1/commit/100c4152b7ec25e36efe1826f2928c2b697b27d9)  | [index.html](https://github.com/CodeURJC-SSDD-2025-26/practica-ssdd-2025-26-grupo-1/blob/fc34148b30c20c3b2da0ba677c2b57829c4c46d8/TrainFyre/src/main/resources/templates/index.html)   |
+|4| [Implementación pop-up partial](https://github.com/CodeURJC-SSDD-2025-26/practica-ssdd-2025-26-grupo-1/commit/d0000f5c50de222387d6d9dfa152f9bfc0a0b171)  | [_pop_up.html](https://github.com/CodeURJC-SSDD-2025-26/practica-ssdd-2025-26-grupo-1/blob/fc34148b30c20c3b2da0ba677c2b57829c4c46d8/TrainFyre/src/main/resources/templates/partials/_pop_up.html)   |
+|5| [Cración de mapa de cercanias SVG](https://github.com/CodeURJC-SSDD-2025-26/practica-ssdd-2025-26-grupo-1/commit/5970597215174c4f1acec276bb352f05db6437a7)  | [_interactive_map.html](https://github.com/CodeURJC-SSDD-2025-26/practica-ssdd-2025-26-grupo-1/blob/fc34148b30c20c3b2da0ba677c2b57829c4c46d8/TrainFyre/src/main/resources/templates/partials/_interactive_map.html)   |
 
 ---
 
@@ -524,6 +524,7 @@ Diagrama actualizado incluyendo los @RestController y su relación con los @Serv
 |5| [Descripción commit 5](URL_commit_5)  | [Archivo5](URL_archivo_5)   |
 
 ---
+
 
 
 
