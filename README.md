@@ -223,8 +223,6 @@ Unregistered users can visualize the index page, which contains an interactive m
 
 #### **Alumno 1 - [Weisheng Zheng]**
 
-[Descripción de las tareas y responsabilidades principales del alumno en el proyecto]
-
 | Nº    | Commits      | Files      |
 |:------------: |:------------:| :------------:|
 |1| [Lógica JavaScript para el mapa interactivo](https://github.com/CodeURJC-SSDD-2025-26/practica-ssdd-2025-26-grupo-1/commit/6aad309d67bf9040ecc62cef8fd93e9dca53a5e2)  | [interactive-map.js](https://github.com/CodeURJC-SSDD-2025-26/practica-ssdd-2025-26-grupo-1/blob/fc34148b30c20c3b2da0ba677c2b57829c4c46d8/TrainFyre/src/main/resources/js/components/interactive-map.js)   |
@@ -254,11 +252,11 @@ Plantear y establecer la estructura del proyecto. Mirar comprobar y mejorar la c
 
 | Nº    | Commits      | Files      |
 |:------------: |:------------:| :------------:|
-|1| [Cree el footer y dos partials para mostrar datos](https://github.com/CodeURJC-SSDD-2025-26/ssdd-2025-26-project-base/commit/a8ddbda5bff10326f19160e985c6c81a246cc0cd)  | [footer](https://github.com/CodeURJC-SSDD-2025-26/practica-ssdd-2025-26-grupo-1/blob/main/TrainFyre/src/main/resources/templates/partials/_footer.html) [grafico de barras](https://github.com/CodeURJC-SSDD-2025-26/practica-ssdd-2025-26-grupo-1/blob/main/TrainFyre/src/main/resources/templates/partials/_bar_graph.html) [grafico tarta](https://github.com/CodeURJC-SSDD-2025-26/practica-ssdd-2025-26-grupo-1/blob/main/TrainFyre/src/main/resources/templates/partials/_pie_graph.html)  |
+|1| [Creé el footer y dos partials para mostrar datos](https://github.com/CodeURJC-SSDD-2025-26/ssdd-2025-26-project-base/commit/a8ddbda5bff10326f19160e985c6c81a246cc0cd)  | [footer](https://github.com/CodeURJC-SSDD-2025-26/practica-ssdd-2025-26-grupo-1/blob/main/TrainFyre/src/main/resources/templates/partials/_footer.html) [grafico de barras](https://github.com/CodeURJC-SSDD-2025-26/practica-ssdd-2025-26-grupo-1/blob/main/TrainFyre/src/main/resources/templates/partials/_bar_graph.html) [grafico tarta](https://github.com/CodeURJC-SSDD-2025-26/practica-ssdd-2025-26-grupo-1/blob/main/TrainFyre/src/main/resources/templates/partials/_pie_graph.html)  |
 |2| [Creé la página de incidencias](https://github.com/CodeURJC-SSDD-2025-26/ssdd-2025-26-project-base/commit/c880ee0af238c3004853853d9ed03a523c7d69aa)  | [Incidencias](https://github.com/CodeURJC-SSDD-2025-26/practica-ssdd-2025-26-grupo-1/blob/main/TrainFyre/src/main/resources/templates/incidencies.html)   |
-|3| [Cree el código js para cargar páginas y partials de forma automatica y estandarizada y reorganicé el proyecto en sucesivos comits](https://github.com/CodeURJC-SSDD-2025-26/ssdd-2025-26-project-base/commit/d51fff9a6d2b687896edab73e6d360c4249d0faf)  | [Cargador genérico](https://github.com/CodeURJC-SSDD-2025-26/practica-ssdd-2025-26-grupo-1/blob/main/TrainFyre/src/main/resources/js/utils/genericPartialLoader.js)   |
-|4| [Arregle el mapa interactivo y mejoré su código](https://github.com/CodeURJC-SSDD-2025-26/ssdd-2025-26-project-base/commit/a462ef17ec78ca5211cd96439e4b2af6733b77b5)  | [Js del mapa](https://github.com/CodeURJC-SSDD-2025-26/practica-ssdd-2025-26-grupo-1/blob/main/TrainFyre/src/main/resources/js/components/interactive-map.js)|
-|5| [Cree el CSS para empezar a trabajar con un CSS común](https://github.com/CodeURJC-SSDD-2025-26/ssdd-2025-26-project-base/commit/3cd0949ed2f928d70e86a872e63d6712e1cdca60)  | [CSS](https://github.com/CodeURJC-SSDD-2025-26/practica-ssdd-2025-26-grupo-1/blob/main/TrainFyre/src/main/resources/static/css/style.css)   |
+|3| [Creé el código js para cargar páginas y partials de forma automática y estandarizada y reorganicé el proyecto en sucesivos comits](https://github.com/CodeURJC-SSDD-2025-26/ssdd-2025-26-project-base/commit/d51fff9a6d2b687896edab73e6d360c4249d0faf)  | [Cargador genérico](https://github.com/CodeURJC-SSDD-2025-26/practica-ssdd-2025-26-grupo-1/blob/main/TrainFyre/src/main/resources/js/utils/genericPartialLoader.js)   |
+|4| [Arreglé el mapa interactivo y mejoré su código](https://github.com/CodeURJC-SSDD-2025-26/ssdd-2025-26-project-base/commit/a462ef17ec78ca5211cd96439e4b2af6733b77b5)  | [Js del mapa](https://github.com/CodeURJC-SSDD-2025-26/practica-ssdd-2025-26-grupo-1/blob/main/TrainFyre/src/main/resources/js/components/interactive-map.js)|
+|5| [Creé el CSS para empezar a trabajar con un CSS común](https://github.com/CodeURJC-SSDD-2025-26/ssdd-2025-26-project-base/commit/3cd0949ed2f928d70e86a872e63d6712e1cdca60)  | [CSS](https://github.com/CodeURJC-SSDD-2025-26/practica-ssdd-2025-26-grupo-1/blob/main/TrainFyre/src/main/resources/static/css/style.css)   |
 
 ---
 
@@ -524,6 +522,7 @@ Diagrama actualizado incluyendo los @RestController y su relación con los @Serv
 |5| [Descripción commit 5](URL_commit_5)  | [Archivo5](URL_archivo_5)   |
 
 ---
+
 
 
 
