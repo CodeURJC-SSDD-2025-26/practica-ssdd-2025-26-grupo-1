@@ -136,10 +136,10 @@ Diagrama que muestra cómo se navega entre las diferentes páginas de la aplicac
 
 ### **Capturas de Pantalla y Descripción de Páginas**
 
-#### **1. Página Principal / Index**
+#### **1. Main page / Index**
 ![Página Principal](images/index.png)
 
-> Starting page to see the last incidences in any line using an intuitive map.
+> Main page to see the last incidences in any line using an intuitive map.
 
 #### **2. Register form**
 ![Página Principal](images/form-register.png)
@@ -257,17 +257,17 @@ Diagrama que muestra cómo se navega entre las diferentes páginas de la aplicac
 
 ---
 
-#### **Alumno 4 - [Nombre Completo]**
+#### **Alumno 4 - Daniel Montes Jiménez**
 
-[Descripción de las tareas y responsabilidades principales del alumno en el proyecto]
+Responsible for every form and table (except for the users table and the settings page), as well as the script used in the alert form to link the sliders with the time imputs. This script also prevents impossible time ranges (for example, from 6:00 to 3:00). 
 
 | Nº    | Commits      | Files      |
 |:------------: |:------------:| :------------:|
-|1| [Descripción commit 1](URL_commit_1)  | [Archivo1](URL_archivo_1)   |
-|2| [Descripción commit 2](URL_commit_2)  | [Archivo2](URL_archivo_2)   |
-|3| [Descripción commit 3](URL_commit_3)  | [Archivo3](URL_archivo_3)   |
-|4| [Descripción commit 4](URL_commit_4)  | [Archivo4](URL_archivo_4)   |
-|5| [Descripción commit 5](URL_commit_5)  | [Archivo5](URL_archivo_5)   |
+|1| Added javascript with the logic for the future slider in the alert form.(88f86f763a0f8f6e1999b671aa6f845cd240c51f)  | (https://github.com/CodeURJC-SSDD-2025-26/ssdd-2025-26-project-base/commit/88f86f763a0f8f6e1999b671aa6f845cd240c51f#diff-dc117f66b6191f28f4718305eab6a599d23f2f19c7c9e5e3be6f4dda50fef165)   |
+|2| Added a new table to show your alerts and modify them (it doesn't work yet). (0714c887ca4caddf7ea4bc87ffca7b5c69cf96a4)  | (https://github.com/CodeURJC-SSDD-2025-26/ssdd-2025-26-project-base/commit/0714c887ca4caddf7ea4bc87ffca7b5c69cf96a4#diff-1c7f9094d31a03777ba6db5f1429727dd9f97f17da81565e64ba28ffd4e8ba74)   |
+|3| Made the admin table change tables when pressing their respective buttons. It shows errors, so it will probably be necessary to have similar js files for each table.(876476fe435b8b4184544539cf3c97a8baaae963)  | TrainFyre/src/main/resources/js/pages/admin-line-table TrainFyre/src/main/resources/js/pages/admin-panel.js TrainFyre/src/main/resources/templates/admin_panel_incidences.html TrainFyre/src/main/resources/templates/admin_panel_lines.html TrainFyre/src/main/resources/templates/partials/_incidence_table.html TrainFyre/src/main/resources/templates/partials/_line_table.html TrainFyre/src/main/resources/templates/partials/_subheader.html   |
+|4| Added a form for incidences.(e92e047d296a22caaf5677a2e7051f41b49ce26a)  | TrainFyre/src/main/resources/templates/form-alert.html TrainFyre/src/main/resources/templates/form-incidence.html TrainFyre/src/main/resources/templates/partials/form_login-partial.html   |
+|5| Added a template for the login form.(3feabe72a0912ac7a105e4bd0589b2093a987cba)  | TrainFyre/src/main/resources/templates/partials/form_login-partial.html   |
 
 ---
 
