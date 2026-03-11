@@ -204,6 +204,11 @@ Diagrama que muestra cómo se navega entre las diferentes páginas de la aplicac
 
 > Form to create new lines with their name and location.
 
+#### **14. Incidence information**
+![Página Principal](images/incidence-page.png)
+
+> Page with extended information about an incidence.
+
 #### **Extra 1. Header**
 ![Página Principal](images/header.png)
 
@@ -520,4 +525,5 @@ Diagrama actualizado incluyendo los @RestController y su relación con los @Serv
 |5| [Descripción commit 5](URL_commit_5)  | [Archivo5](URL_archivo_5)   |
 
 ---
+
 
