@@ -254,7 +254,7 @@ Plantear y establecer la estructura del proyecto. Mirar comprobar y mejorar la c
 
 | Nº    | Commits      | Files      |
 |:------------: |:------------:| :------------:|
-|1| [Cree el footer y dos partials para mostrar datos](https://github.com/CodeURJC-SSDD-2025-26/ssdd-2025-26-project-base/commit/a8ddbda5bff10326f19160e985c6c81a246cc0cd)  | [footer](https://github.com/CodeURJC-SSDD-2025-26/practica-ssdd-2025-26-grupo-1/blob/main/TrainFyre/src/main/resources/templates/partials/_footer.html)) [grafico de barras](https://github.com/CodeURJC-SSDD-2025-26/practica-ssdd-2025-26-grupo-1/blob/main/TrainFyre/src/main/resources/templates/partials/_bar_graph.html) [grafico tarta](https://github.com/CodeURJC-SSDD-2025-26/practica-ssdd-2025-26-grupo-1/blob/main/TrainFyre/src/main/resources/templates/partials/_pie_graph.html)  |
+|1| [Cree el footer y dos partials para mostrar datos](https://github.com/CodeURJC-SSDD-2025-26/ssdd-2025-26-project-base/commit/a8ddbda5bff10326f19160e985c6c81a246cc0cd)  | [footer](https://github.com/CodeURJC-SSDD-2025-26/practica-ssdd-2025-26-grupo-1/blob/main/TrainFyre/src/main/resources/templates/partials/_footer.html) [grafico de barras](https://github.com/CodeURJC-SSDD-2025-26/practica-ssdd-2025-26-grupo-1/blob/main/TrainFyre/src/main/resources/templates/partials/_bar_graph.html) [grafico tarta](https://github.com/CodeURJC-SSDD-2025-26/practica-ssdd-2025-26-grupo-1/blob/main/TrainFyre/src/main/resources/templates/partials/_pie_graph.html)  |
 |2| [Creé la página de incidencias](https://github.com/CodeURJC-SSDD-2025-26/ssdd-2025-26-project-base/commit/c880ee0af238c3004853853d9ed03a523c7d69aa)  | [Incidencias](https://github.com/CodeURJC-SSDD-2025-26/practica-ssdd-2025-26-grupo-1/blob/main/TrainFyre/src/main/resources/templates/incidencies.html)   |
 |3| [Cree el código js para cargar páginas y partials de forma automatica y estandarizada y reorganicé el proyecto en sucesivos comits](https://github.com/CodeURJC-SSDD-2025-26/ssdd-2025-26-project-base/commit/d51fff9a6d2b687896edab73e6d360c4249d0faf)  | [Cargador genérico](https://github.com/CodeURJC-SSDD-2025-26/practica-ssdd-2025-26-grupo-1/blob/main/TrainFyre/src/main/resources/js/utils/genericPartialLoader.js)   |
 |4| [Arregle el mapa interactivo y mejoré su código](https://github.com/CodeURJC-SSDD-2025-26/ssdd-2025-26-project-base/commit/a462ef17ec78ca5211cd96439e4b2af6733b77b5)  | [Js del mapa](https://github.com/CodeURJC-SSDD-2025-26/practica-ssdd-2025-26-grupo-1/blob/main/TrainFyre/src/main/resources/js/components/interactive-map.js)|
@@ -524,6 +524,7 @@ Diagrama actualizado incluyendo los @RestController y su relación con los @Serv
 |5| [Descripción commit 5](URL_commit_5)  | [Archivo5](URL_archivo_5)   |
 
 ---
+
 
 
 
