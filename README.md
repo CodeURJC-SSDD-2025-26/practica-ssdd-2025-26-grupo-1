@@ -235,19 +235,20 @@ Diagrama que muestra cómo se navega entre las diferentes páginas de la aplicac
 
 ---
 
-#### **Alumno 2 - [Nombre Completo]**
+#### **Alumno 2 - [Alejandro González Blanco]**
 
 [Descripción de las tareas y responsabilidades principales del alumno en el proyecto]
 
 | Nº    | Commits      | Files      |
 |:------------: |:------------:| :------------:|
-|1| [Descripción commit 1](URL_commit_1)  | [Archivo1](URL_archivo_1)   |
-|2| [Descripción commit 2](URL_commit_2)  | [Archivo2](URL_archivo_2)   |
-|3| [Descripción commit 3](URL_commit_3)  | [Archivo3](URL_archivo_3)   |
-|4| [Descripción commit 4](URL_commit_4)  | [Archivo4](URL_archivo_4)   |
-|5| [Descripción commit 5](URL_commit_5)  | [Archivo5](URL_archivo_5)   |
+|1| [En este commit creé el header..]([URL_commit_1](https://github.com/CodeURJC-SSDD-2025-26/ssdd-2025-26-project-base/commit/a190e28ee9f6cdb5b3fcdb773283b6b48a43d807))  | [_header.html]([URL_archivo_1](https://github.com/CodeURJC-SSDD-2025-26/practica-ssdd-2025-26-grupo-1/blob/main/TrainFyre/src/main/resources/templates/partials/_header.html))   |
+|2| [En este commit creé la configuración.]([URL_commit_2](https://github.com/CodeURJC-SSDD-2025-26/ssdd-2025-26-project-base/commit/6a4da71396adb1b3d0123c76da7e2c2800b40b79))  | [settings.html]([URL_archivo_2](https://github.com/CodeURJC-SSDD-2025-26/practica-ssdd-2025-26-grupo-1/blob/main/TrainFyre/src/main/resources/templates/settings.html))   |
+|3| [En este commit creé el panel de administrador.]([URL_commit_3](https://github.com/CodeURJC-SSDD-2025-26/ssdd-2025-26-project-base/commit/7ff88c29c7fafcf64a26baf17a313d5ef288f63e))  | [admin_panel.html]([URL_archivo_3](https://github.com/CodeURJC-SSDD-2025-26/practica-ssdd-2025-26-grupo-1/blob/main/TrainFyre/src/main/resources/templates/admin_panel.html))   |
+|4| [En este commit creé el JS para activar o desactivar la configuración.]([URL_commit_4](https://github.com/CodeURJC-SSDD-2025-26/ssdd-2025-26-project-base/commit/eff1077e5052e0b169066a94a41390a9d8433a24))  | [change-settings.js]([URL_archivo_4](https://github.com/CodeURJC-SSDD-2025-26/practica-ssdd-2025-26-grupo-1/blob/main/TrainFyre/src/main/resources/js/components/change-settings.js))   |
+|5| [En este commit creé el subheader.]([URL_commit_5](https://github.com/CodeURJC-SSDD-2025-26/ssdd-2025-26-project-base/commit/75880dec3f724931aeb25f75b51750cedbc21e9c))  | [_subheader.html]([URL_archivo_5](https://github.com/CodeURJC-SSDD-2025-26/practica-ssdd-2025-26-grupo-1/blob/main/TrainFyre/src/main/resources/templates/partials/_subheader.html))   |
 
 ---
+Mis demás commits son arreglando cosas en otros archivos y mejorando el estilo.
 
 #### **Alumno 3 - [Nombre Completo]**
 
@@ -525,5 +526,6 @@ Diagrama actualizado incluyendo los @RestController y su relación con los @Serv
 |5| [Descripción commit 5](URL_commit_5)  | [Archivo5](URL_archivo_5)   |
 
 ---
+
 
 
