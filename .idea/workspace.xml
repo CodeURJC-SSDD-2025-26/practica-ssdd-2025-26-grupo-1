@@ -4,7 +4,80 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ecee7179-4a27-4384-862b-e46e80d30acb" name="Changes" comment="Reorder and preparation for the stablishment of the backend structure" />
+    <list default="true" id="ecee7179-4a27-4384-862b-e46e80d30acb" name="Changes" comment="Reorder and preparation for the stablishment of the backend structure">
+      <change beforePath="$PROJECT_DIR$/TrainFyre/HELP.md" beforeDir="false" afterPath="$PROJECT_DIR$/backend/HELP.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TrainFyre/TrainFyre.iml" beforeDir="false" afterPath="$PROJECT_DIR$/backend/backend.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TrainFyre/mvnw" beforeDir="false" afterPath="$PROJECT_DIR$/backend/mvnw" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TrainFyre/mvnw.cmd" beforeDir="false" afterPath="$PROJECT_DIR$/backend/mvnw.cmd" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TrainFyre/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/backend/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TrainFyre/src/main/java/codeurjc/ssdd/grupo1/trainfyre/TrainFyreApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/codeurjc/ssdd/grupo1/trainfyre/TrainFyreApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TrainFyre/src/main/resources/.idea/shelf/Uncommitted_changes_before_Checkout_at_12_03_2026_8_54_[Changes]/shelved.patch" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/resources/.idea/shelf/Uncommitted_changes_before_Checkout_at_12_03_2026_8_54_[Changes]/shelved.patch" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TrainFyre/src/main/resources/.idea/shelf/Uncommitted_changes_before_Checkout_at_12_03_2026_8_54_[Changes]1/shelved.patch" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/resources/.idea/shelf/Uncommitted_changes_before_Checkout_at_12_03_2026_8_54_[Changes]1/shelved.patch" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TrainFyre/src/main/resources/.idea/shelf/Uncommitted_changes_before_Checkout_at_12_03_2026_8_54__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/resources/.idea/shelf/Uncommitted_changes_before_Checkout_at_12_03_2026_8_54__Changes_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TrainFyre/src/main/resources/.idea/shelf/Uncommitted_changes_before_Update_at_19_02_2026_10_11_[Changes]/logo.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/resources/.idea/shelf/Uncommitted_changes_before_Update_at_19_02_2026_10_11_[Changes]/logo.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TrainFyre/src/main/resources/.idea/shelf/Uncommitted_changes_before_Update_at_19_02_2026_10_11_[Changes]/perfil.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/resources/.idea/shelf/Uncommitted_changes_before_Update_at_19_02_2026_10_11_[Changes]/perfil.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TrainFyre/src/main/resources/.idea/shelf/Uncommitted_changes_before_Update_at_19_02_2026_10_11_[Changes]/shelved.patch" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/resources/.idea/shelf/Uncommitted_changes_before_Update_at_19_02_2026_10_11_[Changes]/shelved.patch" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TrainFyre/src/main/resources/.idea/shelf/Uncommitted_changes_before_Update_at_19_02_2026_10_11__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/resources/.idea/shelf/Uncommitted_changes_before_Update_at_19_02_2026_10_11__Changes_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TrainFyre/src/main/resources/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/resources/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TrainFyre/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TrainFyre/src/main/resources/js/components/heatmap.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/resources/js/components/heatmap.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TrainFyre/src/main/resources/js/components/interactive-map.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/resources/js/components/interactive-map.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TrainFyre/src/main/resources/js/components/slider.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/resources/js/components/slider.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TrainFyre/src/main/resources/js/pages/admin-panel-incidences.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/resources/js/pages/admin-panel-incidences.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TrainFyre/src/main/resources/js/pages/admin-panel-lines.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/resources/js/pages/admin-panel-lines.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TrainFyre/src/main/resources/js/pages/admin-panel.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/resources/js/pages/admin-panel.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TrainFyre/src/main/resources/js/pages/incidencies.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/resources/js/pages/incidencies.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TrainFyre/src/main/resources/js/pages/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/resources/js/pages/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TrainFyre/src/main/resources/js/pages/login.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/resources/js/pages/login.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TrainFyre/src/main/resources/js/pages/session.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/resources/js/pages/session.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TrainFyre/src/main/resources/js/pages/settings.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/resources/js/pages/settings.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TrainFyre/src/main/resources/js/pages/user-alerts.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/resources/js/pages/user-alerts.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TrainFyre/src/main/resources/js/utils/genericPartialLoader.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/resources/js/utils/genericPartialLoader.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TrainFyre/src/main/resources/static/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/resources/static/css/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TrainFyre/src/main/resources/static/img/Mapa.svg" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/resources/static/img/Mapa.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TrainFyre/src/main/resources/static/img/Zelda_vias_ocupadas.webp" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/resources/static/img/Zelda_vias_ocupadas.webp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TrainFyre/src/main/resources/static/img/logo.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/resources/static/img/logo.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TrainFyre/src/main/resources/static/img/perfil.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/resources/static/img/perfil.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TrainFyre/src/main/resources/templates/admin_panel.html" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/resources/templates/admin_panel.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TrainFyre/src/main/resources/templates/admin_panel_incidences.html" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/resources/templates/admin_panel_incidences.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TrainFyre/src/main/resources/templates/admin_panel_lines.html" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/resources/templates/admin_panel_lines.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TrainFyre/src/main/resources/templates/form-alert.html" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/resources/templates/form-alert.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TrainFyre/src/main/resources/templates/form-incidence.html" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/resources/templates/form-incidence.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TrainFyre/src/main/resources/templates/form-line.html" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/resources/templates/form-line.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TrainFyre/src/main/resources/templates/form_register.html" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/resources/templates/form_register.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TrainFyre/src/main/resources/templates/incidence_page.html" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/resources/templates/incidence_page.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TrainFyre/src/main/resources/templates/incidencies.html" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/resources/templates/incidencies.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TrainFyre/src/main/resources/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/resources/templates/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TrainFyre/src/main/resources/templates/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/resources/templates/login.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TrainFyre/src/main/resources/templates/partials/.gitkeep" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/resources/templates/partials/.gitkeep" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TrainFyre/src/main/resources/templates/partials/_admin_table.html" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/resources/templates/partials/_admin_table.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TrainFyre/src/main/resources/templates/partials/_alert_table.html" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/resources/templates/partials/_alert_table.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TrainFyre/src/main/resources/templates/partials/_bar_graph.html" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/resources/templates/partials/_bar_graph.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TrainFyre/src/main/resources/templates/partials/_footer.html" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/resources/templates/partials/_footer.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TrainFyre/src/main/resources/templates/partials/_header.html" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/resources/templates/partials/_header.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TrainFyre/src/main/resources/templates/partials/_heatmap_graph.html" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/resources/templates/partials/_heatmap_graph.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TrainFyre/src/main/resources/templates/partials/_incidence_table.html" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/resources/templates/partials/_incidence_table.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TrainFyre/src/main/resources/templates/partials/_interactive_map.html" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/resources/templates/partials/_interactive_map.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TrainFyre/src/main/resources/templates/partials/_line_table.html" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/resources/templates/partials/_line_table.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TrainFyre/src/main/resources/templates/partials/_login_form.html" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/resources/templates/partials/_login_form.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TrainFyre/src/main/resources/templates/partials/_pie_graph.html" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/resources/templates/partials/_pie_graph.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TrainFyre/src/main/resources/templates/partials/_pop_up.html" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/resources/templates/partials/_pop_up.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TrainFyre/src/main/resources/templates/partials/_subheader.html" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/resources/templates/partials/_subheader.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TrainFyre/src/main/resources/templates/session.html" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/resources/templates/session.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TrainFyre/src/main/resources/templates/settings.html" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/resources/templates/settings.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TrainFyre/src/main/resources/templates/user_alerts.html" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/resources/templates/user_alerts.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TrainFyre/src/test/java/codeurjc/ssdd/grupo1/trainfyre/TrainFyreApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/test/java/codeurjc/ssdd/grupo1/trainfyre/TrainFyreApplicationTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TrainFyre/target/classes/.idea/shelf/Uncommitted_changes_before_Checkout_at_12_03_2026_8_54_[Changes]/shelved.patch" beforeDir="false" afterPath="$PROJECT_DIR$/backend/target/classes/.idea/shelf/Uncommitted_changes_before_Checkout_at_12_03_2026_8_54_[Changes]/shelved.patch" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TrainFyre/target/classes/.idea/shelf/Uncommitted_changes_before_Checkout_at_12_03_2026_8_54_[Changes]1/shelved.patch" beforeDir="false" afterPath="$PROJECT_DIR$/backend/target/classes/.idea/shelf/Uncommitted_changes_before_Checkout_at_12_03_2026_8_54_[Changes]1/shelved.patch" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TrainFyre/target/classes/.idea/shelf/Uncommitted_changes_before_Checkout_at_12_03_2026_8_54__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/backend/target/classes/.idea/shelf/Uncommitted_changes_before_Checkout_at_12_03_2026_8_54__Changes_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TrainFyre/target/classes/.idea/shelf/Uncommitted_changes_before_Update_at_19_02_2026_10_11_[Changes]/logo.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/backend/target/classes/.idea/shelf/Uncommitted_changes_before_Update_at_19_02_2026_10_11_[Changes]/logo.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TrainFyre/target/classes/.idea/shelf/Uncommitted_changes_before_Update_at_19_02_2026_10_11_[Changes]/perfil.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/backend/target/classes/.idea/shelf/Uncommitted_changes_before_Update_at_19_02_2026_10_11_[Changes]/perfil.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TrainFyre/target/classes/.idea/shelf/Uncommitted_changes_before_Update_at_19_02_2026_10_11_[Changes]/shelved.patch" beforeDir="false" afterPath="$PROJECT_DIR$/backend/target/classes/.idea/shelf/Uncommitted_changes_before_Update_at_19_02_2026_10_11_[Changes]/shelved.patch" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TrainFyre/target/classes/.idea/shelf/Uncommitted_changes_before_Update_at_19_02_2026_10_11__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/backend/target/classes/.idea/shelf/Uncommitted_changes_before_Update_at_19_02_2026_10_11__Changes_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TrainFyre/target/classes/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/backend/target/classes/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TrainFyre/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/backend/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/createdFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TrainFyre/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/backend/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -59,37 +132,38 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;JavaScript Debug.preview.html.executor&quot;: &quot;Run&quot;,
-    &quot;Maven.TrainFyre [clean].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.TrainFyre [compile].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.TrainFyre [deploy].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.TrainFyre [install].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.TrainFyre [verify].executor&quot;: &quot;Run&quot;,
-    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
-    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
-    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
-    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;SONARLINT_PRECOMMIT_ANALYSIS&quot;: &quot;true&quot;,
-    &quot;Spring Boot.TrainFyreApplication.executor&quot;: &quot;Run&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Trabajos/2026/Distribuidos/Practica1/TrainFyre/src/main/resources/templates/partials&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;org.jetbrains.plugins.github.ui.GithubSettingsConfigurable&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "JavaScript Debug.preview.html.executor": "Run",
+    "Maven.TrainFyre [clean].executor": "Run",
+    "Maven.TrainFyre [compile].executor": "Run",
+    "Maven.TrainFyre [deploy].executor": "Run",
+    "Maven.TrainFyre [install].executor": "Run",
+    "Maven.TrainFyre [verify].executor": "Run",
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "SONARLINT_PRECOMMIT_ANALYSIS": "true",
+    "Spring Boot.TrainFyreApplication.executor": "Run",
+    "git-widget-placeholder": "Development",
+    "ignore.virus.scanning.warn.message": "true",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Trabajos/2026/Distribuidos/Practica1/TrainFyre/src/main/resources/templates/partials",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
+    "settings.editor.selected.configurable": "org.jetbrains.plugins.github.ui.GithubSettingsConfigurable",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Trabajos\2026\Distribuidos\Practica1\TrainFyre\src\main\resources\templates\partials" />
@@ -101,7 +175,7 @@
   <component name="RunManager">
     <configuration name="TrainFyreApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
-      <module name="TrainFyre" />
+      <module name="backend" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="codeurjc.ssdd.grupo1.trainfyre.TrainFyreApplication" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -140,6 +214,7 @@
       <workItem from="1773786202639" duration="37000" />
       <workItem from="1773786242227" duration="133000" />
       <workItem from="1773786392390" duration="142000" />
+      <workItem from="1773786536651" duration="391000" />
     </task>
     <task id="LOCAL-00001" summary="Stablishment of a common CSS for the whole team to use, it may change in the future">
       <option name="closed" value="true" />
@@ -165,7 +240,15 @@
       <option name="project" value="LOCAL" />
       <updated>1773784858012</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Reorder and preparation for the stablishment of the backend structure">
+      <option name="closed" value="true" />
+      <created>1773786610846</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1773786610846</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
