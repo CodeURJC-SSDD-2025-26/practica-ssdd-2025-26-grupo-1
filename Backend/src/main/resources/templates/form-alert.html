@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Partial de bootstrap</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../static/css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+
+<body>
+    <!--HEADER-->
+    <div id="_header"></div>
+
+    <main class="container-main">
+
+        <form role="form" action="user_alerts.html" target="_blank">
+
+            <div class="row">
+                <div class="d-flex flex-wrap justify-content-center gap-3 mb-4">
+                    <div class="form-group col-auto">
+                        <h2>Añadir alerta</h2>
+
+                        <label class="form-label" for="line">Línea:</label>
+                        <select class="form-control" id="date">
+                            <option value="C-1" selected>C-1</option>
+                            <option value="C-2">C-2</option>
+                            <option value="C-3">C-3</option>
+                            <option value="C-4">C-4</option>
+                            <option value="C-5">C-5</option>
+                            <option value="C-7">C-7</option>
+                            <option value="C-8">C-8</option>
+                            <option value="C-9">C-9</option>
+                            <option value="C-10">C-10</option>
+                            <option value="CIVIS">CIVIS</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="d-flex flex-wrap justify-content-center gap-3 mb-4">
+                    <div class="form-group col-10">
+                        <label class="form-label" for="date">Introduzca la fecha de inicio de la alerta:</label>
+                        <input type="date" class="form-control" id="date" required>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="d-flex flex-wrap justify-content-center gap-3 mb-4">
+                    <div class="form-group col-10">
+                        <label class="form-label" for="date">Introduzca la fecha de final de la alerta:</label>
+                        <input type="date" class="form-control" id="date" required>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="d-flex flex-wrap justify-content-center gap-3 mb-4">
+                    <div class="form-group col-10">
+                        <label class="form-label" for="date">Introduzca las horas de la alerta:</label>
+                        <div class="range-slider">
+                            <span class="range-selected"></span>
+                        </div>
+                        <div class="range-input">
+                                <label class="form-label" for="date">Inicio:</label>
+                            <input type="range" class="min form-control" id="slider-min" min="0" max="1439" value="480"
+                                step="5">
+                                <label class="form-label" for="date">Fin:</label>
+                            <input type="range" class="max form-control" id="slider-max" min="0" max="1439" value="540"
+                                step="5">
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="d-flex flex-wrap justify-content-center gap-3 mb-4">
+                    <div class="form-group col-auto">
+                        <div class="range-price">
+                            <label for="min">Inicio</label>
+                            <input type="time" id="input-min" name="min" value="08:00">
+                            <label for="max">Fin</label>
+                            <input type="time" id="input-max" name="max" value="09:00">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+            </div>
+
+
+
+
+
+            </div>
+
+
+
+
+            <!--Button row-->
+            <div class="row">
+                <div class="d-flex justify-content-center gap-3 mb-4">
+                    <div class="col-auto">
+                        <button type="submit" class="btn btn-primary">Confirmar</button>
+                    </div>
+                </div>
+            </div>
+
+            </div>
+
+
+            </div>
+
+
+
+
+
+        </form>
+
+
+    </main>
+
+    <!-- Footer -->
+    <div id="_footer"></div>
+</body>
+
+<script src="../js/components/slider.js"></script>
+<script>
+    // Cargamos el contenido de _header.html
+    fetch('./partials/_header.html')
+        .then(response => response.text())
+        .then(data => {
+            // Lo inyectamos en el div que creamos arriba
+            document.getElementById('_header').innerHTML = data;
+        })
+        .catch(error => console.error('Error al cargar el header:', error));
+</script>
+<script>
+    // Cargamos el contenido de _footer.html
+    fetch('./partials/_footer.html')
+        .then(response => response.text())
+        .then(data => {
+            // Lo inyectamos en el div que creamos arriba
+            document.getElementById('_footer').innerHTML = data;
+        })
+        .catch(error => console.error('Error al cargar el footer:', error));
+</script>
+
+</html>

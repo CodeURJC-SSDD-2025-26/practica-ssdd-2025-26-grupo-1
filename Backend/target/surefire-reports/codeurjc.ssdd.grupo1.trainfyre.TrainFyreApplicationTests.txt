@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: codeurjc.ssdd.grupo1.trainfyre.TrainFyreApplicationTests
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 4.233 s -- in codeurjc.ssdd.grupo1.trainfyre.TrainFyreApplicationTests
