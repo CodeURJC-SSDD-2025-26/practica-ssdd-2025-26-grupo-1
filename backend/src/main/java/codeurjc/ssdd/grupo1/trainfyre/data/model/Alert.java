@@ -1,7 +1,7 @@
 package codeurjc.ssdd.grupo1.trainfyre.data.model;
 
 
-import es.urjc.ssdd.grupo1.trainfyre.demo.backcore.dto.INCIDENCE_LEVEL;
+import codeurjc.ssdd.grupo1.trainfyre.dto.INCIDENCE_LEVEL;
 import jakarta.persistence.*;
 import lombok.Data;
 

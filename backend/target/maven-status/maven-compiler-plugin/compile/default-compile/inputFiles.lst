@@ -8,10 +8,12 @@ C:\Trabajos\2026\Distribuidos\Practica1\backend\src\main\java\codeurjc\ssdd\grup
 C:\Trabajos\2026\Distribuidos\Practica1\backend\src\main\java\codeurjc\ssdd\grupo1\trainfyre\dto\INCIDENCE_STATUS.java
 C:\Trabajos\2026\Distribuidos\Practica1\backend\src\main\java\codeurjc\ssdd\grupo1\trainfyre\dto\Role.java
 C:\Trabajos\2026\Distribuidos\Practica1\backend\src\main\java\codeurjc\ssdd\grupo1\trainfyre\dto\StationDTO.java
+C:\Trabajos\2026\Distribuidos\Practica1\backend\src\main\java\codeurjc\ssdd\grupo1\trainfyre\H2ConsoleConfig.java
 C:\Trabajos\2026\Distribuidos\Practica1\backend\src\main\java\codeurjc\ssdd\grupo1\trainfyre\mapper\Impl\StationDtoToStation.java
 C:\Trabajos\2026\Distribuidos\Practica1\backend\src\main\java\codeurjc\ssdd\grupo1\trainfyre\mapper\Impl\StationToDto.java
 C:\Trabajos\2026\Distribuidos\Practica1\backend\src\main\java\codeurjc\ssdd\grupo1\trainfyre\mapper\Mapper.java
 C:\Trabajos\2026\Distribuidos\Practica1\backend\src\main\java\codeurjc\ssdd\grupo1\trainfyre\mapper\StationRestMapper.java
+C:\Trabajos\2026\Distribuidos\Practica1\backend\src\main\java\codeurjc\ssdd\grupo1\trainfyre\SecurityConfiguration.java
 C:\Trabajos\2026\Distribuidos\Practica1\backend\src\main\java\codeurjc\ssdd\grupo1\trainfyre\service\Impl\StationServiceImpl.java
 C:\Trabajos\2026\Distribuidos\Practica1\backend\src\main\java\codeurjc\ssdd\grupo1\trainfyre\service\StationService.java
 C:\Trabajos\2026\Distribuidos\Practica1\backend\src\main\java\codeurjc\ssdd\grupo1\trainfyre\TrainFyreApplication.java

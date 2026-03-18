@@ -1,7 +1,7 @@
 package codeurjc.ssdd.grupo1.trainfyre.data.model;
 
 
-import es.urjc.ssdd.grupo1.trainfyre.demo.backcore.dto.Role;
+import codeurjc.ssdd.grupo1.trainfyre.dto.Role;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -9,7 +9,7 @@ import java.util.List;
 
 @Entity
 @Data
-@Table(name = "user")
+@Table(name = "users")
 public class User {
 
     @Id

@@ -6,10 +6,12 @@
 </head>
 <body>
 
+    <! -- Pagina de ejemplo -->
+
     <h1>Esta es una página de ejemplo, bienvenido {{name}}</h1>
 
     {{#stations}}
-        <p>{{.}}</p>
+        <p>Estación: {{name}} en la dirección: {{address}}</p>
     {{/stations}}
 
 </body>

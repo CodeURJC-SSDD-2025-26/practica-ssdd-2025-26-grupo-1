@@ -25,9 +25,8 @@ public class StationController {
 
         logger.info("getStations");
 
-        //model.addAttribute("stations", stationService.getAllStations());
-        model.addAttribute("name", "Antonio");
-        model.addAttribute("stations", Arrays.asList("Atocha", "Aranjuez", "El Casar"));
+        model.addAttribute("name", "Pablo");
+        model.addAttribute("stations", stationService.getAllStations());
 
         return "stations";
     }

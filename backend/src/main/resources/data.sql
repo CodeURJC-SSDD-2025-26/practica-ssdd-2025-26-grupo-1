@@ -1,0 +1,10 @@
+INSERT INTO station (id, address, name) VALUES (1, 'Calle de Alcalá, 44, Madrid', 'Madrid Atocha');
+INSERT INTO station (id, address, name) VALUES (2, 'Glorieta de Carlos V, s/n, Madrid', 'Madrid Chamartín');
+INSERT INTO station (id, address, name) VALUES (3, 'Plaça dels Països Catalans, s/n, Barcelona', 'Barcelona Sants');
+INSERT INTO station (id, address, name) VALUES (4, 'Carrer d''Aragó, 260, Barcelona', 'Barcelona Passeig de Gràcia');
+INSERT INTO station (id, address, name) VALUES (5, 'Calle José Laguillo, s/n, Sevilla', 'Sevilla Santa Justa');
+INSERT INTO station (id, address, name) VALUES (6, 'Calle Joaquín Sorolla, s/n, Valencia', 'Valencia Joaquín Sorolla');
+INSERT INTO station (id, address, name) VALUES (7, 'Avenida de Europa, s/n, Zaragoza', 'Zaragoza Delicias');
+INSERT INTO station (id, address, name) VALUES (8, 'Calle Marqués de Irún, 2, Bilbao', 'Bilbao Abando');
+INSERT INTO station (id, address, name) VALUES (9, 'Calle Alfonso XII, s/n, Málaga', 'Málaga María Zambrano');
+INSERT INTO station (id, address, name) VALUES (10, 'Rúa do Hórreo, 75, Santiago de Compostela', 'Santiago de Compostela');
