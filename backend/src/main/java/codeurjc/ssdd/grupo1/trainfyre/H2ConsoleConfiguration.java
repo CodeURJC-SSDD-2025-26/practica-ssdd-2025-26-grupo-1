@@ -6,7 +6,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-public class H2ConsoleConfig {
+public class H2ConsoleConfiguration {
 
     @Bean
     public ServletRegistrationBean<JakartaWebServlet> h2ConsoleServlet() {
