@@ -1,4 +1,4 @@
-package es.urjc.ssdd.grupo1.trainfyre.demo.backcore.dto;
+package codeurjc.ssdd.grupo1.trainfyre.dto;
 
 import jakarta.persistence.EnumeratedValue;
 import lombok.*;

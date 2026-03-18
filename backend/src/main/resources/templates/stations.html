@@ -1,12 +1,16 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <title>Pagina de ejemplo con station</title>
 </head>
 <body>
 
-    <p>{{stations}}</p>
+    <h1>Esta es una página de ejemplo, bienvenido {{name}}</h1>
+
+    {{#stations}}
+        <p>{{.}}</p>
+    {{/stations}}
 
 </body>
 </html>
