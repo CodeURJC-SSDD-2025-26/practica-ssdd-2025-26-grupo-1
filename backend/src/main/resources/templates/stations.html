@@ -2,8 +2,26 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Pagina de ejemplo con station</title>
+    <title>{{title}}</title>
+
+    <!-- Globales, siempre presentes -->
+    {{#globalStyles}}
+    <link rel="stylesheet" href="{{.}}">
+    {{/globalStyles}}
+    {{#globalScripts}}
+    <script src="{{.}}"></script>
+    {{/globalScripts}}
+
+    <!-- Específicos de página, solo si el controller los envía -->
+    {{#pageStyles}}
+    <link rel="stylesheet" href="/css/{{.}}">
+    {{/pageStyles}}
+    {{#pageScripts}}
+    <script src="/js/{{.}}" defer></script>
+    {{/pageScripts}}
+
 </head>
+{{# Layout }}
 <body>
 
     <! -- Pagina de ejemplo -->
@@ -15,4 +33,5 @@
     {{/stations}}
 
 </body>
+{{/ Layout }}
 </html>

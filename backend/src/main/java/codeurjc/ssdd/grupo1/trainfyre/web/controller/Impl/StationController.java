@@ -10,8 +10,6 @@ import org.springframework.ui.Model;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 
-import java.util.Arrays;
-
 @Controller
 @Validated
 @RequiredArgsConstructor
@@ -25,6 +23,7 @@ public class StationController {
 
         logger.info("getStations");
 
+        model.addAttribute("title", "Estaciones");
         model.addAttribute("name", "Pablo");
         model.addAttribute("stations", stationService.getAllStations());
 
