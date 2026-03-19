@@ -7,7 +7,6 @@ codeurjc\ssdd\grupo1\trainfyre\mapper\Impl\StationToDto.class
 codeurjc\ssdd\grupo1\trainfyre\mapper\Impl\StationDtoToStation.class
 codeurjc\ssdd\grupo1\trainfyre\data\repository\StationRepository.class
 codeurjc\ssdd\grupo1\trainfyre\data\model\Incidence.class
-codeurjc\ssdd\grupo1\trainfyre\H2ConsoleConfig.class
 codeurjc\ssdd\grupo1\trainfyre\data\model\User.class
 codeurjc\ssdd\grupo1\trainfyre\service\StationService.class
 codeurjc\ssdd\grupo1\trainfyre\dto\StationDTO.class
