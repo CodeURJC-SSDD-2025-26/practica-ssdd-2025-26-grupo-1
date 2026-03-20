@@ -4,8 +4,21 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ecee7179-4a27-4384-862b-e46e80d30acb" name="Changes" comment="More spring Security changes, mainly to allow User autentication">
+    <list default="true" id="ecee7179-4a27-4384-862b-e46e80d30acb" name="Changes" comment="Project reestructure">
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/codeurjc/ssdd/grupo1/trainfyre/web/controller/Impl/AuthenticatorController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/resources/templates/successful_logout.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/codeurjc/ssdd/grupo1/trainfyre/config/DatabaseUsersLoader.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/codeurjc/ssdd/grupo1/trainfyre/config/DatabaseUsersLoader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/codeurjc/ssdd/grupo1/trainfyre/security/SecurityConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/codeurjc/ssdd/grupo1/trainfyre/security/SecurityConfiguration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/codeurjc/ssdd/grupo1/trainfyre/service/Impl/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/codeurjc/ssdd/grupo1/trainfyre/service/Impl/AuthenticatorUserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/resources/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/resources/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/resources/templates/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/resources/templates/login_old.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/resources/templates/logout.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/resources/templates/partials/_login_form.html" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/resources/templates/partials/_login_form.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/target/classes/codeurjc/ssdd/grupo1/trainfyre/config/DatabaseUsersLoader.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/target/classes/codeurjc/ssdd/grupo1/trainfyre/config/DatabaseUsersLoader.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/target/classes/codeurjc/ssdd/grupo1/trainfyre/security/SecurityConfiguration.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/target/classes/codeurjc/ssdd/grupo1/trainfyre/security/SecurityConfiguration.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/target/classes/codeurjc/ssdd/grupo1/trainfyre/service/Impl/UserService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/target/classes/templates/logout.html" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -190,7 +203,7 @@
       <workItem from="1773929172644" duration="7000" />
       <workItem from="1773931614436" duration="3565000" />
       <workItem from="1773946943991" duration="19669000" />
-      <workItem from="1774000084360" duration="773000" />
+      <workItem from="1774000084360" duration="10309000" />
     </task>
     <task id="LOCAL-00001" summary="Stablishment of a common CSS for the whole team to use, it may change in the future">
       <option name="closed" value="true" />
@@ -304,7 +317,15 @@
       <option name="project" value="LOCAL" />
       <updated>1773969392921</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="Project reestructure">
+      <option name="closed" value="true" />
+      <created>1774001457399</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1774001457399</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -333,7 +354,8 @@
     <MESSAGE value="Https implementation" />
     <MESSAGE value="Creation of profiles for different run configurations and yaml migration" />
     <MESSAGE value="More spring Security changes, mainly to allow User autentication" />
-    <option name="LAST_COMMIT_MESSAGE" value="More spring Security changes, mainly to allow User autentication" />
+    <MESSAGE value="Project reestructure" />
+    <option name="LAST_COMMIT_MESSAGE" value="Project reestructure" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

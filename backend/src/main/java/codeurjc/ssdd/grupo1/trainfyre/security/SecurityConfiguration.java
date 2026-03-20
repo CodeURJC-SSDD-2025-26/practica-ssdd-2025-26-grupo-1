@@ -28,22 +28,17 @@ public class SecurityConfiguration {
                         .requestMatchers("/css/**", "/js/**", "/img/**", "/").permitAll()
                         .requestMatchers(
                                 "/login", "/logout", "/index",
-                                "/stations", "/form_register")
+                                "/stations", "/form_register",
+                                "/successful_logout")
                                 .permitAll()
                         .requestMatchers("/admin/**").hasRole(Role.ADMIN.name())
                         .requestMatchers("/registered/**").hasAnyRole(Role.ADMIN.name(), Role.REGISTERED.name())
                         .anyRequest().authenticated()
                 )
-                /*.formLogin(form -> form
+                .formLogin(form -> form
                         .loginPage("/login")
                         .failureUrl("/login?error")
                         .defaultSuccessUrl("/index")
-                        .permitAll()
-                )*/
-                .formLogin(Customizer.withDefaults())
-                .logout(logout -> logout
-                        .logoutUrl("/logout")
-                        .logoutSuccessUrl("/")
                         .permitAll()
                 )
                 .httpBasic(Customizer.withDefaults())

@@ -4,17 +4,16 @@ import codeurjc.ssdd.grupo1.trainfyre.data.model.AppUser;
 import codeurjc.ssdd.grupo1.trainfyre.data.repository.UserRepository;
 import codeurjc.ssdd.grupo1.trainfyre.dto.Role;
 import jakarta.annotation.PostConstruct;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 @Component
+@RequiredArgsConstructor
 public class DatabaseUsersLoader {
 
-    @Autowired
-    private UserRepository userRepository;
-    @Autowired
-    private PasswordEncoder passwordEncoder;
+    private final UserRepository userRepository;
+    private final PasswordEncoder passwordEncoder;
 
     @PostConstruct
     public void init() {
