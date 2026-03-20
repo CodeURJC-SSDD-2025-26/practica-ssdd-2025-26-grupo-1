@@ -1,7 +1,7 @@
 package codeurjc.ssdd.grupo1.trainfyre.web.controller.Impl;
 
 import codeurjc.ssdd.grupo1.trainfyre.dto.UserRegistrationtDTO;
-import codeurjc.ssdd.grupo1.trainfyre.service.Impl.AuthenticatorUserService;
+import codeurjc.ssdd.grupo1.trainfyre.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,10 +16,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 @Validated
 @RequiredArgsConstructor
-public class AuthenticatorController {
+public class UserController {
 
-    private final Logger logger = LoggerFactory.getLogger(AuthenticatorController.class);
-    private final AuthenticatorUserService authenticatorUserService;
+    private final Logger logger = LoggerFactory.getLogger(UserController.class);
+    private final UserService userService;
 
     @GetMapping(value = "/login")
     public String login(@RequestParam(value = "error", required = false) String error, Model model) {
@@ -50,6 +50,9 @@ public class AuthenticatorController {
 
         logger.info("Registration petition");
 
+        logger.info(userRegistrationtDTO.toString());
+
+        logger.info(userService.registerUser(userRegistrationtDTO).toString());
 
         return "index";
     }
