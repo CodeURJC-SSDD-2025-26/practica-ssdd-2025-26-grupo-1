@@ -2,15 +2,19 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8c589262-9696-4c45-a0f0-c5be4859ebb1" name="Changes" comment="comented  code erased">
-      <change afterPath="$PROJECT_DIR$/../java/codeurjc/ssdd/grupo1/trainfyre/web/controller/Impl/StationController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/stations.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../../.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../../.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../java/codeurjc/ssdd/grupo1/trainfyre/data/repository/UserRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../java/codeurjc/ssdd/grupo1/trainfyre/dto/UserDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../java/codeurjc/ssdd/grupo1/trainfyre/service/Impl/UserService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../../../.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/createdFiles.lst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../java/codeurjc/ssdd/grupo1/trainfyre/SecurityConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/../java/codeurjc/ssdd/grupo1/trainfyre/SecurityConfiguration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../java/codeurjc/ssdd/grupo1/trainfyre/data/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/../java/codeurjc/ssdd/grupo1/trainfyre/data/model/AppUser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application-dev.yml" beforeDir="false" afterPath="$PROJECT_DIR$/application-dev.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/session.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/logout.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../target/classes/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../target/classes/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../target/classes/application-dev.yml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../target/classes/application-dev.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../target/classes/codeurjc/ssdd/grupo1/trainfyre/SecurityConfiguration.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../../target/classes/codeurjc/ssdd/grupo1/trainfyre/SecurityConfiguration.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../target/generated-sources/annotations/codeurjc/ssdd/grupo1/trainfyre/mapper/StationRestMapperImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../target/generated-sources/annotations/codeurjc/ssdd/grupo1/trainfyre/mapper/StationRestMapperImpl.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -56,22 +60,22 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "DefaultHtmlFileTemplate": "HTML File",
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
-    "SONARLINT_PRECOMMIT_ANALYSIS": "true",
-    "git-widget-placeholder": "Development",
-    "javascript.preferred.runtime.type.id": "node",
-    "last_opened_file_path": "C:/Trabajos/2026/Distribuidos/Practica1/backend/src/main/resources",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "settings.qodana",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
+    &quot;SONARLINT_PRECOMMIT_ANALYSIS&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;Development&quot;,
+    &quot;javascript.preferred.runtime.type.id&quot;: &quot;node&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Trabajos/2026/Distribuidos/Practica1/backend/src/main/resources&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;settings.qodana&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Trabajos\2026\Distribuidos\Practica1\TrainFyre\src\main\resources\templates" />
@@ -120,6 +124,7 @@
       <workItem from="1773397709058" duration="417000" />
       <workItem from="1773783284090" duration="372000" />
       <workItem from="1773823431914" duration="253000" />
+      <workItem from="1773949405054" duration="3556000" />
     </task>
     <task id="LOCAL-00001" summary="Incidences page, first aproach">
       <option name="closed" value="true" />
