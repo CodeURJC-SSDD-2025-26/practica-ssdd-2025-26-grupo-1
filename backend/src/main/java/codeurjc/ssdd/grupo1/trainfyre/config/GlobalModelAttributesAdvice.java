@@ -2,6 +2,7 @@ package codeurjc.ssdd.grupo1.trainfyre.config;
 
 import com.samskivert.mustache.Mustache;
 import com.samskivert.mustache.Template;
+import lombok.RequiredArgsConstructor;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -12,13 +13,10 @@ import java.util.Arrays;
 
 
 @ControllerAdvice
+@RequiredArgsConstructor
 public class GlobalModelAttributesAdvice {
 
     private final Mustache.Compiler mustacheCompiler;
-
-    public GlobalModelAttributesAdvice(Mustache.Compiler mustacheCompiler) {
-        this.mustacheCompiler = mustacheCompiler;
-    }
 
     @ModelAttribute
     public void globalAttributes(Model model) {

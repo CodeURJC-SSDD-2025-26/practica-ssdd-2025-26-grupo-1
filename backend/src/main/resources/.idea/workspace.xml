@@ -2,20 +2,21 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8c589262-9696-4c45-a0f0-c5be4859ebb1" name="Changes" comment="comented  code erased">
-      <change afterPath="$PROJECT_DIR$/../java/codeurjc/ssdd/grupo1/trainfyre/web/controller/Impl/AuthenticatorController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/successful_logout.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../../../.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../java/codeurjc/ssdd/grupo1/trainfyre/config/DatabaseUsersLoader.java" beforeDir="false" afterPath="$PROJECT_DIR$/../java/codeurjc/ssdd/grupo1/trainfyre/config/DatabaseUsersLoader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../java/codeurjc/ssdd/grupo1/trainfyre/config/GlobalModelAttributesAdvice.java" beforeDir="false" afterPath="$PROJECT_DIR$/../java/codeurjc/ssdd/grupo1/trainfyre/config/GlobalModelAttributesAdvice.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../java/codeurjc/ssdd/grupo1/trainfyre/security/SecurityConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/../java/codeurjc/ssdd/grupo1/trainfyre/security/SecurityConfiguration.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../java/codeurjc/ssdd/grupo1/trainfyre/service/Impl/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../java/codeurjc/ssdd/grupo1/trainfyre/service/Impl/AuthenticatorUserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../java/codeurjc/ssdd/grupo1/trainfyre/web/controller/Impl/AuthenticatorController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../java/codeurjc/ssdd/grupo1/trainfyre/web/controller/Impl/AuthenticatorController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/login_old.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/logout.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/partials/_login_form.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/partials/_login_form.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../target/classes/codeurjc/ssdd/grupo1/trainfyre/config/DatabaseUsersLoader.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../../target/classes/codeurjc/ssdd/grupo1/trainfyre/config/DatabaseUsersLoader.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/css/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/form_register.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/register.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/partials/_header.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/partials/_header.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../target/classes/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../target/classes/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../target/classes/codeurjc/ssdd/grupo1/trainfyre/config/GlobalModelAttributesAdvice$Layout.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../../target/classes/codeurjc/ssdd/grupo1/trainfyre/config/GlobalModelAttributesAdvice$Layout.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../target/classes/codeurjc/ssdd/grupo1/trainfyre/config/GlobalModelAttributesAdvice.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../../target/classes/codeurjc/ssdd/grupo1/trainfyre/config/GlobalModelAttributesAdvice.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../../target/classes/codeurjc/ssdd/grupo1/trainfyre/security/SecurityConfiguration.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../../target/classes/codeurjc/ssdd/grupo1/trainfyre/security/SecurityConfiguration.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../target/classes/codeurjc/ssdd/grupo1/trainfyre/service/Impl/UserService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../target/classes/templates/logout.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../target/classes/codeurjc/ssdd/grupo1/trainfyre/web/controller/Impl/AuthenticatorController.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../../target/classes/codeurjc/ssdd/grupo1/trainfyre/web/controller/Impl/AuthenticatorController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../target/classes/static/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/../../../target/classes/static/css/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../target/classes/templates/partials/_header.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../../target/classes/templates/partials/_header.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -126,7 +127,8 @@
       <workItem from="1773783284090" duration="372000" />
       <workItem from="1773823431914" duration="253000" />
       <workItem from="1773949405054" duration="3556000" />
-      <workItem from="1774002335111" duration="6217000" />
+      <workItem from="1774002335111" duration="7996000" />
+      <workItem from="1774024481931" duration="1573000" />
     </task>
     <task id="LOCAL-00001" summary="Incidences page, first aproach">
       <option name="closed" value="true" />

@@ -28,7 +28,7 @@ public class SecurityConfiguration {
                         .requestMatchers("/css/**", "/js/**", "/img/**", "/").permitAll()
                         .requestMatchers(
                                 "/login", "/logout", "/index",
-                                "/stations", "/form_register",
+                                "/stations", "/register",
                                 "/successful_logout")
                                 .permitAll()
                         .requestMatchers("/admin/**").hasRole(Role.ADMIN.name())
@@ -38,7 +38,7 @@ public class SecurityConfiguration {
                 .formLogin(form -> form
                         .loginPage("/login")
                         .failureUrl("/login?error")
-                        .defaultSuccessUrl("/index")
+                        .defaultSuccessUrl("/stations")
                         .permitAll()
                 )
                 .httpBasic(Customizer.withDefaults())
