@@ -2,12 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8c589262-9696-4c45-a0f0-c5be4859ebb1" name="Changes" comment="comented  code erased">
+      <change afterPath="$PROJECT_DIR$/../java/codeurjc/ssdd/grupo1/trainfyre/data/repository/UserRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../java/codeurjc/ssdd/grupo1/trainfyre/dto/UserDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../java/codeurjc/ssdd/grupo1/trainfyre/service/Impl/UserService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../../../.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../java/codeurjc/ssdd/grupo1/trainfyre/SecurityConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/../java/codeurjc/ssdd/grupo1/trainfyre/SecurityConfiguration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../java/codeurjc/ssdd/grupo1/trainfyre/data/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/../java/codeurjc/ssdd/grupo1/trainfyre/data/model/AppUser.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application-dev.yml" beforeDir="false" afterPath="$PROJECT_DIR$/application-dev.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/session.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/logout.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../../../target/classes/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../target/classes/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../target/classes/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../target/classes/application-dev.yml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../target/classes/application-dev.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../../target/classes/codeurjc/ssdd/grupo1/trainfyre/SecurityConfiguration.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../../target/classes/codeurjc/ssdd/grupo1/trainfyre/SecurityConfiguration.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../../target/generated-sources/annotations/codeurjc/ssdd/grupo1/trainfyre/mapper/StationRestMapperImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../target/generated-sources/annotations/codeurjc/ssdd/grupo1/trainfyre/mapper/StationRestMapperImpl.java" afterDir="false" />
     </list>
@@ -119,7 +124,7 @@
       <workItem from="1773397709058" duration="417000" />
       <workItem from="1773783284090" duration="372000" />
       <workItem from="1773823431914" duration="253000" />
-      <workItem from="1773949405054" duration="920000" />
+      <workItem from="1773949405054" duration="3556000" />
     </task>
     <task id="LOCAL-00001" summary="Incidences page, first aproach">
       <option name="closed" value="true" />

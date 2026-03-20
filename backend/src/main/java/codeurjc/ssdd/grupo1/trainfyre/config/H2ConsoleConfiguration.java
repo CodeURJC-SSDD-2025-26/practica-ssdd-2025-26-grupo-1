@@ -1,4 +1,4 @@
-package codeurjc.ssdd.grupo1.trainfyre;
+package codeurjc.ssdd.grupo1.trainfyre.config;
 
 import org.h2.server.web.JakartaWebServlet;
 import org.springframework.boot.web.servlet.ServletRegistrationBean;

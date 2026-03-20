@@ -1,4 +1,4 @@
-package codeurjc.ssdd.grupo1.trainfyre;
+package codeurjc.ssdd.grupo1.trainfyre.config;
 
 import codeurjc.ssdd.grupo1.trainfyre.data.model.AppUser;
 import codeurjc.ssdd.grupo1.trainfyre.data.repository.UserRepository;

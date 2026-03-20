@@ -1,4 +1,4 @@
-package codeurjc.ssdd.grupo1.trainfyre;
+package codeurjc.ssdd.grupo1.trainfyre.config;
 
 import com.samskivert.mustache.Mustache;
 import com.samskivert.mustache.Template;
