@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 @RequiredArgsConstructor
 public class AuthenticatorController {
 
-    private final Logger logger = LoggerFactory.getLogger(StationController.class);
+    private final Logger logger = LoggerFactory.getLogger(AuthenticatorController.class);
     private final AuthenticatorUserService authenticatorUserService;
 
     @GetMapping(value = "/login")
