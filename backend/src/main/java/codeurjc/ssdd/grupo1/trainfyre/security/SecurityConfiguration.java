@@ -25,8 +25,8 @@ public class SecurityConfiguration {
 
         http
                 .authorizeHttpRequests(authorize -> authorize
-                        .requestMatchers("/css/**", "/js/**", "/img/**", "/").permitAll()
-                        .requestMatchers(
+                        .requestMatchers("/css/**", "/js/**", "/img/**",
+                                "/", "/h2-console/**",
                                 "/login", "/logout", "/index",
                                 "/stations", "/register",
                                 "/successful_logout")
