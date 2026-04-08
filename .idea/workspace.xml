@@ -4,12 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ecee7179-4a27-4384-862b-e46e80d30acb" name="Changes" comment="Now all userInfo data is globally loaded when specified on the html">
+    <list default="true" id="ecee7179-4a27-4384-862b-e46e80d30acb" name="Changes" comment="Advancements in header to be based on server responses to show or hide its parts">
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/codeurjc/ssdd/grupo1/trainfyre/config/DefaultImageLoader.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/src/main/java/codeurjc/ssdd/grupo1/trainfyre/config/GlobalModelAttributesAdvice.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/codeurjc/ssdd/grupo1/trainfyre/config/GlobalModelAttributesAdvice.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/codeurjc/ssdd/grupo1/trainfyre/data/model/AppUser.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/codeurjc/ssdd/grupo1/trainfyre/data/model/AppUser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/codeurjc/ssdd/grupo1/trainfyre/dto/UserInfoDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/codeurjc/ssdd/grupo1/trainfyre/dto/UserInfoDTO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/src/main/resources/templates/partials/_header.html" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/resources/templates/partials/_header.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/target/classes/codeurjc/ssdd/grupo1/trainfyre/config/GlobalModelAttributesAdvice$Layout.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/target/classes/codeurjc/ssdd/grupo1/trainfyre/config/GlobalModelAttributesAdvice$Layout.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/target/classes/codeurjc/ssdd/grupo1/trainfyre/config/GlobalModelAttributesAdvice.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/target/classes/codeurjc/ssdd/grupo1/trainfyre/config/GlobalModelAttributesAdvice.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/target/classes/codeurjc/ssdd/grupo1/trainfyre/data/model/AppUser.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/target/classes/codeurjc/ssdd/grupo1/trainfyre/data/model/AppUser.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/target/classes/codeurjc/ssdd/grupo1/trainfyre/mapper/UserMapperImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/target/classes/codeurjc/ssdd/grupo1/trainfyre/mapper/UserMapperImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/target/classes/templates/partials/_header.html" beforeDir="false" afterPath="$PROJECT_DIR$/backend/target/classes/templates/partials/_header.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/target/generated-sources/annotations/codeurjc/ssdd/grupo1/trainfyre/mapper/StationRestMapperImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/target/generated-sources/annotations/codeurjc/ssdd/grupo1/trainfyre/mapper/StationRestMapperImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/target/generated-sources/annotations/codeurjc/ssdd/grupo1/trainfyre/mapper/UserMapperImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/target/generated-sources/annotations/codeurjc/ssdd/grupo1/trainfyre/mapper/UserMapperImpl.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -382,7 +388,15 @@
       <option name="project" value="LOCAL" />
       <updated>1775641135458</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="Advancements in header to be based on server responses to show or hide its parts">
+      <option name="closed" value="true" />
+      <created>1775642376221</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1775642376221</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -420,7 +434,8 @@
     <MESSAGE value="Now we user UserInfoDTO to get users information (correct separation of dtos to allow better security and not to load password when unecesary)." />
     <MESSAGE value="Preparation to load user via global attributes for better code quality and avoidance of repeatable code." />
     <MESSAGE value="Now all userInfo data is globally loaded when specified on the html" />
-    <option name="LAST_COMMIT_MESSAGE" value="Now all userInfo data is globally loaded when specified on the html" />
+    <MESSAGE value="Advancements in header to be based on server responses to show or hide its parts" />
+    <option name="LAST_COMMIT_MESSAGE" value="Advancements in header to be based on server responses to show or hide its parts" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

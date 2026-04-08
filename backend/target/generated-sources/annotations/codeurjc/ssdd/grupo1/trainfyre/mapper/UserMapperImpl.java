@@ -7,13 +7,14 @@ import codeurjc.ssdd.grupo1.trainfyre.dto.UserDTO;
 import codeurjc.ssdd.grupo1.trainfyre.dto.UserInfoDTO;
 import codeurjc.ssdd.grupo1.trainfyre.dto.UserRegistrationtDTO;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import javax.annotation.processing.Generated;
 import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2026-04-08T11:09:54+0200",
+    date = "2026-04-08T12:21:06+0200",
     comments = "version: 1.5.5.Final, compiler: javac, environment: Java 25 (Oracle Corporation)"
 )
 @Component
@@ -25,15 +26,15 @@ public class UserMapperImpl implements UserMapper {
             return null;
         }
 
-        AppUser appUser = new AppUser();
+        AppUser.AppUserBuilder appUser = AppUser.builder();
 
-        appUser.setId( userDTO.id() );
-        appUser.setUsername( userDTO.username() );
-        appUser.setPassword( userDTO.password() );
-        appUser.setRole( userDTO.role() );
-        appUser.setEmail( userDTO.email() );
+        appUser.id( userDTO.id() );
+        appUser.username( userDTO.username() );
+        appUser.password( userDTO.password() );
+        appUser.role( userDTO.role() );
+        appUser.email( userDTO.email() );
 
-        return appUser;
+        return appUser.build();
     }
 
     @Override
@@ -42,14 +43,14 @@ public class UserMapperImpl implements UserMapper {
             return null;
         }
 
-        AppUser appUser = new AppUser();
+        AppUser.AppUserBuilder appUser = AppUser.builder();
 
-        appUser.setUsername( userRegistrationtDTO.username() );
-        appUser.setPassword( userRegistrationtDTO.password() );
-        appUser.setRole( userRegistrationtDTO.role() );
-        appUser.setEmail( userRegistrationtDTO.email() );
+        appUser.username( userRegistrationtDTO.username() );
+        appUser.password( userRegistrationtDTO.password() );
+        appUser.role( userRegistrationtDTO.role() );
+        appUser.email( userRegistrationtDTO.email() );
 
-        return appUser;
+        return appUser.build();
     }
 
     @Override
@@ -84,17 +85,22 @@ public class UserMapperImpl implements UserMapper {
         String username = null;
         String email = null;
         Role role = null;
+        byte[] image = null;
         List<Alert> alerts = null;
 
         username = user.getUsername();
         email = user.getEmail();
         role = user.getRole();
+        byte[] image1 = user.getImage();
+        if ( image1 != null ) {
+            image = Arrays.copyOf( image1, image1.length );
+        }
         List<Alert> list = user.getAlerts();
         if ( list != null ) {
             alerts = new ArrayList<Alert>( list );
         }
 
-        UserInfoDTO userInfoDTO = new UserInfoDTO( username, email, role, alerts );
+        UserInfoDTO userInfoDTO = new UserInfoDTO( username, email, role, image, alerts );
 
         return userInfoDTO;
     }

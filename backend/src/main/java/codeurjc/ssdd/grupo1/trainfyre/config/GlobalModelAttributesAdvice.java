@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import java.io.IOException;
 import java.io.Writer;
 import java.util.Arrays;
+import java.util.Base64;
 
 
 @ControllerAdvice
@@ -37,6 +38,8 @@ public class GlobalModelAttributesAdvice {
             model.addAttribute("username", userInfo.username());
             model.addAttribute("email", userInfo.email());
             model.addAttribute("role", userInfo.role());
+            String base64 = Base64.getEncoder().encodeToString(userInfo.image());
+            model.addAttribute("profile_picture", "data:image/png;base64," + base64);
             model.addAttribute("alerts", Arrays.asList(userInfo.alerts()));
             if(userInfo.role() == Role.ADMIN) {
                 model.addAttribute("admin", true);

@@ -1,14 +1,21 @@
 package codeurjc.ssdd.grupo1.trainfyre.data.model;
 
 
+import codeurjc.ssdd.grupo1.trainfyre.config.DefaultImageLoader;
 import codeurjc.ssdd.grupo1.trainfyre.dto.Role;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.List;
 
 @Entity
 @Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 @Table(name = "users")
 public class AppUser {
 
@@ -28,10 +35,17 @@ public class AppUser {
     @Column(nullable = true)
     private String email;
 
-    //Todo recordar terminar la columna de imagenes y configurar para que almacene una imagen por defecto
     @Lob
+    @Builder.Default
     @Column(name = "profile_picture")
-    private byte[] image;
+    private byte[] image = DefaultImageLoader.getDefaultImage();
+
+    @PrePersist
+    public void ensureDefaultImage() {
+        if (this.image == null) {
+            this.image = DefaultImageLoader.getDefaultImage();
+        }
+    }
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "alert_id")
