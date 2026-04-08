@@ -9,6 +9,7 @@ import codeurjc.ssdd.grupo1.trainfyre.mapper.UserMapper;
 import codeurjc.ssdd.grupo1.trainfyre.service.UserService;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -34,5 +35,17 @@ public class UserServiceImpl implements UserService{
         return userRepository.findByUsername(userRegistrationtDTO.username())
                 .map(userMapper::userToDTO)
                 .orElseThrow(() -> new UsernameNotFoundException("Error al registrarse: " + userRegistrationtDTO.username()));
+    }
+
+    @Transactional
+    public UserDTO findUser(UserDetails userDetails) {
+
+        if (userDetails == null){
+            return null;
+        }
+
+        return userRepository.findByUsername(userDetails.getUsername())
+                .map(userMapper::userToDTO)
+                .orElseThrow(() -> new UsernameNotFoundException("Error al obtener el usuario: " + userDetails.getUsername()));
     }
 }
