@@ -24,12 +24,11 @@ public class StationController {
     private final UserService userService;
 
     @GetMapping(value = "/stations")
-    public String getStations(Model model, @AuthenticationPrincipal UserDetails user) {
+    public String getStations(Model model) {
 
         log.info("getStations");
 
         model.addAttribute("title", "Estaciones");
-        model.addAttribute("name", userService.findUser(user).username());
         model.addAttribute("stations", stationService.getAllStations());
 
         return "stations";

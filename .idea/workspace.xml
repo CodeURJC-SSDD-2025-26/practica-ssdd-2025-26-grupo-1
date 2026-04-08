@@ -4,17 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ecee7179-4a27-4384-862b-e46e80d30acb" name="Changes" comment="Now user service allows to load user, and update in station example (This will have to change to use another dto to avoid loading the password for better security)">
-      <change afterPath="$PROJECT_DIR$/TrainFyre/backend.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/codeurjc/ssdd/grupo1/trainfyre/dto/UserInfoDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/codeurjc/ssdd/grupo1/trainfyre/mapper/Impl/UserToUserInfoDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/codeurjc/ssdd/grupo1/trainfyre/data/model/AppUser.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/codeurjc/ssdd/grupo1/trainfyre/data/model/AppUser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/codeurjc/ssdd/grupo1/trainfyre/mapper/UserMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/codeurjc/ssdd/grupo1/trainfyre/mapper/UserMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/target/classes/codeurjc/ssdd/grupo1/trainfyre/web/controller/Impl/StationController.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/target/classes/codeurjc/ssdd/grupo1/trainfyre/web/controller/Impl/StationController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/target/classes/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/backend/target/classes/templates/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/target/classes/templates/stations.html" beforeDir="false" afterPath="$PROJECT_DIR$/backend/target/classes/templates/stations.html" afterDir="false" />
+    <list default="true" id="ecee7179-4a27-4384-862b-e46e80d30acb" name="Changes" comment="Now we user UserInfoDTO to get users information (correct separation of dtos to allow better security and not to load password when unecesary).">
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/codeurjc/ssdd/grupo1/trainfyre/config/GlobalModelAttributesAdvice.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/codeurjc/ssdd/grupo1/trainfyre/config/GlobalModelAttributesAdvice.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/codeurjc/ssdd/grupo1/trainfyre/web/controller/Impl/StationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/codeurjc/ssdd/grupo1/trainfyre/web/controller/Impl/StationController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/resources/templates/stations.html" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/resources/templates/stations.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -363,7 +356,15 @@
       <option name="project" value="LOCAL" />
       <updated>1775637687877</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="Now we user UserInfoDTO to get users information (correct separation of dtos to allow better security and not to load password when unecesary).">
+      <option name="closed" value="true" />
+      <created>1775639709998</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1775639709998</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -398,7 +399,8 @@
     <MESSAGE value="Minor issue with logger in AuthenticatorController" />
     <MESSAGE value="Change of log, now using the Slf4j annotation for better code quality in StationController.java for better up to date example for other team members" />
     <MESSAGE value="Now user service allows to load user, and update in station example (This will have to change to use another dto to avoid loading the password for better security)" />
-    <option name="LAST_COMMIT_MESSAGE" value="Now user service allows to load user, and update in station example (This will have to change to use another dto to avoid loading the password for better security)" />
+    <MESSAGE value="Now we user UserInfoDTO to get users information (correct separation of dtos to allow better security and not to load password when unecesary)." />
+    <option name="LAST_COMMIT_MESSAGE" value="Now we user UserInfoDTO to get users information (correct separation of dtos to allow better security and not to load password when unecesary)." />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

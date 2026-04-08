@@ -1,8 +1,11 @@
 package codeurjc.ssdd.grupo1.trainfyre.config;
 
+import codeurjc.ssdd.grupo1.trainfyre.service.UserService;
 import com.samskivert.mustache.Mustache;
 import com.samskivert.mustache.Template;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -17,14 +20,16 @@ import java.util.Arrays;
 public class GlobalModelAttributesAdvice {
 
     private final Mustache.Compiler mustacheCompiler;
+    private final UserService userService;
 
     @ModelAttribute
-    public void globalAttributes(Model model) {
+    public void globalAttributes(Model model, @AuthenticationPrincipal UserDetails user) {
         model.addAttribute("globalStyles", Arrays.asList(
                 "https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css",
                 "/css/style.css"));
         model.addAttribute("globalScripts", Arrays.asList(
                 "https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"));
+        model.addAttribute("username", userService.findUser(user).username());
     }
 
     @ModelAttribute("Layout")

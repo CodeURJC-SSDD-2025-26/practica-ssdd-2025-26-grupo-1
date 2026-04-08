@@ -26,14 +26,14 @@
 
     <! -- Pagina de ejemplo -->
 
-    {{#name}}
-    <h1>Bienvenido, {{name}}</h1>
-    {{/name}}
+    {{#username}}
+    <h1>Bienvenido, {{username}}</h1>
+    {{/username}}
 
-    {{^name}}
+    {{^username}}
     <h1>Bienvenido</h1>
     <p>Inicia sesión para acceder a todas las funciones.</p>
-    {{/name}}
+    {{/username}}
 
     {{#stations}}
         <p>Estación: {{name}} en la dirección: {{address}}</p>
