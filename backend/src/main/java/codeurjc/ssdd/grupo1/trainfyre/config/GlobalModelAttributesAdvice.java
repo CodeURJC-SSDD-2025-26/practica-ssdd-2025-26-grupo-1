@@ -1,5 +1,6 @@
 package codeurjc.ssdd.grupo1.trainfyre.config;
 
+import codeurjc.ssdd.grupo1.trainfyre.dto.UserInfoDTO;
 import codeurjc.ssdd.grupo1.trainfyre.service.UserService;
 import com.samskivert.mustache.Mustache;
 import com.samskivert.mustache.Template;
@@ -29,7 +30,14 @@ public class GlobalModelAttributesAdvice {
                 "/css/style.css"));
         model.addAttribute("globalScripts", Arrays.asList(
                 "https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"));
-        model.addAttribute("username", userService.findUser(user).username());
+
+        UserInfoDTO userInfo = userService.findUser(user);
+        if(userInfo != null) {
+            model.addAttribute("username", userInfo.username());
+            model.addAttribute("email", userInfo.email());
+            model.addAttribute("role", userInfo.role());
+            model.addAttribute("alerts", Arrays.asList(userInfo.alerts()));
+        }
     }
 
     @ModelAttribute("Layout")
