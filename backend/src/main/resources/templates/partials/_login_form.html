@@ -3,13 +3,17 @@
 {{/ error}}
 
 <form role="form" action="/login" method="post">
-    <div class="row d-flex justify-content-center gap-3 mb-4 ms-3 me-3">
+    <div class="row d-flex justify-content-center gap-3 mb-1 ms-3 me-3 mt-5">
         <div class="form-group col-10">
             <h2 class="form-title">Inicio de sesión</h2>
+        </div>
+    </div>
 
-            <!--email-->
-            <label for="email" class="form-label">Correo electrónico</label>
-            <input type="text" class="form-control" id="email" required placeholder="Inserte su correo" name="username">
+    <!--email-->
+    <div class="row d-flex justify-content-center gap-3 mb-4 ms-3 me-3">
+        <div class="form-group col-10">
+            <label for="username" class="form-label">Nombre de usuario</label>
+            <input type="text" class="form-control" id="username" required placeholder="Inserte su nombre de usuario" name="username">
         </div>
     </div>
 
@@ -24,7 +28,8 @@
     <!--Button row-->
     <div class="row d-flex justify-content-center gap-3 mb-4 ms-3 me-3">
         <div class="col-auto mt-2">
-            <input type="submit" value="Sign In" class="btn btn-primary"/>
+            <button type="submit" class="btn btn-primary">Confirmar</button>
         </div>
     </div>
+    
 </form>
