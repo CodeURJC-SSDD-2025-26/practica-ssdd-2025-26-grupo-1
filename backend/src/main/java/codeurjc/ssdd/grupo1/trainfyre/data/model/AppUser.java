@@ -28,6 +28,11 @@ public class AppUser {
     @Column(nullable = true)
     private String email;
 
+    //Todo recordar terminar la columna de imagenes y configurar para que almacene una imagen por defecto
+    @Lob
+    @Column(name = "profile_picture")
+    private byte[] image;
+
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "alert_id")
     private List<Alert> alerts;

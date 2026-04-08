@@ -4,6 +4,7 @@ import codeurjc.ssdd.grupo1.trainfyre.data.model.AppUser;
 import codeurjc.ssdd.grupo1.trainfyre.data.repository.UserRepository;
 import codeurjc.ssdd.grupo1.trainfyre.dto.Role;
 import codeurjc.ssdd.grupo1.trainfyre.dto.UserDTO;
+import codeurjc.ssdd.grupo1.trainfyre.dto.UserInfoDTO;
 import codeurjc.ssdd.grupo1.trainfyre.dto.UserRegistrationtDTO;
 import codeurjc.ssdd.grupo1.trainfyre.mapper.UserMapper;
 import codeurjc.ssdd.grupo1.trainfyre.service.UserService;
@@ -23,7 +24,7 @@ public class UserServiceImpl implements UserService{
     private PasswordEncoder passwordEncoder;
 
     @Transactional
-    public UserDTO registerUser(UserRegistrationtDTO userRegistrationtDTO) {
+    public UserInfoDTO registerUser(UserRegistrationtDTO userRegistrationtDTO) {
 
         AppUser appUser = new AppUser();
         appUser.setUsername(userRegistrationtDTO.username());
@@ -33,19 +34,19 @@ public class UserServiceImpl implements UserService{
         userRepository.save(appUser);
 
         return userRepository.findByUsername(userRegistrationtDTO.username())
-                .map(userMapper::userToDTO)
+                .map(userMapper::userToUserInfoDTO)
                 .orElseThrow(() -> new UsernameNotFoundException("Error al registrarse: " + userRegistrationtDTO.username()));
     }
 
     @Transactional
-    public UserDTO findUser(UserDetails userDetails) {
+    public UserInfoDTO findUser(UserDetails userDetails) {
 
         if (userDetails == null){
             return null;
         }
 
         return userRepository.findByUsername(userDetails.getUsername())
-                .map(userMapper::userToDTO)
+                .map(userMapper::userToUserInfoDTO)
                 .orElseThrow(() -> new UsernameNotFoundException("Error al obtener el usuario: " + userDetails.getUsername()));
     }
 }

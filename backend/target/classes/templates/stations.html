@@ -26,7 +26,14 @@
 
     <! -- Pagina de ejemplo -->
 
-    <h1>Esta es una página de ejemplo, bienvenido {{name}}</h1>
+    {{#name}}
+    <h1>Bienvenido, {{name}}</h1>
+    {{/name}}
+
+    {{^name}}
+    <h1>Bienvenido</h1>
+    <p>Inicia sesión para acceder a todas las funciones.</p>
+    {{/name}}
 
     {{#stations}}
         <p>Estación: {{name}} en la dirección: {{address}}</p>

@@ -2,6 +2,7 @@ package codeurjc.ssdd.grupo1.trainfyre.mapper;
 
 import codeurjc.ssdd.grupo1.trainfyre.data.model.AppUser;
 import codeurjc.ssdd.grupo1.trainfyre.dto.UserDTO;
+import codeurjc.ssdd.grupo1.trainfyre.dto.UserInfoDTO;
 import codeurjc.ssdd.grupo1.trainfyre.dto.UserRegistrationtDTO;
 import org.mapstruct.Mapper;
 
@@ -13,4 +14,6 @@ public interface UserMapper {
     AppUser userRegistrationDTOtoAppUser(UserRegistrationtDTO userRegistrationtDTO);
 
     UserDTO userToDTO(AppUser user);
+
+    UserInfoDTO userToUserInfoDTO(AppUser user);
 }
