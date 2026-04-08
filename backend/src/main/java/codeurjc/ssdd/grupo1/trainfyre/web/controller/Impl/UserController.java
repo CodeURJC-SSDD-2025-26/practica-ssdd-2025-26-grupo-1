@@ -3,8 +3,7 @@ package codeurjc.ssdd.grupo1.trainfyre.web.controller.Impl;
 import codeurjc.ssdd.grupo1.trainfyre.dto.UserRegistrationtDTO;
 import codeurjc.ssdd.grupo1.trainfyre.service.UserService;
 import lombok.RequiredArgsConstructor;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.annotation.Validated;
@@ -16,15 +15,15 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 @Validated
 @RequiredArgsConstructor
+@Slf4j
 public class UserController {
 
-    private final Logger logger = LoggerFactory.getLogger(UserController.class);
     private final UserService userService;
 
     @GetMapping(value = "/login")
     public String login(@RequestParam(value = "error", required = false) String error, Model model) {
 
-        logger.info("login");
+        log.info("login");
 
         if (error != null) {
             model.addAttribute("error", "Se ha producido un error al intentar login");
@@ -38,7 +37,7 @@ public class UserController {
     @GetMapping(value = "/register")
     public String showRegistrationForm(Model model) {
 
-        logger.info("Loading registration form");
+        log.info("Loading registration form");
 
         model.addAttribute("title", "Register");
 
@@ -48,12 +47,9 @@ public class UserController {
     @PostMapping(value = "/register")
     public String register(@ModelAttribute("User") UserRegistrationtDTO userRegistrationtDTO, Model model){
 
-        logger.info("Registration petition");
+        log.info("Registration petition {}", userRegistrationtDTO.toString());
 
-        logger.info(userRegistrationtDTO.toString());
-
-        logger.info(userService.registerUser(userRegistrationtDTO).toString());
-
+        userService.registerUser(userRegistrationtDTO);
         return "index";
     }
 }
