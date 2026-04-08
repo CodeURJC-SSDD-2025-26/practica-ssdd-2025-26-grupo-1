@@ -33,7 +33,7 @@ public class Alert {
     private LocalDate endDate; //if this value is null it will be treated as there is no end date (infinite)
 
     @Column(nullable = false)
-    private LocalTime starHour;
+    private LocalTime startHour;
 
     @Column(nullable = false)
     private LocalTime endHour;
