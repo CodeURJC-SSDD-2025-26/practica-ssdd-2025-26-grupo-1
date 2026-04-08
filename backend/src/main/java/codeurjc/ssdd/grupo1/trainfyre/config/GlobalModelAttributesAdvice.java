@@ -1,5 +1,6 @@
 package codeurjc.ssdd.grupo1.trainfyre.config;
 
+import codeurjc.ssdd.grupo1.trainfyre.dto.Role;
 import codeurjc.ssdd.grupo1.trainfyre.dto.UserInfoDTO;
 import codeurjc.ssdd.grupo1.trainfyre.service.UserService;
 import com.samskivert.mustache.Mustache;
@@ -37,6 +38,9 @@ public class GlobalModelAttributesAdvice {
             model.addAttribute("email", userInfo.email());
             model.addAttribute("role", userInfo.role());
             model.addAttribute("alerts", Arrays.asList(userInfo.alerts()));
+            if(userInfo.role() == Role.ADMIN) {
+                model.addAttribute("admin", true);
+            }
         }
     }
 
