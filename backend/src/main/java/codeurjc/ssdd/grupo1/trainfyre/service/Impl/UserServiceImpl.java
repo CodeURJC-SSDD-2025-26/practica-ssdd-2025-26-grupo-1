@@ -15,12 +15,13 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @AllArgsConstructor
 public class UserServiceImpl implements UserService{
 
-    private UserRepository userRepository;
+    private UserRepository repository;
     private UserMapper userMapper;
     private PasswordEncoder passwordEncoder;
 
@@ -32,9 +33,9 @@ public class UserServiceImpl implements UserService{
         appUser.setEmail(userRegistrationtDTO.email());
         appUser.setPassword(passwordEncoder.encode(userRegistrationtDTO.password()));
         appUser.setRole(Role.REGISTERED);
-        userRepository.save(appUser);
+        repository.save(appUser);
 
-        return userRepository.findByUsername(userRegistrationtDTO.username())
+        return repository.findByUsername(userRegistrationtDTO.username())
                 .map(userMapper::userToUserInfoDTO)
                 .orElseThrow(() -> new UsernameNotFoundException("Error al registrarse: " + userRegistrationtDTO.username()));
     }
@@ -46,7 +47,7 @@ public class UserServiceImpl implements UserService{
             return null;
         }
 
-        return userRepository.findByUsername(userDetails.getUsername())
+        return repository.findByUsername(userDetails.getUsername())
                 .map(userMapper::userToUserInfoDTO)
                 .orElseThrow(() -> new UsernameNotFoundException("Error al obtener el usuario: " + userDetails.getUsername()));
     }
@@ -54,16 +55,19 @@ public class UserServiceImpl implements UserService{
     //todo Todavía no esta implementado, es para evitar errores de compilación
     @Override
     public List<UserInfoDTO> findAllUsers() {
-        return List.of();
+        return this.repository.findAll().stream()
+                .map(this.userMapper::userToUserInfoDTO)
+                .toList();
     }
 
     @Override
     public UserInfoDTO updateUser(UserRegistrationtDTO userRegistrationtDTO) {
+        //TODO
         return null;
     }
 
     @Override
     public void deleteUser(UserDetails userDetails) {
-
+        //TODO
     }
 }
