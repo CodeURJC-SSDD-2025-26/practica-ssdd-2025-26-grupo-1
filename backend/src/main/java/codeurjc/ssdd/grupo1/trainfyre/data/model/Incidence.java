@@ -6,6 +6,8 @@ import codeurjc.ssdd.grupo1.trainfyre.dto.INCIDENCE_LEVEL;
 import codeurjc.ssdd.grupo1.trainfyre.dto.INCIDENCE_STATUS;
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 
 import java.time.LocalDateTime;
@@ -14,6 +16,8 @@ import java.util.List;
 @Entity
 @Data
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 @Table(name = "incidence")
 public class Incidence {
 
@@ -21,6 +25,7 @@ public class Incidence {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(nullable = false)
     private INCIDENCE_LEVEL incidenceLevel;
 
     @Column(nullable = true)
