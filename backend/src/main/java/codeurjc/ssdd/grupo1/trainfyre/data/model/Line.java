@@ -1,7 +1,6 @@
 package codeurjc.ssdd.grupo1.trainfyre.data.model;
 
 
-import codeurjc.ssdd.grupo1.trainfyre.dto.StationDTO;
 import jakarta.persistence.*;
 import lombok.Data;
 
