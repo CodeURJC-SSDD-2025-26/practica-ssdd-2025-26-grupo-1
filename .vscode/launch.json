@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-TrainFyreApplication<TrainFyre>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "codeurjc.ssdd.grupo1.trainfyre.TrainFyreApplication",
+            "projectName": "TrainFyre",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}
