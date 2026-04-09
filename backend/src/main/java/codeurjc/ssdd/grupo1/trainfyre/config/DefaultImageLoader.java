@@ -41,7 +41,7 @@ public class DefaultImageLoader {
 
     private byte[] loadDefaultIncidenceImage() {
         try {
-            return new ClassPathResource("static/img/incidence_default.jpg")
+            return new ClassPathResource("static/img/incidence_default.png")
                     .getInputStream()
                     .readAllBytes();
         } catch (IOException e) {
