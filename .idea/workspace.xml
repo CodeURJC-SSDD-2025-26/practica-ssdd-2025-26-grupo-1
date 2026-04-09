@@ -4,11 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ecee7179-4a27-4384-862b-e46e80d30acb" name="Changes" comment="settings.html partial implementation to be fully loaded from the server">
+    <list default="true" id="ecee7179-4a27-4384-862b-e46e80d30acb" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/src/main/java/codeurjc/ssdd/grupo1/trainfyre/security/SecurityConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/codeurjc/ssdd/grupo1/trainfyre/security/SecurityConfiguration.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/src/main/java/codeurjc/ssdd/grupo1/trainfyre/web/controller/Impl/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/codeurjc/ssdd/grupo1/trainfyre/web/controller/Impl/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/resources/templates/successful_logout.html" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/resources/templates/successful_logout.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -197,7 +196,8 @@
       <workItem from="1774023213379" duration="7000" />
       <workItem from="1774024234352" duration="6891000" />
       <workItem from="1775718135563" duration="5983000" />
-      <workItem from="1775725353740" duration="4538000" />
+      <workItem from="1775725353740" duration="4971000" />
+      <workItem from="1775732011139" duration="1659000" />
     </task>
     <task id="LOCAL-00001" summary="Stablishment of a common CSS for the whole team to use, it may change in the future">
       <option name="closed" value="true" />
@@ -439,7 +439,15 @@
       <option name="project" value="LOCAL" />
       <updated>1775729225045</updated>
     </task>
-    <option name="localTasksCounter" value="31" />
+    <task id="LOCAL-00031" summary="Logout now fully implemented (no perceived errors)">
+      <option name="closed" value="true" />
+      <created>1775730111067</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1775730111067</updated>
+    </task>
+    <option name="localTasksCounter" value="32" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -457,7 +465,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Reorder and preparation for the stablishment of the backend structure" />
     <MESSAGE value="Stablishment of project structure and preparation for development as well as @entitys awaiting for team aprovale." />
     <MESSAGE value="Fixing minor mistakes" />
     <MESSAGE value="Preparations for development and issues fixing" />
@@ -482,7 +489,8 @@
     <MESSAGE value="Minimal service user interface to create a crud of UserService" />
     <MESSAGE value="findAllUsers impemented in it's service" />
     <MESSAGE value="settings.html partial implementation to be fully loaded from the server" />
-    <option name="LAST_COMMIT_MESSAGE" value="settings.html partial implementation to be fully loaded from the server" />
+    <MESSAGE value="Logout now fully implemented (no perceived errors)" />
+    <option name="LAST_COMMIT_MESSAGE" value="Logout now fully implemented (no perceived errors)" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

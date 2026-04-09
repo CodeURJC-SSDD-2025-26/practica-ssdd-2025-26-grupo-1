@@ -34,6 +34,8 @@ public class UserController {
         return "login";
     }
 
+    /*
+    No soy capaz de tener una pagina para el logout, mas tarde la implementaré
     @GetMapping(value = "/logout")
     public String logout(@RequestParam(value = "error", required = false) String error, Model model) {
         log.info("logout");
@@ -45,7 +47,7 @@ public class UserController {
         model.addAttribute("title", "Logout");
 
         return "successful_logout";
-    }
+    }*/
 
     @GetMapping(value = "/register")
     public String showRegistrationForm(Model model) {
