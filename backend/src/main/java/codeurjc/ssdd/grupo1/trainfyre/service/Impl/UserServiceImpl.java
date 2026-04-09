@@ -14,6 +14,8 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @AllArgsConstructor
 public class UserServiceImpl implements UserService{
@@ -47,5 +49,21 @@ public class UserServiceImpl implements UserService{
         return userRepository.findByUsername(userDetails.getUsername())
                 .map(userMapper::userToUserInfoDTO)
                 .orElseThrow(() -> new UsernameNotFoundException("Error al obtener el usuario: " + userDetails.getUsername()));
+    }
+
+    //todo Todavía no esta implementado, es para evitar errores de compilación
+    @Override
+    public List<UserInfoDTO> findAllUsers() {
+        return List.of();
+    }
+
+    @Override
+    public UserInfoDTO updateUser(UserRegistrationtDTO userRegistrationtDTO) {
+        return null;
+    }
+
+    @Override
+    public void deleteUser(UserDetails userDetails) {
+
     }
 }

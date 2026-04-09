@@ -4,12 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ecee7179-4a27-4384-862b-e46e80d30acb" name="Changes" comment="Logo now loads from server as controller advice">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/codeurjc/ssdd/grupo1/trainfyre/service/Impl/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/codeurjc/ssdd/grupo1/trainfyre/service/Impl/UserServiceImpl.java" afterDir="false" />
+    <list default="true" id="ecee7179-4a27-4384-862b-e46e80d30acb" name="Changes" comment="Small refactoring of naming for userregistrations method&#10;now it is createUser">
       <change beforePath="$PROJECT_DIR$/backend/src/main/java/codeurjc/ssdd/grupo1/trainfyre/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/codeurjc/ssdd/grupo1/trainfyre/service/UserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/codeurjc/ssdd/grupo1/trainfyre/web/controller/Impl/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/codeurjc/ssdd/grupo1/trainfyre/web/controller/Impl/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/target/.gitignore" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -198,7 +194,7 @@
       <workItem from="1774023213379" duration="7000" />
       <workItem from="1774024234352" duration="6891000" />
       <workItem from="1775718135563" duration="5983000" />
-      <workItem from="1775725353740" duration="374000" />
+      <workItem from="1775725353740" duration="745000" />
     </task>
     <task id="LOCAL-00001" summary="Stablishment of a common CSS for the whole team to use, it may change in the future">
       <option name="closed" value="true" />
@@ -408,7 +404,15 @@
       <option name="project" value="LOCAL" />
       <updated>1775723716117</updated>
     </task>
-    <option name="localTasksCounter" value="27" />
+    <task id="LOCAL-00027" summary="Small refactoring of naming for userregistrations method&#10;now it is createUser">
+      <option name="closed" value="true" />
+      <created>1775725838795</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1775725838795</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -449,7 +453,8 @@
     <MESSAGE value="Advancements in header to be based on server responses to show or hide its parts" />
     <MESSAGE value="Now user profile image load is aveliable, however it will change soon due to better implementations posible (will do for now)" />
     <MESSAGE value="Logo now loads from server as controller advice" />
-    <option name="LAST_COMMIT_MESSAGE" value="Logo now loads from server as controller advice" />
+    <MESSAGE value="Small refactoring of naming for userregistrations method&#10;now it is createUser" />
+    <option name="LAST_COMMIT_MESSAGE" value="Small refactoring of naming for userregistrations method&#10;now it is createUser" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
