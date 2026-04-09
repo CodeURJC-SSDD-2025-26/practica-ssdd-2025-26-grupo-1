@@ -90,6 +90,7 @@ public class UserController {
         log.info("Updating settings");
 
         model.addAttribute("title", "Settings");
+        model.addAttribute("pageScriptsBottom", List.of("components/change-settings.js"));
 
         userService.updateUser(currentUser, newUserData);
 
