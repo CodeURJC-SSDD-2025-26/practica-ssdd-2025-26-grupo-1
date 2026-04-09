@@ -6,8 +6,7 @@ import codeurjc.ssdd.grupo1.trainfyre.data.model.Line;
 
 import java.util.List;
 
-public record IncidenceDTO (
-    Long id,
+public record IncidenceRegistrationDTO (
     INCIDENCE_LEVEL incidenceLevel,
     String description,
     LocalDateTime date,
