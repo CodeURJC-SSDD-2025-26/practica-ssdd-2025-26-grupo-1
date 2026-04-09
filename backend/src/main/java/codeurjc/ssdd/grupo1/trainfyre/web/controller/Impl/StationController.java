@@ -21,7 +21,6 @@ import java.security.Principal;
 public class StationController {
 
     private final StationService stationService;
-    private final UserService userService;
 
     @GetMapping(value = "/stations")
     public String getStations(Model model) {
