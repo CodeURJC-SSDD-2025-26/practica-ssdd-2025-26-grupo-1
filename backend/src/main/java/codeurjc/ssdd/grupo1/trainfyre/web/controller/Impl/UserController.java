@@ -77,4 +77,13 @@ public class UserController {
 
         return "settings";
     }
+
+    @GetMapping(value = "/admin/admin_panel")
+    public String showAdminPanel(Model model) {
+        log.info("Loading admin panel");
+
+        model.addAttribute("title", "Admin Panel");
+
+        return "admin_panel";
+    }
 }

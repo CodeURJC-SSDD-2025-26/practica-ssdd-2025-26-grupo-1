@@ -4,7 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ecee7179-4a27-4384-862b-e46e80d30acb" name="Changes" comment="change in header to use /incidence to connect to the controller." />
+    <list default="true" id="ecee7179-4a27-4384-862b-e46e80d30acb" name="Changes" comment="minor changes in the alert front">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/codeurjc/ssdd/grupo1/trainfyre/web/controller/Impl/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/codeurjc/ssdd/grupo1/trainfyre/web/controller/Impl/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/resources/templates/admin_panel.html" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/resources/templates/admin_panel.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/resources/templates/partials/_header.html" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/resources/templates/partials/_header.html" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -193,7 +198,7 @@
       <workItem from="1774024234352" duration="6891000" />
       <workItem from="1775718135563" duration="5983000" />
       <workItem from="1775725353740" duration="4971000" />
-      <workItem from="1775732011139" duration="2456000" />
+      <workItem from="1775732011139" duration="3506000" />
     </task>
     <task id="LOCAL-00001" summary="Stablishment of a common CSS for the whole team to use, it may change in the future">
       <option name="closed" value="true" />
@@ -459,7 +464,15 @@
       <option name="project" value="LOCAL" />
       <updated>1775734134919</updated>
     </task>
-    <option name="localTasksCounter" value="34" />
+    <task id="LOCAL-00034" summary="minor changes in the alert front">
+      <option name="closed" value="true" />
+      <created>1775734769596</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1775734769596</updated>
+    </task>
+    <option name="localTasksCounter" value="35" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -477,7 +490,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Preparations for development and issues fixing" />
     <MESSAGE value="typo" />
     <MESSAGE value="Stablishment of ControllerAdvice for usage of layout and standarization y page generation and load from server" />
     <MESSAGE value="Https implementation" />
@@ -502,7 +514,8 @@
     <MESSAGE value="Logout now fully implemented (no perceived errors)" />
     <MESSAGE value="Logout disclaimer" />
     <MESSAGE value="change in header to use /incidence to connect to the controller." />
-    <option name="LAST_COMMIT_MESSAGE" value="change in header to use /incidence to connect to the controller." />
+    <MESSAGE value="minor changes in the alert front" />
+    <option name="LAST_COMMIT_MESSAGE" value="minor changes in the alert front" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
