@@ -1,9 +1,0 @@
-<changelist name="Uncommitted_changes_before_Update_at_09_04_2026_10_07_[Changes]" date="1775722032624" recycled="false" toDelete="true">
-  <option name="PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_09_04_2026_10_07_[Changes]/shelved.patch" />
-  <option name="DESCRIPTION" value="Uncommitted changes before Update at 09/04/2026 10:07 [Changes]" />
-  <binary>
-    <option name="BEFORE_PATH" value="backend/target/classes/codeurjc/ssdd/grupo1/trainfyre/data/model/Alert.class" />
-    <option name="AFTER_PATH" value="backend/target/classes/codeurjc/ssdd/grupo1/trainfyre/data/model/Alert.class" />
-    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_09_04_2026_10_07_[Changes]/Alert.class" />
-  </binary>
-</changelist>
