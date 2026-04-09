@@ -3,7 +3,6 @@ package codeurjc.ssdd.grupo1.trainfyre.service.Impl;
 import codeurjc.ssdd.grupo1.trainfyre.data.model.AppUser;
 import codeurjc.ssdd.grupo1.trainfyre.data.repository.UserRepository;
 import codeurjc.ssdd.grupo1.trainfyre.dto.Role;
-import codeurjc.ssdd.grupo1.trainfyre.dto.UserDTO;
 import codeurjc.ssdd.grupo1.trainfyre.dto.UserInfoDTO;
 import codeurjc.ssdd.grupo1.trainfyre.dto.UserRegistrationtDTO;
 import codeurjc.ssdd.grupo1.trainfyre.mapper.UserMapper;
