@@ -15,9 +15,11 @@ public class DefaultImageLoader {
 
     protected static final byte[] defaultLogoImage = loadDefaultLogoImage();
 
+    protected static final byte[] defaultIncidenceImage = loadDefaultIncidenceImage();
+
     private byte[] loadDefaultProfileImage() {
         try {
-            return new ClassPathResource("static/img/user.png")
+            return new ClassPathResource("static/img/incidence_default.png")
                     .getInputStream()
                     .readAllBytes();
         } catch (IOException e) {
@@ -33,6 +35,17 @@ public class DefaultImageLoader {
                     .readAllBytes();
         } catch (IOException e) {
             log.error("Error cargando el logo de la web: {}", e.getMessage());
+            return new byte[0];
+        }
+    }
+
+    private byte[] loadDefaultIncidenceImage() {
+        try {
+            return new ClassPathResource("static/img/logo.jpg")
+                    .getInputStream()
+                    .readAllBytes();
+        } catch (IOException e) {
+            log.error("Error cargando la imagen de incidencia por defecto: {}", e.getMessage());
             return new byte[0];
         }
     }
