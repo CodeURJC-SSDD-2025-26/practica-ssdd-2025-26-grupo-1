@@ -28,7 +28,7 @@ public class SecurityConfiguration {
                         .requestMatchers("/css/**", "/js/**", "/img/**",
                                 "/", "/h2-console/**",
                                 "/login", "/logout", "/index",
-                                "/stations", "/register",
+                                "/stations", "/register", "/incidences",
                                 "/successful_logout")
                                 .permitAll()
                         .requestMatchers("/admin/**").hasRole(Role.ADMIN.name())
