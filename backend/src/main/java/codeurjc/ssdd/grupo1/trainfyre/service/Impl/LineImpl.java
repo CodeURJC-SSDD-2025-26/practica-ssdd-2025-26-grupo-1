@@ -11,7 +11,7 @@ import java.util.List;
 
 @Service
 @AllArgsConstructor
-public class LineLineImpl implements LineService {
+public class LineImpl implements LineService {
     private LineRepository repository;
     private LineMapper LineRestMapper;
 
