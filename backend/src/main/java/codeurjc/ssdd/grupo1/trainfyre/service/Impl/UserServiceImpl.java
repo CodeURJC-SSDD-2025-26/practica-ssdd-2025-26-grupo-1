@@ -61,9 +61,32 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public UserInfoDTO updateUser(UserRegistrationtDTO userRegistrationtDTO) {
-        //TODO
-        return null;
+    @Transactional
+    public UserInfoDTO updateUser(UserDetails currentUser, UserRegistrationtDTO newUserData) {
+
+        AppUser appUser = repository.findByUsername(currentUser.getUsername())
+                .orElseThrow(() -> new UsernameNotFoundException(
+                        "Usuario no encontrado: " + currentUser.getUsername()));
+
+
+        if (newUserData.username() != null && !newUserData.username().isBlank()) {
+            appUser.setUsername(newUserData.username());
+        }
+        if (newUserData.email() != null && !newUserData.email().isBlank()) {
+            appUser.setEmail(newUserData.email());
+        }
+        if (newUserData.password() != null && !newUserData.password().isBlank()) {
+            appUser.setPassword(passwordEncoder.encode(newUserData.password()));
+        }
+        if(newUserData.role() != null){
+            appUser.setRole(newUserData.role());
+        }
+        if(newUserData.image() != null){
+            appUser.setImage(newUserData.image());
+        }
+
+        AppUser updatedUser = repository.save(appUser);
+        return userMapper.userToUserInfoDTO(updatedUser);
     }
 
     @Override

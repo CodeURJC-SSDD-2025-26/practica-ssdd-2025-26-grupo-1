@@ -78,5 +78,7 @@
   </body>
   {{/ Layout }}
 
-  <script src="../js/components/change-settings.js"></script>
+  {{#pageScriptsBottom}}
+  <script src="/js/{{.}}" defer></script>
+  {{/pageScriptsBottom}}
 </html>

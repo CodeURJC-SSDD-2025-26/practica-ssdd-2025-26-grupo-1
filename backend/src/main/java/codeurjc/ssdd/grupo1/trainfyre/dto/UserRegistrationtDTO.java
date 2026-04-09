@@ -5,5 +5,6 @@ public record UserRegistrationtDTO(
         String username,
         String password,
         String email,
-        Role role
+        Role role,
+        byte[] image
 ){}

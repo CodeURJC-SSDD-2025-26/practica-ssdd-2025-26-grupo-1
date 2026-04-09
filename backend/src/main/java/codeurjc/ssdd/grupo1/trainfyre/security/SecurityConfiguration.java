@@ -25,7 +25,7 @@ public class SecurityConfiguration {
 
         http
                 .authorizeHttpRequests(authorize -> authorize
-                        .requestMatchers("/css/**", "/js/**", "/img/**",
+                        .requestMatchers("/css/**", "/static/js/**", "/img/**",
                                 "/", "/h2-console/**",
                                 "/login", "/logout", "/index",
                                 "/stations", "/register", "/incidences",
