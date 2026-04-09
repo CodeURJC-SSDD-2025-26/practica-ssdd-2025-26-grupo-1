@@ -83,6 +83,7 @@ public class UserController {
         log.info("Loading admin panel");
 
         model.addAttribute("title", "Admin Panel");
+        model.addAttribute("users", userService.findAllUsers());
 
         return "admin_panel";
     }
