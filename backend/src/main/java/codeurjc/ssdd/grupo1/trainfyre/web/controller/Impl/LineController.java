@@ -18,7 +18,7 @@ public class LineController{
     private final LineService lineService;
 
     @GetMapping(value = "/lines")
-    public String getStations(Model model) {
+    public String getLines(Model model) {
 
         log.info("getLines");
 
