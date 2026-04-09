@@ -32,6 +32,7 @@ public class IncidenceServiceImpl implements IncidenceService {
         incidence.setDate(incidenceRegistrationDTO.date());
         incidence.setStatus(incidenceRegistrationDTO.status());
         incidence.setImage(incidenceRegistrationDTO.image());
+        incidence.setAffectedLines(null);
         // List<Line> lines = lineRepository.findAllByName(incidenceRegistrationDTO.affectedLines());
         // incidence.setAffectedLines(lines);
 
