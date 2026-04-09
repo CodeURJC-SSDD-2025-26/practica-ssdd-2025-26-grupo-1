@@ -19,7 +19,7 @@ public class DefaultImageLoader {
 
     private byte[] loadDefaultProfileImage() {
         try {
-            return new ClassPathResource("static/img/incidence_default.png")
+            return new ClassPathResource("static/img/user.png")
                     .getInputStream()
                     .readAllBytes();
         } catch (IOException e) {
@@ -41,7 +41,7 @@ public class DefaultImageLoader {
 
     private byte[] loadDefaultIncidenceImage() {
         try {
-            return new ClassPathResource("static/img/logo.jpg")
+            return new ClassPathResource("static/img/incidence_default.jpg")
                     .getInputStream()
                     .readAllBytes();
         } catch (IOException e) {
