@@ -23,7 +23,7 @@ public class UserServiceImpl implements UserService{
     private PasswordEncoder passwordEncoder;
 
     @Transactional
-    public UserInfoDTO registerUser(UserRegistrationtDTO userRegistrationtDTO) {
+    public UserInfoDTO createUser(UserRegistrationtDTO userRegistrationtDTO) {
 
         AppUser appUser = new AppUser();
         appUser.setUsername(userRegistrationtDTO.username());

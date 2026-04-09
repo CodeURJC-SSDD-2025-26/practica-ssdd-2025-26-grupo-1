@@ -4,122 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ecee7179-4a27-4384-862b-e46e80d30acb" name="Changes" comment="Now user profile image load is aveliable, however it will change soon due to better implementations posible (will do for now)">
+    <list default="true" id="ecee7179-4a27-4384-862b-e46e80d30acb" name="Changes" comment="Logo now loads from server as controller advice">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/codeurjc/ssdd/grupo1/trainfyre/config/DefaultImageLoader.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/codeurjc/ssdd/grupo1/trainfyre/config/DefaultImageLoader.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/codeurjc/ssdd/grupo1/trainfyre/config/GlobalModelAttributesAdvice.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/codeurjc/ssdd/grupo1/trainfyre/config/GlobalModelAttributesAdvice.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/codeurjc/ssdd/grupo1/trainfyre/data/model/AppUser.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/codeurjc/ssdd/grupo1/trainfyre/data/model/AppUser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/resources/templates/partials/_header.html" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/resources/templates/partials/_header.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/target/classes/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/target/classes/.idea/resources.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/target/classes/.idea/shelf/Uncommitted_changes_before_Checkout_at_12_03_2026_8_54_[Changes]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/target/classes/.idea/shelf/Uncommitted_changes_before_Checkout_at_12_03_2026_8_54_[Changes]1/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/target/classes/.idea/shelf/Uncommitted_changes_before_Checkout_at_12_03_2026_8_54__Changes_.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/target/classes/.idea/shelf/Uncommitted_changes_before_Update_at_19_02_2026_10_11_[Changes]/logo.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/target/classes/.idea/shelf/Uncommitted_changes_before_Update_at_19_02_2026_10_11_[Changes]/perfil.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/target/classes/.idea/shelf/Uncommitted_changes_before_Update_at_19_02_2026_10_11_[Changes]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/target/classes/.idea/shelf/Uncommitted_changes_before_Update_at_19_02_2026_10_11__Changes_.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/target/classes/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/target/classes/.idea/workspace.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/target/classes/application-dev.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/target/classes/application-prod.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/target/classes/application.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/target/classes/banner.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/target/classes/codeurjc/ssdd/grupo1/trainfyre/TrainFyreApplication.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/target/classes/codeurjc/ssdd/grupo1/trainfyre/config/DatabaseUsersLoader.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/target/classes/codeurjc/ssdd/grupo1/trainfyre/config/DefaultImageLoader.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/target/classes/codeurjc/ssdd/grupo1/trainfyre/config/DefaultImageLoader.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/target/classes/codeurjc/ssdd/grupo1/trainfyre/config/GlobalModelAttributesAdvice$Layout.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/target/classes/codeurjc/ssdd/grupo1/trainfyre/config/GlobalModelAttributesAdvice.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/target/classes/codeurjc/ssdd/grupo1/trainfyre/config/H2ConsoleConfiguration.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/target/classes/codeurjc/ssdd/grupo1/trainfyre/data/model/Alert.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/target/classes/codeurjc/ssdd/grupo1/trainfyre/data/model/AppUser$AppUserBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/target/classes/codeurjc/ssdd/grupo1/trainfyre/data/model/AppUser$AppUserBuilder.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/target/classes/codeurjc/ssdd/grupo1/trainfyre/data/model/AppUser.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/target/classes/codeurjc/ssdd/grupo1/trainfyre/data/model/Incidence.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/target/classes/codeurjc/ssdd/grupo1/trainfyre/data/model/Line.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/target/classes/codeurjc/ssdd/grupo1/trainfyre/data/model/Station.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/target/classes/codeurjc/ssdd/grupo1/trainfyre/data/repository/StationRepository.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/target/classes/codeurjc/ssdd/grupo1/trainfyre/data/repository/UserRepository.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/target/classes/codeurjc/ssdd/grupo1/trainfyre/dto/INCIDENCE_LEVEL.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/target/classes/codeurjc/ssdd/grupo1/trainfyre/dto/INCIDENCE_STATUS.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/target/classes/codeurjc/ssdd/grupo1/trainfyre/dto/Role.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/target/classes/codeurjc/ssdd/grupo1/trainfyre/dto/StationDTO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/target/classes/codeurjc/ssdd/grupo1/trainfyre/dto/UserDTO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/target/classes/codeurjc/ssdd/grupo1/trainfyre/dto/UserInfoDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/target/classes/codeurjc/ssdd/grupo1/trainfyre/dto/UserInfoDTO.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/target/classes/codeurjc/ssdd/grupo1/trainfyre/dto/UserRegistrationtDTO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/target/classes/codeurjc/ssdd/grupo1/trainfyre/mapper/Impl/StationDtoToStation.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/target/classes/codeurjc/ssdd/grupo1/trainfyre/mapper/Impl/StationToDto.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/target/classes/codeurjc/ssdd/grupo1/trainfyre/mapper/Impl/UserDtoToUser.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/target/classes/codeurjc/ssdd/grupo1/trainfyre/mapper/Impl/UserRegistrationDtoToUser.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/target/classes/codeurjc/ssdd/grupo1/trainfyre/mapper/Impl/UserRegistrationDtoToUser.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/target/classes/codeurjc/ssdd/grupo1/trainfyre/mapper/Impl/UserToDto.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/target/classes/codeurjc/ssdd/grupo1/trainfyre/mapper/Impl/UserToUserInfoDto.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/target/classes/codeurjc/ssdd/grupo1/trainfyre/mapper/Impl/UserToUserInfoDto.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/target/classes/codeurjc/ssdd/grupo1/trainfyre/mapper/Mapper.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/target/classes/codeurjc/ssdd/grupo1/trainfyre/mapper/StationRestMapper.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/target/classes/codeurjc/ssdd/grupo1/trainfyre/mapper/StationRestMapperImpl.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/target/classes/codeurjc/ssdd/grupo1/trainfyre/mapper/UserMapper.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/target/classes/codeurjc/ssdd/grupo1/trainfyre/mapper/UserMapperImpl.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/target/classes/codeurjc/ssdd/grupo1/trainfyre/security/SecurityConfiguration.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/target/classes/codeurjc/ssdd/grupo1/trainfyre/service/AlertService.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/target/classes/codeurjc/ssdd/grupo1/trainfyre/service/AlertService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/target/classes/codeurjc/ssdd/grupo1/trainfyre/service/Impl/AuthenticatorUserService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/target/classes/codeurjc/ssdd/grupo1/trainfyre/service/Impl/StationServiceImpl.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/target/classes/codeurjc/ssdd/grupo1/trainfyre/service/Impl/UserServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/target/classes/codeurjc/ssdd/grupo1/trainfyre/service/Impl/UserServiceImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/target/classes/codeurjc/ssdd/grupo1/trainfyre/service/StationService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/target/classes/codeurjc/ssdd/grupo1/trainfyre/service/UserService.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/target/classes/codeurjc/ssdd/grupo1/trainfyre/service/UserService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/target/classes/codeurjc/ssdd/grupo1/trainfyre/web/controller/Impl/AlertController.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/target/classes/codeurjc/ssdd/grupo1/trainfyre/web/controller/Impl/AlertController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/target/classes/codeurjc/ssdd/grupo1/trainfyre/web/controller/Impl/StationController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/target/classes/codeurjc/ssdd/grupo1/trainfyre/web/controller/Impl/UserController.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/target/classes/codeurjc/ssdd/grupo1/trainfyre/web/controller/Impl/UserController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/target/classes/data.sql" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/target/classes/dev.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/target/classes/js/components/heatmap.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/target/classes/js/components/interactive-map.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/target/classes/js/components/slider.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/target/classes/js/pages/admin-panel-incidences.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/target/classes/js/pages/admin-panel.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/target/classes/js/pages/incidencies.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/target/classes/js/pages/index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/target/classes/js/pages/login.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/target/classes/js/pages/session.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/target/classes/js/pages/settings.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/target/classes/js/pages/user-alerts.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/target/classes/js/utils/genericPartialLoader.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/target/classes/keystore.jks" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/target/classes/static/css/style.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/target/classes/static/img/Mapa.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/target/classes/static/img/Zelda_vias_ocupadas.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/target/classes/static/img/logo.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/target/classes/static/img/perfil.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/target/classes/templates/admin_panel.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/target/classes/templates/admin_panel_incidences.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/target/classes/templates/admin_panel_lines.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/target/classes/templates/form-alert.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/target/classes/templates/form-incidence.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/target/classes/templates/form-line.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/target/classes/templates/incidence_page.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/target/classes/templates/incidencies.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/target/classes/templates/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/target/classes/templates/login.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/target/classes/templates/partials/.gitkeep" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/target/classes/templates/partials/_admin_table.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/target/classes/templates/partials/_alert_table.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/target/classes/templates/partials/_bar_graph.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/target/classes/templates/partials/_footer.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/target/classes/templates/partials/_header.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/target/classes/templates/partials/_heatmap_graph.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/target/classes/templates/partials/_incidence_table.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/target/classes/templates/partials/_interactive_map.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/target/classes/templates/partials/_line_table.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/target/classes/templates/partials/_login_form.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/target/classes/templates/partials/_pie_graph.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/target/classes/templates/partials/_pop_up.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/target/classes/templates/partials/_subheader.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/target/classes/templates/settings.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/target/classes/templates/stations.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/target/classes/templates/successful_logout.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/target/classes/templates/user_alerts.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/target/generated-sources/annotations/codeurjc/ssdd/grupo1/trainfyre/mapper/StationRestMapperImpl.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/target/generated-sources/annotations/codeurjc/ssdd/grupo1/trainfyre/mapper/UserMapperImpl.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/target/test-classes/codeurjc/ssdd/grupo1/trainfyre/TrainFyreApplicationTests.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/codeurjc/ssdd/grupo1/trainfyre/service/Impl/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/codeurjc/ssdd/grupo1/trainfyre/service/Impl/UserServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/codeurjc/ssdd/grupo1/trainfyre/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/codeurjc/ssdd/grupo1/trainfyre/service/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/codeurjc/ssdd/grupo1/trainfyre/web/controller/Impl/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/codeurjc/ssdd/grupo1/trainfyre/web/controller/Impl/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/target/.gitignore" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -307,7 +197,8 @@
       <workItem from="1774000084360" duration="12517000" />
       <workItem from="1774023213379" duration="7000" />
       <workItem from="1774024234352" duration="6891000" />
-      <workItem from="1775718135563" duration="5264000" />
+      <workItem from="1775718135563" duration="5983000" />
+      <workItem from="1775725353740" duration="374000" />
     </task>
     <task id="LOCAL-00001" summary="Stablishment of a common CSS for the whole team to use, it may change in the future">
       <option name="closed" value="true" />
@@ -509,7 +400,15 @@
       <option name="project" value="LOCAL" />
       <updated>1775643977326</updated>
     </task>
-    <option name="localTasksCounter" value="26" />
+    <task id="LOCAL-00026" summary="Logo now loads from server as controller advice">
+      <option name="closed" value="true" />
+      <created>1775723716117</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1775723716117</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -549,7 +448,8 @@
     <MESSAGE value="Now all userInfo data is globally loaded when specified on the html" />
     <MESSAGE value="Advancements in header to be based on server responses to show or hide its parts" />
     <MESSAGE value="Now user profile image load is aveliable, however it will change soon due to better implementations posible (will do for now)" />
-    <option name="LAST_COMMIT_MESSAGE" value="Now user profile image load is aveliable, however it will change soon due to better implementations posible (will do for now)" />
+    <MESSAGE value="Logo now loads from server as controller advice" />
+    <option name="LAST_COMMIT_MESSAGE" value="Logo now loads from server as controller advice" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

@@ -49,7 +49,7 @@ public class UserController {
 
         log.info("Registration petition {}", userRegistrationtDTO.toString());
 
-        userService.registerUser(userRegistrationtDTO);
+        userService.createUser(userRegistrationtDTO);
         return "index";
     }
 }
