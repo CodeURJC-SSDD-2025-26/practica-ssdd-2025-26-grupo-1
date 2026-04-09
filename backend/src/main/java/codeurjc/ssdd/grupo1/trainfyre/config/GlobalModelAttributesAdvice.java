@@ -45,6 +45,9 @@ public class GlobalModelAttributesAdvice {
                 model.addAttribute("admin", true);
             }
         }
+
+        String base64 = Base64.getEncoder().encodeToString(DefaultImageLoader.defaultLogoImage);
+        model.addAttribute("logo", "data:image/png;base64," + base64);
     }
 
     @ModelAttribute("Layout")

@@ -38,12 +38,12 @@ public class AppUser {
     @Lob
     @Builder.Default
     @Column(name = "profile_picture")
-    private byte[] image = DefaultImageLoader.getDefaultImage();
+    private byte[] image = DefaultImageLoader.getDefaultProfileImage();
 
     @PrePersist
     public void ensureDefaultImage() {
         if (this.image == null) {
-            this.image = DefaultImageLoader.getDefaultImage();
+            this.image = DefaultImageLoader.getDefaultProfileImage();
         }
     }
 

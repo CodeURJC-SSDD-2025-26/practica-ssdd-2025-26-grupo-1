@@ -1,7 +1,0 @@
-spring:
-  banner:
-    location: dev.txt
-  security:
-    user:
-      name: user
-      password: $2a$12$GYAWShoVAmiNMBEdPh3B9./BqY4Q44gLB42jzTufZhq7i4qM94EVC

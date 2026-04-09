@@ -1,9 +1,0 @@
-# H2 Console
-autoconfigure:
-  exclude:
-h2:
-  console:
-    enabled: false
-    path: /h2-console
-    settings:
-      web-allow-others: false

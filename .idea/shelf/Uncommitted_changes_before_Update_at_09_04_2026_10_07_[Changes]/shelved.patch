@@ -1,0 +1,1154 @@
+Index: backend/src/main/java/codeurjc/ssdd/grupo1/trainfyre/config/DefaultImageLoader.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package codeurjc.ssdd.grupo1.trainfyre.config;\r\n\r\nimport lombok.Getter;\r\nimport lombok.experimental.UtilityClass;\r\nimport lombok.extern.slf4j.Slf4j;\r\nimport org.springframework.core.io.ClassPathResource;\r\nimport java.io.IOException;\r\n\r\n@Slf4j\r\n@UtilityClass\r\npublic class DefaultImageLoader {\r\n\r\n    @Getter(lazy = true)\r\n    private final byte[] defaultImage = loadDefaultImage();\r\n\r\n    private byte[] loadDefaultImage() {\r\n        try {\r\n            return new ClassPathResource(\"static/img/user.png\")\r\n                    .getInputStream()\r\n                    .readAllBytes();\r\n        } catch (IOException e) {\r\n            log.error(\"Error cargando la imagen por defecto: {}\", e.getMessage());\r\n            return new byte[0];\r\n        }\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/backend/src/main/java/codeurjc/ssdd/grupo1/trainfyre/config/DefaultImageLoader.java b/backend/src/main/java/codeurjc/ssdd/grupo1/trainfyre/config/DefaultImageLoader.java
+--- a/backend/src/main/java/codeurjc/ssdd/grupo1/trainfyre/config/DefaultImageLoader.java	(revision 0ba5ad4d2c0258ab9c667a553d209b0e65ebe091)
++++ b/backend/src/main/java/codeurjc/ssdd/grupo1/trainfyre/config/DefaultImageLoader.java	(date 1775721868068)
+@@ -23,4 +23,4 @@
+             return new byte[0];
+         }
+     }
+-}
++}
+\ No newline at end of file
+Index: backend/src/main/java/codeurjc/ssdd/grupo1/trainfyre/service/AlertService.java
+===================================================================
+diff --git a/backend/src/main/java/codeurjc/ssdd/grupo1/trainfyre/service/AlertService.java b/backend/src/main/java/codeurjc/ssdd/grupo1/trainfyre/service/AlertService.java
+deleted file mode 100644
+--- a/backend/src/main/java/codeurjc/ssdd/grupo1/trainfyre/service/AlertService.java	(revision 0ba5ad4d2c0258ab9c667a553d209b0e65ebe091)
++++ /dev/null	(revision 0ba5ad4d2c0258ab9c667a553d209b0e65ebe091)
+@@ -1,9 +0,0 @@
+-package codeurjc.ssdd.grupo1.trainfyre.service;
+-
+-import codeurjc.ssdd.grupo1.trainfyre.dto.AlertDTO;
+-import codeurjc.ssdd.grupo1.trainfyre.dto.AlertRegistrationDTO;
+-
+-public interface AlertService {
+-
+-    AlertDTO registerAlert(AlertRegistrationDTO alertRegistrationtDTO);
+-}
+\ No newline at end of file
+Index: backend/src/main/java/codeurjc/ssdd/grupo1/trainfyre/web/controller/Impl/AlertController.java
+===================================================================
+diff --git a/backend/src/main/java/codeurjc/ssdd/grupo1/trainfyre/web/controller/Impl/AlertController.java b/backend/src/main/java/codeurjc/ssdd/grupo1/trainfyre/web/controller/Impl/AlertController.java
+deleted file mode 100644
+--- a/backend/src/main/java/codeurjc/ssdd/grupo1/trainfyre/web/controller/Impl/AlertController.java	(revision 0ba5ad4d2c0258ab9c667a553d209b0e65ebe091)
++++ /dev/null	(revision 0ba5ad4d2c0258ab9c667a553d209b0e65ebe091)
+@@ -1,52 +0,0 @@
+-package codeurjc.ssdd.grupo1.trainfyre.web.controller.Impl;
+-
+-
+-import codeurjc.ssdd.grupo1.trainfyre.service.Impl.AuthenticatorUserService;
+-import codeurjc.ssdd.grupo1.trainfyre.service.StationService;
+-import codeurjc.ssdd.grupo1.trainfyre.service.AlertService;
+-import lombok.RequiredArgsConstructor;
+-import org.slf4j.LoggerFactory;
+-
+-import java.util.Arrays;
+-
+-import org.slf4j.Logger;
+-import org.springframework.stereotype.Controller;
+-import org.springframework.ui.Model;
+-import org.springframework.validation.annotation.Validated;
+-import org.springframework.web.bind.annotation.GetMapping;
+-
+-@Controller
+-@Validated
+-@RequiredArgsConstructor
+-public class AlertController {
+-
+-    private final Logger logger = LoggerFactory.getLogger(AlertController.class);
+-    private final AlertService alertService;
+-
+-    @GetMapping(value = "/alert/form")
+-    public String formAlert(Model model) {
+-
+-        logger.info("getAlerts");
+-
+-        //I need the repository to get the line.
+-        //model.addAttribute("line", );
+-
+-        //I'll use an example for the lines for the time being
+-        model.addAttribute("lines", Arrays.asList("C-1", "C-2", "C-3"));
+-
+-
+-        model.addAttribute("title", "Alert form");
+-
+-
+-        return "form-alert";
+-    }
+-
+-    /*@GetMapping(value = "/alert/added")
+-    public String formAdded(Model model, @RequestParam List<Line> lines @RequestParam LocalDate startDate, @RequestParam LocalDate endDate, @RequestParam LocalTime min, @RequestParam LocalTime max) {
+-
+-        //Poner servicio o método del repositorio de añadir alerta.
+-        
+-
+-        return "alert_added";
+-    }*/
+-}
+\ No newline at end of file
+Index: backend/target/classes/js/pages/admin-panel-lines.js
+===================================================================
+diff --git a/backend/target/classes/js/pages/admin-panel-lines.js b/backend/target/classes/js/pages/admin-panel-lines.js
+deleted file mode 100644
+--- a/backend/target/classes/js/pages/admin-panel-lines.js	(revision 0ba5ad4d2c0258ab9c667a553d209b0e65ebe091)
++++ /dev/null	(revision 0ba5ad4d2c0258ab9c667a553d209b0e65ebe091)
+@@ -1,6 +0,0 @@
+-import {genericPartialLoader} from "../utils/genericPartialLoader.js";
+-
+-genericPartialLoader('../../resources/templates/partials/_header.html', '_header');
+-genericPartialLoader('../../resources/templates/partials/_subheader.html', '_subheader');
+-genericPartialLoader('../../resources/templates/partials/_line_table.html', '_line_table');
+-genericPartialLoader('../../resources/templates/partials/_footer.html', '_footer');
+\ No newline at end of file
+Index: backend/target/classes/js/pages/admin-panel-incidences.js
+===================================================================
+diff --git a/backend/target/classes/js/pages/admin-panel-incidences.js b/backend/target/classes/js/pages/admin-panel-incidences.js
+deleted file mode 100644
+--- a/backend/target/classes/js/pages/admin-panel-incidences.js	(revision 0ba5ad4d2c0258ab9c667a553d209b0e65ebe091)
++++ /dev/null	(revision 0ba5ad4d2c0258ab9c667a553d209b0e65ebe091)
+@@ -1,6 +0,0 @@
+-import {genericPartialLoader} from "../utils/genericPartialLoader.js";
+-
+-genericPartialLoader('../../resources/templates/partials/_header.html', '_header');
+-genericPartialLoader('../../resources/templates/partials/_subheader.html', '_subheader');
+-genericPartialLoader('../../resources/templates/partials/_incidence_table.html', '_incidence_table');
+-genericPartialLoader('../../resources/templates/partials/_footer.html', '_footer');
+\ No newline at end of file
+Index: backend/target/classes/js/components/heatmap.js
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>// Substring template helper for the responsive labels\r\nHighcharts.Templating.helpers.substr = (s, from, length) =>\r\n    s.substr(from, length);\r\n\r\n// Create the chart\r\nHighcharts.chart('container', {\r\n\r\n    chart: {\r\n        type: 'heatmap',\r\n        marginTop: 40,\r\n        marginBottom: 80,\r\n        plotBorderWidth: 1\r\n    },\r\n\r\n\r\n    title: {\r\n        text: 'Incidents per line per day',\r\n        style: {\r\n            fontSize: '1em'\r\n        }\r\n    },\r\n\r\n    xAxis: {\r\n        categories: [\r\n            'C-1', 'C-2', 'C-3', 'C-4', 'C-5',\r\n            'C-7', 'C-8', 'C-9', 'C-10', 'CIVIS'\r\n        ]\r\n    },\r\n\r\n    yAxis: {\r\n        categories: ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes'],\r\n        title: null,\r\n        reversed: true\r\n    },\r\n\r\n    accessibility: {\r\n        point: {\r\n            descriptionFormat: '{(add index 1)}. ' +\r\n                '{series.xAxis.categories.(x)} sales ' +\r\n                '{series.yAxis.categories.(y)}, {value}.'\r\n        }\r\n    },\r\n\r\n    colorAxis: {\r\n        min: 0,\r\n        minColor: '#00FF00', // A vibrant Green for the lowest values\r\n        maxColor: '#FF0000', // A stark Red for the highest values\r\n        stops: [\r\n            [0, '#00FF00'],   // Green at 0%\r\n            [0.5, '#FFFF00'], // Yellow at 50% (Optional: facilitates a smoother transition)\r\n            [1, '#FF0000']    // Red at 100%\r\n        ]\r\n    },\r\n\r\n    legend: {\r\n        align: 'right',\r\n        layout: 'vertical',\r\n        margin: 0,\r\n        verticalAlign: 'top',\r\n        y: 25,\r\n        symbolHeight: 280\r\n    },\r\n\r\n    tooltip: {\r\n        format: '<b>{series.xAxis.categories.(point.x)}</b> Line<br>' +\r\n            '<b>{point.value}</b> Incidents <br>' +\r\n            '<b>{series.yAxis.categories.(point.y)}</b>'\r\n    },\r\n\r\n    series: [{\r\n        name: 'Incidents per line per weeday',\r\n        borderWidth: 1,\r\n        data: [\r\n            [0, 0, 10], [0, 1, 19], [0, 2, 8], [0, 3, 24], [0, 4, 67],\r\n            [1, 0, 92], [1, 1, 58], [1, 2, 78], [1, 3, 117], [1, 4, 48],\r\n            [2, 0, 35], [2, 1, 15], [2, 2, 123], [2, 3, 64], [2, 4, 52],\r\n            [3, 0, 72], [3, 1, 132], [3, 2, 114], [3, 3, 19], [3, 4, 16],\r\n            [4, 0, 38], [4, 1, 5], [4, 2, 8], [4, 3, 117], [4, 4, 115],\r\n            [5, 0, 88], [5, 1, 32], [5, 2, 12], [5, 3, 6], [5, 4, 120],\r\n            [6, 0, 13], [6, 1, 44], [6, 2, 88], [6, 3, 98], [6, 4, 96],\r\n            [7, 0, 31], [7, 1, 1], [7, 2, 82], [7, 3, 32], [7, 4, 30],\r\n            [8, 0, 85], [8, 1, 97], [8, 2, 123], [8, 3, 64], [8, 4, 84],\r\n            [9, 0, 47], [9, 1, 114], [9, 2, 31], [9, 3, 48], [9, 4, 91]\r\n        ],\r\n        dataLabels: {\r\n            enabled: true,\r\n            color: 'contrast'\r\n        }\r\n    }],\r\n\r\n    responsive: {\r\n        rules: [{\r\n            condition: {\r\n                maxWidth: 500\r\n            },\r\n            chartOptions: {\r\n                yAxis: {\r\n                    labels: {\r\n                        format: '{substr value 0 1}'\r\n                    }\r\n                }\r\n            }\r\n        }]\r\n    }\r\n\r\n});
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/backend/target/classes/js/components/heatmap.js b/backend/target/classes/js/components/heatmap.js
+--- a/backend/target/classes/js/components/heatmap.js	(revision 0ba5ad4d2c0258ab9c667a553d209b0e65ebe091)
++++ b/backend/target/classes/js/components/heatmap.js	(date 1775718299477)
+@@ -1,106 +1,94 @@
+-// Substring template helper for the responsive labels
+-Highcharts.Templating.helpers.substr = (s, from, length) =>
+-    s.substr(from, length);
+-
+-// Create the chart
+-Highcharts.chart('container', {
+-
+-    chart: {
+-        type: 'heatmap',
+-        marginTop: 40,
+-        marginBottom: 80,
+-        plotBorderWidth: 1
+-    },
+-
+-
+-    title: {
+-        text: 'Incidents per line per day',
+-        style: {
+-            fontSize: '1em'
+-        }
+-    },
++function getHue(value, min, max) {
++    const ratio = value / max;
++    const r = Math.round(255 * ratio);
++    const g = Math.round(255 * (1 - ratio));
++    const b = 50;
++    return `rgb(${r},${g},${b})`;
++}
+ 
+-    xAxis: {
+-        categories: [
+-            'C-1', 'C-2', 'C-3', 'C-4', 'C-5',
+-            'C-7', 'C-8', 'C-9', 'C-10', 'CIVIS'
+-        ]
+-    },
++const heatmap_info = {
++    "title": 'INCIDENCIAS SEMANALES',
++    "rows": 10,
++    "columns": 7,
++    "row_labels": ["C-1", "C-2", "C-3", "C-4", "C-5", "C-7", "C-8", "C-9", "C-10", "CIVIS"],
++    "row_colors": ["rgb(50, 214, 255)", "green", "purple", "blue", "rgb(255, 230, 0)", "red", "grey", "brown", "greenyellow", "rgb(255, 111, 135)"],
++    "column_labels": ["Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabado", "Domingo"],
++    "cells": [
++      {"id": 1, "value": 0}, {"id": 2, "value": 0}, {"id": 3, "value": 1}, {"id": 4, "value": 0}, {"id": 5, "value": 0}, {"id": 6, "value": 2}, {"id": 7, "value": 0},
++      {"id": 8, "value": 0}, {"id": 9, "value": 1}, {"id": 10, "value": 0}, {"id": 11, "value": 0}, {"id": 12, "value": 3}, {"id": 13, "value": 0}, {"id": 14, "value": 0},
++      {"id": 15, "value": 1}, {"id": 16, "value": 0}, {"id": 17, "value": 0}, {"id": 18, "value": 0}, {"id": 19, "value": 5}, {"id": 20, "value": 0}, {"id": 21, "value": 1}, 
++      {"id": 22, "value": 0}, {"id": 23, "value": 0}, {"id": 24, "value": 2}, {"id": 25, "value": 0}, {"id": 26, "value": 0}, {"id": 27, "value": 1}, {"id": 28, "value": 0},
++      {"id": 29, "value": 0}, {"id": 30, "value": 0}, {"id": 31, "value": 4}, {"id": 32, "value": 0}, {"id": 33, "value": 1}, {"id": 34, "value": 0}, {"id": 35, "value": 0},
++      {"id": 36, "value": 0}, {"id": 37, "value": 2}, {"id": 38, "value": 0}, {"id": 39, "value": 0}, {"id": 40, "value": 1}, {"id": 41, "value": 0}, {"id": 42, "value": 0},
++      {"id": 43, "value": 0}, {"id": 44, "value": 3}, {"id": 45, "value": 0}, {"id": 46, "value": 1}, {"id": 47, "value": 0}, {"id": 48, "value": 0}, {"id": 49, "value": 0}, 
++      {"id": 50, "value": 0}, {"id": 51, "value": 2}, {"id": 52, "value": 0}, {"id": 53, "value": 1}, {"id": 54, "value": 0}, {"id": 55, "value": 0}, {"id": 56, "value": 0},
++      {"id": 57, "value": 0}, {"id": 58, "value": 4}, {"id": 59, "value": 0}, {"id": 60, "value": 0}, {"id": 61, "value": 1}, {"id": 62, "value": 0}, {"id": 63, "value": 0}, 
++      {"id": 64, "value": 0}, {"id": 65, "value": 0}, {"id": 66, "value": 2}, {"id": 67, "value": 1}, {"id": 68, "value": 0}, {"id": 69, "value": 0}, {"id": 70, "value": 0}
++    ] 
++};
+ 
+-    yAxis: {
+-        categories: ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes'],
+-        title: null,
+-        reversed: true
+-    },
++let heatmap = document.getElementById("_heatmap_graph");
+ 
+-    accessibility: {
+-        point: {
+-            descriptionFormat: '{(add index 1)}. ' +
+-                '{series.xAxis.categories.(x)} sales ' +
+-                '{series.yAxis.categories.(y)}, {value}.'
+-        }
+-    },
++const container = document.createElement('div');
++container.className = 'card shoadow-media';
++heatmap.appendChild(container);
++
++heatmap = container;
+ 
+-    colorAxis: {
+-        min: 0,
+-        minColor: '#00FF00', // A vibrant Green for the lowest values
+-        maxColor: '#FF0000', // A stark Red for the highest values
+-        stops: [
+-            [0, '#00FF00'],   // Green at 0%
+-            [0.5, '#FFFF00'], // Yellow at 50% (Optional: facilitates a smoother transition)
+-            [1, '#FF0000']    // Red at 100%
+-        ]
+-    },
++cardHeader = document.createElement('div');
++cardHeader.className = 'card-header';
++heatmap.appendChild(cardHeader);
+ 
+-    legend: {
+-        align: 'right',
+-        layout: 'vertical',
+-        margin: 0,
+-        verticalAlign: 'top',
+-        y: 25,
+-        symbolHeight: 280
+-    },
++const title = document.createElement('h6');
++title.className = 'text-center fw-bold';
++title.textContent = heatmap_info.title;
++cardHeader.appendChild(title);
+ 
+-    tooltip: {
+-        format: '<b>{series.xAxis.categories.(point.x)}</b> Line<br>' +
+-            '<b>{point.value}</b> Incidents <br>' +
+-            '<b>{series.yAxis.categories.(point.y)}</b>'
+-    },
++const cardBody = document.createElement('div');
++cardBody.className = 'card-body';
++heatmap.appendChild(cardBody);
+ 
+-    series: [{
+-        name: 'Incidents per line per weeday',
+-        borderWidth: 1,
+-        data: [
+-            [0, 0, 10], [0, 1, 19], [0, 2, 8], [0, 3, 24], [0, 4, 67],
+-            [1, 0, 92], [1, 1, 58], [1, 2, 78], [1, 3, 117], [1, 4, 48],
+-            [2, 0, 35], [2, 1, 15], [2, 2, 123], [2, 3, 64], [2, 4, 52],
+-            [3, 0, 72], [3, 1, 132], [3, 2, 114], [3, 3, 19], [3, 4, 16],
+-            [4, 0, 38], [4, 1, 5], [4, 2, 8], [4, 3, 117], [4, 4, 115],
+-            [5, 0, 88], [5, 1, 32], [5, 2, 12], [5, 3, 6], [5, 4, 120],
+-            [6, 0, 13], [6, 1, 44], [6, 2, 88], [6, 3, 98], [6, 4, 96],
+-            [7, 0, 31], [7, 1, 1], [7, 2, 82], [7, 3, 32], [7, 4, 30],
+-            [8, 0, 85], [8, 1, 97], [8, 2, 123], [8, 3, 64], [8, 4, 84],
+-            [9, 0, 47], [9, 1, 114], [9, 2, 31], [9, 3, 48], [9, 4, 91]
+-        ],
+-        dataLabels: {
+-            enabled: true,
+-            color: 'contrast'
+-        }
+-    }],
++let max = 0;
++let min = 0;
++for (let i = 0; i < heatmap_info.rows * heatmap_info.columns; i++) {
++    if (max < heatmap_info.cells[i].value) {
++    max = heatmap_info.cells[i].value;
++    }
++}
+ 
+-    responsive: {
+-        rules: [{
+-            condition: {
+-                maxWidth: 500
+-            },
+-            chartOptions: {
+-                yAxis: {
+-                    labels: {
+-                        format: '{substr value 0 1}'
+-                    }
+-                }
+-            }
+-        }]
++const column_labels = document.createElement('div');
++column_labels.className = 'd-flex flex-row justify-content-around align-items-center text-black';
++for (let i = 0; i < heatmap_info.columns + 1; i++) {
++    const label = document.createElement('div');
++    label.className = 'd-flex justify-content-center align-items-center border col rounded-top';
++    if (i != 0) {
++        label.textContent = heatmap_info.column_labels[i-1];
++    } else {
++        label.textContent = 'LINEAS/DIAS';
++    }
++    column_labels.appendChild(label)
++}
++cardBody.appendChild(column_labels);
++
++for (let i = 0; i < heatmap_info.rows; i++) {
++    const row = document.createElement('div');
++    row.className = 'd-flex flex-row justify-content-between align-items-center text-black';
++    
++    for (let j = 0; j < heatmap_info.columns + 1; j++) {
++    const column = document.createElement('div');
++    if (j == 0) {
++        column.textContent = heatmap_info.row_labels[i];
++        column.className = 'd-flex justify-content-center align-items-center col text-white fw-bold rounded-start';
++        column.style.backgroundColor = heatmap_info.row_colors[i];
++    } else {
++        value = heatmap_info.cells[i*heatmap_info.columns + j - 1].value;
++        column.textContent = value;
++        column.className = 'd-flex justify-content-center align-items-center col';
++        column.style.backgroundColor = getHue(value, min, max);
++        column.title = `Estación: ${heatmap_info.row_labels[i]}, Día: ${heatmap_info.column_labels[j-1]}, Incidencias: ${value}`;
++    }
++        column.style.aspectRatio = '2/1';
++        row.appendChild(column);
+     }
+-
+-});
+\ No newline at end of file
++    cardBody.appendChild(row);
++}
+\ No newline at end of file
+Index: backend/target/classes/templates/incidencies.html
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><!DOCTYPE html>\r\n<html lang=\"es\">\r\n<head>\r\n    <meta charset=\"UTF-8\">\r\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\r\n    <title>Incidencies page</title>\r\n    <link href=\"https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css\" rel=\"stylesheet\">\r\n    <script src=\"https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js\"></script>\r\n    <link rel=\"stylesheet\" href=\"../static/css/style.css\">\r\n</head>\r\n<body>\r\n\r\n    <!--HEADER-->\r\n    <div id=\"_header\"></div>\r\n\r\n    <!-- MAIN -->\r\n    <main class=\"container-main\">\r\n\r\n        <!-- Texto -->\r\n        <div class=\"d-flex justify-content-center align-items-center ms-3\">\r\n            <div class=\"col-12\">\r\n                <h1>Estadísticas de las incidencias</h1>\r\n                <p>Aquí podrás encontrar todas las estadisticas de las incidencias del sistema.</p>\r\n            </div>\r\n        </div>\r\n\r\n        <hr>\r\n\r\n        <!-- Texto -->\r\n        <div class=\"d-flex justify-content-center align-items-center mt-5 ms-5\">\r\n            <div class=\"col-12\">\r\n                <h2>Porcentaje de incidencias por línea</h2>\r\n                <p>Muestra el porcentaje de incidencias de cada línea dentro de un rango de tiempo determinado.</p>\r\n            </div>\r\n        </div>\r\n\r\n\r\n        <!-- Grafico circular -->\r\n        <div id=\"_pie_graph\"></div>\r\n\r\n        <!-- Texto -->\r\n        <div class=\"d-flex justify-content-center align-items-center mt-5 ms-5\">\r\n            <div class=\"col-12\">\r\n                <h2>Retraso promedio de las líneas</h2>\r\n                <p>Muestra el retraso promedio de cada línea en un periodo de tiempo.</p>\r\n            </div>\r\n        </div>\r\n\r\n        <!-- Grafico Barras -->\r\n        <div id=\"_bar_graph\"></div>\r\n\r\n\r\n        <!-- Texto -->\r\n        <div class=\"d-flex justify-content-center align-items-center mt-5 ms-5\">\r\n            <div class=\"col-12\">\r\n                <h2>Mapa de calor de incidencias por líneas y tiempo</h2>\r\n                <p>Muestra en un mapa de calor las incidencias por linea en un rango de tiempo determinado</p>\r\n            </div>\r\n        </div>\r\n\r\n\r\n        <script src=\"https://code.highcharts.com/highcharts.js\"></script>\r\n        <script src=\"https://code.highcharts.com/modules/heatmap.js\"></script>\r\n        <script src=\"https://code.highcharts.com/modules/exporting.js\"></script>\r\n        <script src=\"https://code.highcharts.com/modules/export-data.js\"></script>\r\n        <script src=\"https://code.highcharts.com/modules/accessibility.js\"></script>\r\n        <script src=\"https://code.highcharts.com/themes/adaptive.js\"></script>\r\n\r\n        <figure class=\"highcharts-figure\">\r\n            <div id=\"container\"></div>\r\n        </figure>\r\n\r\n\r\n    </main>\r\n\r\n    <!-- Footer -->\r\n    <div id=\"_footer\"></div>\r\n\r\n</body>\r\n\r\n<script type=\"module\" src=\"../../resources/js/pages/incidencies.js\"></script>\r\n\r\n<script src=\"../../resources/js/components/heatmap.js\"></script>\r\n</html>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/backend/target/classes/templates/incidencies.html b/backend/target/classes/templates/incidencies.html
+--- a/backend/target/classes/templates/incidencies.html	(revision 0ba5ad4d2c0258ab9c667a553d209b0e65ebe091)
++++ b/backend/target/classes/templates/incidencies.html	(date 1775718150091)
+@@ -58,19 +58,8 @@
+             </div>
+         </div>
+ 
+-
+-        <script src="https://code.highcharts.com/highcharts.js"></script>
+-        <script src="https://code.highcharts.com/modules/heatmap.js"></script>
+-        <script src="https://code.highcharts.com/modules/exporting.js"></script>
+-        <script src="https://code.highcharts.com/modules/export-data.js"></script>
+-        <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+-        <script src="https://code.highcharts.com/themes/adaptive.js"></script>
+-
+-        <figure class="highcharts-figure">
+-            <div id="container"></div>
+-        </figure>
+-
+-
++        <!-- Mapa de calor -->
++        <div id="_heatmap_graph" class="container mt-5"></div>
+     </main>
+ 
+     <!-- Footer -->
+@@ -79,6 +68,6 @@
+ </body>
+ 
+ <script type="module" src="../../resources/js/pages/incidencies.js"></script>
+-
+ <script src="../../resources/js/components/heatmap.js"></script>
++
+ </html>
+\ No newline at end of file
+Index: backend/target/classes/templates/partials/_heatmap_graph.html
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><!DOCTYPE html>\r\n<html lang=\"en\">\r\n\r\n<head>\r\n  <meta charset=\"UTF-8\">\r\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\r\n  <title>Heatmap</title>\r\n  <link rel=\"stylesheet\" href=\"../../static/css/style.css\">\r\n</head>\r\n\r\n<body>\r\n\r\n  <script src=\"https://code.highcharts.com/highcharts.js\"></script>\r\n  <script src=\"https://code.highcharts.com/modules/heatmap.js\"></script>\r\n  <script src=\"https://code.highcharts.com/modules/exporting.js\"></script>\r\n  <script src=\"https://code.highcharts.com/modules/export-data.js\"></script>\r\n  <script src=\"https://code.highcharts.com/modules/accessibility.js\"></script>\r\n  <script src=\"https://code.highcharts.com/themes/adaptive.js\"></script>\r\n\r\n  <figure class=\"highcharts-figure\">\r\n    <div id=\"container\"></div>\r\n  </figure>\r\n\r\n  <script src=\"../../js/components/heatmap.js\"></script>\r\n</body>\r\n\r\n</html>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/backend/target/classes/templates/partials/_heatmap_graph.html b/backend/target/classes/templates/partials/_heatmap_graph.html
+--- a/backend/target/classes/templates/partials/_heatmap_graph.html	(revision 0ba5ad4d2c0258ab9c667a553d209b0e65ebe091)
++++ b/backend/target/classes/templates/partials/_heatmap_graph.html	(date 1775718150092)
+@@ -1,27 +1,87 @@
+-<!DOCTYPE html>
+-<html lang="en">
++<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
++
++<div class="container mt-4" id = "heatmap"> 
++</div>
+ 
+-<head>
+-  <meta charset="UTF-8">
+-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+-  <title>Heatmap</title>
+-  <link rel="stylesheet" href="../../static/css/style.css">
+-</head>
++<script> 
++  function getHue(value, min, max) {
++    const ratio = value / max;
++    const r = Math.round(255 * ratio);
++    const g = Math.round(255 * (1 - ratio));
++    const b = 50;
++    return `rgb(${r},${g},${b})`;
++  }
+ 
+-<body>
++  const heatmap_info = {
++    "title": 'Incidencias durante la semana',
++    "rows": 10,
++    "columns": 7,
++    "row_labels": ["C-1", "C-2", "C-3", "C-4", "C-5", "C-7", "C-8", "C-9", "C-10", "CIVIS"],
++    "row_colors": ["rgb(50, 214, 255)", "green", "purple", "blue", "rgb(255, 230, 0)", "red", "grey", "brown", "greenyellow", "rgb(255, 111, 135)"],
++    "column_labels": ["Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabat", "Domingo"],
++    "cells": [
++      {"id": 1, "value": 0}, {"id": 2, "value": 0}, {"id": 3, "value": 1}, {"id": 4, "value": 0}, {"id": 5, "value": 0}, {"id": 6, "value": 2}, {"id": 7, "value": 0},
++      {"id": 8, "value": 0}, {"id": 9, "value": 1}, {"id": 10, "value": 0}, {"id": 11, "value": 0}, {"id": 12, "value": 3}, {"id": 13, "value": 0}, {"id": 14, "value": 0},
++      {"id": 15, "value": 1}, {"id": 16, "value": 0}, {"id": 17, "value": 0}, {"id": 18, "value": 0}, {"id": 19, "value": 5}, {"id": 20, "value": 0}, {"id": 21, "value": 1}, 
++      {"id": 22, "value": 0}, {"id": 23, "value": 0}, {"id": 24, "value": 2}, {"id": 25, "value": 0}, {"id": 26, "value": 0}, {"id": 27, "value": 1}, {"id": 28, "value": 0},
++      {"id": 29, "value": 0}, {"id": 30, "value": 0}, {"id": 31, "value": 4}, {"id": 32, "value": 0}, {"id": 33, "value": 1}, {"id": 34, "value": 0}, {"id": 35, "value": 0},
++      {"id": 36, "value": 0}, {"id": 37, "value": 2}, {"id": 38, "value": 0}, {"id": 39, "value": 0}, {"id": 40, "value": 1}, {"id": 41, "value": 0}, {"id": 42, "value": 0},
++      {"id": 43, "value": 0}, {"id": 44, "value": 3}, {"id": 45, "value": 0}, {"id": 46, "value": 1}, {"id": 47, "value": 0}, {"id": 48, "value": 0}, {"id": 49, "value": 0}, 
++      {"id": 50, "value": 0}, {"id": 51, "value": 2}, {"id": 52, "value": 0}, {"id": 53, "value": 1}, {"id": 54, "value": 0}, {"id": 55, "value": 0}, {"id": 56, "value": 0},
++      {"id": 57, "value": 0}, {"id": 58, "value": 4}, {"id": 59, "value": 0}, {"id": 60, "value": 0}, {"id": 61, "value": 1}, {"id": 62, "value": 0}, {"id": 63, "value": 0}, 
++      {"id": 64, "value": 0}, {"id": 65, "value": 0}, {"id": 66, "value": 2}, {"id": 67, "value": 1}, {"id": 68, "value": 0}, {"id": 69, "value": 0}, {"id": 70, "value": 0}
++    ] 
++  };
+ 
+-  <script src="https://code.highcharts.com/highcharts.js"></script>
+-  <script src="https://code.highcharts.com/modules/heatmap.js"></script>
+-  <script src="https://code.highcharts.com/modules/exporting.js"></script>
+-  <script src="https://code.highcharts.com/modules/export-data.js"></script>
+-  <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+-  <script src="https://code.highcharts.com/themes/adaptive.js"></script>
++  const heatmap = document.getElementById("heatmap");
+ 
+-  <figure class="highcharts-figure">
+-    <div id="container"></div>
+-  </figure>
++  const title = document.createElement('div');
++  title.className = 'text-center fw-bold';
++  title.textContent = heatmap_info.title;
++  heatmap.appendChild(title);
+ 
+-  <script src="../../js/components/heatmap.js"></script>
+-</body>
++  let max = 0;
++  let min = 0;
++  for (let i = 0; i < heatmap_info.rows * heatmap_info.columns; i++) {
++    if (max < heatmap_info.cells[i].value) {
++      max = heatmap_info.cells[i].value;
++    }
++  }
+ 
+-</html>
+\ No newline at end of file
++  console.log(max);
++
++  const column_labels = document.createElement('div');
++  column_labels.className = 'd-flex flex-row justify-content-around align-items-center text-black';
++  for (let i = 0; i < heatmap_info.columns + 1; i++) {
++    const label = document.createElement('div');
++    label.className = 'd-flex justify-content-center align-items-center border col';
++    if (i != 0) {
++      label.textContent = heatmap_info.column_labels[i-1];
++    }
++    column_labels.appendChild(label)
++  }
++  heatmap.appendChild(column_labels);
++
++  for (let i = 0; i < heatmap_info.rows; i++) {
++    const row = document.createElement('div');
++    row.className = 'd-flex flex-row justify-content-between align-items-center text-black';
++    
++    for (let j = 0; j < heatmap_info.columns + 1; j++) {
++      const column = document.createElement('div');
++      if (j == 0) {
++        column.textContent = heatmap_info.row_labels[i];
++        column.className = 'd-flex justify-content-center align-items-center border col text-white fw-bold';
++        column.style.backgroundColor = heatmap_info.row_colors[i];
++      } else {
++        value = heatmap_info.cells[i*heatmap_info.columns + j - 1].value;
++        column.textContent = value;
++        column.className = 'd-flex justify-content-center align-items-center border col';
++        column.style.backgroundColor = getHue(value, min, max);
++      }
++        column.style.aspectRatio = '2/1';
++        row.appendChild(column);
++    }
++    heatmap.appendChild(row);
++  }
++  
++</script>
+\ No newline at end of file
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"AutoImportSettings\">\r\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\r\n  </component>\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"ecee7179-4a27-4384-862b-e46e80d30acb\" name=\"Changes\" comment=\"Advancements in header to be based on server responses to show or hide its parts\">\r\n      <change afterPath=\"$PROJECT_DIR$/backend/src/main/java/codeurjc/ssdd/grupo1/trainfyre/config/DefaultImageLoader.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/backend/src/main/java/codeurjc/ssdd/grupo1/trainfyre/config/GlobalModelAttributesAdvice.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/backend/src/main/java/codeurjc/ssdd/grupo1/trainfyre/config/GlobalModelAttributesAdvice.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/backend/src/main/java/codeurjc/ssdd/grupo1/trainfyre/data/model/AppUser.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/backend/src/main/java/codeurjc/ssdd/grupo1/trainfyre/data/model/AppUser.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/backend/src/main/java/codeurjc/ssdd/grupo1/trainfyre/dto/UserInfoDTO.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/backend/src/main/java/codeurjc/ssdd/grupo1/trainfyre/dto/UserInfoDTO.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/backend/src/main/resources/templates/partials/_header.html\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/backend/src/main/resources/templates/partials/_header.html\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/backend/target/classes/codeurjc/ssdd/grupo1/trainfyre/data/model/AppUser.class\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/backend/target/classes/codeurjc/ssdd/grupo1/trainfyre/data/model/AppUser.class\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/backend/target/classes/codeurjc/ssdd/grupo1/trainfyre/mapper/UserMapperImpl.class\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/backend/target/classes/codeurjc/ssdd/grupo1/trainfyre/mapper/UserMapperImpl.class\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/backend/target/classes/templates/partials/_header.html\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/backend/target/classes/templates/partials/_header.html\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/backend/target/generated-sources/annotations/codeurjc/ssdd/grupo1/trainfyre/mapper/StationRestMapperImpl.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/backend/target/generated-sources/annotations/codeurjc/ssdd/grupo1/trainfyre/mapper/StationRestMapperImpl.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/backend/target/generated-sources/annotations/codeurjc/ssdd/grupo1/trainfyre/mapper/UserMapperImpl.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/backend/target/generated-sources/annotations/codeurjc/ssdd/grupo1/trainfyre/mapper/UserMapperImpl.java\" afterDir=\"false\" />\r\n    </list>\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"FileTemplateManagerImpl\">\r\n    <option name=\"RECENT_TEMPLATES\">\r\n      <list>\r\n        <option value=\"Interface\" />\r\n        <option value=\"Record\" />\r\n        <option value=\"Class\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <favorite-branches>\r\n      <branch-storage>\r\n        <map>\r\n          <entry type=\"LOCAL\">\r\n            <value>\r\n              <list>\r\n                <branch-info repo=\"$PROJECT_DIR$\" source=\"Development\" />\r\n              </list>\r\n            </value>\r\n          </entry>\r\n        </map>\r\n      </branch-storage>\r\n    </favorite-branches>\r\n    <option name=\"RECENT_BRANCH_BY_REPOSITORY\">\r\n      <map>\r\n        <entry key=\"$PROJECT_DIR$\" value=\"main\" />\r\n      </map>\r\n    </option>\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\r\n  </component>\r\n  <component name=\"GitHubPullRequestSearchHistory\">{\r\n  &quot;lastFilter&quot;: {\r\n    &quot;state&quot;: &quot;OPEN&quot;,\r\n    &quot;assignee&quot;: &quot;Escipion48&quot;\r\n  }\r\n}</component>\r\n  <component name=\"GithubPullRequestsUISettings\">{\r\n  &quot;selectedUrlAndAccountId&quot;: {\r\n    &quot;url&quot;: &quot;https://github.com/CodeURJC-SSDD-2025-26/practica-ssdd-2025-26-grupo-1.git&quot;,\r\n    &quot;accountId&quot;: &quot;726af0a7-ea0f-4212-b207-a20e4c89639b&quot;\r\n  }\r\n}</component>\r\n  <component name=\"KubernetesApiPersistence\">{}</component>\r\n  <component name=\"KubernetesApiProvider\">{\r\n  &quot;isMigrated&quot;: true\r\n}</component>\r\n  <component name=\"ProblemsViewState\">\r\n    <option name=\"selectedTabId\" value=\"CurrentFile\" />\r\n  </component>\r\n  <component name=\"ProjectColorInfo\">{\r\n  &quot;associatedIndex&quot;: 4\r\n}</component>\r\n  <component name=\"ProjectId\" id=\"39RCNuEUNM3kTu77TQiOB6rr37h\" />\r\n  <component name=\"ProjectLevelVcsManager\" settingsEditedManually=\"true\" />\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\">{\r\n  &quot;keyToString&quot;: {\r\n    &quot;JavaScript Debug.preview.html.executor&quot;: &quot;Run&quot;,\r\n    &quot;Maven.TrainFyre [clean].executor&quot;: &quot;Run&quot;,\r\n    &quot;Maven.TrainFyre [compile].executor&quot;: &quot;Run&quot;,\r\n    &quot;Maven.TrainFyre [deploy].executor&quot;: &quot;Run&quot;,\r\n    &quot;Maven.TrainFyre [install].executor&quot;: &quot;Run&quot;,\r\n    &quot;Maven.TrainFyre [verify].executor&quot;: &quot;Run&quot;,\r\n    &quot;Maven.backend [clean].executor&quot;: &quot;Run&quot;,\r\n    &quot;Maven.backend [compile].executor&quot;: &quot;Run&quot;,\r\n    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,\r\n    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,\r\n    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,\r\n    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,\r\n    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,\r\n    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,\r\n    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,\r\n    &quot;SONARLINT_PRECOMMIT_ANALYSIS&quot;: &quot;true&quot;,\r\n    &quot;Spring Boot.Dev.executor&quot;: &quot;Run&quot;,\r\n    &quot;Spring Boot.TrainFyreApplication.executor&quot;: &quot;Run&quot;,\r\n    &quot;git-widget-placeholder&quot;: &quot;Development&quot;,\r\n    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,\r\n    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,\r\n    &quot;last_opened_file_path&quot;: &quot;C:/Trabajos/2026/Distribuidos/Practica1/TrainFyre/src/main/resources/templates/partials&quot;,\r\n    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,\r\n    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,\r\n    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,\r\n    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,\r\n    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,\r\n    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,\r\n    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,\r\n    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,\r\n    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settings.project.maven.repository.indices&quot;,\r\n    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;\r\n  }\r\n}</component>\r\n  <component name=\"RecentsManager\">\r\n    <key name=\"CopyFile.RECENT_KEYS\">\r\n      <recent name=\"C:\\Trabajos\\2026\\Distribuidos\\Practica1\\TrainFyre\\src\\main\\resources\\templates\\partials\" />\r\n    </key>\r\n    <key name=\"MoveFile.RECENT_KEYS\">\r\n      <recent name=\"C:\\Trabajos\\2026\\Distribuidos\\Practica1\\backend\\src\\main\\resources\" />\r\n      <recent name=\"C:\\Trabajos\\2026\\Distribuidos\\Practica1\\TrainFyre\\src\\main\\resources\\templates\\partials\" />\r\n    </key>\r\n  </component>\r\n  <component name=\"RunManager\" selected=\"Spring Boot.Dev\">\r\n    <configuration name=\"Dev\" type=\"SpringBootApplicationConfigurationType\" factoryName=\"Spring Boot\">\r\n      <option name=\"ACTIVE_PROFILES\" value=\"dev\" />\r\n      <module name=\"backend\" />\r\n      <option name=\"SPRING_BOOT_MAIN_CLASS\" value=\"codeurjc.ssdd.grupo1.trainfyre.TrainFyreApplication\" />\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <configuration name=\"Production\" type=\"SpringBootApplicationConfigurationType\" factoryName=\"Spring Boot\">\r\n      <option name=\"ACTIVE_PROFILES\" value=\"prod\" />\r\n      <module name=\"backend\" />\r\n      <option name=\"SPRING_BOOT_MAIN_CLASS\" value=\"codeurjc.ssdd.grupo1.trainfyre.TrainFyreApplication\" />\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <configuration name=\"TrainFyreApplication\" type=\"SpringBootApplicationConfigurationType\" factoryName=\"Spring Boot\" nameIsGenerated=\"true\">\r\n      <option name=\"FRAME_DEACTIVATION_UPDATE_POLICY\" value=\"UpdateClassesAndResources\" />\r\n      <module name=\"backend\" />\r\n      <option name=\"SPRING_BOOT_MAIN_CLASS\" value=\"codeurjc.ssdd.grupo1.trainfyre.TrainFyreApplication\" />\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <list>\r\n      <item itemvalue=\"Spring Boot.Production\" />\r\n      <item itemvalue=\"Spring Boot.Dev\" />\r\n      <item itemvalue=\"Spring Boot.TrainFyreApplication\" />\r\n    </list>\r\n  </component>\r\n  <component name=\"SharedIndexes\">\r\n    <attachedChunks>\r\n      <set>\r\n        <option value=\"bundled-jdk-9823dce3aa75-125ca727e0f0-intellij.indexing.shared.core-IU-243.23654.189\" />\r\n        <option value=\"bundled-js-predefined-d6986cc7102b-822845ee3bb5-JavaScript-IU-243.23654.189\" />\r\n      </set>\r\n    </attachedChunks>\r\n  </component>\r\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"ecee7179-4a27-4384-862b-e46e80d30acb\" name=\"Changes\" comment=\"\" />\r\n      <created>1770649459268</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1770649459268</updated>\r\n      <workItem from=\"1770649460415\" duration=\"5697000\" />\r\n      <workItem from=\"1770710858160\" duration=\"1170000\" />\r\n      <workItem from=\"1770712344384\" duration=\"425000\" />\r\n      <workItem from=\"1770721118003\" duration=\"17000\" />\r\n      <workItem from=\"1770744928029\" duration=\"329000\" />\r\n      <workItem from=\"1770797190059\" duration=\"75000\" />\r\n      <workItem from=\"1770896005360\" duration=\"91000\" />\r\n      <workItem from=\"1771265438495\" duration=\"25000\" />\r\n      <workItem from=\"1773783050085\" duration=\"2207000\" />\r\n      <workItem from=\"1773785273980\" duration=\"46000\" />\r\n      <workItem from=\"1773785323248\" duration=\"80000\" />\r\n      <workItem from=\"1773785760820\" duration=\"32000\" />\r\n      <workItem from=\"1773785811169\" duration=\"375000\" />\r\n      <workItem from=\"1773786202639\" duration=\"37000\" />\r\n      <workItem from=\"1773786242227\" duration=\"133000\" />\r\n      <workItem from=\"1773786392390\" duration=\"142000\" />\r\n      <workItem from=\"1773786536651\" duration=\"4143000\" />\r\n      <workItem from=\"1773820511005\" duration=\"841000\" />\r\n      <workItem from=\"1773821729200\" duration=\"11374000\" />\r\n      <workItem from=\"1773835949289\" duration=\"19000\" />\r\n      <workItem from=\"1773838263711\" duration=\"141000\" />\r\n      <workItem from=\"1773840888256\" duration=\"286000\" />\r\n      <workItem from=\"1773857071451\" duration=\"20000\" />\r\n      <workItem from=\"1773907444609\" duration=\"6172000\" />\r\n      <workItem from=\"1773918966354\" duration=\"7850000\" />\r\n      <workItem from=\"1773929172644\" duration=\"7000\" />\r\n      <workItem from=\"1773931614436\" duration=\"3565000\" />\r\n      <workItem from=\"1773946943991\" duration=\"19669000\" />\r\n      <workItem from=\"1774000084360\" duration=\"12517000\" />\r\n      <workItem from=\"1774023213379\" duration=\"7000\" />\r\n      <workItem from=\"1774024234352\" duration=\"6891000\" />\r\n    </task>\r\n    <task id=\"LOCAL-00001\" summary=\"Stablishment of a common CSS for the whole team to use, it may change in the future\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1770653968358</created>\r\n      <option name=\"number\" value=\"00001\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00001\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1770653968358</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00002\" summary=\"Web partials, footer, pie-graph and bar-graph.\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1770896078585</created>\r\n      <option name=\"number\" value=\"00002\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00002\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1770896078585</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00003\" summary=\"Reorder and preparation for the stablishment of the backend structure\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1773784858012</created>\r\n      <option name=\"number\" value=\"00003\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00003\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1773784858012</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00004\" summary=\"Reorder and preparation for the stablishment of the backend structure\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1773786610846</created>\r\n      <option name=\"number\" value=\"00004\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00004\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1773786610846</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00005\" summary=\"Reorder and preparation for the stablishment of the backend structure\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1773787211361</created>\r\n      <option name=\"number\" value=\"00005\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00005\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1773787211361</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00006\" summary=\"Stablishment of project structure and preparation for development as well as @entitys awaiting for team aprovale.\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1773824545870</created>\r\n      <option name=\"number\" value=\"00006\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00006\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1773824545870</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00007\" summary=\"Fixing minor mistakes\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1773825126426</created>\r\n      <option name=\"number\" value=\"00007\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00007\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1773825126426</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00008\" summary=\"Fixing minor mistakes\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1773825184238</created>\r\n      <option name=\"number\" value=\"00008\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00008\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1773825184238</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00009\" summary=\"Preparations for development and issues fixing\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1773832648623</created>\r\n      <option name=\"number\" value=\"00009\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00009\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1773832648623</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00010\" summary=\"typo\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1773833186637</created>\r\n      <option name=\"number\" value=\"00010\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00010\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1773833186637</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00011\" summary=\"Stablishment of ControllerAdvice for usage of layout and standarization y page generation and load from server\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1773912614662</created>\r\n      <option name=\"number\" value=\"00011\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00011\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1773912614662</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00012\" summary=\"Https implementation\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1773925231053</created>\r\n      <option name=\"number\" value=\"00012\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00012\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1773925231053</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00013\" summary=\"Creation of profiles for different run configurations and yaml migration\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1773957038495</created>\r\n      <option name=\"number\" value=\"00013\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00013\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1773957038495</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00014\" summary=\"More spring Security changes, mainly to allow User autentication\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1773969392921</created>\r\n      <option name=\"number\" value=\"00014\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00014\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1773969392921</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00015\" summary=\"Project reestructure\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1774001457399</created>\r\n      <option name=\"number\" value=\"00015\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00015\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1774001457399</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00016\" summary=\"Custom login first implementation\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1774012147615</created>\r\n      <option name=\"number\" value=\"00016\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00016\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1774012147615</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00017\" summary=\"Register page adition to controller, some .html pages changed\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1774026627969</created>\r\n      <option name=\"number\" value=\"00017\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00017\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1774026627969</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00018\" summary=\"Minor issue with logger in AuthenticatorController\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1774026697740</created>\r\n      <option name=\"number\" value=\"00018\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00018\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1774026697740</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00019\" summary=\"Change of log, now using the Slf4j annotation for better code quality in StationController.java for better up to date example for other team members\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1775629627946</created>\r\n      <option name=\"number\" value=\"00019\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00019\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1775629627946</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00020\" summary=\"Now user service allows to load user, and update in station example (This will have to change to use another dto to avoid loading the password for better security)\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1775637687877</created>\r\n      <option name=\"number\" value=\"00020\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00020\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1775637687877</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00021\" summary=\"Now we user UserInfoDTO to get users information (correct separation of dtos to allow better security and not to load password when unecesary).\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1775639709998</created>\r\n      <option name=\"number\" value=\"00021\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00021\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1775639709998</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00022\" summary=\"Preparation to load user via global attributes for better code quality and avoidance of repeatable code.\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1775640758679</created>\r\n      <option name=\"number\" value=\"00022\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00022\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1775640758679</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00023\" summary=\"Now all userInfo data is globally loaded when specified on the html\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1775641135458</created>\r\n      <option name=\"number\" value=\"00023\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00023\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1775641135458</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00024\" summary=\"Advancements in header to be based on server responses to show or hide its parts\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1775642376221</created>\r\n      <option name=\"number\" value=\"00024\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00024\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1775642376221</updated>\r\n    </task>\r\n    <option name=\"localTasksCounter\" value=\"25\" />\r\n    <servers />\r\n  </component>\r\n  <component name=\"TypeScriptGeneratedFilesManager\">\r\n    <option name=\"version\" value=\"3\" />\r\n  </component>\r\n  <component name=\"Vcs.Log.Tabs.Properties\">\r\n    <option name=\"TAB_STATES\">\r\n      <map>\r\n        <entry key=\"MAIN\">\r\n          <value>\r\n            <State />\r\n          </value>\r\n        </entry>\r\n      </map>\r\n    </option>\r\n  </component>\r\n  <component name=\"VcsManagerConfiguration\">\r\n    <MESSAGE value=\"Stablishment of a common CSS for the whole team to use, it may change in the future\" />\r\n    <MESSAGE value=\"Web partials, footer, pie-graph and bar-graph.\" />\r\n    <MESSAGE value=\"Reorder and preparation for the stablishment of the backend structure\" />\r\n    <MESSAGE value=\"Stablishment of project structure and preparation for development as well as @entitys awaiting for team aprovale.\" />\r\n    <MESSAGE value=\"Fixing minor mistakes\" />\r\n    <MESSAGE value=\"Preparations for development and issues fixing\" />\r\n    <MESSAGE value=\"typo\" />\r\n    <MESSAGE value=\"Stablishment of ControllerAdvice for usage of layout and standarization y page generation and load from server\" />\r\n    <MESSAGE value=\"Https implementation\" />\r\n    <MESSAGE value=\"Creation of profiles for different run configurations and yaml migration\" />\r\n    <MESSAGE value=\"More spring Security changes, mainly to allow User autentication\" />\r\n    <MESSAGE value=\"Project reestructure\" />\r\n    <MESSAGE value=\"Custom login first implementation\" />\r\n    <MESSAGE value=\"Register page adition to controller, some .html pages changed\" />\r\n    <MESSAGE value=\"Minor issue with logger in AuthenticatorController\" />\r\n    <MESSAGE value=\"Change of log, now using the Slf4j annotation for better code quality in StationController.java for better up to date example for other team members\" />\r\n    <MESSAGE value=\"Now user service allows to load user, and update in station example (This will have to change to use another dto to avoid loading the password for better security)\" />\r\n    <MESSAGE value=\"Now we user UserInfoDTO to get users information (correct separation of dtos to allow better security and not to load password when unecesary).\" />\r\n    <MESSAGE value=\"Preparation to load user via global attributes for better code quality and avoidance of repeatable code.\" />\r\n    <MESSAGE value=\"Now all userInfo data is globally loaded when specified on the html\" />\r\n    <MESSAGE value=\"Advancements in header to be based on server responses to show or hide its parts\" />\r\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"Advancements in header to be based on server responses to show or hide its parts\" />\r\n  </component>\r\n  <component name=\"XSLT-Support.FileAssociations.UIState\">\r\n    <expand />\r\n    <select />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision 0ba5ad4d2c0258ab9c667a553d209b0e65ebe091)
++++ b/.idea/workspace.xml	(date 1775721868529)
+@@ -4,18 +4,29 @@
+     <option name="autoReloadType" value="SELECTIVE" />
+   </component>
+   <component name="ChangeListManager">
+-    <list default="true" id="ecee7179-4a27-4384-862b-e46e80d30acb" name="Changes" comment="Advancements in header to be based on server responses to show or hide its parts">
+-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/codeurjc/ssdd/grupo1/trainfyre/config/DefaultImageLoader.java" afterDir="false" />
++    <list default="true" id="ecee7179-4a27-4384-862b-e46e80d30acb" name="Changes" comment="Now user profile image load is aveliable, however it will change soon due to better implementations posible (will do for now)">
+       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/codeurjc/ssdd/grupo1/trainfyre/config/GlobalModelAttributesAdvice.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/codeurjc/ssdd/grupo1/trainfyre/config/GlobalModelAttributesAdvice.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/codeurjc/ssdd/grupo1/trainfyre/data/model/AppUser.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/codeurjc/ssdd/grupo1/trainfyre/data/model/AppUser.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/codeurjc/ssdd/grupo1/trainfyre/dto/UserInfoDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/codeurjc/ssdd/grupo1/trainfyre/dto/UserInfoDTO.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/backend/src/main/resources/templates/partials/_header.html" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/resources/templates/partials/_header.html" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/backend/target/classes/codeurjc/ssdd/grupo1/trainfyre/data/model/AppUser.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/target/classes/codeurjc/ssdd/grupo1/trainfyre/data/model/AppUser.class" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/backend/target/classes/codeurjc/ssdd/grupo1/trainfyre/mapper/UserMapperImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/target/classes/codeurjc/ssdd/grupo1/trainfyre/mapper/UserMapperImpl.class" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/backend/target/classes/templates/partials/_header.html" beforeDir="false" afterPath="$PROJECT_DIR$/backend/target/classes/templates/partials/_header.html" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/backend/target/generated-sources/annotations/codeurjc/ssdd/grupo1/trainfyre/mapper/StationRestMapperImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/target/generated-sources/annotations/codeurjc/ssdd/grupo1/trainfyre/mapper/StationRestMapperImpl.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/backend/target/generated-sources/annotations/codeurjc/ssdd/grupo1/trainfyre/mapper/UserMapperImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/target/generated-sources/annotations/codeurjc/ssdd/grupo1/trainfyre/mapper/UserMapperImpl.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/backend/src/main/java/codeurjc/ssdd/grupo1/trainfyre/config/DefaultImageLoader.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/codeurjc/ssdd/grupo1/trainfyre/config/DefaultImageLoader.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/backend/src/main/java/codeurjc/ssdd/grupo1/trainfyre/service/AlertService.java" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/backend/src/main/java/codeurjc/ssdd/grupo1/trainfyre/web/controller/Impl/AlertController.java" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/backend/target/classes/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/backend/target/classes/.idea/workspace.xml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/backend/target/classes/codeurjc/ssdd/grupo1/trainfyre/data/model/Alert.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/target/classes/codeurjc/ssdd/grupo1/trainfyre/data/model/Alert.class" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/backend/target/classes/js/components/heatmap.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/target/classes/js/components/heatmap.js" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/backend/target/classes/js/components/interactive-map.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/target/classes/js/components/interactive-map.js" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/backend/target/classes/js/pages/admin-panel-incidences.js" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/backend/target/classes/js/pages/admin-panel-lines.js" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/backend/target/classes/js/pages/admin-panel.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/target/classes/js/pages/admin-panel.js" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/backend/target/classes/templates/admin_panel_incidences.html" beforeDir="false" afterPath="$PROJECT_DIR$/backend/target/classes/templates/admin_panel_incidences.html" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/backend/target/classes/templates/admin_panel_lines.html" beforeDir="false" afterPath="$PROJECT_DIR$/backend/target/classes/templates/admin_panel_lines.html" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/backend/target/classes/templates/form-alert.html" beforeDir="false" afterPath="$PROJECT_DIR$/backend/target/classes/templates/form-alert.html" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/backend/target/classes/templates/form-incidence.html" beforeDir="false" afterPath="$PROJECT_DIR$/backend/target/classes/templates/form-incidence.html" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/backend/target/classes/templates/form-line.html" beforeDir="false" afterPath="$PROJECT_DIR$/backend/target/classes/templates/form-line.html" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/backend/target/classes/templates/incidencies.html" beforeDir="false" afterPath="$PROJECT_DIR$/backend/target/classes/templates/incidencies.html" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/backend/target/classes/templates/partials/_heatmap_graph.html" beforeDir="false" afterPath="$PROJECT_DIR$/backend/target/classes/templates/partials/_heatmap_graph.html" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/backend/target/classes/templates/partials/_incidence_table.html" beforeDir="false" afterPath="$PROJECT_DIR$/backend/target/classes/templates/partials/_incidence_table.html" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/backend/target/classes/templates/partials/_login_form.html" beforeDir="false" afterPath="$PROJECT_DIR$/backend/target/classes/templates/partials/_login_form.html" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/backend/target/classes/templates/settings.html" beforeDir="false" afterPath="$PROJECT_DIR$/backend/target/classes/templates/settings.html" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/backend/target/classes/templates/successful_logout.html" beforeDir="false" afterPath="$PROJECT_DIR$/backend/target/classes/templates/successful_logout.html" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+@@ -203,6 +214,7 @@
+       <workItem from="1774000084360" duration="12517000" />
+       <workItem from="1774023213379" duration="7000" />
+       <workItem from="1774024234352" duration="6891000" />
++      <workItem from="1775718135563" duration="3705000" />
+     </task>
+     <task id="LOCAL-00001" summary="Stablishment of a common CSS for the whole team to use, it may change in the future">
+       <option name="closed" value="true" />
+@@ -396,7 +408,15 @@
+       <option name="project" value="LOCAL" />
+       <updated>1775642376221</updated>
+     </task>
+-    <option name="localTasksCounter" value="25" />
++    <task id="LOCAL-00025" summary="Now user profile image load is aveliable, however it will change soon due to better implementations posible (will do for now)">
++      <option name="closed" value="true" />
++      <created>1775643977326</created>
++      <option name="number" value="00025" />
++      <option name="presentableId" value="LOCAL-00025" />
++      <option name="project" value="LOCAL" />
++      <updated>1775643977326</updated>
++    </task>
++    <option name="localTasksCounter" value="26" />
+     <servers />
+   </component>
+   <component name="TypeScriptGeneratedFilesManager">
+@@ -435,7 +455,8 @@
+     <MESSAGE value="Preparation to load user via global attributes for better code quality and avoidance of repeatable code." />
+     <MESSAGE value="Now all userInfo data is globally loaded when specified on the html" />
+     <MESSAGE value="Advancements in header to be based on server responses to show or hide its parts" />
+-    <option name="LAST_COMMIT_MESSAGE" value="Advancements in header to be based on server responses to show or hide its parts" />
++    <MESSAGE value="Now user profile image load is aveliable, however it will change soon due to better implementations posible (will do for now)" />
++    <option name="LAST_COMMIT_MESSAGE" value="Now user profile image load is aveliable, however it will change soon due to better implementations posible (will do for now)" />
+   </component>
+   <component name="XSLT-Support.FileAssociations.UIState">
+     <expand />
+Index: backend/target/classes/templates/partials/_incidence_table.html
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><div class=\"row d-flex justify-content-center align-items-center ms-3 me-3\">\r\n  <div class=\"col-12\">\r\n    <div style=\"overflow-x:auto\">\r\n      <table class=\"table table-striped table-bordered\">\r\n        <thead>\r\n        <tr>\r\n          <th class=\"td_center\">\r\n            Línea(s) afectada(s)\r\n          </th>\r\n\r\n          <th class=\"td_center\">\r\n            Severidad\r\n          </th>\r\n\r\n          <th class=\"td_center\">\r\n            Tipo\r\n          </th>\r\n\r\n          <th class=\"td_center\">\r\n            Modificar\r\n          </th>\r\n\r\n          <th class=\"td_center\">\r\n            Ver más\r\n          </th>\r\n\r\n          <th class=\"td_center\">\r\n            Eliminar\r\n          </th>\r\n        </tr>\r\n\r\n        </thead>\r\n        <tbody>\r\n        <tr>\r\n          <td class=\"td_center\">\r\n            C-1, C-2\r\n          </td>\r\n\r\n          <td class=\"td_center\">\r\n            Leve\r\n          </td>\r\n\r\n          <td class=\"td_center\">\r\n            Mantenimiento\r\n          </td>\r\n\r\n          <td class=\"td_center\">\r\n            <div class=\"btn btn-primary\" class=\"see_more\">\r\n                Ver más\r\n            </div>\r\n          </td>\r\n\r\n          <td class=\"td_center\">\r\n            <a href=\"#\">\r\n              <svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" fill=\"currentColor\" class=\"bi bi-pencil-square\" viewBox=\"0 0 16 16\">\r\n                <path d=\"M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z\"/>\r\n                <path fill-rule=\"evenodd\" d=\"M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z\"/>\r\n              </svg>\r\n            </a>\r\n          </td>\r\n\r\n          <td class=\"td_center\">\r\n            <a href=\"#\">\r\n              <svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" fill=\"currentColor\" class=\"bi bi-ban\" viewBox=\"0 0 16 16\">\r\n                <path d=\"M15 8a6.97 6.97 0 0 0-1.71-4.584l-9.874 9.875A7 7 0 0 0 15 8M2.71 12.584l9.874-9.875a7 7 0 0 0-9.874 9.874ZM16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0\"/>\r\n              </svg>\r\n            </a>\r\n          </td>\r\n        </tr>\r\n\r\n\r\n        </tbody>\r\n      </table>\r\n    </div>\r\n  </div>\r\n</div>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/backend/target/classes/templates/partials/_incidence_table.html b/backend/target/classes/templates/partials/_incidence_table.html
+--- a/backend/target/classes/templates/partials/_incidence_table.html	(revision 0ba5ad4d2c0258ab9c667a553d209b0e65ebe091)
++++ b/backend/target/classes/templates/partials/_incidence_table.html	(date 1775718150093)
+@@ -17,11 +17,11 @@
+           </th>
+ 
+           <th class="td_center">
+-            Modificar
++            Ver más
+           </th>
+ 
+           <th class="td_center">
+-            Ver más
++            Modificar
+           </th>
+ 
+           <th class="td_center">
+@@ -45,9 +45,46 @@
+           </td>
+ 
+           <td class="td_center">
+-            <div class="btn btn-primary" class="see_more">
++            <a href="incidence_page.html" class="btn btn-primary" class="see_more">
+                 Ver más
+-            </div>
++            </a>
++          </td>
++
++          <td class="td_center">
++            <a href="#">
++              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
++                <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
++                <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z"/>
++              </svg>
++            </a>
++          </td>
++
++          <td class="td_center">
++            <a href="#">
++              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-ban" viewBox="0 0 16 16">
++                <path d="M15 8a6.97 6.97 0 0 0-1.71-4.584l-9.874 9.875A7 7 0 0 0 15 8M2.71 12.584l9.874-9.875a7 7 0 0 0-9.874 9.874ZM16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0"/>
++              </svg>
++            </a>
++          </td>
++        </tr>
++
++        <tr>
++          <td class="td_center">
++            CIVIS
++          </td>
++
++          <td class="td_center">
++            Serio
++          </td>
++
++          <td class="td_center">
++            Accidente
++          </td>
++
++          <td class="td_center">
++            <a href="incidence_page.html" class="btn btn-primary" class="see_more">
++                Ver más
++            </a>
+           </td>
+ 
+           <td class="td_center">
+Index: backend/target/classes/templates/partials/_login_form.html
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>{{# error}}\r\n<h1>{{error}}</h1>\r\n{{/ error}}\r\n\r\n<form role=\"form\" action=\"/login\" method=\"post\">\r\n    <div class=\"row d-flex justify-content-center gap-3 mb-4 ms-3 me-3\">\r\n        <div class=\"form-group col-10\">\r\n            <h2 class=\"form-title\">Inicio de sesión</h2>\r\n\r\n            <!--email-->\r\n            <label for=\"email\" class=\"form-label\">Correo electrónico</label>\r\n            <input type=\"text\" class=\"form-control\" id=\"email\" required placeholder=\"Inserte su correo\" name=\"username\">\r\n        </div>\r\n    </div>\r\n\r\n    <!--Password-->\r\n    <div class=\"row d-flex justify-content-center gap-3 mb-4 ms-3 me-3\">\r\n        <div class=\"form-group col-10\">\r\n            <label for=\"pwd\" class=\"form-label\">Contraseña</label>\r\n            <input type=\"password\" class=\"form-control\" id=\"pwd\" required placeholder=\"Inserte su contraseña\" name=\"password\">\r\n        </div>\r\n    </div>\r\n\r\n    <!--Button row-->\r\n    <div class=\"row d-flex justify-content-center gap-3 mb-4 ms-3 me-3\">\r\n        <div class=\"col-auto mt-2\">\r\n            <input type=\"submit\" value=\"Sign In\" class=\"btn btn-primary\"/>\r\n        </div>\r\n    </div>\r\n</form>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/backend/target/classes/templates/partials/_login_form.html b/backend/target/classes/templates/partials/_login_form.html
+--- a/backend/target/classes/templates/partials/_login_form.html	(revision 0ba5ad4d2c0258ab9c667a553d209b0e65ebe091)
++++ b/backend/target/classes/templates/partials/_login_form.html	(date 1775718150093)
+@@ -3,13 +3,17 @@
+ {{/ error}}
+ 
+ <form role="form" action="/login" method="post">
+-    <div class="row d-flex justify-content-center gap-3 mb-4 ms-3 me-3">
++    <div class="row d-flex justify-content-center gap-3 mb-1 ms-3 me-3 mt-5">
+         <div class="form-group col-10">
+             <h2 class="form-title">Inicio de sesión</h2>
++        </div>
++    </div>
+ 
+-            <!--email-->
+-            <label for="email" class="form-label">Correo electrónico</label>
+-            <input type="text" class="form-control" id="email" required placeholder="Inserte su correo" name="username">
++    <!--email-->
++    <div class="row d-flex justify-content-center gap-3 mb-4 ms-3 me-3">
++        <div class="form-group col-10">
++            <label for="username" class="form-label">Nombre de usuario</label>
++            <input type="text" class="form-control" id="username" required placeholder="Inserte su nombre de usuario" name="username">
+         </div>
+     </div>
+ 
+@@ -24,7 +28,8 @@
+     <!--Button row-->
+     <div class="row d-flex justify-content-center gap-3 mb-4 ms-3 me-3">
+         <div class="col-auto mt-2">
+-            <input type="submit" value="Sign In" class="btn btn-primary"/>
++            <button type="submit" class="btn btn-primary">Confirmar</button>
+         </div>
+     </div>
++    
+ </form>
+\ No newline at end of file
+Index: backend/target/classes/js/components/interactive-map.js
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>export function initInteractiveMap() {\r\n    const linesButtons = document.querySelectorAll('[data-action=\"highlightLine\"]');\r\n    const lines = [...linesButtons].map(button => button.id);\r\n    const allPaths = document.querySelectorAll(lines.map(id => String.raw`g[inkscape\\:label=\"${id}\"]`).join(', '));\r\n\r\n    let timeout;\r\n\r\n    function highlightLine(line){\r\n\r\n        clearTimeout(timeout);\r\n\r\n        allPaths.forEach(path => {\r\n            path.style.opacity = 1;\r\n\r\n            const visitedLine = path.getAttribute('inkscape:label');\r\n\r\n            if(visitedLine !== line.currentTarget.id){\r\n                path.style.opacity = 0.2;\r\n            }\r\n        })\r\n    }\r\n\r\n    linesButtons.forEach(lineButton => {\r\n        lineButton.addEventListener('click', highlightLine);\r\n    });\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/backend/target/classes/js/components/interactive-map.js b/backend/target/classes/js/components/interactive-map.js
+--- a/backend/target/classes/js/components/interactive-map.js	(revision 0ba5ad4d2c0258ab9c667a553d209b0e65ebe091)
++++ b/backend/target/classes/js/components/interactive-map.js	(date 1775718299477)
+@@ -2,22 +2,28 @@
+     const linesButtons = document.querySelectorAll('[data-action="highlightLine"]');
+     const lines = [...linesButtons].map(button => button.id);
+     const allPaths = document.querySelectorAll(lines.map(id => String.raw`g[inkscape\:label="${id}"]`).join(', '));
+-
+-    let timeout;
++    let effect = null
+ 
+     function highlightLine(line){
+-
+-        clearTimeout(timeout);
+-
+-        allPaths.forEach(path => {
+-            path.style.opacity = 1;
++        if (effect !== highlightLine) {
++            effect = highlightLine;
++            allPaths.forEach(path => {
++                path.style.opacity = 1;
+ 
+-            const visitedLine = path.getAttribute('inkscape:label');
++                const visitedLine = path.getAttribute('inkscape:label');
+ 
+-            if(visitedLine !== line.currentTarget.id){
+-                path.style.opacity = 0.2;
+-            }
+-        })
++                if(visitedLine !== line.currentTarget.id){
++                    path.style.opacity = 0.2;
++                }
++            })
++        } else {
++            effect = null;
++            allPaths.forEach(path => {
++                path.style.opacity = 1;
++            });
++        }
++            
++        
+     }
+ 
+     linesButtons.forEach(lineButton => {
+Index: backend/target/classes/templates/form-alert.html
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><!DOCTYPE html>\r\n<html lang=\"es\">\r\n\r\n<head>\r\n    <meta charset=\"UTF-8\">\r\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\r\n    <title>Partial de bootstrap</title>\r\n    <link href=\"https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css\" rel=\"stylesheet\">\r\n    <link rel=\"stylesheet\" href=\"../static/css/style.css\">\r\n    <script src=\"https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js\"></script>\r\n</head>\r\n\r\n<body>\r\n    <!--HEADER-->\r\n    <div id=\"_header\"></div>\r\n\r\n    <main class=\"container-main\">\r\n\r\n        <form role=\"form\" action=\"alert_table.html\" target=\"_blank\">\r\n\r\n            <div class=\"row\">\r\n                <div class=\"d-flex flex-wrap justify-content-center gap-3 mb-4\">\r\n                    <div class=\"form-group col-auto\">\r\n                        <h2>Añadir alerta</h2>\r\n\r\n                        <label class=\"form-label\" for=\"line\">Línea:</label>\r\n                        <select class=\"form-control\" id=\"date\">\r\n                            <option value=\"C-1\" selected>C-1</option>\r\n                            <option value=\"C-2\">C-2</option>\r\n                            <option value=\"C-3\">C-3</option>\r\n                            <option value=\"C-4\">C-4</option>\r\n                            <option value=\"C-5\">C-5</option>\r\n                            <option value=\"C-7\">C-7</option>\r\n                            <option value=\"C-8\">C-8</option>\r\n                            <option value=\"C-9\">C-9</option>\r\n                            <option value=\"C-10\">C-10</option>\r\n                            <option value=\"CIVIS\">CIVIS</option>\r\n                        </select>\r\n                    </div>\r\n                </div>\r\n            </div>\r\n\r\n            <div class=\"row\">\r\n                <div class=\"d-flex flex-wrap justify-content-center gap-3 mb-4\">\r\n                    <div class=\"form-group col-10\">\r\n                        <label class=\"form-label\" for=\"date\">Introduzca la fecha de inicio de la alerta:</label>\r\n                        <input type=\"date\" class=\"form-control\" id=\"date\" required>\r\n                    </div>\r\n                </div>\r\n            </div>\r\n\r\n            <div class=\"row\">\r\n                <div class=\"d-flex flex-wrap justify-content-center gap-3 mb-4\">\r\n                    <div class=\"form-group col-10\">\r\n                        <label class=\"form-label\" for=\"date\">Introduzca la fecha de final de la alerta:</label>\r\n                        <input type=\"date\" class=\"form-control\" id=\"date\" required>\r\n\r\n                    </div>\r\n                </div>\r\n            </div>\r\n\r\n            <div class=\"row\">\r\n                <div class=\"d-flex flex-wrap justify-content-center gap-3 mb-4\">\r\n                    <div class=\"form-group col-10\">\r\n                        <label class=\"form-label\" for=\"date\">Introduzca las horas de la alerta:</label>\r\n                        <div class=\"range-slider\">\r\n                            <span class=\"range-selected\"></span>\r\n                        </div>\r\n                        <div class=\"range-input\">\r\n                                <label class=\"form-label\" for=\"date\">Inicio:</label>\r\n                            <input type=\"range\" class=\"min form-control\" id=\"slider-min\" min=\"0\" max=\"1439\" value=\"480\"\r\n                                step=\"5\">\r\n                                <label class=\"form-label\" for=\"date\">Fin:</label>\r\n                            <input type=\"range\" class=\"max form-control\" id=\"slider-max\" min=\"0\" max=\"1439\" value=\"540\"\r\n                                step=\"5\">\r\n                        </div>\r\n                        \r\n                    </div>\r\n                </div>\r\n            </div>\r\n\r\n            <div class=\"row\">\r\n                <div class=\"d-flex flex-wrap justify-content-center gap-3 mb-4\">\r\n                    <div class=\"form-group col-auto\">\r\n                        <div class=\"range-price\">\r\n                            <label for=\"min\">Inicio</label>\r\n                            <input type=\"time\" id=\"min-input\" name=\"min\" value=\"08:00\">\r\n                            <label for=\"max\">Fin</label>\r\n                            <input type=\"time\" id=\"max-input\" name=\"max\" value=\"09:00\">\r\n                        </div>\r\n                    </div>\r\n                </div>\r\n            </div>\r\n\r\n\r\n\r\n            </div>\r\n\r\n\r\n\r\n\r\n\r\n            </div>\r\n\r\n\r\n\r\n\r\n            <!--Button row-->\r\n            <div class=\"row\">\r\n                <div class=\"d-flex justify-content-center gap-3 mb-4\">\r\n                    <div class=\"col-auto\">\r\n                        <button type=\"submit\" class=\"btn btn-primary\">Confirmar</button>\r\n                    </div>\r\n                </div>\r\n            </div>\r\n\r\n            </div>\r\n\r\n\r\n            </div>\r\n\r\n\r\n\r\n\r\n\r\n        </form>\r\n\r\n\r\n    </main>\r\n\r\n    <!-- Footer -->\r\n    <div id=\"_footer\"></div>\r\n</body>\r\n\r\n<script src=\"../js/slider.js\"></script>\r\n<script>\r\n    // Cargamos el contenido de _header.html\r\n    fetch('./partials/_header.html')\r\n        .then(response => response.text())\r\n        .then(data => {\r\n            // Lo inyectamos en el div que creamos arriba\r\n            document.getElementById('_header').innerHTML = data;\r\n        })\r\n        .catch(error => console.error('Error al cargar el header:', error));\r\n</script>\r\n<script>\r\n    // Cargamos el contenido de _footer.html\r\n    fetch('./partials/_footer.html')\r\n        .then(response => response.text())\r\n        .then(data => {\r\n            // Lo inyectamos en el div que creamos arriba\r\n            document.getElementById('_footer').innerHTML = data;\r\n        })\r\n        .catch(error => console.error('Error al cargar el footer:', error));\r\n</script>\r\n\r\n</html>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/backend/target/classes/templates/form-alert.html b/backend/target/classes/templates/form-alert.html
+--- a/backend/target/classes/templates/form-alert.html	(revision 0ba5ad4d2c0258ab9c667a553d209b0e65ebe091)
++++ b/backend/target/classes/templates/form-alert.html	(date 1775718150088)
+@@ -3,38 +3,38 @@
+ 
+ <head>
+     <meta charset="UTF-8">
+-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+-    <title>Partial de bootstrap</title>
+-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+-    <link rel="stylesheet" href="../static/css/style.css">
+-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
++    <title>{{title}}</title>
++
++    <!-- Globales, siempre presentes -->
++    {{#globalStyles}}
++    <link rel="stylesheet" href="{{.}}">
++    {{/globalStyles}}
++    {{#globalScripts}}
++    <script src="{{.}}"></script>
++    {{/globalScripts}}
++
+ </head>
+ 
++{{# Layout}}
+ <body>
+     <!--HEADER-->
+     <div id="_header"></div>
+ 
+     <main class="container-main">
+ 
+-        <form role="form" action="alert_table.html" target="_blank">
++        <form role="form" method="post" action="/form/added">
+ 
+             <div class="row">
+                 <div class="d-flex flex-wrap justify-content-center gap-3 mb-4">
+                     <div class="form-group col-auto">
+                         <h2>Añadir alerta</h2>
+ 
+-                        <label class="form-label" for="line">Línea:</label>
+-                        <select class="form-control" id="date">
+-                            <option value="C-1" selected>C-1</option>
+-                            <option value="C-2">C-2</option>
+-                            <option value="C-3">C-3</option>
+-                            <option value="C-4">C-4</option>
+-                            <option value="C-5">C-5</option>
+-                            <option value="C-7">C-7</option>
+-                            <option value="C-8">C-8</option>
+-                            <option value="C-9">C-9</option>
+-                            <option value="C-10">C-10</option>
+-                            <option value="CIVIS">CIVIS</option>
++                        <label class="form-label" for="lines">Línea:</label>
++                        <select class="form-control" id="date" name="lines">
++                            {{#lines}}
++                            <option value={{.}}>{{.}}</option>
++                            {{/lines}}
++                            
+                         </select>
+                     </div>
+                 </div>
+@@ -44,7 +44,7 @@
+                 <div class="d-flex flex-wrap justify-content-center gap-3 mb-4">
+                     <div class="form-group col-10">
+                         <label class="form-label" for="date">Introduzca la fecha de inicio de la alerta:</label>
+-                        <input type="date" class="form-control" id="date" required>
++                        <input type="date" class="form-control" id="startDate" name="startDate" required>
+                     </div>
+                 </div>
+             </div>
+@@ -53,8 +53,7 @@
+                 <div class="d-flex flex-wrap justify-content-center gap-3 mb-4">
+                     <div class="form-group col-10">
+                         <label class="form-label" for="date">Introduzca la fecha de final de la alerta:</label>
+-                        <input type="date" class="form-control" id="date" required>
+-
++                        <input type="date" class="form-control" id="endDate" name="endDate" required>
+                     </div>
+                 </div>
+             </div>
+@@ -84,74 +83,31 @@
+                     <div class="form-group col-auto">
+                         <div class="range-price">
+                             <label for="min">Inicio</label>
+-                            <input type="time" id="min-input" name="min" value="08:00">
++                            <input type="time" id="input-min" name="min" value="08:00">
+                             <label for="max">Fin</label>
+-                            <input type="time" id="max-input" name="max" value="09:00">
++                            <input type="time" id="input-max" name="max" value="09:00">
+                         </div>
+                     </div>
+                 </div>
+             </div>
+-
+-
+-
+-            </div>
+-
+-
+-
+-
+-
+-            </div>
+ 
+-
+-
+-
+             <!--Button row-->
+             <div class="row">
+                 <div class="d-flex justify-content-center gap-3 mb-4">
+                     <div class="col-auto">
+-                        <button type="submit" class="btn btn-primary">Confirmar</button>
++                        <button type="submit" value="Send" class="btn btn-primary">Confirmar</button>
+                     </div>
+                 </div>
+             </div>
+-
+-            </div>
+-
+-
+-            </div>
+-
+-
+-
+-
+-
+         </form>
+-
+-
+     </main>
+ 
+     <!-- Footer -->
+     <div id="_footer"></div>
+ </body>
++{{/ Layout }}
+ 
+-<script src="../js/slider.js"></script>
+-<script>
+-    // Cargamos el contenido de _header.html
+-    fetch('./partials/_header.html')
+-        .then(response => response.text())
+-        .then(data => {
+-            // Lo inyectamos en el div que creamos arriba
+-            document.getElementById('_header').innerHTML = data;
+-        })
+-        .catch(error => console.error('Error al cargar el header:', error));
+-</script>
+-<script>
+-    // Cargamos el contenido de _footer.html
+-    fetch('./partials/_footer.html')
+-        .then(response => response.text())
+-        .then(data => {
+-            // Lo inyectamos en el div que creamos arriba
+-            document.getElementById('_footer').innerHTML = data;
+-        })
+-        .catch(error => console.error('Error al cargar el footer:', error));
+-</script>
++<script src="/workspaces/practica-ssdd-2025-26-grupo-1/backend/src/main/resources/js/components/slider.js"></script>
++<script type="module" src="../../resources/js/pages/index.js"></script>
+ 
+ </html>
+\ No newline at end of file
+Index: backend/target/classes/templates/form-incidence.html
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><!DOCTYPE html>\r\n<html lang=\"es\">\r\n\r\n<head>\r\n    <meta charset=\"UTF-8\">\r\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\r\n    <title>Partial de bootstrap</title>\r\n    <link href=\"https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css\" rel=\"stylesheet\">\r\n    <link rel=\"stylesheet\" href=\"../static/css/style.css\">\r\n    <script src=\"https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js\"></script>\r\n</head>\r\n\r\n<body>\r\n    <!--HEADER-->\r\n    <div id=\"_header\"></div>\r\n\r\n    <main class=\"container-main\">\r\n\r\n        <form role=\"form\" action=\"admin_panel.html\" target=\"_blank\">\r\n\r\n            <!--Lines-->\r\n<div class=\"row\">\r\n                <div class=\"d-flex flex-wrap justify-content-center gap-3 mb-4\">\r\n                    <div class=\"form-group col-auto\">\r\n                        <h2>Añadir incidencia</h2>\r\n\r\n                        <label class=\"form-label\" for=\"line\">Línea(s) afectada(s):</label>\r\n                    </div>\r\n                </div>\r\n            </div>\r\n\r\n            <div class=\"row\">\r\n                <div class=\"d-flex flex-wrap justify-content-center gap-3 mb-4\">\r\n                    <div class=\"col-auto\">\r\n                            <label><input type=\"checkbox\" id=\"C-1\">C-1</label>\r\n                    </div>\r\n                    <div class=\"col-auto\">\r\n                            <label><input type=\"checkbox\" id=\"C-2\">C-2</label>\r\n                    </div>\r\n                            <div class=\"col-auto\">\r\n                            <label><input type=\"checkbox\" id=\"C-3\">C-3</label>\r\n                            </div>\r\n                            <div class=\"col-auto\">\r\n                            <label><input type=\"checkbox\" id=\"C-4\">C-4</label>\r\n                            </div>\r\n                            <div class=\"col-auto\">\r\n                            <label><input type=\"checkbox\" id=\"C-5\">C-5</label>\r\n                            </div>\r\n                            <div class=\"col-auto\">\r\n                            <label><input type=\"checkbox\" id=\"C-7\">C-7</label>\r\n                            </div>\r\n                            <div class=\"col-auto\">\r\n                            <label><input type=\"checkbox\" id=\"C-8\">C-8</label>\r\n                            </div>\r\n                            <div class=\"col-auto\">\r\n                            <label><input type=\"checkbox\" id=\"C-9\">C-9</label>\r\n                            </div>\r\n                            <div class=\"col-auto\">\r\n                            <label><input type=\"checkbox\" id=\"C-10\">C-10</label>\r\n                            </div>\r\n                            <div class=\"col-auto\">\r\n                            <label><input type=\"checkbox\" id=\"CIVIS\">CIVIS</label>\r\n                            </div>\r\n                    </div>\r\n                </div>\r\n            </div>\r\n\r\n            <!--Severity-->\r\n            <div class=\"row\">\r\n                <div class=\"d-flex flex-wrap justify-content-center gap-3 mb-4\">\r\n                    <div class=\"form-group col-auto\">\r\n\r\n                        <label class=\"form-label\" for=\"severity\">Severidad:</label>\r\n                        <select class=\"form-control\" id=\"severity\">\r\n                            <option value=\"Leve\" selected>Leve</option>\r\n                            <option value=\"Moderado\">Moderado</option>\r\n                            <option value=\"Serio\">Serio</option>\r\n                            <option value=\"Critico\">Crítico</option>\r\n                        </select>\r\n                    </div>\r\n                </div>\r\n            </div>\r\n\r\n            <!--Type-->\r\n            <div class=\"row\">\r\n                <div class=\"d-flex flex-wrap justify-content-center gap-3 mb-4\">\r\n                    <div class=\"form-group col-auto\">\r\n\r\n                        <label class=\"form-label\" for=\"type\">Tipo:</label>\r\n                        <select class=\"form-control\" id=\"type\">\r\n                            <option value=\"Mantenimiento\" selected>Mantenimiento</option>\r\n                            <option value=\"Accidente\">Accidente</option>\r\n                            <option value=\"Otro\">Otro</option>\r\n                        </select>\r\n                    </div>\r\n                </div>\r\n            </div>\r\n\r\n            <!--Description-->\r\n\r\n            <div class=\"row\">\r\n                <div class=\"d-flex flex-wrap justify-content-center gap-3 mb-4\">\r\n                    <div class=\"form-group col-10\">\r\n                        <label class=\"form-label\" for=\"descrpition\">Describa la incidencia:</label>\r\n                        <input type=\"text\" class=\"form-control\" id=\"description\" placeholder=\"Descripción\" required>\r\n                    </div>\r\n                </div>\r\n            </div>\r\n\r\n            <!--Image-->\r\n            <div class=\"row\">\r\n                <div class=\"d-flex flex-wrap justify-content-center gap-3 mb-4\">\r\n                    <div class=\"form-group col-auto\">\r\n                        <label class=\"form-label\" for=\"image\">Introduzca una fotografía de la incidencia (opcional):</label>\r\n\r\n                    </div>\r\n                </div>\r\n            </div>\r\n\r\n            <div class=\"row\">\r\n                <div class=\"d-flex flex-wrap justify-content-center gap-3 mb-4\">\r\n                    <div class=\"form-group col-auto\">\r\n                        <input type=\"file\" class=\"form-control-file\" id=\"image\">\r\n\r\n                    </div>\r\n                </div>\r\n            </div>\r\n\r\n            \r\n            <!--Button row-->\r\n            <div class=\"row\">\r\n                <div class=\"d-flex justify-content-center gap-3 mb-4\">\r\n                    <div class=\"col-auto\">\r\n                        <button type=\"submit\" class=\"btn btn-primary\">Confirmar</button>\r\n                    </div>\r\n                </div>\r\n            </div>\r\n\r\n            </div>\r\n\r\n\r\n            </div>\r\n\r\n\r\n\r\n\r\n\r\n        </form>\r\n\r\n\r\n    </main>\r\n\r\n    <!-- Footer -->\r\n    <div id=\"_footer\"></div>\r\n</body>\r\n\r\n<script src=\"../js/js_slider.js\"></script>\r\n<script>\r\n    // Cargamos el contenido de _header.html\r\n    fetch('./partials/_header.html')\r\n        .then(response => response.text())\r\n        .then(data => {\r\n            // Lo inyectamos en el div que creamos arriba\r\n            document.getElementById('_header').innerHTML = data;\r\n        })\r\n        .catch(error => console.error('Error al cargar el header:', error));\r\n</script>\r\n<script>\r\n    // Cargamos el contenido de _footer.html\r\n    fetch('./partials/_footer.html')\r\n        .then(response => response.text())\r\n        .then(data => {\r\n            // Lo inyectamos en el div que creamos arriba\r\n            document.getElementById('_footer').innerHTML = data;\r\n        })\r\n        .catch(error => console.error('Error al cargar el footer:', error));\r\n</script>\r\n\r\n</html>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/backend/target/classes/templates/form-incidence.html b/backend/target/classes/templates/form-incidence.html
+--- a/backend/target/classes/templates/form-incidence.html	(revision 0ba5ad4d2c0258ab9c667a553d209b0e65ebe091)
++++ b/backend/target/classes/templates/form-incidence.html	(date 1775718150090)
+@@ -16,10 +16,10 @@
+ 
+     <main class="container-main">
+ 
+-        <form role="form" action="admin_panel.html" target="_blank">
++        <form action="admin_panel.html" target="_blank">
+ 
+             <!--Lines-->
+-<div class="row">
++            <div class="row">
+                 <div class="d-flex flex-wrap justify-content-center gap-3 mb-4">
+                     <div class="form-group col-auto">
+                         <h2>Añadir incidencia</h2>
+@@ -135,19 +135,7 @@
+                     </div>
+                 </div>
+             </div>
+-
+-            </div>
+-
+-
+-            </div>
+-
+-
+-
+-
+-
+         </form>
+-
+-
+     </main>
+ 
+     <!-- Footer -->
+Index: backend/target/classes/templates/form-line.html
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><!DOCTYPE html>\r\n<html lang=\"es\">\r\n\r\n<head>\r\n    <meta charset=\"UTF-8\">\r\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\r\n    <title>Partial de bootstrap</title>\r\n    <link href=\"https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css\" rel=\"stylesheet\">\r\n    <link rel=\"stylesheet\" href=\"../static/css/style.css\">\r\n    <script src=\"https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js\"></script>\r\n</head>\r\n\r\n<body>\r\n    <!--HEADER-->\r\n    <div id=\"_header\"></div>\r\n\r\n    <main class=\"container-main\">\r\n\r\n        <form role=\"form\" action=\"admin_panel.html\" target=\"_blank\">\r\n\r\n            <!--Lines-->\r\n            <div class=\"row\">\r\n                <div class=\"d-flex flex-wrap justify-content-center gap-3 mb-4\">\r\n                    <h2>Añadir línea</h2>\r\n                </div>\r\n            </div>\r\n            </div>\r\n\r\n            <!--Name-->\r\n\r\n            <div class=\"row\">\r\n                <div class=\"d-flex flex-wrap justify-content-center gap-3 mb-4\">\r\n                    <div class=\"form-group col-10\">\r\n                        <label class=\"form-label\" for=\"name\">Indique el nombre de la línea:</label>\r\n                        <input type=\"text\" class=\"form-control\" id=\"name\" placeholder=\"Nombre\" required>\r\n                    </div>\r\n                </div>\r\n            </div>\r\n\r\n\r\n            <!--Location-->\r\n\r\n            <div class=\"row\">\r\n                <div class=\"d-flex flex-wrap justify-content-center gap-3 mb-4\">\r\n                    <div class=\"form-group col-10\">\r\n                        <label class=\"form-label\" for=\"location\">Indique la ubicación de la línea:</label>\r\n                        <input type=\"text\" class=\"form-control\" id=\"location\" placeholder=\"Ubicación\" required>\r\n                    </div>\r\n                </div>\r\n            </div>\r\n\r\n\r\n            <!--Button row-->\r\n            <div class=\"row\">\r\n                <div class=\"d-flex justify-content-center gap-3 mb-4\">\r\n                    <div class=\"col-auto\">\r\n                        <button type=\"submit\" class=\"btn btn-primary\">Confirmar</button>\r\n                    </div>\r\n                </div>\r\n            </div>\r\n            </div>\r\n            </div>\r\n        </form>\r\n\r\n    </main>\r\n\r\n    <!-- Footer -->\r\n    <div id=\"_footer\"></div>\r\n</body>\r\n\r\n<script src=\"../js/js_slider.js\"></script>\r\n<script>\r\n    // Cargamos el contenido de _header.html\r\n    fetch('./partials/_header.html')\r\n        .then(response => response.text())\r\n        .then(data => {\r\n            // Lo inyectamos en el div que creamos arriba\r\n            document.getElementById('_header').innerHTML = data;\r\n        })\r\n        .catch(error => console.error('Error al cargar el header:', error));\r\n</script>\r\n<script>\r\n    // Cargamos el contenido de _footer.html\r\n    fetch('./partials/_footer.html')\r\n        .then(response => response.text())\r\n        .then(data => {\r\n            // Lo inyectamos en el div que creamos arriba\r\n            document.getElementById('_footer').innerHTML = data;\r\n        })\r\n        .catch(error => console.error('Error al cargar el footer:', error));\r\n</script>\r\n\r\n</html>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/backend/target/classes/templates/form-line.html b/backend/target/classes/templates/form-line.html
+--- a/backend/target/classes/templates/form-line.html	(revision 0ba5ad4d2c0258ab9c667a553d209b0e65ebe091)
++++ b/backend/target/classes/templates/form-line.html	(date 1775718150091)
+@@ -15,8 +15,7 @@
+     <div id="_header"></div>
+ 
+     <main class="container-main">
+-
+-        <form role="form" action="admin_panel.html" target="_blank">
++        <form action="admin_panel.html" target="_blank">
+ 
+             <!--Lines-->
+             <div class="row">
+@@ -24,10 +23,8 @@
+                     <h2>Añadir línea</h2>
+                 </div>
+             </div>
+-            </div>
+ 
+             <!--Name-->
+-
+             <div class="row">
+                 <div class="d-flex flex-wrap justify-content-center gap-3 mb-4">
+                     <div class="form-group col-10">
+@@ -39,7 +36,6 @@
+ 
+ 
+             <!--Location-->
+-
+             <div class="row">
+                 <div class="d-flex flex-wrap justify-content-center gap-3 mb-4">
+                     <div class="form-group col-10">
+@@ -58,10 +54,7 @@
+                     </div>
+                 </div>
+             </div>
+-            </div>
+-            </div>
+         </form>
+-
+     </main>
+ 
+     <!-- Footer -->
+Index: backend/target/classes/templates/settings.html
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><!doctype html>\r\n<html lang=\"es\">\r\n  <head>\r\n    <meta charset=\"utf-8\" />\r\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\" />\r\n    <meta name=\"author\" content=\"alexgogb\"/>\r\n    <title>Settings</title>\r\n    <link href=\"https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css\" rel=\"stylesheet\">\r\n    <script src=\"https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js\"></script>\r\n    <link rel=\"stylesheet\" href=\"../static/css/style.css\"/>\r\n  </head>\r\n\r\n  <body>\r\n    <!--HEADER-->\r\n    <div id=\"_header\"></div>\r\n\r\n    <main class=\"container-main\">\r\n      <div class=\"d-flex justify-content-center align-items-center pb-3 gap-4\">\r\n        <div class=\"col-auto\">\r\n          <img\r\n            src=\"../static/img/perfil.jpg\"\r\n            width=\"128\"\r\n            height=\"128\"\r\n            class=\"rounded-circle\"\r\n          />\r\n        </div>\r\n        <div class=\"col-auto\">\r\n          <h2 class=\"fw-bold\">ricardo_milos19</h2>\r\n          <h3>Administrador</h3>\r\n        </div>\r\n      </div>\r\n\r\n      <hr class=\"mt-3\">\r\n\r\n      <div class=\"justify-content-center px-5 pt-3\">\r\n        <h2 class=\"form-title\">Información personal</h2>\r\n        <form>\r\n            <div class=\"form-group mb-3\">\r\n                <label for=\"pwd\" class=\"form-label\">Nombre de usuario</label>\r\n                <input type=\"text\" class=\"form-control\" id=\"username\" required placeholder=\"ricardo_milos19\" readonly>\r\n            </div>\r\n\r\n            <div class=\"form-group mb-3\">\r\n                <label for=\"email\" class=\"form-label\">Correo electrónico</label>\r\n                <input type=\"email\" class=\"form-control\" id=\"email\" required placeholder=\"ricardo_milos19@trainfyre.com\" readonly>\r\n            </div>\r\n\r\n            <div class=\"form-group mb-3\">\r\n                <label for=\"pwd\" class=\"form-label\">Contraseña</label>\r\n                <input type=\"password\" class=\"form-control\" id=\"pwd\" required placeholder=\"**************\" readonly>\r\n            </div>\r\n        </form>\r\n\r\n        <h2 class=\"form-title\">Foto de perfil</h2>\r\n        <form>\r\n          <div class=\"form-group\">\r\n            <input type=\"file\" class=\"form-control-file\" id=\"profilepic\" disabled>\r\n          </div>\r\n        </form>\r\n      </div>\r\n\r\n    <div class=\"d-flex justify-content-end me-5\">\r\n        <button type=\"submit\" class=\"btn btn-primary me-1\">Editar</button>\r\n        <button type=\"submit\" class=\"btn btn-primary\">Guardar cambios</button>\r\n    </div>\r\n      \r\n    </main>\r\n\r\n    <!-- Footer -->\r\n    <div id=\"_footer\"></div>\r\n  </body>\r\n\r\n  <script type=\"module\" src=\"../../resources/js/pages/settings.js\"></script>\r\n</html>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/backend/target/classes/templates/settings.html b/backend/target/classes/templates/settings.html
+--- a/backend/target/classes/templates/settings.html	(revision 0ba5ad4d2c0258ab9c667a553d209b0e65ebe091)
++++ b/backend/target/classes/templates/settings.html	(date 1775718150095)
+@@ -60,7 +60,7 @@
+       </div>
+ 
+     <div class="d-flex justify-content-end me-5">
+-        <button type="submit" class="btn btn-primary me-1">Editar</button>
++        <button type="submit" id="edit-settings" class="btn btn-primary me-1">Editar</button>
+         <button type="submit" class="btn btn-primary">Guardar cambios</button>
+     </div>
+       
+@@ -71,4 +71,5 @@
+   </body>
+ 
+   <script type="module" src="../../resources/js/pages/settings.js"></script>
++  <script src="../js/components/change-settings.js"></script>
+ </html>
+\ No newline at end of file
+Index: backend/target/classes/.idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"8c589262-9696-4c45-a0f0-c5be4859ebb1\" name=\"Changes\" comment=\"comented  code erased\">\r\n      <change beforePath=\"$PROJECT_DIR$/../../../../.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/../../../../.idea/workspace.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/../java/codeurjc/ssdd/grupo1/trainfyre/security/SecurityConfiguration.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/../java/codeurjc/ssdd/grupo1/trainfyre/security/SecurityConfiguration.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/static/css/style.css\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/static/css/style.css\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/../../../target/classes/codeurjc/ssdd/grupo1/trainfyre/security/SecurityConfiguration.class\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/../../../target/classes/codeurjc/ssdd/grupo1/trainfyre/security/SecurityConfiguration.class\" afterDir=\"false\" />\r\n    </list>\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"FileTemplateManagerImpl\">\r\n    <option name=\"RECENT_TEMPLATES\">\r\n      <list>\r\n        <option value=\"JavaScript File\" />\r\n        <option value=\"HTML File\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <option name=\"RECENT_BRANCH_BY_REPOSITORY\">\r\n      <map>\r\n        <entry key=\"$PROJECT_DIR$/../../../..\" value=\"Development\" />\r\n      </map>\r\n    </option>\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$/../../../..\" />\r\n  </component>\r\n  <component name=\"GitHubPullRequestSearchHistory\">{\r\n  &quot;lastFilter&quot;: {\r\n    &quot;state&quot;: &quot;OPEN&quot;,\r\n    &quot;assignee&quot;: &quot;Escipion48&quot;\r\n  }\r\n}</component>\r\n  <component name=\"GithubPullRequestsUISettings\">{\r\n  &quot;selectedUrlAndAccountId&quot;: {\r\n    &quot;url&quot;: &quot;https://github.com/CodeURJC-SSDD-2025-26/practica-ssdd-2025-26-grupo-1.git&quot;,\r\n    &quot;accountId&quot;: &quot;726af0a7-ea0f-4212-b207-a20e4c89639b&quot;\r\n  }\r\n}</component>\r\n  <component name=\"ProblemsViewState\">\r\n    <option name=\"selectedTabId\" value=\"CurrentFile\" />\r\n  </component>\r\n  <component name=\"ProjectColorInfo\">{\r\n  &quot;associatedIndex&quot;: 5\r\n}</component>\r\n  <component name=\"ProjectId\" id=\"39WPuSyELlQiyCgvgXToXm7O9As\" />\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\">{\r\n  &quot;keyToString&quot;: {\r\n    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,\r\n    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,\r\n    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,\r\n    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,\r\n    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,\r\n    &quot;SONARLINT_PRECOMMIT_ANALYSIS&quot;: &quot;true&quot;,\r\n    &quot;git-widget-placeholder&quot;: &quot;Development&quot;,\r\n    &quot;javascript.preferred.runtime.type.id&quot;: &quot;node&quot;,\r\n    &quot;last_opened_file_path&quot;: &quot;C:/Trabajos/2026/Distribuidos/Practica1/backend/src/main/resources&quot;,\r\n    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,\r\n    &quot;settings.editor.selected.configurable&quot;: &quot;settings.qodana&quot;,\r\n    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;\r\n  }\r\n}</component>\r\n  <component name=\"RecentsManager\">\r\n    <key name=\"CopyFile.RECENT_KEYS\">\r\n      <recent name=\"C:\\Trabajos\\2026\\Distribuidos\\Practica1\\TrainFyre\\src\\main\\resources\\templates\" />\r\n      <recent name=\"C:\\Trabajos\\2026\\Distribuidos\\Practica1\\TrainFyre\\src\\main\\resources\\static\\css\" />\r\n      <recent name=\"C:\\Trabajos\\2026\\Distribuidos\\Practica1\\TrainFyre\\src\\main\\resources\\templates\\partials\" />\r\n    </key>\r\n    <key name=\"MoveFile.RECENT_KEYS\">\r\n      <recent name=\"C:\\Trabajos\\2026\\Distribuidos\\Practica1\\TrainFyre\\src\\main\\resources\\js\\components\" />\r\n      <recent name=\"C:\\Trabajos\\2026\\Distribuidos\\Practica1\\TrainFyre\\src\\main\\resources\\js\\utils\" />\r\n      <recent name=\"C:\\Trabajos\\2026\\Distribuidos\\Practica1\\TrainFyre\\src\\main\\resources\\templates\\partials\" />\r\n      <recent name=\"C:\\Trabajos\\2026\\Distribuidos\\Practica1\\TrainFyre\\src\\main\\resources\\templates\" />\r\n    </key>\r\n  </component>\r\n  <component name=\"SharedIndexes\">\r\n    <attachedChunks>\r\n      <set>\r\n        <option value=\"bundled-js-predefined-d6986cc7102b-9b0f141eb926-JavaScript-WS-253.29346.143\" />\r\n      </set>\r\n    </attachedChunks>\r\n  </component>\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"8c589262-9696-4c45-a0f0-c5be4859ebb1\" name=\"Changes\" comment=\"\" />\r\n      <created>1770809076805</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1770809076805</updated>\r\n      <workItem from=\"1770809077992\" duration=\"458000\" />\r\n      <workItem from=\"1770886993089\" duration=\"1818000\" />\r\n      <workItem from=\"1770890585769\" duration=\"4719000\" />\r\n      <workItem from=\"1771415935507\" duration=\"5472000\" />\r\n      <workItem from=\"1771487733966\" duration=\"6210000\" />\r\n      <workItem from=\"1771503452202\" duration=\"5073000\" />\r\n      <workItem from=\"1772021174184\" duration=\"5468000\" />\r\n      <workItem from=\"1772094200000\" duration=\"4536000\" />\r\n      <workItem from=\"1772112078403\" duration=\"1329000\" />\r\n      <workItem from=\"1772457894057\" duration=\"289000\" />\r\n      <workItem from=\"1772458222830\" duration=\"22278000\" />\r\n      <workItem from=\"1772517950974\" duration=\"11000\" />\r\n      <workItem from=\"1772611048216\" duration=\"3309000\" />\r\n      <workItem from=\"1772614754305\" duration=\"2508000\" />\r\n      <workItem from=\"1772627010325\" duration=\"494000\" />\r\n      <workItem from=\"1772913340630\" duration=\"2016000\" />\r\n      <workItem from=\"1772915412045\" duration=\"2574000\" />\r\n      <workItem from=\"1773301976871\" duration=\"2033000\" />\r\n      <workItem from=\"1773397709058\" duration=\"417000\" />\r\n      <workItem from=\"1773783284090\" duration=\"372000\" />\r\n      <workItem from=\"1773823431914\" duration=\"253000\" />\r\n      <workItem from=\"1773949405054\" duration=\"3556000\" />\r\n      <workItem from=\"1774002335111\" duration=\"7996000\" />\r\n    </task>\r\n    <task id=\"LOCAL-00001\" summary=\"Incidences page, first aproach\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1771493578159</created>\r\n      <option name=\"number\" value=\"00001\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00001\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1771493578159</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00002\" summary=\"Instagram link update in footer and incidences.html page\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1771503593234</created>\r\n      <option name=\"number\" value=\"00002\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00002\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1771503593234</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00003\" summary=\"Adition of links in headers to link the incidences and settings page\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1771505429402</created>\r\n      <option name=\"number\" value=\"00003\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00003\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1771505429402</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00004\" summary=\"Auto load of partials in order to avoid hard coding reusable code\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1771508047249</created>\r\n      <option name=\"number\" value=\"00004\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00004\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1771508047249</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00005\" summary=\"Session page and incidences page update\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1772022200594</created>\r\n      <option name=\"number\" value=\"00005\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00005\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1772022200594</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00006\" summary=\"Update on incidences.html\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1772023598491</created>\r\n      <option name=\"number\" value=\"00006\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00006\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1772023598491</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00007\" summary=\"Refactoring for better code practices apliying DRY principles. new structure for Js files and preparation for all partials to be loades via js\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1772465889680</created>\r\n      <option name=\"number\" value=\"00007\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00007\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1772465889680</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00008\" summary=\"REFACTORING incidencies.html changed to use genericPartialLoader for better code quality\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1772465968094</created>\r\n      <option name=\"number\" value=\"00008\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00008\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1772465968094</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00009\" summary=\"REFACTORING _heatmap_graph.html to new src\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1772466099296</created>\r\n      <option name=\"number\" value=\"00009\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00009\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1772466099296</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00010\" summary=\"Bad accent correction, minor change\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1772466534264</created>\r\n      <option name=\"number\" value=\"00010\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00010\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1772466534265</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00011\" summary=\"Refactoring CSS and  style update relating to _pie_graph.html\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1772467738363</created>\r\n      <option name=\"number\" value=\"00011\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00011\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1772467738363</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00012\" summary=\"Refactoring name typo\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1772469453374</created>\r\n      <option name=\"number\" value=\"00012\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00012\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1772469453374</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00013\" summary=\"Refactoring use of ; to avoid problems and more code clarity\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1772469798939</created>\r\n      <option name=\"number\" value=\"00013\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00013\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1772469798939</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00014\" summary=\"REFACTORING new js and changes for more code quality apliying DRY principles\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1772477705732</created>\r\n      <option name=\"number\" value=\"00014\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00014\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1772477705732</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00015\" summary=\"REFACTORING new js and changes for more code quality apliying DRY principles (I didn't added _interactive_map.html on the last commit)\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1772477780831</created>\r\n      <option name=\"number\" value=\"00015\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00015\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1772477780831</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00016\" summary=\"REFACTORING apliying DRY principles to admin page for better code quality and maintenability\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1772478729608</created>\r\n      <option name=\"number\" value=\"00016\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00016\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1772478729608</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00017\" summary=\"REFACTORING bettering code quality and appliying DRY principles\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1772479217267</created>\r\n      <option name=\"number\" value=\"00017\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00017\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1772479217267</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00018\" summary=\"REFACTORING bettering code quality and appliying DRY principles\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1772480062734</created>\r\n      <option name=\"number\" value=\"00018\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00018\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1772480062734</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00019\" summary=\"REFACTORING bettering code quality and appliying DRY principles\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1772480295243</created>\r\n      <option name=\"number\" value=\"00019\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00019\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1772480295243</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00020\" summary=\"REFACTORING bettering code quality and appliying DRY principles\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1772480681063</created>\r\n      <option name=\"number\" value=\"00020\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00020\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1772480681063</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00021\" summary=\"Change of name it should never be jsXXX.js\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1772916210423</created>\r\n      <option name=\"number\" value=\"00021\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00021\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1772916210423</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00022\" summary=\"comented  code erased\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1772917427467</created>\r\n      <option name=\"number\" value=\"00022\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00022\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1772917427467</updated>\r\n    </task>\r\n    <option name=\"localTasksCounter\" value=\"23\" />\r\n    <servers />\r\n  </component>\r\n  <component name=\"TypeScriptGeneratedFilesManager\">\r\n    <option name=\"version\" value=\"3\" />\r\n  </component>\r\n  <component name=\"Vcs.Log.Tabs.Properties\">\r\n    <option name=\"TAB_STATES\">\r\n      <map>\r\n        <entry key=\"MAIN\">\r\n          <value>\r\n            <State>\r\n              <option name=\"FILTERS\">\r\n                <map>\r\n                  <entry key=\"branch\">\r\n                    <value>\r\n                      <list>\r\n                        <option value=\"Development\" />\r\n                      </list>\r\n                    </value>\r\n                  </entry>\r\n                </map>\r\n              </option>\r\n            </State>\r\n          </value>\r\n        </entry>\r\n      </map>\r\n    </option>\r\n  </component>\r\n  <component name=\"VcsManagerConfiguration\">\r\n    <MESSAGE value=\"Incidences page, first aproach\" />\r\n    <MESSAGE value=\"Instagram link update in footer and incidences.html page\" />\r\n    <MESSAGE value=\"Adition of links in headers to link the incidences and settings page\" />\r\n    <MESSAGE value=\"Auto load of partials in order to avoid hard coding reusable code\" />\r\n    <MESSAGE value=\"Session page and incidences page update\" />\r\n    <MESSAGE value=\"Update on incidences.html\" />\r\n    <MESSAGE value=\"Refactoring for better code practices apliying DRY principles. new structure for Js files and preparation for all partials to be loades via js\" />\r\n    <MESSAGE value=\"REFACTORING incidencies.html changed to use genericPartialLoader for better code quality\" />\r\n    <MESSAGE value=\"REFACTORING _heatmap_graph.html to new src\" />\r\n    <MESSAGE value=\"Bad accent correction, minor change\" />\r\n    <MESSAGE value=\"Refactoring CSS and  style update relating to _pie_graph.html\" />\r\n    <MESSAGE value=\"Refactoring name typo\" />\r\n    <MESSAGE value=\"Refactoring use of ; to avoid problems and more code clarity\" />\r\n    <MESSAGE value=\"REFACTORING new js and changes for more code quality apliying DRY principles\" />\r\n    <MESSAGE value=\"REFACTORING new js and changes for more code quality apliying DRY principles (I didn't added _interactive_map.html on the last commit)\" />\r\n    <MESSAGE value=\"REFACTORING apliying DRY principles to admin page for better code quality and maintenability\" />\r\n    <MESSAGE value=\"REFACTORING bettering code quality and appliying DRY principles\" />\r\n    <MESSAGE value=\"Change of name it should never be jsXXX.js\" />\r\n    <MESSAGE value=\"comented  code erased\" />\r\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"comented  code erased\" />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/backend/target/classes/.idea/workspace.xml b/backend/target/classes/.idea/workspace.xml
+--- a/backend/target/classes/.idea/workspace.xml	(revision 0ba5ad4d2c0258ab9c667a553d209b0e65ebe091)
++++ b/backend/target/classes/.idea/workspace.xml	(date 1775629220993)
+@@ -3,10 +3,10 @@
+   <component name="ChangeListManager">
+     <list default="true" id="8c589262-9696-4c45-a0f0-c5be4859ebb1" name="Changes" comment="comented  code erased">
+       <change beforePath="$PROJECT_DIR$/../../../../.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../.idea/workspace.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/../java/codeurjc/ssdd/grupo1/trainfyre/security/SecurityConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/../java/codeurjc/ssdd/grupo1/trainfyre/security/SecurityConfiguration.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/../java/codeurjc/ssdd/grupo1/trainfyre/web/controller/Impl/AuthenticatorController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../java/codeurjc/ssdd/grupo1/trainfyre/web/controller/Impl/AuthenticatorController.java" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/static/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/css/style.css" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/../../../target/classes/codeurjc/ssdd/grupo1/trainfyre/security/SecurityConfiguration.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../../target/classes/codeurjc/ssdd/grupo1/trainfyre/security/SecurityConfiguration.class" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/templates/register.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/register.html" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/../../../target/classes/codeurjc/ssdd/grupo1/trainfyre/web/controller/Impl/AuthenticatorController.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../../target/classes/codeurjc/ssdd/grupo1/trainfyre/web/controller/Impl/AuthenticatorController.class" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+@@ -118,6 +118,7 @@
+       <workItem from="1773823431914" duration="253000" />
+       <workItem from="1773949405054" duration="3556000" />
+       <workItem from="1774002335111" duration="7996000" />
++      <workItem from="1774024481931" duration="3198000" />
+     </task>
+     <task id="LOCAL-00001" summary="Incidences page, first aproach">
+       <option name="closed" value="true" />
+Index: backend/target/classes/templates/successful_logout.html
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><!DOCTYPE html>\r\n<html lang=\"es\">\r\n<head>\r\n  <meta charset=\"UTF-8\">\r\n  <title>{{title}}</title>\r\n\r\n  <!-- Globales, siempre presentes -->\r\n  {{#globalStyles}}\r\n  <link rel=\"stylesheet\" href=\"{{.}}\">\r\n  {{/globalStyles}}\r\n  {{#globalScripts}}\r\n  <script src=\"{{.}}\"></script>\r\n  {{/globalScripts}}\r\n\r\n  <!-- Específicos de página, solo si el controller los envía -->\r\n  {{#pageStyles}}\r\n  <link rel=\"stylesheet\" href=\"/css/{{.}}\">\r\n  {{/pageStyles}}\r\n  {{#pageScripts}}\r\n  <script src=\"/js/{{.}}\" defer></script>\r\n  {{/pageScripts}}\r\n\r\n</head>\r\n\r\n{{# Layout }}\r\n<body>\r\n\r\n  {{# successful }}\r\n    <h1>Has cerrado sesión Correctamente</h1>\r\n  {{/ successful }}\r\n\r\n</body>\r\n{{/ Layout }}\r\n\r\n</html>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/backend/target/classes/templates/successful_logout.html b/backend/target/classes/templates/successful_logout.html
+--- a/backend/target/classes/templates/successful_logout.html	(revision 0ba5ad4d2c0258ab9c667a553d209b0e65ebe091)
++++ b/backend/target/classes/templates/successful_logout.html	(date 1775718150096)
+@@ -26,7 +26,7 @@
+ <body>
+ 
+   {{# successful }}
+-    <h1>Has cerrado sesión Correctamente</h1>
++    <h1>Se ha cerrado sesión correctamente</h1>
+   {{/ successful }}
+ 
+ </body>
+Index: backend/target/classes/templates/admin_panel_incidences.html
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><!doctype html>\r\n<html lang=\"es\">\r\n  <head>\r\n    <meta charset=\"utf-8\" />\r\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\" />\r\n    <meta name=\"author\" content=\"alexgogb\"/>\r\n    <title>Admin panel</title>\r\n    <link href=\"https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css\" rel=\"stylesheet\">\r\n    <script src=\"https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js\"></script>\r\n    <link rel=\"stylesheet\" href=\"../static/css/style.css\">\r\n  </head>\r\n\r\n  <body>\r\n    <!--HEADER-->\r\n    <div id=\"_header\"></div>\r\n    \r\n    <div id=\"_subheader\"></div>\r\n\r\n    <main class=\"container-main\">\r\n      <div class=\"d-flex justify-content-between mb-2 ms-1\">\r\n        <div class=\"ms-4\">\r\n          <button type=\"submit\" class=\"btn btn-primary me-2\">\r\n            <svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" fill=\"currentColor\" class=\"bi bi-caret-left-fill\" viewBox=\"0 0 16 16\">\r\n              <path d=\"m3.86 8.753 5.482 4.796c.646.566 1.658.106 1.658-.753V3.204a1 1 0 0 0-1.659-.753l-5.48 4.796a1 1 0 0 0 0 1.506z\"/>\r\n            </svg>\r\n          </button>\r\n          <button type=\"submit\" class=\"btn btn-primary me-1\">\r\n            <svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" fill=\"currentColor\" class=\"bi bi-caret-right-fill\" viewBox=\"0 0 16 16\">\r\n              <path d=\"m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z\"/>\r\n            </svg>\r\n          </button>\r\n        </div>\r\n      \r\n        <div class=\"me-4\">\r\n          <button type=\"submit\" class=\"btn btn-primary me-2\">Añadir</button>\r\n          <button type=\"submit\" class=\"btn btn-success me-1\">Hecho</button>\r\n        </div>\r\n      </div>\r\n\r\n      <div id=\"_incidence_table\"></div>\r\n\r\n    </main>\r\n\r\n    <!-- Footer -->\r\n    <div id=\"_footer\"></div>\r\n  </body>\r\n\r\n  <script type=\"module\" src=\"../../resources/js/pages/admin-panel-incidences.js\"></script>\r\n\r\n</html>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/backend/target/classes/templates/admin_panel_incidences.html b/backend/target/classes/templates/admin_panel_incidences.html
+--- a/backend/target/classes/templates/admin_panel_incidences.html	(revision 0ba5ad4d2c0258ab9c667a553d209b0e65ebe091)
++++ b/backend/target/classes/templates/admin_panel_incidences.html	(date 1775718150087)
+@@ -32,7 +32,7 @@
+         </div>
+       
+         <div class="me-4">
+-          <button type="submit" class="btn btn-primary me-2">Añadir</button>
++          <a href="form-incidence.html" class="btn btn-primary me-2">Añadir</a>
+           <button type="submit" class="btn btn-success me-1">Hecho</button>
+         </div>
+       </div>
+@@ -45,6 +45,6 @@
+     <div id="_footer"></div>
+   </body>
+ 
+-  <script type="module" src="../../resources/js/pages/admin-panel-incidences.js"></script>
++  <script type="module" src="../../resources/js/pages/admin-panel.js"></script>
+ 
+ </html>
+\ No newline at end of file
+Index: backend/target/classes/templates/admin_panel_lines.html
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><!doctype html>\r\n<html lang=\"es\">\r\n  <head>\r\n    <meta charset=\"utf-8\" />\r\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\" />\r\n    <meta name=\"author\" content=\"alexgogb\"/>\r\n    <title>Admin panel</title>\r\n    <link href=\"https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css\" rel=\"stylesheet\">\r\n    <script src=\"https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js\"></script>\r\n    <link rel=\"stylesheet\" href=\"../static/css/style.css\">\r\n  </head>\r\n\r\n  <body>\r\n    <!--HEADER-->\r\n    <div id=\"_header\"></div>\r\n    \r\n    <div id=\"_subheader\"></div>\r\n\r\n    <main class=\"container-main\">\r\n      <div class=\"d-flex justify-content-between mb-2 ms-1\">\r\n        <div class=\"ms-4\">\r\n          <button type=\"submit\" class=\"btn btn-primary me-2\">\r\n            <svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" fill=\"currentColor\" class=\"bi bi-caret-left-fill\" viewBox=\"0 0 16 16\">\r\n              <path d=\"m3.86 8.753 5.482 4.796c.646.566 1.658.106 1.658-.753V3.204a1 1 0 0 0-1.659-.753l-5.48 4.796a1 1 0 0 0 0 1.506z\"/>\r\n            </svg>\r\n          </button>\r\n          <button type=\"submit\" class=\"btn btn-primary me-1\">\r\n            <svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" fill=\"currentColor\" class=\"bi bi-caret-right-fill\" viewBox=\"0 0 16 16\">\r\n              <path d=\"m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z\"/>\r\n            </svg>\r\n          </button>\r\n        </div>\r\n      \r\n        <div class=\"me-4\">\r\n          <button type=\"submit\" class=\"btn btn-primary me-2\">Añadir</button>\r\n          <button type=\"submit\" class=\"btn btn-success me-1\">Hecho</button>\r\n        </div>\r\n      </div>\r\n\r\n      <div id=\"_line_table\"></div>\r\n\r\n    </main>\r\n\r\n    <!-- Footer -->\r\n    <div id=\"_footer\"></div>\r\n  </body>\r\n\r\n  <script type=\"module\" src=\"../../resources/js/pages/admin-panel-lines.js\"></script>\r\n\r\n</html>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/backend/target/classes/templates/admin_panel_lines.html b/backend/target/classes/templates/admin_panel_lines.html
+--- a/backend/target/classes/templates/admin_panel_lines.html	(revision 0ba5ad4d2c0258ab9c667a553d209b0e65ebe091)
++++ b/backend/target/classes/templates/admin_panel_lines.html	(date 1775718150088)
+@@ -32,7 +32,7 @@
+         </div>
+       
+         <div class="me-4">
+-          <button type="submit" class="btn btn-primary me-2">Añadir</button>
++          <a href="form-line.html" class="btn btn-primary me-2">Añadir</a>
+           <button type="submit" class="btn btn-success me-1">Hecho</button>
+         </div>
+       </div>
+@@ -45,6 +45,6 @@
+     <div id="_footer"></div>
+   </body>
+ 
+-  <script type="module" src="../../resources/js/pages/admin-panel-lines.js"></script>
++  <script type="module" src="../../resources/js/pages/admin-panel.js"></script>
+ 
+ </html>
+\ No newline at end of file
+Index: backend/target/classes/js/pages/admin-panel.js
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import {genericPartialLoader} from \"../utils/genericPartialLoader.js\";\r\n\r\ngenericPartialLoader('../../resources/templates/partials/_header.html', '_header');\r\ngenericPartialLoader('../../resources/templates/partials/_subheader.html', '_subheader');\r\ngenericPartialLoader('../../resources/templates/partials/_admin_table.html', '_admin_table');\r\ngenericPartialLoader('../../resources/templates/partials/_footer.html', '_footer');\r\n\r\n/*//We get the buttons to change tables.\r\n    let lines = document.getElementById(\"lines\");\r\n    let incidences = document.getElementById(\"incidences\");\r\n    let users = document.getElementById(\"users\");\r\n\r\ndocument.addEventListener(\"DOMContentLoaded\", () => {\r\n\r\n   /* //Now we give them the functionality.\r\n    lines.addEventListener(\"click\", () => {\r\n        genericPartialLoader('../../resources/templates/partials/_line_table.html', '_admin_table');\r\n        console.log(\"Hola\");\r\n    });\r\n\r\n    users.addEventListener(\"click\", () => {\r\n        genericPartialLoader('../../resources/templates/partials/_admin_table.html', '_admin_table');\r\n        console.log(\"Hola\");\r\n    });\r\n\r\n    incidences.addEventListener(\"click\", () => {\r\n        genericPartialLoader('../../resources/templates/partials/_admin_table.html', '_admin_table');\r\n        console.log(\"Hola\");\r\n    });\r\n\r\n});*/
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/backend/target/classes/js/pages/admin-panel.js b/backend/target/classes/js/pages/admin-panel.js
+--- a/backend/target/classes/js/pages/admin-panel.js	(revision 0ba5ad4d2c0258ab9c667a553d209b0e65ebe091)
++++ b/backend/target/classes/js/pages/admin-panel.js	(date 1775718150086)
+@@ -3,6 +3,8 @@
+ genericPartialLoader('../../resources/templates/partials/_header.html', '_header');
+ genericPartialLoader('../../resources/templates/partials/_subheader.html', '_subheader');
+ genericPartialLoader('../../resources/templates/partials/_admin_table.html', '_admin_table');
++genericPartialLoader('../../resources/templates/partials/_line_table.html', '_line_table');
++genericPartialLoader('../../resources/templates/partials/_incidence_table.html', '_incidence_table');
+ genericPartialLoader('../../resources/templates/partials/_footer.html', '_footer');
+ 
+ /*//We get the buttons to change tables.

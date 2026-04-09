@@ -1,0 +1,130 @@
+<changelist name="Uncommitted_changes_before_Update_at_09_04_2026_10_15_[Changes]" date="1775722533137" recycled="true" deleted="true">
+  <option name="PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_09_04_2026_10_15_[Changes]/shelved.patch" />
+  <option name="DESCRIPTION" value="Uncommitted changes before Update at 09/04/2026 10:15 [Changes]" />
+  <binary>
+    <option name="BEFORE_PATH" value="backend/target/classes/codeurjc/ssdd/grupo1/trainfyre/config/GlobalModelAttributesAdvice.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="backend/target/classes/codeurjc/ssdd/grupo1/trainfyre/mapper/Impl/StationToDto.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="backend/target/classes/codeurjc/ssdd/grupo1/trainfyre/web/controller/Impl/StationController.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="backend/target/classes/codeurjc/ssdd/grupo1/trainfyre/dto/INCIDENCE_LEVEL.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="backend/target/classes/codeurjc/ssdd/grupo1/trainfyre/service/Impl/AuthenticatorUserService.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="backend/target/classes/codeurjc/ssdd/grupo1/trainfyre/data/model/Line.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="backend/target/classes/codeurjc/ssdd/grupo1/trainfyre/mapper/Impl/UserDtoToUser.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="backend/target/classes/.idea/shelf/Uncommitted_changes_before_Update_at_19_02_2026_10_11_[Changes]/perfil.jpg" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="backend/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="backend/target/classes/codeurjc/ssdd/grupo1/trainfyre/service/Impl/StationServiceImpl.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="backend/target/classes/codeurjc/ssdd/grupo1/trainfyre/dto/UserDTO.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="backend/target/classes/codeurjc/ssdd/grupo1/trainfyre/data/model/Station.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="backend/target/classes/codeurjc/ssdd/grupo1/trainfyre/mapper/Impl/StationDtoToStation.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="backend/target/classes/codeurjc/ssdd/grupo1/trainfyre/mapper/StationRestMapperImpl.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="backend/target/classes/codeurjc/ssdd/grupo1/trainfyre/config/GlobalModelAttributesAdvice$Layout.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="backend/target/classes/codeurjc/ssdd/grupo1/trainfyre/data/model/Incidence.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="backend/target/classes/codeurjc/ssdd/grupo1/trainfyre/TrainFyreApplication.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="backend/target/classes/codeurjc/ssdd/grupo1/trainfyre/data/repository/StationRepository.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="backend/target/classes/static/img/Zelda_vias_ocupadas.webp" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="backend/target/classes/static/img/perfil.jpg" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="backend/target/test-classes/codeurjc/ssdd/grupo1/trainfyre/TrainFyreApplicationTests.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="backend/target/classes/codeurjc/ssdd/grupo1/trainfyre/mapper/Mapper.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="backend/target/classes/codeurjc/ssdd/grupo1/trainfyre/service/StationService.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="backend/target/classes/templates/partials/.gitkeep" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="backend/target/classes/codeurjc/ssdd/grupo1/trainfyre/mapper/StationRestMapper.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="backend/target/classes/codeurjc/ssdd/grupo1/trainfyre/mapper/UserMapper.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="backend/target/classes/codeurjc/ssdd/grupo1/trainfyre/dto/INCIDENCE_STATUS.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="backend/target/classes/codeurjc/ssdd/grupo1/trainfyre/data/model/Alert.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="backend/target/classes/codeurjc/ssdd/grupo1/trainfyre/dto/UserRegistrationtDTO.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="backend/target/classes/codeurjc/ssdd/grupo1/trainfyre/security/SecurityConfiguration.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="backend/target/classes/codeurjc/ssdd/grupo1/trainfyre/dto/Role.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="backend/target/classes/codeurjc/ssdd/grupo1/trainfyre/dto/StationDTO.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="backend/target/classes/codeurjc/ssdd/grupo1/trainfyre/mapper/UserMapperImpl.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="backend/target/classes/codeurjc/ssdd/grupo1/trainfyre/mapper/Impl/UserToDto.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="backend/target/classes/keystore.jks" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="backend/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="backend/target/classes/static/img/logo.jpg" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="backend/target/classes/codeurjc/ssdd/grupo1/trainfyre/data/repository/UserRepository.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="backend/target/classes/codeurjc/ssdd/grupo1/trainfyre/config/DatabaseUsersLoader.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="backend/target/classes/codeurjc/ssdd/grupo1/trainfyre/config/H2ConsoleConfiguration.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="backend/target/classes/.idea/shelf/Uncommitted_changes_before_Update_at_19_02_2026_10_11_[Changes]/logo.jpg" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="backend/target/classes/codeurjc/ssdd/grupo1/trainfyre/data/model/AppUser.class" />
+  </binary>
+</changelist>

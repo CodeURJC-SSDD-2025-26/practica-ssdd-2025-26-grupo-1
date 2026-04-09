@@ -11,15 +11,28 @@ import java.io.IOException;
 public class DefaultImageLoader {
 
     @Getter(lazy = true)
-    private final byte[] defaultImage = loadDefaultImage();
+    private final byte[] defaultProfileImage = loadDefaultProfileImage();
 
-    private byte[] loadDefaultImage() {
+    protected static final byte[] defaultLogoImage = loadDefaultLogoImage();
+
+    private byte[] loadDefaultProfileImage() {
         try {
             return new ClassPathResource("static/img/user.png")
                     .getInputStream()
                     .readAllBytes();
         } catch (IOException e) {
-            log.error("Error cargando la imagen por defecto: {}", e.getMessage());
+            log.error("Error cargando la imagen de perfil por defecto: {}", e.getMessage());
+            return new byte[0];
+        }
+    }
+
+    private byte[] loadDefaultLogoImage() {
+        try {
+            return new ClassPathResource("static/img/logo.jpg")
+                    .getInputStream()
+                    .readAllBytes();
+        } catch (IOException e) {
+            log.error("Error cargando el logo de la web: {}", e.getMessage());
             return new byte[0];
         }
     }
