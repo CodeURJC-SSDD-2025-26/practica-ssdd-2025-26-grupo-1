@@ -13,9 +13,10 @@ public class DefaultImageLoader {
     @Getter(lazy = true)
     private final byte[] defaultProfileImage = loadDefaultProfileImage();
 
-    protected static final byte[] defaultLogoImage = loadDefaultLogoImage();
+    @Getter(lazy = true)
+    private final byte[] defaultIncidenceImage = loadDefaultIncidenceImage();
 
-    protected static final byte[] defaultIncidenceImage = loadDefaultIncidenceImage();
+    protected static final byte[] defaultLogoImage = loadDefaultLogoImage();
 
     private byte[] loadDefaultProfileImage() {
         try {
