@@ -22,12 +22,14 @@ public class DatabaseUsersLoader {
         user.setUsername("user");
         user.setPassword(passwordEncoder.encode("password"));
         user.setRole(Role.REGISTERED);
+        user.setEmail("user@email.com");
         userRepository.save(user);
 
         AppUser admin = new AppUser();
         admin.setUsername("admin");
         admin.setPassword(passwordEncoder.encode("admin"));
         admin.setRole(Role.ADMIN);
+        admin.setEmail("admin@email.com");
         userRepository.save(admin);
     }
 }

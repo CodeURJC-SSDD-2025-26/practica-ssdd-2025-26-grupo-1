@@ -52,4 +52,14 @@ public class UserController {
         userService.createUser(userRegistrationtDTO);
         return "index";
     }
+
+    @GetMapping(value = "/registered/settings")
+    public String showSettings(Model model) {
+
+        log.info("Loading settings");
+
+        model.addAttribute("title", "Settings");
+
+        return "settings";
+    }
 }

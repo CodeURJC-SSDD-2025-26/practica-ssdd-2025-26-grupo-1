@@ -4,8 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ecee7179-4a27-4384-862b-e46e80d30acb" name="Changes" comment="Small refactoring of naming for userregistrations method&#10;now it is createUser">
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/codeurjc/ssdd/grupo1/trainfyre/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/codeurjc/ssdd/grupo1/trainfyre/service/UserService.java" afterDir="false" />
+    <list default="true" id="ecee7179-4a27-4384-862b-e46e80d30acb" name="Changes" comment="findAllUsers impemented in it's service">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/codeurjc/ssdd/grupo1/trainfyre/config/DatabaseUsersLoader.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/codeurjc/ssdd/grupo1/trainfyre/config/DatabaseUsersLoader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/codeurjc/ssdd/grupo1/trainfyre/web/controller/Impl/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/codeurjc/ssdd/grupo1/trainfyre/web/controller/Impl/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/resources/templates/settings.html" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/resources/templates/settings.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -194,7 +197,7 @@
       <workItem from="1774023213379" duration="7000" />
       <workItem from="1774024234352" duration="6891000" />
       <workItem from="1775718135563" duration="5983000" />
-      <workItem from="1775725353740" duration="745000" />
+      <workItem from="1775725353740" duration="3441000" />
     </task>
     <task id="LOCAL-00001" summary="Stablishment of a common CSS for the whole team to use, it may change in the future">
       <option name="closed" value="true" />
@@ -412,7 +415,23 @@
       <option name="project" value="LOCAL" />
       <updated>1775725838795</updated>
     </task>
-    <option name="localTasksCounter" value="28" />
+    <task id="LOCAL-00028" summary="Minimal service user interface to create a crud of UserService">
+      <option name="closed" value="true" />
+      <created>1775726633210</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1775726633210</updated>
+    </task>
+    <task id="LOCAL-00029" summary="findAllUsers impemented in it's service">
+      <option name="closed" value="true" />
+      <created>1775727297208</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1775727297208</updated>
+    </task>
+    <option name="localTasksCounter" value="30" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -430,7 +449,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Stablishment of a common CSS for the whole team to use, it may change in the future" />
     <MESSAGE value="Web partials, footer, pie-graph and bar-graph." />
     <MESSAGE value="Reorder and preparation for the stablishment of the backend structure" />
     <MESSAGE value="Stablishment of project structure and preparation for development as well as @entitys awaiting for team aprovale." />
@@ -454,7 +472,9 @@
     <MESSAGE value="Now user profile image load is aveliable, however it will change soon due to better implementations posible (will do for now)" />
     <MESSAGE value="Logo now loads from server as controller advice" />
     <MESSAGE value="Small refactoring of naming for userregistrations method&#10;now it is createUser" />
-    <option name="LAST_COMMIT_MESSAGE" value="Small refactoring of naming for userregistrations method&#10;now it is createUser" />
+    <MESSAGE value="Minimal service user interface to create a crud of UserService" />
+    <MESSAGE value="findAllUsers impemented in it's service" />
+    <option name="LAST_COMMIT_MESSAGE" value="findAllUsers impemented in it's service" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
