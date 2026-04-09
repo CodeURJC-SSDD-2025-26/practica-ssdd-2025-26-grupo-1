@@ -41,6 +41,7 @@ public class SecurityConfiguration {
                         .defaultSuccessUrl("/stations")
                         .permitAll()
                 )
+                .logout(logout -> logout.logoutUrl("/logout"))
                 .httpBasic(Customizer.withDefaults())
 
                 .csrf( csrf -> csrf.disable());

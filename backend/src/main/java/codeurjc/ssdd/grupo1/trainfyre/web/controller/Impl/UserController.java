@@ -34,6 +34,19 @@ public class UserController {
         return "login";
     }
 
+    @GetMapping(value = "/logout")
+    public String logout(@RequestParam(value = "error", required = false) String error, Model model) {
+        log.info("logout");
+
+        if (error != null) {
+            model.addAttribute("error", "Se ha producido un error al intentar logout");
+        }
+
+        model.addAttribute("title", "Logout");
+
+        return "successful_logout";
+    }
+
     @GetMapping(value = "/register")
     public String showRegistrationForm(Model model) {
 

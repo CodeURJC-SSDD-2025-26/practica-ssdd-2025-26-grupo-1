@@ -25,9 +25,13 @@
 {{# Layout }}
 <body>
 
-  {{# successful }}
+  {{^ error }}
     <h1>Se ha cerrado sesión correctamente</h1>
   {{/ successful }}
+
+  {{# error }}
+    <h1>{{error}}</h1>
+  {{/ error }}
 
 </body>
 {{/ Layout }}
