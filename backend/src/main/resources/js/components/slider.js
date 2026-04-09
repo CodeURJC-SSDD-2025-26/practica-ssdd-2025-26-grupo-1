@@ -1,5 +1,3 @@
-
-
 document.addEventListener("DOMContentLoaded", function () {
      function update_min_input() { //It makes input-min match the time set in slider-min.
 
@@ -87,7 +85,3 @@ document.addEventListener("DOMContentLoaded", function () {
     input_max.addEventListener("input", update_max_slider);
 
 })
-
-
-
-
