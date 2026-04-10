@@ -4,7 +4,10 @@ on:
   push:
     branches:
       - Development
+    path-ignore:
+      - 'README.md'
   workflow_dispatch:
+
 
 jobs:
   smoke-test:
