@@ -13,47 +13,53 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-        working-directory: ./backend
 
-      - name: Set up JDK 17
+      - name: Set up JDK 21
         uses: actions/setup-java@v4
         with:
-          java-version: '17'
+          java-version: '21'
           distribution: 'temurin'
           cache: 'maven'
 
       - name: Build with Maven
         run: mvn clean package -DskipTests
+        working-directory: backend
         
-
       - name: Run Spring Boot App in Background
+        working-directory: backend
         run: |
-          # The jar is in the root target folder
-          java -jar target/*.jar > app.log 2>&1 & 
+          java -jar target/*.jar > app.log 2>&1 &
           echo "APP_PID=$!" >> $GITHUB_ENV
 
-      - name: Wait for Health Check
+      - name: Wait for App Readiness
         run: |
-          echo "Waiting for application to start..."
-          # Actuator health check on port 8080
-          timeout 60s bash -c '
-            until curl -s localhost:8080/actuator/health | grep "UP"; do
-              echo "Waiting..."
+          echo "Waiting for application to start on https://localhost:8443/login ..."
+          timeout 90s bash -c '
+            while true; do
+              code=$(curl -sk -o /dev/null -w "%{http_code}" https://localhost:8443/login 2>/dev/null)
+              echo "Current response code: $code"
+              if [ "$code" = "200" ] || [ "$code" = "302" ]; then
+                echo "Success: Application is UP!"
+                exit 0
+              fi
               sleep 5
             done
-          '
-          echo "Success: Application is UP!"
+          ' || {
+            echo "Application failed to start within timeout"
+            cat backend/app.log
+            exit 1
+          }
 
       - name: Upload Logs on Failure
         if: failure()
         uses: actions/upload-artifact@v4
         with:
           name: app-logs
-          path: app.log
+          path: backend/app.log
 
       - name: Shutdown App
         if: always()
         run: |
           if [ -n "$APP_PID" ]; then
-            kill $APP_PID
+            kill "$APP_PID" || true
           fi
