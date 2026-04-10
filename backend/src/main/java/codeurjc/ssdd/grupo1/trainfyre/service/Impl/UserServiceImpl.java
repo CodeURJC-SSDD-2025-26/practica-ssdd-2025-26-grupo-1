@@ -24,6 +24,7 @@ public class UserServiceImpl implements UserService{
     private UserRepository repository;
     private UserMapper userMapper;
     private PasswordEncoder passwordEncoder;
+    private AuthenticatorUserService authenticatorUserService;
 
     @Transactional
     public UserInfoDTO createUser(UserRegistrationtDTO userRegistrationtDTO) {
@@ -62,7 +63,7 @@ public class UserServiceImpl implements UserService{
 
     @Override
     @Transactional
-    public UserInfoDTO updateUser(UserDetails currentUser, UserRegistrationtDTO newUserData) {
+    public UserDetails updateUser(UserDetails currentUser, UserRegistrationtDTO newUserData) {
 
         AppUser appUser = repository.findByUsername(currentUser.getUsername())
                 .orElseThrow(() -> new UsernameNotFoundException(
@@ -85,8 +86,8 @@ public class UserServiceImpl implements UserService{
             appUser.setImage(newUserData.image());
         }
 
-        AppUser updatedUser = repository.save(appUser);
-        return userMapper.userToUserInfoDTO(updatedUser);
+        repository.save(appUser);
+        return authenticatorUserService.loadUserByUsername(appUser.getUsername());
     }
 
     @Override

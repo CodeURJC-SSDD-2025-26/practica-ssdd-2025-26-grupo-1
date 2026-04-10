@@ -17,7 +17,7 @@ public interface UserService {
     List<UserInfoDTO> findAllUsers();
 
     //UPDATE
-    UserInfoDTO updateUser(UserDetails currentUser, UserRegistrationtDTO newUserData);
+    UserDetails updateUser(UserDetails currentUser, UserRegistrationtDTO newUserData);
 
     //DELETE
     void deleteUser(UserDetails userDetails);

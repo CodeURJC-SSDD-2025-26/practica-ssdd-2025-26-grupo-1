@@ -1,11 +1,17 @@
 package codeurjc.ssdd.grupo1.trainfyre.web.controller.Impl;
 
+import codeurjc.ssdd.grupo1.trainfyre.dto.UserInfoDTO;
 import codeurjc.ssdd.grupo1.trainfyre.dto.UserRegistrationtDTO;
 import codeurjc.ssdd.grupo1.trainfyre.service.UserService;
+import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.context.SecurityContext;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.web.context.HttpSessionSecurityContextRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.annotation.Validated;
@@ -85,15 +91,29 @@ public class UserController {
     }
 
     @PostMapping(value = "/registered/settings")
-    public String updateSettings(@ModelAttribute("User") UserRegistrationtDTO newUserData, @AuthenticationPrincipal UserDetails currentUser, Model model){
+    public String updateSettings(@ModelAttribute("User") UserRegistrationtDTO newUserData, @AuthenticationPrincipal UserDetails currentUser, HttpServletRequest request, Model model){
 
-        log.info("Updating settings");
+        log.info("Updating account {} to {}", currentUser, newUserData);
 
         model.addAttribute("title", "Settings");
         model.addAttribute("pageScriptsBottom", List.of("components/change-settings.js"));
 
-        userService.updateUser(currentUser, newUserData);
+        UserDetails updatedUser = userService.updateUser(currentUser, newUserData);
 
+        SecurityContext newContext = SecurityContextHolder.createEmptyContext();
+        newContext.setAuthentication(new UsernamePasswordAuthenticationToken(
+                updatedUser,
+                updatedUser.getPassword(),
+                updatedUser.getAuthorities()
+        ));
+
+        SecurityContextHolder.setContext(newContext);
+        request.getSession(true).setAttribute(
+                HttpSessionSecurityContextRepository.SPRING_SECURITY_CONTEXT_KEY,
+                newContext
+        );
+
+        model.addAttribute("username", updatedUser.getUsername());
         return "settings";
     }
 
