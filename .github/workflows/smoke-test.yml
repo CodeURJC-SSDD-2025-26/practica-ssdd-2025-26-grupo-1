@@ -22,6 +22,7 @@ jobs:
 
       - name: Build with Maven
         run: ./mvnw clean package -DskipTests
+        working-directory: backend
 
       - name: Run Spring Boot App in Background
         run: |
