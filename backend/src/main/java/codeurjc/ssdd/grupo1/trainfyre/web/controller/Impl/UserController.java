@@ -21,7 +21,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.Arrays;
+import java.util.Base64;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @Validated
@@ -45,20 +47,6 @@ public class UserController {
         return "login";
     }
 
-    /*
-    No soy capaz de tener una pagina para el logout, mas tarde la implementaré
-    @GetMapping(value = "/logout")
-    public String logout(@RequestParam(value = "error", required = false) String error, Model model) {
-        log.info("logout");
-
-        if (error != null) {
-            model.addAttribute("error", "Se ha producido un error al intentar logout");
-        }
-
-        model.addAttribute("title", "Logout");
-
-        return "successful_logout";
-    }*/
 
     @GetMapping(value = "/register")
     public String showRegistrationForm(Model model) {
@@ -122,7 +110,16 @@ public class UserController {
         log.info("Loading admin panel");
 
         model.addAttribute("title", "Admin Panel");
-        model.addAttribute("users", userService.findAllUsers());
+
+        List<Map<String, Object>> users = userService.findAllUsers().stream()
+                .map(user -> Map.of(
+                        "user", user,
+                        "image", user.image() != null
+                                ? "data:image/png;base64," +Base64.getEncoder().encodeToString(user.image())
+                                : ""
+                ))
+                .toList();
+        model.addAttribute("users", users);
 
         return "admin_panel";
     }
