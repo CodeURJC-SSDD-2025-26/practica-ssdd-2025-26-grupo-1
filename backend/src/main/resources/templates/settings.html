@@ -25,6 +25,20 @@
   <body>
 
     <main class="container-main">
+        <div class="d-flex justify-content-center align-items-center pb-3 gap-4">
+            <div class="col-auto">
+                <img
+                        src="{{profile_picture}}"
+                        width="128"
+                        height="128"
+                        class="rounded-circle"
+                />
+            </div>
+            <div class="col-auto">
+                <h2 class="fw-bold">{{username}}</h2>
+                <h3>{{role}}</h3>
+            </div>
+        </div>
         <form id="settings-form" action="/registered/settings" method="POST">
             <div class="justify-content-center px-5 pt-3">
                 <h2 class="form-title">Información personal</h2>
