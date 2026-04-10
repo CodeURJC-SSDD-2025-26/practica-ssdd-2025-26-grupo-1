@@ -3,7 +3,7 @@ name: Spring Boot Smoke Test
 on:
   push:
     branches:
-      - development
+      - Development
   workflow_dispatch:
 
 jobs:
