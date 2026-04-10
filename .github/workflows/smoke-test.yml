@@ -1,8 +1,9 @@
-name: Spring Boot Smoke Test (Dev Branch)
+name: Spring Boot Smoke Test
 
 on:
   push:
-    branches: [Development]
+    branches:
+      - development
   workflow_dispatch:
 
 jobs:
@@ -21,18 +22,20 @@ jobs:
           cache: 'maven'
 
       - name: Build with Maven
-        run: ./mvnw clean package -DskipTests
-        working-directory: ./backend
+        run: |
+          chmod +x mvnw
+          ./mvnw clean package -DskipTests
 
       - name: Run Spring Boot App in Background
         run: |
-          # Start the app and redirect logs to a file for debugging if it fails
+          # The jar is in the root target folder
           java -jar target/*.jar > app.log 2>&1 & 
           echo "APP_PID=$!" >> $GITHUB_ENV
 
       - name: Wait for Health Check
         run: |
-          echo "Waiting for application to start on development branch..."
+          echo "Waiting for application to start..."
+          # Actuator health check on port 8080
           timeout 60s bash -c '
             until curl -s localhost:8080/actuator/health | grep "UP"; do
               echo "Waiting..."
