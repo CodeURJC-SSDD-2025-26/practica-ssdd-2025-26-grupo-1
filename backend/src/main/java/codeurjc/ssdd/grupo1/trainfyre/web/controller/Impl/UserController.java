@@ -39,7 +39,7 @@ public class UserController {
         log.info("login");
 
         if (error != null) {
-            model.addAttribute("error", "Se ha producido un error al intentar login");
+            model.addAttribute("error", "Usuario o contraseña incorrectos. Inténtalo de nuevo.");
         }
 
         model.addAttribute("title", "Login");
