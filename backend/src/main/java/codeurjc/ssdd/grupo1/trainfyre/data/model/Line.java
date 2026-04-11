@@ -22,7 +22,7 @@ public class Line {
     @Column(nullable = false)
     private String description;
 
-    private Color color;
+    private String color;
 
     @ManyToMany
     @JoinTable(
