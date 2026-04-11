@@ -15,9 +15,9 @@
         <tbody>
         {{#users}}
         <tr>
-          <td class="td_center">{{username}}</td>
-          <td class="td_center">{{email}}</td>
-          <td class="td_center">{{role}}</td>
+          <td class="td_center">{{user.username}}</td>
+          <td class="td_center">{{user.email}}</td>
+          <td class="td_center">{{user.role}}</td>
           <td class="td_center"><img src="{{image}}" alt="error al cargar la imagen" width="50" height="50"></td>
           <td class="td_center">
             <a href="#">
@@ -28,11 +28,17 @@
             </a>
           </td>
           <td class="td_center">
-            <a href="#">
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-ban" viewBox="0 0 16 16">
-                <path d="M15 8a6.97 6.97 0 0 0-1.71-4.584l-9.874 9.875A7 7 0 0 0 15 8M2.71 12.584l9.874-9.875a7 7 0 0 0-9.874 9.874ZM16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0"/>
-              </svg>
-            </a>
+            <form action="/admin/admin_panel/delete" method="post" style="display:inline;">
+              <input type="hidden" name="username" value="{{user.username}}">
+              <input type="hidden" name="email" value="{{user.email}}">
+              <input type="hidden" name="role" value="{{user.role}}">
+              <input type="hidden" name="image" value="{{image}}">
+              <button type="submit" class="btn btn-link p-0 border-0 bg-transparent">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-ban" viewBox="0 0 16 16">
+                  <path d="M15 8a6.97 6.97 0 0 0-1.71-4.584l-9.874 9.875A7 7 0 0 0 15 8M2.71 12.584l9.874-9.875a7 7 0 0 0-9.874 9.874ZM16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0"/>
+                </svg>
+              </button>
+            </form>
           </td>
         </tr>
         {{/users}}

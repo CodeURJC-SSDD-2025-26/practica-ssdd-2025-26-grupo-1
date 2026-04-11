@@ -20,5 +20,5 @@ public interface UserService {
     UserDetails updateUser(UserDetails currentUser, UserRegistrationtDTO newUserData);
 
     //DELETE
-    void deleteUser(UserDetails userDetails);
+    void deleteUser(UserInfoDTO userInfoDTO);
 }

@@ -123,4 +123,23 @@ public class UserController {
 
         return "admin_panel";
     }
+
+    @PostMapping(value = "/admin/admin_panel/delete")
+    public String deleteUserFromAdminPanel(@ModelAttribute("User") UserInfoDTO userInfoDTO, Model model) {
+
+        model.addAttribute("title", "Admin Panel");
+        userService.deleteUser(userInfoDTO);
+
+        List<Map<String, Object>> users = userService.findAllUsers().stream()
+                .map(user -> Map.of(
+                        "user", user,
+                        "image", user.image() != null
+                                ? "data:image/png;base64," +Base64.getEncoder().encodeToString(user.image())
+                                : ""
+                ))
+                .toList();
+        model.addAttribute("users", users);
+
+        return "admin_panel";
+    }
 }

@@ -91,7 +91,11 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public void deleteUser(UserDetails userDetails) {
-        //TODO
+    public void deleteUser(UserInfoDTO userInfoDTO) {
+
+        AppUser userToDelete = repository.findByUsername(userInfoDTO.username())
+                .orElseThrow(() -> new UsernameNotFoundException("Error, usuario no encontrado: " + userInfoDTO.username()));
+
+        repository.delete(userToDelete);
     }
 }
