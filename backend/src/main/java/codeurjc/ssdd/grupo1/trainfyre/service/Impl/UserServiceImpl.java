@@ -6,6 +6,7 @@ import codeurjc.ssdd.grupo1.trainfyre.dto.Role;
 import codeurjc.ssdd.grupo1.trainfyre.dto.UserInfoDTO;
 import codeurjc.ssdd.grupo1.trainfyre.dto.UserRegistrationtDTO;
 import codeurjc.ssdd.grupo1.trainfyre.mapper.UserMapper;
+import codeurjc.ssdd.grupo1.trainfyre.service.EmailService;
 import codeurjc.ssdd.grupo1.trainfyre.service.UserService;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
@@ -15,7 +16,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 @AllArgsConstructor
@@ -25,6 +25,7 @@ public class UserServiceImpl implements UserService{
     private UserMapper userMapper;
     private PasswordEncoder passwordEncoder;
     private AuthenticatorUserService authenticatorUserService;
+    private EmailService emailService;
 
     @Transactional
     public UserInfoDTO createUser(UserRegistrationtDTO userRegistrationtDTO) {
@@ -35,6 +36,8 @@ public class UserServiceImpl implements UserService{
         appUser.setPassword(passwordEncoder.encode(userRegistrationtDTO.password()));
         appUser.setRole(Role.REGISTERED);
         repository.save(appUser);
+
+        emailService.sendEmail(appUser.getEmail(), "Te has registrado con el usuario, "+userRegistrationtDTO.username(), "Bienvenido a TrainFyre ⚡, ahora tendrás acceso a más servicios");
 
         return repository.findByUsername(userRegistrationtDTO.username())
                 .map(userMapper::userToUserInfoDTO)
@@ -53,7 +56,6 @@ public class UserServiceImpl implements UserService{
                 .orElseThrow(() -> new UsernameNotFoundException("Error al obtener el usuario: " + userDetails.getUsername()));
     }
 
-    //todo Todavía no esta implementado, es para evitar errores de compilación
     @Override
     public List<UserInfoDTO> findAllUsers() {
         return this.repository.findAll().stream()

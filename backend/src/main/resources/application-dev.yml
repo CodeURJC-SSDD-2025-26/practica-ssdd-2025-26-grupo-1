@@ -5,3 +5,20 @@ spring:
     user:
       name: user
       password: $2a$12$GYAWShoVAmiNMBEdPh3B9./BqY4Q44gLB42jzTufZhq7i4qM94EVC
+
+---
+spring:
+  config:
+    activate:
+      on-profile: mail
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: ${MAIL_USERNAME:NO_CARGADO}
+    password: ${MAIL_PASSWORD:NO_CARGADO}
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
