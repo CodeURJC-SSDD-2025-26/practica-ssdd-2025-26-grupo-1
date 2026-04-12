@@ -4,7 +4,6 @@ package codeurjc.ssdd.grupo1.trainfyre.data.model;
 import jakarta.persistence.*;
 import lombok.Data;
 
-import java.awt.*;
 import java.util.List;
 
 @Entity
