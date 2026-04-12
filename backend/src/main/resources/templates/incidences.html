@@ -61,7 +61,15 @@
         </div>
 
         <!-- Mapa de calor -->
-        {{> /partials/_heatmap_graph}}
+        <script>
+            // @ts-nocheck
+            const heatmap_info = {{{ heatmap_json }}};
+        </script>
+        <div class="container mt-4" id = "_heatmap_graph"></div>
+        {{#heatmapScript}}
+        <script src="/js/{{.}}" defer></script>
+        {{/heatmapScript}}
+
     </main>
 
     <!-- Footer -->
@@ -69,8 +77,5 @@
 
 </body>
 {{/ Layout }}
-
-<script type="module" src="../static/js/pages/incidencies.js"></script>
-<script src="../static/js/components/heatmap.js"></script>
 
 </html>

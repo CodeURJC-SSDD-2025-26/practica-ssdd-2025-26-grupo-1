@@ -11,4 +11,5 @@ public interface IncidenceService {
     void deleteIncidence(Long id);
 
     List<IncidenceDTO> getAllIncidences();
+    String generateHeatmapJSON();
 }
