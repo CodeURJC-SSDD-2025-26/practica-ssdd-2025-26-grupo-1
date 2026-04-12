@@ -2,8 +2,8 @@ package codeurjc.ssdd.grupo1.trainfyre.data.model;
 
 
 import codeurjc.ssdd.grupo1.trainfyre.config.DefaultImageLoader;
-import codeurjc.ssdd.grupo1.trainfyre.dto.INCIDENCE_LEVEL;
-import codeurjc.ssdd.grupo1.trainfyre.dto.INCIDENCE_STATUS;
+import codeurjc.ssdd.grupo1.trainfyre.dto.IncidencesDTOs.INCIDENCE_LEVEL;
+import codeurjc.ssdd.grupo1.trainfyre.dto.IncidencesDTOs.INCIDENCE_STATUS;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;

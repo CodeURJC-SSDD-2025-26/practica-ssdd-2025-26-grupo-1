@@ -1,4 +1,4 @@
-package codeurjc.ssdd.grupo1.trainfyre.dto;
+package codeurjc.ssdd.grupo1.trainfyre.dto.IncidencesDTOs;
 
 import java.time.LocalDateTime;
 
@@ -6,7 +6,8 @@ import codeurjc.ssdd.grupo1.trainfyre.data.model.Line;
 
 import java.util.List;
 
-public record IncidenceRegistrationDTO (
+public record IncidenceDTO (
+    Long id,
     INCIDENCE_LEVEL incidenceLevel,
     INCIDENCE_TYPE incidenceType,
     String description,

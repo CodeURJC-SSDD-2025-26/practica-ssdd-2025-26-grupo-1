@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.ui.Model;
 
+import codeurjc.ssdd.grupo1.trainfyre.dto.IncidencesDTOs.IncidenceDTO;
 import codeurjc.ssdd.grupo1.trainfyre.service.IncidenceService;
-import codeurjc.ssdd.grupo1.trainfyre.dto.IncidenceDTO;
 
 import java.util.List;
 
@@ -26,7 +26,11 @@ public class IncidenceController {
         log.info("Loading incidences page");
 
         model.addAttribute("title", "Incidencias");
-        model.addAttribute("heatmapScript", List.of("components/heatmap.js"));
+        model.addAttribute("piechartScript", "components/pie-chart.js");
+        model.addAttribute("heatmapScript", "components/heatmap.js");
+
+        String piechartJson = incidenceService.generatePieChartJSON();
+        model.addAttribute("piechart_json", piechartJson);
 
         String heatmapJson = incidenceService.generateHeatmapJSON();
         model.addAttribute("heatmap_json", heatmapJson);

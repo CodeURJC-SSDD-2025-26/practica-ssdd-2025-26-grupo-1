@@ -1,8 +1,8 @@
 package codeurjc.ssdd.grupo1.trainfyre.mapper;
 
 import codeurjc.ssdd.grupo1.trainfyre.data.model.Incidence;
-import codeurjc.ssdd.grupo1.trainfyre.dto.IncidenceDTO;
-import codeurjc.ssdd.grupo1.trainfyre.dto.IncidenceRegistrationDTO;
+import codeurjc.ssdd.grupo1.trainfyre.dto.IncidencesDTOs.IncidenceDTO;
+import codeurjc.ssdd.grupo1.trainfyre.dto.IncidencesDTOs.IncidenceRegistrationDTO;
 
 import org.mapstruct.Mapper;
 

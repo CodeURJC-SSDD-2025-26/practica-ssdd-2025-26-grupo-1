@@ -1,9 +1,9 @@
 package codeurjc.ssdd.grupo1.trainfyre.service;
 
-import codeurjc.ssdd.grupo1.trainfyre.dto.IncidenceDTO;
-import codeurjc.ssdd.grupo1.trainfyre.dto.IncidenceRegistrationDTO;
-
 import java.util.List;
+
+import codeurjc.ssdd.grupo1.trainfyre.dto.IncidencesDTOs.IncidenceDTO;
+import codeurjc.ssdd.grupo1.trainfyre.dto.IncidencesDTOs.IncidenceRegistrationDTO;
 
 public interface IncidenceService {
     IncidenceDTO createIncidence(IncidenceRegistrationDTO incidenceRegistrationDTO);
@@ -11,5 +11,6 @@ public interface IncidenceService {
     void deleteIncidence(Long id);
 
     List<IncidenceDTO> getAllIncidences();
+    String generatePieChartJSON();
     String generateHeatmapJSON();
 }

@@ -3,10 +3,7 @@ package codeurjc.ssdd.grupo1.trainfyre.service.Impl;
 import codeurjc.ssdd.grupo1.trainfyre.data.model.Incidence;
 import codeurjc.ssdd.grupo1.trainfyre.data.model.Line;
 import codeurjc.ssdd.grupo1.trainfyre.data.repository.IncidenceRepository;
-import codeurjc.ssdd.grupo1.trainfyre.dto.Cell;
-import codeurjc.ssdd.grupo1.trainfyre.dto.HeatmapInfo;
-import codeurjc.ssdd.grupo1.trainfyre.dto.IncidenceDTO;
-import codeurjc.ssdd.grupo1.trainfyre.dto.IncidenceRegistrationDTO;
+import codeurjc.ssdd.grupo1.trainfyre.dto.IncidencesDTOs.*;
 import codeurjc.ssdd.grupo1.trainfyre.mapper.IncidenceMapper;
 import codeurjc.ssdd.grupo1.trainfyre.service.IncidenceService;
 import lombok.AllArgsConstructor;
@@ -63,6 +60,22 @@ public class IncidenceServiceImpl implements IncidenceService {
         return this.incidenceRepository.findAll().stream()
                 .map(this.incidenceMapper::toIncidenceDTO)
                 .toList();
+    }
+
+    public String generatePieChartJSON() {
+        // TODO: placeholder
+        List<PieChartInfo> data = List.of(
+            new PieChartInfo("Línea 1", 10),
+            new PieChartInfo("Línea 2", 10),
+            new PieChartInfo("Línea 3", 10),
+            new PieChartInfo("Línea 4", 10),
+            new PieChartInfo("Línea 5", 10),
+            new PieChartInfo("Línea 6", 10),
+            new PieChartInfo("Línea 7", 10),
+            new PieChartInfo("Línea 8", 30)
+        );
+
+        return jsonMapper.writeValueAsString(data);
     }
 
     public String generateHeatmapJSON() {

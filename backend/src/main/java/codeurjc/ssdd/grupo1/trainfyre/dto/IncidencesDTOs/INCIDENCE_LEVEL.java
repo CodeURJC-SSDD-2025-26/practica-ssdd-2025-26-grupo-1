@@ -1,12 +1,12 @@
-package codeurjc.ssdd.grupo1.trainfyre.dto;
+package codeurjc.ssdd.grupo1.trainfyre.dto.IncidencesDTOs;
 
 import jakarta.persistence.EnumeratedValue;
 import lombok.*;
 
 @Getter
 @RequiredArgsConstructor
-public enum INCIDENCE_TYPE {
-    MAINTENANCE(1), ACCIDENT(2), OTHERS(3);
+public enum INCIDENCE_LEVEL {
+    LOW(1), MEDIUM(2), HIGH(3);
 
     @EnumeratedValue
     private final int value;

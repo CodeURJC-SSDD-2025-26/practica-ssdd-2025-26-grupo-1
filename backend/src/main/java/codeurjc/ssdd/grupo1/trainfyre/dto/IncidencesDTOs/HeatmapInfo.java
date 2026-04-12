@@ -1,4 +1,4 @@
-package codeurjc.ssdd.grupo1.trainfyre.dto;
+package codeurjc.ssdd.grupo1.trainfyre.dto.IncidencesDTOs;
 
 import java.util.List;
 
