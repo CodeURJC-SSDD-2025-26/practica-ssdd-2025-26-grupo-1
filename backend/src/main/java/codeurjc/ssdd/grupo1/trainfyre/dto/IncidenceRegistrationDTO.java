@@ -8,6 +8,7 @@ import java.util.List;
 
 public record IncidenceRegistrationDTO (
     INCIDENCE_LEVEL incidenceLevel,
+    INCIDENCE_TYPE incidenceType,
     String description,
     LocalDateTime date,
     INCIDENCE_STATUS status,
