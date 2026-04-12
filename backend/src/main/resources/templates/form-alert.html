@@ -16,11 +16,12 @@
 </head>
 
 {{# Layout}}
+
 <body>
 
     <main class="container-main">
 
-        <form role="form" method="post" action="/form/added">
+        <form role="form" method="post" action="/alert/added">
 
             <div class="row">
                 <div class="d-flex flex-wrap justify-content-center gap-3 mb-4">
@@ -28,11 +29,11 @@
                         <h2>Añadir alerta</h2>
 
                         <label class="form-label" for="lines">Línea:</label>
-                        <select class="form-control" id="date" name="lines">
+                        <select class="form-control" id="date" name="line">
                             {{#lines}}
-                            <option value={{.}}>{{name}}</option>
+                            <option value={{name}}>{{name}}</option>
                             {{/lines}}
-                            
+
                         </select>
                     </div>
                 </div>
@@ -64,14 +65,14 @@
                             <span class="range-selected"></span>
                         </div>
                         <div class="range-input">
-                                <label class="form-label" for="date">Inicio:</label>
+                            <label class="form-label" for="date">Inicio:</label>
                             <input type="range" class="min form-control" id="slider-min" min="0" max="1439" value="480"
                                 step="5">
-                                <label class="form-label" for="date">Fin:</label>
+                            <label class="form-label" for="date">Fin:</label>
                             <input type="range" class="max form-control" id="slider-max" min="0" max="1439" value="540"
                                 step="5">
                         </div>
-                        
+
                     </div>
                 </div>
             </div>
@@ -103,5 +104,10 @@
 </body>
 {{/ Layout }}
 
+{{#pageScriptsBottom}}
+<script src="/js/{{.}}" defer></script>
+{{/pageScriptsBottom}}
+
 <script src="/workspaces/practica-ssdd-2025-26-grupo-1/backend/src/main/resources/js/components/slider.js"></script>
+
 </html>

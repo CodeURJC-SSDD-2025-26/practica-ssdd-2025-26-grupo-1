@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>{{title}}</title>
+
+    <!-- Globales, siempre presentes -->
+    {{#globalStyles}}
+    <link rel="stylesheet" href="{{.}}">
+    {{/globalStyles}}
+    {{#globalScripts}}
+    <script src="{{.}}"></script>
+    {{/globalScripts}}
+
+</head>
+
+{{# Layout }}
+
+<body>
+
+    <main class="container-main">
+        <!--Action status-->
+        <div class="row text-center ms-3 me-3">
+            {{^ error }}
+            <h1>Se ha añadido la alerta</h1>
+            {{/ error }}
+
+            {{# error }}
+            <h1>{{error}}</h1>
+            {{/ error }}
+        </div>
+
+        <!--Go back to alert table-->
+        <!--Button row-->
+            <div class="row">
+                <div class="d-flex justify-content-center gap-10 mb-4">
+                    <div class="col-auto">
+                        <a href="/alert/table" class="btn btn-primary">Volver a la tabla de alertas</a>
+                    </div>
+                </div>
+            </div>
+    </main>
+
+</body>
+{{/ Layout }}
+
+</html>
