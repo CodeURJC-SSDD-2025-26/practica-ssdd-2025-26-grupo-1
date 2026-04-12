@@ -23,8 +23,13 @@
 
   {{# Layout }}
   <body>
-
+      {{# reload }}
+          <div id="settings-reload" class=badge-warning>
+              {{reload}}
+          </div>
+      {{/ reload }}
     <main class="container-main">
+
         <div class="d-flex justify-content-center align-items-center pb-3 gap-4">
             <div class="col-auto">
                 <img
@@ -39,7 +44,7 @@
                 <h3>{{role}}</h3>
             </div>
         </div>
-        <form id="settings-form" action="/registered/settings" method="POST">
+        <form id="settings-form" action="/registered/settings" method="POST" enctype="multipart/form-data">
             <div class="justify-content-center px-5 pt-3">
                 <h2 class="form-title">Información personal</h2>
 
@@ -60,7 +65,7 @@
 
                 <h2 class="form-title">Foto de perfil</h2>
                 <div class="form-group">
-                    <input type="file" class="form-control-file" id="profilepic" name="photo" disabled>
+                    <input type="file" class="form-control-file" id="profilepic" name="image" accept="image/*" disabled>
                 </div>
             </div>
 

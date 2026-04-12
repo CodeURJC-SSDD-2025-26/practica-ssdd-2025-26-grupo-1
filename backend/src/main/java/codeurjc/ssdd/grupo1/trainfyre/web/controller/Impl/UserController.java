@@ -3,6 +3,7 @@ package codeurjc.ssdd.grupo1.trainfyre.web.controller.Impl;
 import codeurjc.ssdd.grupo1.trainfyre.dto.UserInfoDTO;
 import codeurjc.ssdd.grupo1.trainfyre.dto.UserRegistrationtDTO;
 import codeurjc.ssdd.grupo1.trainfyre.service.UserService;
+import jakarta.mail.Multipart;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -19,6 +20,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.Arrays;
 import java.util.Base64;
@@ -79,14 +81,14 @@ public class UserController {
     }
 
     @PostMapping(value = "/registered/settings")
-    public String updateSettings(@ModelAttribute("User") UserRegistrationtDTO newUserData, @AuthenticationPrincipal UserDetails currentUser, HttpServletRequest request, Model model){
+    public String updateSettings(@ModelAttribute("User") UserRegistrationtDTO newUserData, @RequestParam(value = "image", required = false) MultipartFile image, @AuthenticationPrincipal UserDetails currentUser, HttpServletRequest request, Model model){
 
         log.info("Updating account {} to {}", currentUser, newUserData);
 
         model.addAttribute("title", "Settings");
         model.addAttribute("pageScriptsBottom", List.of("components/change-settings.js"));
 
-        UserDetails updatedUser = userService.updateUser(currentUser, newUserData);
+        UserDetails updatedUser = userService.updateUser(currentUser, image ,newUserData);
 
         SecurityContext newContext = SecurityContextHolder.createEmptyContext();
         newContext.setAuthentication(new UsernamePasswordAuthenticationToken(
@@ -102,6 +104,8 @@ public class UserController {
         );
 
         model.addAttribute("username", updatedUser.getUsername());
+        model.addAttribute("reload", "Algunos cambios podrían tardar en visualizarse, vuelve mas tarde");
+
         return "settings";
     }
 

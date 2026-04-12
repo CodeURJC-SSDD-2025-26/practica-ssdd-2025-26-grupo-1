@@ -14,7 +14,9 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.List;
 
 @Service
@@ -65,7 +67,7 @@ public class UserServiceImpl implements UserService{
 
     @Override
     @Transactional
-    public UserDetails updateUser(UserDetails currentUser, UserRegistrationtDTO newUserData) {
+    public UserDetails updateUser(UserDetails currentUser, MultipartFile updatedImage, UserRegistrationtDTO newUserData) {
 
         AppUser appUser = repository.findByUsername(currentUser.getUsername())
                 .orElseThrow(() -> new UsernameNotFoundException(
@@ -84,8 +86,14 @@ public class UserServiceImpl implements UserService{
         if(newUserData.role() != null){
             appUser.setRole(newUserData.role());
         }
-        if(newUserData.image() != null){
-            appUser.setImage(newUserData.image());
+        if(updatedImage != null){
+            byte[] imageData;
+            try {
+                imageData = updatedImage.getBytes();
+            } catch (IOException e) {
+                throw new RuntimeException(e + "error en la lectura del archivo");
+            }
+            appUser.setImage(imageData);
         }
 
         repository.save(appUser);
