@@ -1,25 +1,36 @@
 package codeurjc.ssdd.grupo1.trainfyre.web.controller.Impl;
 
 
+import codeurjc.ssdd.grupo1.trainfyre.data.model.AppUser;
 import codeurjc.ssdd.grupo1.trainfyre.data.model.Line;
 import codeurjc.ssdd.grupo1.trainfyre.data.repository.LineRepository;
+import codeurjc.ssdd.grupo1.trainfyre.data.repository.UserRepository;
 import codeurjc.ssdd.grupo1.trainfyre.dto.AlertDTO;
 import codeurjc.ssdd.grupo1.trainfyre.dto.AlertRegistrationDTO;
+import codeurjc.ssdd.grupo1.trainfyre.dto.UserInfoDTO;
 import codeurjc.ssdd.grupo1.trainfyre.service.AlertService;
+import codeurjc.ssdd.grupo1.trainfyre.service.UserService;
 import codeurjc.ssdd.grupo1.trainfyre.service.Impl.AlertServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.LoggerFactory;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 
 
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.Arrays;
+import java.util.List;
+import java.util.Optional;
 
 import org.slf4j.Logger;
+import org.springframework.data.domain.Pageable;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
@@ -28,8 +39,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class AlertController {
 
     private final Logger logger = LoggerFactory.getLogger(AlertController.class);
-    private final AlertService alertService;
+    
     private final LineRepository lineRepository;
+    private final UserRepository userRepository;
+
+    private final AlertService alertService;
+    private final UserService userService;
 
     @GetMapping(value = "/alert/form")
     public String formAlert(Model model) {
@@ -42,6 +57,9 @@ public class AlertController {
         //I'll use an example for the lines for the time being
         //model.addAttribute("lines", Arrays.asList("C-1", "C-2", "C-3"));
 
+        //Include the slider.js
+        model.addAttribute("pageScriptsBottom", List.of("components/slider.js"));
+
 
         model.addAttribute("title", "Alert form");
 
@@ -49,13 +67,38 @@ public class AlertController {
         return "form-alert";
     }
 
-    @GetMapping(value = "/alert/added")
-    public String formAdded(Model model, @RequestParam Line line, @RequestParam LocalDate startDate, @RequestParam LocalDate endDate, @RequestParam LocalTime min, @RequestParam LocalTime max) {
+    @PostMapping(value = "/alert/added")
+    public String formAdded(Model model, @RequestParam String line, @RequestParam String startDate, @RequestParam String endDate, @RequestParam String min, @RequestParam String max, @AuthenticationPrincipal UserDetails user) {
 
-        //Poner servicio o método del repositorio de añadir alerta.
-        
-        AlertDTO alertDto = alertService.registerAlert(new AlertRegistrationDTO(line, startDate, endDate, min, max));
-        
+        //Registro la alerta.
+        /*AlertRegistrationDTO alertDto = new AlertRegistrationDTO(line, startDate, endDate, min, max);
+        alertService.registerAlert(alertDto);*/
+        String error = null;
+
+        //Get the line from the DB.
+        /*Optional<Line> lineO = lineRepository.findByName(line);
+        if (lineO.isEmpty()) {
+            error = "Línea no encontrada.";
+        } else {//Associate the alert to the user.
+            UserInfoDTO useriDto = userService.findUser(user);
+            Optional<AppUser> userO = userRepository.findByUsername(useriDto.username());
+
+            if (userO.isPresent()){
+                //Obtain the user and add the alert.
+            }
+
+        }*/
+
+        model.addAttribute("title", "Register alert");
+
         return "alert_added";
     }
+
+    /* 
+    @GetMapping(value = "/alert/table")
+    public String alertTable(Model model, @RequestParam Pageable page) {
+        
+        return "alert_table";
+    }
+    */
 }
