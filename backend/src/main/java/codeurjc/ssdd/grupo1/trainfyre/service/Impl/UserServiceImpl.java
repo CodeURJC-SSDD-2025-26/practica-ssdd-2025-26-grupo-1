@@ -101,6 +101,36 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
+    @Transactional
+    public void updateUser(String oldUserName, MultipartFile updatedImage, UserInfoDTO newUserData){
+
+        AppUser appUser = repository.findByUsername(oldUserName)
+                .orElseThrow(() -> new UsernameNotFoundException(
+                        "Usuario no encontrado: " + oldUserName));
+
+        if (newUserData.username() != null && !newUserData.username().isBlank()) {
+            appUser.setUsername(newUserData.username());
+        }
+        if (newUserData.email() != null && !newUserData.email().isBlank()) {
+            appUser.setEmail(newUserData.email());
+        }
+        if(newUserData.role() != null){
+            appUser.setRole(newUserData.role());
+        }
+        if(updatedImage != null && !updatedImage.isEmpty()){
+            byte[] imageData;
+            try {
+                imageData = updatedImage.getBytes();
+            } catch (IOException e) {
+                throw new RuntimeException(e + "error en la lectura del archivo");
+            }
+            appUser.setImage(imageData);
+        }
+
+        repository.save(appUser);
+    }
+
+    @Override
     public void deleteUser(UserInfoDTO userInfoDTO) {
 
         AppUser userToDelete = repository.findByUsername(userInfoDTO.username())

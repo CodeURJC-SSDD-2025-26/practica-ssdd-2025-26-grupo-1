@@ -20,6 +20,8 @@ public interface UserService {
     //UPDATE
     UserDetails updateUser(UserDetails currentUser, MultipartFile updatedImage, UserRegistrationtDTO newUserData);
 
+    void updateUser(String oldUserName,MultipartFile updatedImage, UserInfoDTO newUserData);
+
     //DELETE
     void deleteUser(UserInfoDTO userInfoDTO);
 }

@@ -1,5 +1,6 @@
 package codeurjc.ssdd.grupo1.trainfyre.web.controller.Impl;
 
+import codeurjc.ssdd.grupo1.trainfyre.dto.Role;
 import codeurjc.ssdd.grupo1.trainfyre.dto.UserInfoDTO;
 import codeurjc.ssdd.grupo1.trainfyre.dto.UserRegistrationtDTO;
 import codeurjc.ssdd.grupo1.trainfyre.service.UserService;
@@ -114,6 +115,7 @@ public class UserController {
         log.info("Loading admin panel");
 
         model.addAttribute("title", "Admin Panel");
+        model.addAttribute("roles", Role.values());
 
         List<Map<String, Object>> users = userService.findAllUsers().stream()
                 .map(user -> Map.of(
@@ -132,7 +134,31 @@ public class UserController {
     public String deleteUserFromAdminPanel(@ModelAttribute("User") UserInfoDTO userInfoDTO, Model model) {
 
         model.addAttribute("title", "Admin Panel");
+        model.addAttribute("roles", Role.values());
         userService.deleteUser(userInfoDTO);
+
+        List<Map<String, Object>> users = userService.findAllUsers().stream()
+                .map(user -> Map.of(
+                        "user", user,
+                        "image", user.image() != null
+                                ? "data:image/png;base64," +Base64.getEncoder().encodeToString(user.image())
+                                : ""
+                ))
+                .toList();
+        model.addAttribute("users", users);
+
+        return "admin_panel";
+    }
+
+    @PostMapping(value = "admin/admin_panel/update")
+    public String updateUser(@RequestParam(value = "oldUsername")String oldUserName, @ModelAttribute("newUser") UserInfoDTO newUserInfo, @RequestParam(value = "newImage", required = false) MultipartFile image, Model model) {
+
+        log.info("Admin Updating user {}, to {}", oldUserName, newUserInfo);
+
+        model.addAttribute("title", "Admin Panel");
+        model.addAttribute("roles", Role.values());
+
+        userService.updateUser(oldUserName, image, newUserInfo);
 
         List<Map<String, Object>> users = userService.findAllUsers().stream()
                 .map(user -> Map.of(

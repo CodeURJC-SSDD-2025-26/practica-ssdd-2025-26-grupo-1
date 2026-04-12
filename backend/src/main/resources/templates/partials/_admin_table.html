@@ -65,29 +65,51 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="editModalLabel">Modificar usuario</h5>
+        <h5 class="mb-0 text-uppercase text-center text-white" id="editModalLabel">Modificar usuario</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
       </div>
-      <form action="/admin/admin_panel/update" method="post">
-        <!-- Campo oculto para identificar al usuario original -->
-        <input type="hidden" id="originalUsername" name="originalUsername">
+      <!-- 1. enctype multipart para soportar subida de imagen -->
+      <form action="/admin/admin_panel/update" method="POST" enctype="multipart/form-data">
+        <input type="hidden" id="originalUsername" name="oldUsername">
+
         <div class="modal-body">
+
           <div class="mb-3">
             <label for="editUsername" class="form-label">Nombre de usuario</label>
             <input type="text" class="form-control" id="editUsername" name="username">
           </div>
+
           <div class="mb-3">
             <label for="editEmail" class="form-label">Correo electrónico</label>
             <input type="email" class="form-control" id="editEmail" name="email">
           </div>
+
+          <!-- 2. Selector de rol con opciones del enum -->
           <div class="mb-3">
             <label for="editRole" class="form-label">Rol</label>
-            <input type="text" class="form-control" id="editRole" name="role">
+            <select class="form-select" id="editRole" name="role">
+              {{#roles}}
+              <option value="{{name}}">{{name}}</option>
+              {{/roles}}
+            </select>
           </div>
+
+          <!-- 3. Input de tipo file para la imagen -->
           <div class="mb-3">
-            <label for="editImage" class="form-label">URL de foto de perfil</label>
-            <input type="text" class="form-control" id="editImage" name="image">
+            <label for="editImage" class="form-label">Foto de perfil</label>
+            <input type="file"
+                   class="form-control-file"
+                   id="editImage"
+                   name="newImage"
+                   accept="image/*">
+            <!-- Preview de la imagen actual -->
+            <div class="mt-2">
+              <small class="text-muted">Imagen actual:</small><br>
+              <img id="currentImagePreview" src="" alt="Imagen actual" width="60" height="60"
+                   class="mt-1 rounded" style="object-fit: cover;">
+            </div>
           </div>
+
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
@@ -101,10 +123,21 @@
 <script>
   document.getElementById('editModal').addEventListener('show.bs.modal', function (event) {
     const btn = event.relatedTarget;
+
     document.getElementById('originalUsername').value = btn.dataset.username;
-    document.getElementById('editUsername').value    = btn.dataset.username;
-    document.getElementById('editEmail').value       = btn.dataset.email;
-    document.getElementById('editRole').value        = btn.dataset.role;
-    document.getElementById('editImage').value       = btn.dataset.image;
+    document.getElementById('editUsername').value = btn.dataset.username;
+    document.getElementById('editEmail').value = btn.dataset.email;
+
+    // Seleccionar el rol actual en el <select>
+    const roleSelect = document.getElementById('editRole');
+    const currentRole = btn.dataset.role;
+    for (let option of roleSelect.options) {
+      option.selected = (option.value === currentRole);
+    }
+
+    // Mostrar preview de la imagen actual
+    const preview = document.getElementById('currentImagePreview');
+    preview.src = btn.dataset.image || '';
+    preview.style.display = btn.dataset.image ? 'inline-block' : 'none';
   });
 </script>
