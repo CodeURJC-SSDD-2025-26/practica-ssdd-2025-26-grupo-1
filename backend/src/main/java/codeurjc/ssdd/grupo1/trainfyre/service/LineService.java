@@ -6,4 +6,12 @@ import java.util.List;
 
 public interface LineService {
     List<LineDTO> getAllLines();
+
+    LineDTO getLineByName(String name);
+
+    //UPDATE
+    void updateLine(String oldName,String newName, String newDescription);
+
+    //DELETE
+    void deleteLine(String name);
 }
