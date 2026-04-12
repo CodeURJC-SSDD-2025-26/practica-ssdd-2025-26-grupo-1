@@ -1,8 +1,9 @@
 package codeurjc.ssdd.grupo1.trainfyre.web.controller.Impl;
 
-
+import codeurjc.ssdd.grupo1.trainfyre.data.model.Alert;
 import codeurjc.ssdd.grupo1.trainfyre.data.model.AppUser;
 import codeurjc.ssdd.grupo1.trainfyre.data.model.Line;
+import codeurjc.ssdd.grupo1.trainfyre.data.repository.AlertRepository;
 import codeurjc.ssdd.grupo1.trainfyre.data.repository.LineRepository;
 import codeurjc.ssdd.grupo1.trainfyre.data.repository.UserRepository;
 import codeurjc.ssdd.grupo1.trainfyre.dto.AlertDTO;
@@ -16,9 +17,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
 
-
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
@@ -38,6 +39,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 @RequiredArgsConstructor
 public class AlertController {
 
+    private final AlertRepository alertRepository;
+
     private final Logger logger = LoggerFactory.getLogger(AlertController.class);
     
     private final LineRepository lineRepository;
@@ -45,6 +48,12 @@ public class AlertController {
 
     private final AlertService alertService;
     private final UserService userService;
+
+    /*
+    AlertController(AlertRepository alertRepository) {
+        this.alertRepository = alertRepository;
+    }
+    */
 
     @GetMapping(value = "/alert/form")
     public String formAlert(Model model) {
@@ -71,34 +80,61 @@ public class AlertController {
     public String formAdded(Model model, @RequestParam String line, @RequestParam String startDate, @RequestParam String endDate, @RequestParam String min, @RequestParam String max, @AuthenticationPrincipal UserDetails user) {
 
         //Registro la alerta.
-        /*AlertRegistrationDTO alertDto = new AlertRegistrationDTO(line, startDate, endDate, min, max);
-        alertService.registerAlert(alertDto);*/
+        
         String error = null;
 
+        AppUser appUser;
+        Line linereal;
+
         //Get the line from the DB.
-        /*Optional<Line> lineO = lineRepository.findByName(line);
+        Optional<Line> lineO = lineRepository.findByName(line);
         if (lineO.isEmpty()) {
             error = "Línea no encontrada.";
-        } else {//Associate the alert to the user.
+        }else {//Associate the alert to the user.
+            linereal = lineO.get();
             UserInfoDTO useriDto = userService.findUser(user);
             Optional<AppUser> userO = userRepository.findByUsername(useriDto.username());
 
             if (userO.isPresent()){
                 //Obtain the user and add the alert.
+                appUser = userO.get();
+                AlertRegistrationDTO alertDto = new AlertRegistrationDTO(linereal, startDate, endDate, min, max, appUser);
+                alertService.registerAlert(alertDto, appUser);
+            } else {
+                error = "Usuario no encontrado.";
             }
-
-        }*/
-
-        model.addAttribute("title", "Register alert");
+        }
+        model.addAttribute("title", "Alert added");
 
         return "alert_added";
     }
 
-    /* 
+    
     @GetMapping(value = "/alert/table")
-    public String alertTable(Model model, @RequestParam Pageable page) {
-        
-        return "alert_table";
+    public String alertTable(Model model, @AuthenticationPrincipal UserDetails user) {
+        AppUser appUser;
+        Boolean thereIs = false;
+        UserInfoDTO useriDto = userService.findUser(user);
+        Optional<AppUser> userO = userRepository.findByUsername(useriDto.username());
+        List<Alert> alerts;
+
+        model.addAttribute("title", "Alert table");
+
+            if (userO.isPresent()){
+                //Obtain the user get the alerts.
+                appUser = userO.get();
+                alerts = alertRepository.findByUserOrderByLine(appUser);
+                if (!alerts.isEmpty()) {
+                    thereIs = true;
+                }
+
+                model.addAttribute("alerts", alerts);
+            } else {//User not found.
+                return "error";
+            }
+
+        model.addAttribute("thereIs", thereIs);
+        return "user_alerts";
     }
-    */
+    
 }
