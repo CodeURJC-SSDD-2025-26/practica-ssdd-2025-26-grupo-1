@@ -12,7 +12,7 @@ import java.util.Optional;
 
 @Repository
 public interface AlertRepository extends JpaRepository<Alert, Long> {
-    Optional<Alert> findByLineAndStartDateAndEndDate(Line lines, LocalDate start, LocalDate end);
+    Optional<Alert> findByLineAndStartDateAndEndDate(Line lines, String start, String end);
 
     Page<Alert> findAll(Pageable page);
 }

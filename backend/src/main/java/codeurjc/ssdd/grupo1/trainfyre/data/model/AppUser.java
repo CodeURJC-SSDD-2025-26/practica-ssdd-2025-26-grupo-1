@@ -47,7 +47,6 @@ public class AppUser {
         }
     }
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn(name = "alert_id")
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy="user")
     private List<Alert> alerts;
 }

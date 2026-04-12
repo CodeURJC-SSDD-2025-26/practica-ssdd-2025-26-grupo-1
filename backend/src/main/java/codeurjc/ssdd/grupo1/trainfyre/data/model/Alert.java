@@ -27,14 +27,18 @@ public class Alert {
     private INCIDENCE_LEVEL minimun_incidence_level;
 
     @Column(nullable = false)
-    private LocalDate startDate;
+    private String startDate;
 
     @Column(nullable = true)
-    private LocalDate endDate; //if this value is null it will be treated as there is no end date (infinite)
+    private String endDate; //if this value is null it will be treated as there is no end date (infinite)
 
     @Column(nullable = false)
-    private LocalTime startHour;
+    private String startHour;
 
     @Column(nullable = false)
-    private LocalTime endHour;
+    private String endHour;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private AppUser user;
 }
