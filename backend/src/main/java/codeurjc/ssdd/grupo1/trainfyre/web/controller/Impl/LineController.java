@@ -1,8 +1,6 @@
 package codeurjc.ssdd.grupo1.trainfyre.web.controller.Impl;
 
-
-import codeurjc.ssdd.grupo1.trainfyre.dto.LineDTO;
-import codeurjc.ssdd.grupo1.trainfyre.dto.Role;
+import codeurjc.ssdd.grupo1.trainfyre.dto.UserInfoDTO;
 import codeurjc.ssdd.grupo1.trainfyre.service.LineService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -14,6 +12,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 @Validated
@@ -39,11 +40,57 @@ public class LineController{
         log.info("Loading admin lines panel");
 
         model.addAttribute("title", "Admin Lines Panel");
-        //model.addAttribute("roles", Role.values());
 
-        //List<LineDTO> lines = lineService.getAllLines();
-        //model.addAttribute("lines", lines);
+        List<Map<String, Object>> lines = lineService.getAllLines().stream()
+            .map(line -> Map.<String, Object>of(
+                "line", line
+            ))
+                .toList();
+        model.addAttribute("lines", lines);
 
-        return "admin_panel";
+        return "admin_panel_lines";
+    }
+
+    @PostMapping(value = "/admin/admin_panel_lines/delete")
+    public String deleteUserFromAdminPanel(
+        @RequestParam String linename, 
+        Model model
+    ) {
+        model.addAttribute("title", "Admin Lines Panel");
+
+        List<Map<String, Object>> lines = lineService.getAllLines().stream()
+            .map(line -> Map.<String, Object>of(
+                "line", line
+            ))
+                .toList();
+        model.addAttribute("lines", lines);
+
+        lineService.deleteLine(linename);
+
+        return "redirect:/admin/admin_panel_lines";
+    }
+
+    @PostMapping(value = "admin/admin_panel_lines/update")
+    public String updateUser(
+        @RequestParam String oldName, 
+        @RequestParam String newName, 
+        @RequestParam String description,
+        Model model
+    ) {
+
+        log.info("Admin Updating user {}, to {}", oldName, newName);
+
+        model.addAttribute("title", "Admin Lines Panel");
+
+        List<Map<String, Object>> lines = lineService.getAllLines().stream()
+            .map(line -> Map.<String, Object>of(
+                "line", line
+            ))
+                .toList();
+        model.addAttribute("lines", lines);
+
+        lineService.updateLine(oldName, newName, description);
+
+        return "redirect:/admin/admin_panel_lines";
     }
 }
