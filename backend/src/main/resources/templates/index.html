@@ -12,20 +12,10 @@
     {{#globalScripts}}
     <script src="{{.}}"></script>
     {{/globalScripts}}
-
-    <!-- Específicos de página, solo si el controller los envía -->
-    {{#pageStyles}}
-    <link rel="stylesheet" href="/css/{{.}}">
-    {{/pageStyles}}
-    {{#pageScripts}}
-    <script src="/js/{{.}}" defer></script>
-    {{/pageScripts}}
 </head>
 
+{{#Layout}}
 <body>
-    <!--HEADER-->
-    <div id="_header"></div>
-
     <main class="container-main">
         <!--Summary-->
         <div class="row text-center ms-3 me-3">
@@ -40,8 +30,11 @@
         <div class="row mt-5 justify-content-center">
             
             <div class="col-lg-7 col-md-8 p-0"> 
-                <div id="_interactive_map"></div>
+                {{> /partials/_interactive_map}}
             </div>
+            {{#interactiveMapScript}}
+                <script src="/js/{{.}}" defer></script>
+            {{/interactiveMapScript}}
 
             <div class="col-lg-3 col-md-4 p-0">
                 <div class="ms-3"> <h2 class="h4">Últimas incidencias:</h2>
@@ -54,12 +47,7 @@
 
         </div>
     </main>
-
-
-    <!-- Footer -->
-    <div id="_footer"></div>
 </body>
-
-<script type="module" src="../static/js/pages/index.js"></script>
+{{/Layout}}
 
 </html>
