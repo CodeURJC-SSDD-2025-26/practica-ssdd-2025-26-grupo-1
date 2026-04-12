@@ -3,7 +3,7 @@
     <div class="d-flex align-items-center">
       <!-- Logo -->
       <div class="mb-md-0">
-        <a href="index.html" class="d-inline-flex link-body-emphasis text-decoration-none">
+        <a href="/index" class="d-inline-flex link-body-emphasis text-decoration-none">
           <img
             src="{{logo}}"
             width="56"
@@ -16,11 +16,13 @@
       <!-- Menú -->
       <ul class="nav me-auto mb-2 mb-md-0 ms-3">
         <li>
-          <a href="index.html" class="nav-link px-2">Inicio</a>
+          <a href="/index" class="nav-link px-2">Inicio</a>
         </li>
+        {{#username}}
         <li>
-          <a href="/incidences" class="nav-link px-2">Incidencias</a>
+          <a href="/registered/incidences" class="nav-link px-2">Incidencias</a>
         </li>
+        {{/username}}
        {{#admin}}
         <li>
           <a href="/admin/admin_panel" class="nav-link px-2">Panel de administrador</a>
