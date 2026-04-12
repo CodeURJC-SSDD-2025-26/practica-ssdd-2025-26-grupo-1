@@ -50,6 +50,14 @@ public class UserController {
         return "login";
     }
 
+    @GetMapping("/successful_logout")
+    public String logoutSuccess(Model model) {
+        log.info("Successful logout");
+
+        model.addAttribute("title", "Successful logout");
+
+        return "successful_logout";
+    }
 
     @GetMapping(value = "/register")
     public String showRegistrationForm(Model model) {

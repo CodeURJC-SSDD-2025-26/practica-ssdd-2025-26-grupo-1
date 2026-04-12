@@ -24,15 +24,17 @@
 
 {{# Layout }}
 <body>
+  <main class="container-main">
+    <div class="d-flex justify-content-center align-items-center pb-3 gap-4">
+      {{^ error }}
+      <h1>Se ha cerrado sesión correctamente</h1>
+      {{/ error }}
 
-  {{^ error }}
-    <h1>Se ha cerrado sesión correctamente</h1>
-  {{/ successful }}
-
-  {{# error }}
-    <h1>{{error}}</h1>
-  {{/ error }}
-
+      {{# error }}
+        <h1>{{error}}</h1>
+      {{/ error }}
+    </div>
+  </main>
 </body>
 {{/ Layout }}
 
