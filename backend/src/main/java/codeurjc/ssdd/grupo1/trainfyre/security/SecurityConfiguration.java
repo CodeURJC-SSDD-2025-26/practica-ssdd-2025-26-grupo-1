@@ -26,10 +26,9 @@ public class SecurityConfiguration {
         http
                 .authorizeHttpRequests(authorize -> authorize
                         .requestMatchers("/css/**", "/static/js/**", "/img/**",
-                                "/", "/h2-console/**",
-                                "/login", "/logout", "/index",
-                                "/stations", "/register", "/incidences",
-                                "/successful_logout")
+                                "/", "/logout", "/h2-console/**",
+                                "/login", "/index", "/successful_logout",
+                                "/stations", "/register", "/error")
                                 .permitAll()
                         .requestMatchers("/admin/**").hasRole(Role.ADMIN.name())
                         .requestMatchers("/registered/**").hasAnyRole(Role.ADMIN.name(), Role.REGISTERED.name())
@@ -41,7 +40,7 @@ public class SecurityConfiguration {
                         .defaultSuccessUrl("/stations")
                         .permitAll()
                 )
-                .logout(logout -> logout.logoutUrl("/logout"))
+                .logout(logout -> logout.logoutUrl("/logout").logoutSuccessUrl("/successful_logout"))
                 .httpBasic(Customizer.withDefaults())
 
                 .csrf( csrf -> csrf.disable());
