@@ -37,7 +37,7 @@ public class AlertController {
         logger.info("getAlerts");
 
         //I need the repository to get the line.
-        model.addAttribute(lineRepository.findAll());
+        model.addAttribute("lines", lineRepository.findAll());
 
         //I'll use an example for the lines for the time being
         //model.addAttribute("lines", Arrays.asList("C-1", "C-2", "C-3"));

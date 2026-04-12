@@ -9,7 +9,7 @@ public record LineDTO (
         Long id,
         String name,
         String description,
-        Color color,
+        String color,
         List<Station> stations
 ) {}
 
