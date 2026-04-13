@@ -1,9 +1,9 @@
 package codeurjc.ssdd.grupo1.trainfyre.mapper;
 
 import codeurjc.ssdd.grupo1.trainfyre.data.model.AppUser;
-import codeurjc.ssdd.grupo1.trainfyre.dto.UserDTO;
-import codeurjc.ssdd.grupo1.trainfyre.dto.UserInfoDTO;
-import codeurjc.ssdd.grupo1.trainfyre.dto.UserRegistrationtDTO;
+import codeurjc.ssdd.grupo1.trainfyre.dto.UsersDTOs.UserDTO;
+import codeurjc.ssdd.grupo1.trainfyre.dto.UsersDTOs.UserInfoDTO;
+import codeurjc.ssdd.grupo1.trainfyre.dto.UsersDTOs.UserRegistrationtDTO;
 import org.mapstruct.Mapper;
 
 @Mapper(componentModel = "spring")

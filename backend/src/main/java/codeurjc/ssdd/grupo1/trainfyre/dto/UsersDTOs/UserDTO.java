@@ -1,4 +1,6 @@
-package codeurjc.ssdd.grupo1.trainfyre.dto;
+package codeurjc.ssdd.grupo1.trainfyre.dto.UsersDTOs;
+
+import codeurjc.ssdd.grupo1.trainfyre.dto.Role;
 
 public record UserDTO(
 

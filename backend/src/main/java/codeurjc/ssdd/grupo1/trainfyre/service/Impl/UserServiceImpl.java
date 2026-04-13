@@ -3,8 +3,9 @@ package codeurjc.ssdd.grupo1.trainfyre.service.Impl;
 import codeurjc.ssdd.grupo1.trainfyre.data.model.AppUser;
 import codeurjc.ssdd.grupo1.trainfyre.data.repository.UserRepository;
 import codeurjc.ssdd.grupo1.trainfyre.dto.Role;
-import codeurjc.ssdd.grupo1.trainfyre.dto.UserInfoDTO;
-import codeurjc.ssdd.grupo1.trainfyre.dto.UserRegistrationtDTO;
+import codeurjc.ssdd.grupo1.trainfyre.dto.UsersDTOs.UserDTO;
+import codeurjc.ssdd.grupo1.trainfyre.dto.UsersDTOs.UserInfoDTO;
+import codeurjc.ssdd.grupo1.trainfyre.dto.UsersDTOs.UserRegistrationtDTO;
 import codeurjc.ssdd.grupo1.trainfyre.mapper.UserMapper;
 import codeurjc.ssdd.grupo1.trainfyre.service.EmailService;
 import codeurjc.ssdd.grupo1.trainfyre.service.UserService;
@@ -30,7 +31,7 @@ public class UserServiceImpl implements UserService{
     private EmailService emailService;
 
     @Transactional
-    public UserInfoDTO createUser(UserRegistrationtDTO userRegistrationtDTO) {
+    public void createUser(UserRegistrationtDTO userRegistrationtDTO) {
 
         AppUser appUser = new AppUser();
         appUser.setUsername(userRegistrationtDTO.username());
@@ -41,9 +42,26 @@ public class UserServiceImpl implements UserService{
 
         emailService.sendEmail(appUser.getEmail(), "Te has registrado con el usuario, "+userRegistrationtDTO.username(), "Bienvenido a TrainFyre ⚡, ahora tendrás acceso a más servicios");
 
-        return repository.findByUsername(userRegistrationtDTO.username())
+        repository.findByUsername(userRegistrationtDTO.username())
                 .map(userMapper::userToUserInfoDTO)
                 .orElseThrow(() -> new UsernameNotFoundException("Error al registrarse: " + userRegistrationtDTO.username()));
+    }
+
+    @Transactional
+    public void createUser(UserDTO userDTO){
+
+        AppUser appUser = new AppUser();
+        appUser.setUsername(userDTO.username());
+        appUser.setEmail(userDTO.email());
+        appUser.setPassword(passwordEncoder.encode(userDTO.password()));
+        appUser.setRole(userDTO.role());
+        repository.save(appUser);
+
+        emailService.sendEmail(appUser.getEmail(), "Un administrador a registrado una cuenta con este gmail a TrainFyre", "Este gmail es un mensaje generado automaticamente");
+
+        repository.findByUsername(userDTO.username())
+                .map(userMapper::userToUserInfoDTO)
+                .orElseThrow(() -> new UsernameNotFoundException("Error al registrarse: " + userDTO.username()));
     }
 
     @Transactional

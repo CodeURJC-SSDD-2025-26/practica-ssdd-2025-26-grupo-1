@@ -1,7 +1,7 @@
 package codeurjc.ssdd.grupo1.trainfyre.config;
 
 import codeurjc.ssdd.grupo1.trainfyre.dto.Role;
-import codeurjc.ssdd.grupo1.trainfyre.dto.UserInfoDTO;
+import codeurjc.ssdd.grupo1.trainfyre.dto.UsersDTOs.UserInfoDTO;
 import codeurjc.ssdd.grupo1.trainfyre.service.UserService;
 import com.samskivert.mustache.Mustache;
 import com.samskivert.mustache.Template;

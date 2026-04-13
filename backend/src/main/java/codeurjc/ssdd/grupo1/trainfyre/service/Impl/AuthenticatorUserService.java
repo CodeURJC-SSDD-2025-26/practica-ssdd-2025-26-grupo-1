@@ -1,7 +1,7 @@
 package codeurjc.ssdd.grupo1.trainfyre.service.Impl;
 
 import codeurjc.ssdd.grupo1.trainfyre.data.repository.UserRepository;
-import codeurjc.ssdd.grupo1.trainfyre.dto.UserDTO;
+import codeurjc.ssdd.grupo1.trainfyre.dto.UsersDTOs.UserDTO;
 import codeurjc.ssdd.grupo1.trainfyre.mapper.UserMapper;
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;

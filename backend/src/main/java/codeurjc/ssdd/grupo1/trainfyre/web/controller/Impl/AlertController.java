@@ -6,27 +6,20 @@ import codeurjc.ssdd.grupo1.trainfyre.data.model.Line;
 import codeurjc.ssdd.grupo1.trainfyre.data.repository.AlertRepository;
 import codeurjc.ssdd.grupo1.trainfyre.data.repository.LineRepository;
 import codeurjc.ssdd.grupo1.trainfyre.data.repository.UserRepository;
-import codeurjc.ssdd.grupo1.trainfyre.dto.AlertDTO;
 import codeurjc.ssdd.grupo1.trainfyre.dto.AlertRegistrationDTO;
-import codeurjc.ssdd.grupo1.trainfyre.dto.UserInfoDTO;
+import codeurjc.ssdd.grupo1.trainfyre.dto.UsersDTOs.UserInfoDTO;
 import codeurjc.ssdd.grupo1.trainfyre.service.AlertService;
 import codeurjc.ssdd.grupo1.trainfyre.service.UserService;
-import codeurjc.ssdd.grupo1.trainfyre.service.Impl.AlertServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import java.time.LocalDate;
-import java.time.LocalTime;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
 import org.slf4j.Logger;
 import org.springframework.data.domain.Pageable;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.annotation.Validated;

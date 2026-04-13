@@ -1,10 +1,10 @@
 package codeurjc.ssdd.grupo1.trainfyre.web.controller.Impl;
 
 import codeurjc.ssdd.grupo1.trainfyre.dto.Role;
-import codeurjc.ssdd.grupo1.trainfyre.dto.UserInfoDTO;
-import codeurjc.ssdd.grupo1.trainfyre.dto.UserRegistrationtDTO;
+import codeurjc.ssdd.grupo1.trainfyre.dto.UsersDTOs.UserDTO;
+import codeurjc.ssdd.grupo1.trainfyre.dto.UsersDTOs.UserInfoDTO;
+import codeurjc.ssdd.grupo1.trainfyre.dto.UsersDTOs.UserRegistrationtDTO;
 import codeurjc.ssdd.grupo1.trainfyre.service.UserService;
-import jakarta.mail.Multipart;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -23,7 +23,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.util.Arrays;
 import java.util.Base64;
 import java.util.List;
 import java.util.Map;
@@ -121,6 +120,28 @@ public class UserController {
     @GetMapping(value = "/admin/admin_panel")
     public String showAdminPanel(Model model) {
         log.info("Loading admin panel");
+
+        model.addAttribute("title", "Admin Panel");
+        model.addAttribute("roles", Role.values());
+
+        List<Map<String, Object>> users = userService.findAllUsers().stream()
+                .map(user -> Map.of(
+                        "user", user,
+                        "image", user.image() != null
+                                ? "data:image/png;base64," +Base64.getEncoder().encodeToString(user.image())
+                                : ""
+                ))
+                .toList();
+        model.addAttribute("users", users);
+
+        return "admin_panel";
+    }
+
+    @PostMapping(value = "admin/admin_panel/add")
+    public String addUser(@ModelAttribute("User")UserDTO userDTO, Model model) {
+        log.info("Adding user {}", userDTO.toString());
+
+        userService.createUser(userDTO);
 
         model.addAttribute("title", "Admin Panel");
         model.addAttribute("roles", Role.values());

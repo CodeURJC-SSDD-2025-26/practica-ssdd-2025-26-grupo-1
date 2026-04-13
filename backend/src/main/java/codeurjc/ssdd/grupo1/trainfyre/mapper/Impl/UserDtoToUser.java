@@ -1,6 +1,6 @@
 package codeurjc.ssdd.grupo1.trainfyre.mapper.Impl;
 
-import codeurjc.ssdd.grupo1.trainfyre.dto.UserDTO;
+import codeurjc.ssdd.grupo1.trainfyre.dto.UsersDTOs.UserDTO;
 import codeurjc.ssdd.grupo1.trainfyre.mapper.Mapper;
 import codeurjc.ssdd.grupo1.trainfyre.data.model.AppUser;
 import org.modelmapper.ModelMapper;
