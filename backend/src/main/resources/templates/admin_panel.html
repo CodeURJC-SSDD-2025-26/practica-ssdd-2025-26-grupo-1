@@ -1,56 +1,113 @@
 <!doctype html>
 <html lang="es">
-  <head>
-    <meta charset="UTF-8">
-    <title>{{title}}</title>
+<head>
+  <meta charset="UTF-8">
+  <title>{{title}}</title>
 
-    <!-- Globales, siempre presentes -->
-    {{#globalStyles}}
-    <link rel="stylesheet" href="{{.}}">
-    {{/globalStyles}}
-    {{#globalScripts}}
-    <script src="{{.}}"></script>
-    {{/globalScripts}}
+  {{#globalStyles}}
+  <link rel="stylesheet" href="{{.}}">
+  {{/globalStyles}}
+  {{#globalScripts}}
+  <script src="{{.}}"></script>
+  {{/globalScripts}}
 
-    <!-- Específicos de página, solo si el controller los envía -->
-    {{#pageStyles}}
-    <link rel="stylesheet" href="/css/{{.}}">
-    {{/pageStyles}}
-    {{#pageScripts}}
-    <script src="/js/{{.}}" defer></script>
-    {{/pageScripts}}
+  {{#pageStyles}}
+  <link rel="stylesheet" href="/css/{{.}}">
+  {{/pageStyles}}
+  {{#pageScripts}}
+  <script src="/js/{{.}}" defer></script>
+  {{/pageScripts}}
 
-  </head>
+</head>
 
-  {{# Layout }}
-  <body>
+{{# Layout }}
+<body>
 
-    {{> /partials/_subheader}}
+{{> /partials/_subheader}}
 
-    <main class="container-main">
-      <div class="d-flex justify-content-between mb-2 ms-1">
-        <div class="ms-4">
-          <button type="submit" class="btn btn-primary me-2">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-left-fill" viewBox="0 0 16 16">
-              <path d="m3.86 8.753 5.482 4.796c.646.566 1.658.106 1.658-.753V3.204a1 1 0 0 0-1.659-.753l-5.48 4.796a1 1 0 0 0 0 1.506z"/>
-            </svg>
-          </button>
-          <button type="submit" class="btn btn-primary me-1">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-right-fill" viewBox="0 0 16 16">
-              <path d="m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z"/>
-            </svg>
-          </button>
-        </div>
-      
-        <div class="me-4">
-          <button type="submit" class="btn btn-primary me-2">Añadir</button>
-        </div>
+<main class="container-main">
+  <div class="d-flex justify-content-between mb-2 ms-1">
+    <div class="ms-4">
+      <button type="button" class="btn btn-primary me-2">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-left-fill" viewBox="0 0 16 16">
+          <path d="m3.86 8.753 5.482 4.796c.646.566 1.658.106 1.658-.753V3.204a1 1 0 0 0-1.659-.753l-5.48 4.796a1 1 0 0 0 0 1.506z"/>
+        </svg>
+      </button>
+      <button type="button" class="btn btn-primary me-1">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-right-fill" viewBox="0 0 16 16">
+          <path d="m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z"/>
+        </svg>
+      </button>
+    </div>
+
+    <div class="me-4">
+      <!-- Botón conectado al modal de creación -->
+      <button
+              type="button"
+              class="btn btn-primary me-2"
+              data-bs-toggle="modal"
+              data-bs-target="#addUserModal">
+        Añadir
+      </button>
+    </div>
+  </div>
+
+  {{> /partials/_admin_table}}
+
+</main>
+
+<!-- Modal de creación de usuario -->
+<div class="modal fade" id="addUserModal" tabindex="-1" aria-labelledby="addUserModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="mb-0 text-uppercase text-center text-white" id="addUserModalLabel">Añadir usuario</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
       </div>
+      <form id="addUserForm" action="/admin/admin_panel/add" method="POST">
+        <div class="modal-body">
 
-      {{> /partials/_admin_table}}
+          <div class="mb-3">
+            <label for="addUsername" class="form-label">Nombre de usuario</label>
+            <input type="text" class="form-control" id="addUsername" name="username" required>
+          </div>
 
-    </main>
-  </body>
-  {{/ Layout }}
+          <div class="mb-3">
+            <label for="addEmail" class="form-label">Correo electrónico</label>
+            <input type="email" class="form-control" id="addEmail" name="email" required>
+          </div>
 
+          <div class="mb-3">
+            <label for="addPassword" class="form-label">Contraseña</label>
+            <input type="password" class="form-control" id="addPassword" name="password" required>
+          </div>
+
+          <div class="mb-3">
+            <label for="addRole" class="form-label">Rol</label>
+            <select class="form-select" id="addRole" name="role">
+              {{#roles}}
+              <option value="{{name}}">{{name}}</option>
+              {{/roles}}
+            </select>
+          </div>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+          <button type="submit" class="btn btn-primary">Crear usuario</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Limpiar el formulario de creación cada vez que se cierra el modal
+  document.getElementById('addUserModal').addEventListener('hidden.bs.modal', function () {
+    document.getElementById('addUserForm').reset();
+  });
+</script>
+
+</body>
+{{/ Layout }}
 </html>
