@@ -52,11 +52,12 @@ public class LineController{
         @RequestParam String oldName, 
         @RequestParam String newName, 
         @RequestParam String description,
+        @RequestParam String color,
         Model model
     ) {
         log.info("Admin Updating line {}, to {}", oldName, newName);
 
-        lineService.updateLine(oldName, newName, description);
+        lineService.updateLine(oldName, newName, description, color);
 
         return "redirect:/admin/admin_panel_lines";
     }
@@ -65,11 +66,12 @@ public class LineController{
     public String addLine(
         @RequestParam String newName, 
         @RequestParam String newDescription,
+        @RequestParam String newColor,
         Model model
     ) {
         log.info("Admin add line {}", newName);
 
-        lineService.addLine(newName, newDescription);
+        lineService.addLine(newName, newDescription, newColor);
 
         return "redirect:/admin/admin_panel_lines";
     }
