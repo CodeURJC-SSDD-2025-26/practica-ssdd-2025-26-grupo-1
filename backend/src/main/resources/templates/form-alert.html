@@ -21,18 +21,33 @@
 
     <main class="container-main">
 
+        {{^modify}}
         <form role="form" method="post" action="/alert/added">
+        {{/modify}}
+        
+        {{#modify}}
+        <form role="form" method="post" action="/alert/modified">
+        {{/modify}}
 
             <div class="row">
+                {{#modify}}
+                <input type="hidden" id="id" name="id" value="{{id}}"></input>
+                {{/modify}}
+
                 <div class="d-flex flex-wrap justify-content-center gap-3 mb-4">
                     <div class="form-group col-auto">
                         <h2>Añadir alerta</h2>
+
 
                         <label class="form-label" for="lines">Línea:</label>
                         <select class="form-control" id="date" name="line">
                             {{#lines}}
                             <option value={{name}}>{{name}}</option>
                             {{/lines}}
+
+                            {{#modify}}
+                            <option value="{{alert.line.name}}" selected>{{alert.line.name}}</option>
+                            {{/modify}}
 
                         </select>
                     </div>
@@ -43,7 +58,15 @@
                 <div class="d-flex flex-wrap justify-content-center gap-3 mb-4">
                     <div class="form-group col-10">
                         <label class="form-label" for="date">Introduzca la fecha de inicio de la alerta:</label>
+                        {{^modify}}
                         <input type="date" class="form-control" id="startDate" name="startDate" required>
+                        {{/modify}}
+
+                        {{#modify}}
+                        <input type="date" class="form-control" id="startDate" name="startDate" required
+                            value="{{alert.startDate}}">
+                        {{/modify}}
+
                     </div>
                 </div>
             </div>
@@ -52,7 +75,15 @@
                 <div class="d-flex flex-wrap justify-content-center gap-3 mb-4">
                     <div class="form-group col-10">
                         <label class="form-label" for="date">Introduzca la fecha de final de la alerta:</label>
+                        {{^modify}}
                         <input type="date" class="form-control" id="endDate" name="endDate" required>
+                        {{/modify}}
+
+                        {{#modify}}
+                        <input type="date" class="form-control" id="endDate" name="endDate" required
+                            value="{{alert.endDate}}">
+                        {{/modify}}
+
                     </div>
                 </div>
             </div>
@@ -66,11 +97,26 @@
                         </div>
                         <div class="range-input">
                             <label class="form-label" for="date">Inicio:</label>
+                            {{^modify}}
                             <input type="range" class="min form-control" id="slider-min" min="0" max="1439" value="480"
                                 step="5">
+                            {{/modify}}
+
+                            {{#modify}}
+                            <input type="range" class="min form-control" id="slider-min" min="0" max="1439"
+                                value="{{startTime}}" step="5">
+                            {{/modify}}
+
                             <label class="form-label" for="date">Fin:</label>
+                            {{^modify}}
                             <input type="range" class="max form-control" id="slider-max" min="0" max="1439" value="540"
                                 step="5">
+                            {{/modify}}
+
+                            {{#modify}}
+                            <input type="range" class="max form-control" id="slider-max" min="0" max="1439"
+                                value="{{endTime}}" step="5">
+                            {{/modify}}
                         </div>
 
                     </div>
@@ -82,9 +128,23 @@
                     <div class="form-group col-auto">
                         <div class="range-price">
                             <label for="min">Inicio</label>
+                            {{^modify}}
                             <input type="time" id="input-min" name="min" value="08:00">
+                            {{/modify}}
+
+                            {{#modify}}
+                            <input type="time" id="input-min" name="min" value="{{alert.startHour}}">
+                            {{/modify}}
+
                             <label for="max">Fin</label>
+
+                            {{^modify}}
                             <input type="time" id="input-max" name="max" value="09:00">
+                            {{/modify}}
+
+                            {{#modify}}
+                            <input type="time" id="input-max" name="max" value="{{alert.endHour}}">
+                            {{/modify}}
                         </div>
                     </div>
                 </div>
