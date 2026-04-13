@@ -9,7 +9,7 @@ INSERT INTO station (id, address, name) VALUES (8, 'Calle Marqués de Irún, 2, 
 INSERT INTO station (id, address, name) VALUES (9, 'Calle Alfonso XII, s/n, Málaga', 'Málaga María Zambrano');
 INSERT INTO station (id, address, name) VALUES (10, 'Rúa do Hórreo, 75, Santiago de Compostela', 'Santiago de Compostela');
 
-INSERT INTO line (id, name, description, color) VALUES (1, 'C-1', 'Muy bonita', '#0000ff');
-INSERT INTO line (id, name, description, color) VALUES (2, 'C-2', 'Muy verde', '#00ff00');
-INSERT INTO line (id, name, description, color) VALUES (3, 'C-3', 'Muy predecible', '#ff0000');
+INSERT INTO line (id, name, description, color) VALUES (999, 'C-1', 'Muy bonita', '#0000ff');
+INSERT INTO line (id, name, description, color) VALUES (998, 'C-2', 'Muy verde', '#00ff00');
+INSERT INTO line (id, name, description, color) VALUES (997, 'C-3', 'Muy predecible', '#ff0000');
 
