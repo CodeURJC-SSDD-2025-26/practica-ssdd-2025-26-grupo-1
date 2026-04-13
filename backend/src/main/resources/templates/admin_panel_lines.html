@@ -42,8 +42,9 @@
         </div>
       
         <div class="me-4">
-          <a href="form-line.html" class="btn btn-primary me-2">Añadir</a>
-          <button type="submit" class="btn btn-success me-1">Hecho</button>
+          <button type="button" class="btn btn-primary me-2" data-bs-toggle="modal" data-bs-target="#addModal">
+            Añadir
+          </button>
         </div>
       </div>
 
@@ -53,6 +54,43 @@
 
     <!-- Footer -->
     <div id="_footer"></div>
+
+    <div class="modal fade" id="addModal" tabindex="-1" aria-labelledby="addModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header bg-success text-white">
+            <h5 class="mb-0 text-uppercase" id="addModalLabel">Añadir Nueva Línea</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+          </div>
+          <form action="/admin/admin_panel_lines/add" method="POST">
+            <div class="modal-body">
+              <div class="mb-3">
+                <label for="newName" class="form-label">Nombre de línea</label>
+                <input type="text" class="form-control" id="newName" name="newName" placeholder="Ej: Línea 1" required>
+              </div>
+
+              <div class="mb-3">
+                <label for="newDescription" class="form-label">Descripción</label>
+                <input type="text" class="form-control" id="newDescription" name="newDescription" placeholder="Ej: Pinar de Chamartín - Valdecarros" required>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+              <button type="submit" class="btn btn-success">Crear Línea</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
   </body>
   {{/ Layout }}
+
+  <script>
+    document.getElementById('addModal').addEventListener('show.bs.modal', function (event) {
+      const btn = event.relatedTarget;
+
+      document.getElementById('newName').value = btn.dataset.name;
+      document.getElementById('newDescription').value = btn.dataset.description;
+    });
+  </script>
 </html>
