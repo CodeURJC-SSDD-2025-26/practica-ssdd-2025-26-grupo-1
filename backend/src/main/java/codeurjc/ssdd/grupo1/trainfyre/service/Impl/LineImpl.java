@@ -63,6 +63,21 @@ public class LineImpl implements LineService {
         repository.save(line);
     }
 
+    @Override
+    @Transactional
+    public void addLine(String newName, String newDescription) {
+        Line line = new Line();
+
+        if (newName != null && !newName.isBlank()) {
+            line.setName(newName);
+        }
+        if (newDescription != null && !newDescription.isBlank()) {
+            line.setDescription(newDescription);
+        }
+
+        repository.save(line);
+    }
+
     //DELETE
     @Override
     @Transactional
