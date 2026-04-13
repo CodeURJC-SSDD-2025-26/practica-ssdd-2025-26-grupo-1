@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.web.multipart.MultipartFile;
 
+import codeurjc.ssdd.grupo1.trainfyre.data.model.Incidence;
 import codeurjc.ssdd.grupo1.trainfyre.dto.IncidencesDTOs.IncidenceDTO;
 import codeurjc.ssdd.grupo1.trainfyre.dto.IncidencesDTOs.IncidenceRegistrationDTO;
 
@@ -13,6 +14,7 @@ public interface IncidenceService {
     void deleteIncidence(Long id);
 
     List<IncidenceDTO> getAllIncidences();
+    List<Incidence> getAllIncidencesWithID();
     String generatePieChartJSON();
     String generateHeatmapJSON();
 }

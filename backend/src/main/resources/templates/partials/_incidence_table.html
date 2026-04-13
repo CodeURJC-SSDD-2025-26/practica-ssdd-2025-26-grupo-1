@@ -4,6 +4,7 @@
       <table class="table table-striped table-bordered">
         <thead>
           <tr>
+            <th class="td_center">ID</th>
             <th class="td_center">Líneas</th>
             <th class="td_center">Severidad</th>
             <th class="td_center">Tipo</th>
@@ -15,31 +16,48 @@
         <tbody>
           {{#incidences}}
             <tr>
-              <td>Líneas</td>
-              <td>{{incidence.incidenceLevel}}</td>
-              <td>{{incidence.incidenceType}}</td>
-              <td>
-                <button class="btn btn-sm btn-warning me-1"
-                      data-bs-toggle="modal"
-                      data-bs-target="#editModal"
-                      data-json="{{ json }}">
+              <td class="td_center">{{incidence.id}}</td>
+              <td class="td_center">
+                {{#incidence.affectedLines}}
+                  {{name}}
+                {{/incidence.affectedLines}}
+              </td>
+              <td class="td_center">{{incidence.incidenceLevel}}</td>
+              <td class="td_center">{{incidence.incidenceType}}</td>
+              <td class="td_center">Ver más</td>
+              <td class="td_center">
+                <button type="button"
+                class="btn btn-warning btn-sm"
+                data-bs-toggle="modal"
+                data-bs-target="#editModal"
+                data-id="{{incidence.id}}"
+                data-incidence-level="{{incidence.incidenceLevel}}"
+                data-incidence-type="{{incidence.incidenceType}}"
+                data-description="{{incidence.description}}"
+                data-date="{{incidence.date}}"
+                data-status="{{incidence.status}}"
+                data-affected-lines="{{{incidence.affectedLines}}}">
                   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
                     <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
                     <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z"/>
                   </svg>
                 </button>
-                
+              </td>
+              <td class="td_center">
                 <form action="/admin/admin_panel_incidences/delete" method="post" class="d-inline" onsubmit="return confirm('¿Está seguro de querer eliminarlo?')">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-ban" viewBox="0 0 16 16">
-                    <path d="M15 8a6.97 6.97 0 0 0-1.71-4.584l-9.874 9.875A7 7 0 0 0 15 8M2.71 12.584l9.874-9.875a7 7 0 0 0-9.874 9.874ZM16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0"/>
-                  </svg>
+                  <input type="hidden" name="id" value="{{incidence.id}}">
+                  <button type="submit" class="btn btn-link p-0">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-ban" viewBox="0 0 16 16">
+                      <path d="M15 8a6.97 6.97 0 0 0-1.71-4.584l-9.874 9.875A7 7 0 0 0 15 8M2.71 12.584l9.874-9.875a7 7 0 0 0-9.874 9.874ZM16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0"/>
+                    </svg>
+                  </button>
                 </form>
               </td>
             </tr>
           {{/incidences}}
           {{^incidences}}
             <tr>
-              <td colspan="6" class="td_center">No hay incidencias registradas.</td>
+              <td colspan="7" class="td_center">No hay incidencias registradas.</td>
             </tr>
           {{/incidences}}
         </tbody>
@@ -56,54 +74,61 @@
         <h5 class="mb-0 text-uppercase text-center text-white" id="editModalLabel">Modificar incidencia</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
       </div>
-      
-      <form action="/admin/admin_panel_incidences/update" method="POST" enctype="multipart/form-data">
+
+      <form id="editForm" action="/admin/admin_panel_incidences/update" method="POST" enctype="multipart/form-data">
+
+        <input type="hidden" id="edit-id" name="id">
+
         <div class="modal-body">
 
           <div class="mb-3">
             <label for="edit-lines" class="form-label">Líneas</label>
-            <select class="form-control" id="line-selection" name="lines-select" multiple>
+            <select class="form-control" id="edit-lines" name="affectedLineNames" multiple>
               {{#lines}}
-              <option value={{.}}>{{name}}</option>
-              {{/lines}}    
+                <option value="{{name}}">{{name}}</option>
+              {{/lines}}
             </select>
           </div>
 
           <div class="mb-3">
-            <label for="edit-severity" class="form-label">Severidad</label>
-            <select class="form-control" id="severity-selection" name="severity-select">
-              <option value="minor">Leve</option>
-              <option value="moderate">Moderado</option>
-              <option value="severe">Serio</option>
-              <option value="critical">Crítico</option> 
+            <label for="edit-incidenceLevel" class="form-label">Severidad</label>
+            <select class="form-control" id="edit-incidenceLevel" name="incidenceLevel">
+              <option value="LOW">Leve</option>
+              <option value="MEDIUM">Moderado</option>
+              <option value="HIGH">Alto</option>
             </select>
           </div>
 
           <div class="mb-3">
-            <label for="edit-type" class="form-label">Tipo</label>
-            <select class="form-select" id="type-selection" name="type-select">
-              <option value="maintenance">Mantenimiento</option>
-              <option value="accident">Accidente</option>
-              <option value="others">Otro</option>
+            <label for="edit-incidenceType" class="form-label">Tipo</label>
+            <select class="form-select" id="edit-incidenceType" name="incidenceType">
+              <option value="MAINTENANCE">Mantenimiento</option>
+              <option value="ACCIDENT">Accidente</option>
+              <option value="OTHERS">Otro</option>
             </select>
           </div>
 
           <div class="mb-3">
             <label for="edit-description" class="form-label">Descripción</label>
-            <textarea class="form-control" id="description"></textarea>
+            <textarea class="form-control" id="edit-description" name="description"></textarea>
           </div>
 
           <div class="mb-3">
             <label for="edit-date" class="form-label">Fecha y hora</label>
-            <input type="text" class="form-control" id="date"></textarea>
+            <input type="datetime-local" class="form-control" id="edit-date" name="date">
           </div>
 
           <div class="mb-3">
             <label for="edit-status" class="form-label">Estado</label>
-            <select class="form-select" id="status-selection" name="status-select">
-              <option value="active">Activo</option>
-              <option value="closed">Cerrado</option>
+            <select class="form-select" id="edit-status" name="status">
+              <option value="ACTIVE">Activo</option>
+              <option value="CLOSED">Cerrado</option>
             </select>
+          </div>
+
+          <div class="mb-3">
+            <label for="edit-image" class="form-label">Imagen</label>
+            <input type="file" class="form-control" id="edit-image" name="updatedImage" accept="image/*">
           </div>
 
         </div>
@@ -115,3 +140,31 @@
     </div>
   </div>
 </div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const editModal = document.getElementById('editModal');
+    editModal.addEventListener('show.bs.modal', (event) => {
+      const button = event.relatedTarget;
+      const id = button.dataset.id;
+      const incidenceLevel = button.dataset.incidenceLevel;
+      const incidenceType = button.dataset.incidenceType;
+      const description = button.dataset.description;
+      const date = button.dataset.date;
+      const status = button.dataset.status;
+      const affectedLines = JSON.parse(button.dataset.affectedLines || '[]');
+
+      document.getElementById('edit-id').value = id;
+      document.getElementById('edit-incidenceLevel').value = incidenceLevel;
+      document.getElementById('edit-incidenceType').value = incidenceType;
+      document.getElementById('edit-description').value = description;
+      document.getElementById('edit-date').value = date;
+      document.getElementById('edit-status').value = status;
+
+      const lineSelect = document.getElementById('edit-lines');
+      Array.from(lineSelect.options).forEach(option => {
+          option.selected = affectedLines.includes(option.value);
+      });
+    });
+});
+</script>

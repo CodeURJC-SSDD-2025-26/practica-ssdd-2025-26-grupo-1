@@ -104,6 +104,11 @@ public class IncidenceServiceImpl implements IncidenceService {
                 .toList();
     }
 
+    public List<Incidence> getAllIncidencesWithID() {
+        return this.incidenceRepository.findAll().stream()
+                .toList();
+    }
+
     public String generatePieChartJSON() {
         // TODO: placeholder
         List<PieChartInfo> data = List.of(
