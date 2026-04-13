@@ -9,9 +9,9 @@ public interface LineService {
 
     LineDTO getLineByName(String name);
 
-    void updateLine(String oldName,String newName, String newDescription);
+    void updateLine(String oldName, String newName, String newDescription, String newColor);
 
     void deleteLine(String name);
 
-    void addLine(String name, String description);
+    void addLine(String name, String description, String color);
 }

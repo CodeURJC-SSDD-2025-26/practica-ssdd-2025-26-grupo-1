@@ -47,7 +47,7 @@ public class LineImpl implements LineService {
     //UPDATE
     @Override
     @Transactional
-    public void updateLine(String oldName,String newName, String newDescription) {
+    public void updateLine(String oldName,String newName, String newDescription, String newColor) {
         Line line = repository.findByName(oldName)
                 .orElseThrow(() -> new ResponseStatusException(
                 HttpStatus.NOT_FOUND, "No se encontró la línea con nombre: " + oldName
@@ -59,13 +59,16 @@ public class LineImpl implements LineService {
         if (newDescription != null && !newDescription.isBlank()) {
             line.setDescription(newDescription);
         }
+        if (newColor != null && !newColor.isBlank()) {
+            line.setColor(newColor);
+        }
         
         repository.save(line);
     }
 
     @Override
     @Transactional
-    public void addLine(String newName, String newDescription) {
+    public void addLine(String newName, String newDescription, String newColor) {
         Line line = new Line();
 
         if (newName != null && !newName.isBlank()) {
@@ -74,7 +77,10 @@ public class LineImpl implements LineService {
         if (newDescription != null && !newDescription.isBlank()) {
             line.setDescription(newDescription);
         }
-
+        if (newColor != null && !newColor.isBlank()) {
+            line.setColor(newColor);
+        }
+        
         repository.save(line);
     }
 
