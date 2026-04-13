@@ -8,6 +8,7 @@ import codeurjc.ssdd.grupo1.trainfyre.data.repository.LineRepository;
 import codeurjc.ssdd.grupo1.trainfyre.data.repository.UserRepository;
 import codeurjc.ssdd.grupo1.trainfyre.dto.AlertRegistrationDTO;
 import codeurjc.ssdd.grupo1.trainfyre.dto.UsersDTOs.UserInfoDTO;
+import codeurjc.ssdd.grupo1.trainfyre.mapper.Impl.AlertDtoToAlert;
 import codeurjc.ssdd.grupo1.trainfyre.service.AlertService;
 import codeurjc.ssdd.grupo1.trainfyre.service.UserService;
 import lombok.RequiredArgsConstructor;
@@ -15,6 +16,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -32,6 +34,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 @RequiredArgsConstructor
 public class AlertController {
 
+    /*private final Impl.AlertDtoToAlert alertDtoToAlert_1;
+
+    private final Impl.AlertDtoToAlert alertDtoToAlert;*/
+
     private final AlertRepository alertRepository;
 
     private final Logger logger = LoggerFactory.getLogger(AlertController.class);
@@ -41,6 +47,11 @@ public class AlertController {
 
     private final AlertService alertService;
     private final UserService userService;
+
+    /*AlertController(Impl.AlertDtoToAlert alertDtoToAlert, Impl.AlertDtoToAlert alertDtoToAlert_1) {
+        this.alertDtoToAlert = alertDtoToAlert;
+        this.alertDtoToAlert_1 = alertDtoToAlert_1;
+    }*/
 
     /*
     AlertController(AlertRepository alertRepository) {
@@ -65,6 +76,59 @@ public class AlertController {
 
         model.addAttribute("title", "Alert form");
 
+
+        return "form-alert";
+    }
+
+    @PostMapping(value = "/alert/modify")
+    public String formModify(Model model, @RequestParam String id) {
+        logger.info("getAlerts");
+        
+        Long ident = Long.parseLong(id);
+        String error = null;
+
+        //Get the alert to modify.
+        Optional<Alert> alert = alertRepository.findById(ident);
+        Alert currentAlert;
+        String[] listStart;
+        String[] listEnd;
+
+        int startTime;
+        int endTime;
+
+
+
+
+        if (alert.isEmpty()) {//Alert not found.
+            error = "Alert not found.";
+            model.addAttribute(error, "error");
+            return "error";
+        }
+
+        //I get the alert and translate the times to input values.
+        currentAlert = alert.get();
+        listStart = currentAlert.getStartHour().split(":");
+        startTime = Integer.parseInt(listStart[0]) * 60 + Integer.parseInt(listStart[1]);
+
+        listEnd = currentAlert.getEndHour().split(":");
+        endTime = Integer.parseInt(listEnd[0]) * 60 + Integer.parseInt(listEnd[1]);
+
+
+        //I need the repository to get the line.
+        model.addAttribute("lines", lineRepository.findAll());
+        //Include the slider.js
+        model.addAttribute("pageScriptsBottom", List.of("components/slider.js"));
+        //Include title.
+        model.addAttribute("title", "Alert form");
+        //Include id.
+        model.addAttribute("id", id);
+        //Include modify indication.
+        model.addAttribute("modify", true);
+        //Include alert.
+        model.addAttribute("alert", currentAlert);
+        //Add the start and end times in slider language.
+        model.addAttribute("startTime", Integer.toString(startTime));
+        model.addAttribute("endTime", Integer.toString(endTime));
 
         return "form-alert";
     }
@@ -141,6 +205,48 @@ public class AlertController {
 
         model.addAttribute("thereIs", thereIs);
         return "user_alerts";
+    }
+
+    @PostMapping(value = "/alert/modified")
+    public String formModified(Model model, @RequestParam String line, @RequestParam String startDate, @RequestParam String endDate, @RequestParam String min, @RequestParam String max, @RequestParam String id) {
+        Long currentAlertId = Long.parseLong(id);
+        Optional<Alert> alertO = alertRepository.findById(currentAlertId);
+        String error = null; 
+        Alert currentAlert;
+
+        Line linereal;
+
+        //Get the line from the DB.
+        Optional<Line> lineO = lineRepository.findByName(line);
+        if (lineO.isEmpty()) {
+            error = "Línea no encontrada.";
+            model.addAttribute("error", error);
+            return "error";
+        }
+
+        if (alertO.isEmpty()) {//No se encuentra la alerta.
+            error = "No se encuentra la alerta.";
+            model.addAttribute("error", error);
+            return "error";
+        }
+
+        //Obtain the alert to modify it.
+        currentAlert = alertO.get();
+
+        //Update the alert.
+        linereal = lineO.get();
+        currentAlert.setLine(linereal);
+        currentAlert.setStartDate(startDate);
+        currentAlert.setEndDate(endDate);
+        currentAlert.setStartHour(min);
+        currentAlert.setEndHour(max);
+
+        //Save the alert.
+        alertRepository.save(currentAlert);
+
+        model.addAttribute("title", "Alert modified");
+        
+        return "alert_added"; 
     }
     
 }
