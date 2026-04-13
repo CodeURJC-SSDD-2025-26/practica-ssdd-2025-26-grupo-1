@@ -17,7 +17,7 @@ public class HomeController {
         log.info("Loading index page");
 
         model.addAttribute("title", "Index");
-        model.addAttribute("interactiveMapScript", "components/interactive-map.js");
+        model.addAttribute("interactiveMapScript", "pages/index.js");
 
         return "index";
     }
