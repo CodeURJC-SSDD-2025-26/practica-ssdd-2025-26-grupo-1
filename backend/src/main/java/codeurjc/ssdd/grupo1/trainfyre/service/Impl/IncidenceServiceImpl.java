@@ -26,7 +26,6 @@ public class IncidenceServiceImpl implements IncidenceService {
     private IncidenceRepository incidenceRepository;
     private IncidenceMapper incidenceMapper;
     private ObjectMapper jsonMapper;
-    private LineService lineService;
 
     @Transactional
     public IncidenceDTO createIncidence(IncidenceRegistrationDTO incidenceRegistrationDTO) {
@@ -40,9 +39,9 @@ public class IncidenceServiceImpl implements IncidenceService {
         incidence.setImage(incidenceRegistrationDTO.image());
         incidence.setAffectedLines(incidenceRegistrationDTO.affectedLines());
 
-        return incidenceRepository.findById(incidence.getId())
-                .map(incidenceMapper::toIncidenceDTO)
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Error al crear una incidencia"));
+        Incidence incidenceSaved = incidenceRepository.save(incidence);
+
+        return incidenceMapper.toIncidenceDTO(incidenceSaved);
     }
 
     @Transactional
@@ -51,11 +50,11 @@ public class IncidenceServiceImpl implements IncidenceService {
                 .orElseThrow(() -> new ResponseStatusException(
                 HttpStatus.NOT_FOUND, "Incidencia no encontrada: " + id));
 
-        if (incidenceRegistrationDTO.incidenceLevel() != null && incidenceRegistrationDTO.incidenceLevel() != null) {
+        if (incidenceRegistrationDTO.incidenceLevel() != null) {
             incidenceToUpdate.setIncidenceLevel(incidenceRegistrationDTO.incidenceLevel());
         }
 
-        if (incidenceRegistrationDTO.incidenceType() != null && incidenceRegistrationDTO.incidenceType() != null) {
+        if (incidenceRegistrationDTO.incidenceType() != null) {
             incidenceToUpdate.setIncidenceType(incidenceRegistrationDTO.incidenceType());
         }
 
@@ -63,15 +62,15 @@ public class IncidenceServiceImpl implements IncidenceService {
             incidenceToUpdate.setDescription(incidenceRegistrationDTO.description());
         }
 
-        if (incidenceRegistrationDTO.date() != null && incidenceRegistrationDTO.date() != null) {
+        if (incidenceRegistrationDTO.date() != null) {
             incidenceToUpdate.setDate(incidenceRegistrationDTO.date());
         }
 
-        if (incidenceRegistrationDTO.status() != null && incidenceRegistrationDTO.status() != null) {
+        if (incidenceRegistrationDTO.status() != null) {
             incidenceToUpdate.setStatus(incidenceRegistrationDTO.status());
         }
 
-        if(updatedImage != null){
+        if (updatedImage != null){
             byte[] imageData;
             try {
                 imageData = updatedImage.getBytes();
@@ -81,7 +80,7 @@ public class IncidenceServiceImpl implements IncidenceService {
             incidenceToUpdate.setImage(imageData);
         }
 
-        if (incidenceRegistrationDTO.affectedLines() != null && incidenceRegistrationDTO.affectedLines() != null) {
+        if (incidenceRegistrationDTO.affectedLines() != null) {
             incidenceToUpdate.setAffectedLines(incidenceRegistrationDTO.affectedLines());
         }
 
