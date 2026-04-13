@@ -1,7 +1,6 @@
 package codeurjc.ssdd.grupo1.trainfyre.service.Impl;
 
 import codeurjc.ssdd.grupo1.trainfyre.data.model.Incidence;
-import codeurjc.ssdd.grupo1.trainfyre.data.model.Line;
 import codeurjc.ssdd.grupo1.trainfyre.data.repository.IncidenceRepository;
 import codeurjc.ssdd.grupo1.trainfyre.dto.IncidencesDTOs.*;
 import codeurjc.ssdd.grupo1.trainfyre.mapper.IncidenceMapper;
@@ -93,7 +92,7 @@ public class IncidenceServiceImpl implements IncidenceService {
     public void deleteIncidence(Long id) {
         Incidence incidenceToDelete = incidenceRepository.findById(id)
             .orElseThrow(() -> new ResponseStatusException(
-                HttpStatus.NOT_FOUND, "No se encontró la línea con nombre: " + id
+                HttpStatus.NOT_FOUND, "No se encontró la incidencia con ID: " + id
             ));
 
         incidenceRepository.delete(incidenceToDelete);
