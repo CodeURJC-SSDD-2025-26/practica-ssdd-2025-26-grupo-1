@@ -6,12 +6,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.ui.Model;
 
-import codeurjc.ssdd.grupo1.trainfyre.dto.IncidencesDTOs.IncidenceDTO;
 import codeurjc.ssdd.grupo1.trainfyre.service.IncidenceService;
 
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @Validated
@@ -44,21 +45,23 @@ public class IncidenceController {
 
         model.addAttribute("title", "Admin Panel");
 
-        List<String> incidences = incidenceService.getAllIncidences()
-            .stream()
-            .map(IncidenceDTO::toString)
-            .toList();
+        List<Map<String, Object>> incidences = incidenceService.getAllIncidences().stream()
+            .map(incidence -> Map.<String, Object>of(
+                "incidence", incidence
+            ))
+                .toList();
         model.addAttribute("incidences", incidences);
 
         return "admin_panel_incidences";
     }
 
     @PostMapping(value = "/admin/admin_panel_incidences/delete")
-    public String deleteUserFromAdminPanel(Model model) {
-
+    public String deleteIncidenceFromAdminPanel(@RequestParam Long id, Model model) {
         model.addAttribute("title", "Admin Panel");
 
-        return "admin_panel_incidences";
+        
+
+        return "redirect:/admin/admin_panel_incidences";
     }
 
     @PostMapping(value = "admin/admin_panel_incidences/update")
