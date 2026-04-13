@@ -111,19 +111,25 @@ public class AlertController {
 
     
     @GetMapping(value = "/alert/table")
-    public String alertTable(Model model, @AuthenticationPrincipal UserDetails user) {
+    public String alertTable(Model model, @AuthenticationPrincipal UserDetails user, Pageable page) {
         AppUser appUser;
         Boolean thereIs = false;
         UserInfoDTO useriDto = userService.findUser(user);
         Optional<AppUser> userO = userRepository.findByUsername(useriDto.username());
         List<Alert> alerts;
 
+        Boolean hasPrev = false;
+        Boolean hasNext = false;
+        int prev = page.getPageNumber() - 1;
+        int next = page.getPageNumber() + 1;
+
+
         model.addAttribute("title", "Alert table");
 
             if (userO.isPresent()){
                 //Obtain the user get the alerts.
                 appUser = userO.get();
-                alerts = alertRepository.findByUserOrderByLine(appUser);
+                alerts = alertRepository.findByUserOrderByLine(appUser, page);
                 if (!alerts.isEmpty()) {
                     thereIs = true;
                 }
@@ -132,6 +138,13 @@ public class AlertController {
             } else {//User not found.
                 return "error";
             }
+
+        hasPrev = page.getPageNumber() >= 1;
+        hasNext = (page.getPageNumber() + 1) * page.getPageSize() < alertRepository.findByUser(appUser).size();
+        model.addAttribute("hasPrev", hasPrev);
+        model.addAttribute("hasNext", hasNext);
+        model.addAttribute("prev", prev);
+        model.addAttribute("next", next);
 
         model.addAttribute("thereIs", thereIs);
         return "user_alerts";
