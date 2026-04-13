@@ -21,7 +21,7 @@ public class IncidenceController {
 
     private final IncidenceService incidenceService;
     
-    @GetMapping(value = "/registered/incidences")
+    @GetMapping(value = "/incidences")
     public String getIncidences(Model model) {
         log.info("Loading incidences page");
 

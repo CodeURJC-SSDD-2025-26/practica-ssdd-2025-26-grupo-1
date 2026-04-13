@@ -39,7 +39,7 @@
 
         <!-- Grafico circular -->
         <script>
-            const piechart_info = {{{ piechart_json }}};
+            const piechart_info = {{{ piechart_json }}} || {};
         </script>
         {{> /partials/_pie_graph}}
         {{#piechartScript}}
@@ -68,7 +68,7 @@
 
         <!-- Mapa de calor -->
         <script>
-            const heatmap_info = {{{ heatmap_json }}};
+            const heatmap_info = {{{ heatmap_json }}} || {};
         </script>
         <div class="container mt-4" id = "_heatmap_graph"></div>
         {{#heatmapScript}}
