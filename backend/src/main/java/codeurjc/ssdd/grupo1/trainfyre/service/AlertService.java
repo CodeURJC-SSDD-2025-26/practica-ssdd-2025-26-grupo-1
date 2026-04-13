@@ -7,4 +7,6 @@ import codeurjc.ssdd.grupo1.trainfyre.dto.AlertRegistrationDTO;
 public interface AlertService {
 
     AlertDTO registerAlert(AlertRegistrationDTO alertRegistrationtDTO, AppUser user);
+
+    public void deleteAlert(Long id);
 }
