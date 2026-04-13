@@ -17,5 +17,6 @@ public interface AlertRepository extends JpaRepository<Alert, Long> {
     Optional<Alert> findByLineAndStartDateAndEndDate(Line lines, String start, String end);
 
     Page<Alert> findAll(Pageable page);
-    List<Alert> findByUserOrderByLine(AppUser user);
+    List<Alert> findByUserOrderByLine(AppUser appUser, Pageable page);
+    List<Alert> findByUser(AppUser appUser);
 }
