@@ -61,7 +61,7 @@ public class IncidenceController {
 
         
 
-        return "redirect:/admin/admin_panel_incidences";
+        return "/admin_panel_incidences";
     }
 
     @PostMapping(value = "admin/admin_panel_incidences/update")
