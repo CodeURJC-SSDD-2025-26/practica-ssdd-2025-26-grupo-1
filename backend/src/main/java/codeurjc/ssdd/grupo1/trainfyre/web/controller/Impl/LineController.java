@@ -93,4 +93,27 @@ public class LineController{
 
         return "redirect:/admin/admin_panel_lines";
     }
+
+    @PostMapping(value = "admin/admin_panel_lines/add")
+    public String addLine(
+        @RequestParam String newName, 
+        @RequestParam String newDescription,
+        Model model
+    ) {
+
+        log.info("Admin add line {}", newName);
+
+        model.addAttribute("title", "Admin Lines Panel");
+
+        List<Map<String, Object>> lines = lineService.getAllLines().stream()
+            .map(line -> Map.<String, Object>of(
+                "line", line
+            ))
+                .toList();
+        model.addAttribute("lines", lines);
+
+        lineService.addLine(newName, newDescription);
+
+        return "redirect:/admin/admin_panel_lines";
+    }
 }
