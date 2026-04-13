@@ -59,9 +59,8 @@
         <h5 class="mb-0 text-uppercase text-center text-white" id="editModalLabel">Modificar usuario</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
       </div>
-      <!-- 1. enctype multipart para soportar subida de imagen -->
       <form action="/admin/admin_panel_lines/update" method="POST" enctype="multipart/form-data">
-        <input type="hidden" id="originalName" name="oldName">
+        <input type="hidden" id="oldName" name="oldName">
 
         <div class="modal-body">
 
@@ -86,10 +85,10 @@
 
 <script>
   document.getElementById('editModal').addEventListener('show.bs.modal', function (event) {
-  const btn = event.relatedTarget;
+    const btn = event.relatedTarget;
 
-  document.getElementById('originalName').value = btn.dataset.name; 
-  document.getElementById('editName').value = btn.dataset.name;
-  document.getElementById('editDescription').value = btn.dataset.description;
-});
+    document.getElementById('oldName').value = btn.dataset.name; 
+    document.getElementById('editName').value = btn.dataset.name;
+    document.getElementById('editDescription').value = btn.dataset.description;
+  });
 </script>
