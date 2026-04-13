@@ -87,10 +87,8 @@
 
   <script>
     document.getElementById('addModal').addEventListener('show.bs.modal', function (event) {
-      const btn = event.relatedTarget;
-
-      document.getElementById('newName').value = btn.dataset.name;
-      document.getElementById('newDescription').value = btn.dataset.description;
+      document.getElementById('newName').value = '';
+      document.getElementById('newDescription').value = '';
     });
   </script>
 </html>
