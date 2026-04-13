@@ -52,7 +52,7 @@ public class LineController{
     }
 
     @PostMapping(value = "/admin/admin_panel_lines/delete")
-    public String deleteUserFromAdminPanel(
+    public String deleteLineFromAdminPanel(
         @RequestParam String linename, 
         Model model
     ) {
@@ -71,14 +71,14 @@ public class LineController{
     }
 
     @PostMapping(value = "admin/admin_panel_lines/update")
-    public String updateUser(
+    public String updateLine(
         @RequestParam String oldName, 
         @RequestParam String newName, 
         @RequestParam String description,
         Model model
     ) {
 
-        log.info("Admin Updating user {}, to {}", oldName, newName);
+        log.info("Admin Updating line {}, to {}", oldName, newName);
 
         model.addAttribute("title", "Admin Lines Panel");
 
