@@ -73,6 +73,11 @@
                 <label for="newDescription" class="form-label">Descripción</label>
                 <input type="text" class="form-control" id="newDescription" name="newDescription" placeholder="Ej: Pinar de Chamartín - Valdecarros" required>
               </div>
+
+              <div class="mb-3">
+                <label for="newColor" class="form-label">Color</label>
+                <input type="color" class="form-control" id="newColor" name="newColor" placeholder="Ej: FF0000 (hexadecimal sin #)" required>
+              </div>
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
@@ -89,6 +94,7 @@
     document.getElementById('addModal').addEventListener('show.bs.modal', function (event) {
       document.getElementById('newName').value = '';
       document.getElementById('newDescription').value = '';
+      document.getElementById('newColor').value = '';
     });
   </script>
 </html>
