@@ -1,6 +1,7 @@
 package codeurjc.ssdd.grupo1.trainfyre.service.Impl;
 
 import codeurjc.ssdd.grupo1.trainfyre.data.model.Incidence;
+import codeurjc.ssdd.grupo1.trainfyre.data.model.Line;
 import codeurjc.ssdd.grupo1.trainfyre.data.repository.IncidenceRepository;
 import codeurjc.ssdd.grupo1.trainfyre.dto.IncidencesDTOs.*;
 import codeurjc.ssdd.grupo1.trainfyre.mapper.IncidenceMapper;
@@ -107,6 +108,10 @@ public class IncidenceServiceImpl implements IncidenceService {
     public List<Incidence> getAllIncidencesWithID() {
         return this.incidenceRepository.findAll().stream()
                 .toList();
+    }
+
+    public List<Incidence> getAllIncidencesAffectingLine(Line line) {
+        return this.incidenceRepository.findByAffectedLinesContaining(line);
     }
 
     public String generatePieChartJSON() {
