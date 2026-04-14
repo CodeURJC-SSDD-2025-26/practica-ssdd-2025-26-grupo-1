@@ -94,12 +94,12 @@ public class IncidenceController {
     @PostMapping(value = "/admin/admin_panel_incidences/add")
     public String createIncidenceFromAdminPanel(
             @RequestParam(required = false) MultipartFile updatedImage,
-            @RequestParam(required = false) INCIDENCE_LEVEL incidenceLevel,
-            @RequestParam(required = false) INCIDENCE_TYPE incidenceType,
+            @RequestParam(required = true) INCIDENCE_LEVEL incidenceLevel,
+            @RequestParam(required = true) INCIDENCE_TYPE incidenceType,
             @RequestParam(required = false) String description,
-            @RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime date,
-            @RequestParam(required = false) INCIDENCE_STATUS status,
-            @RequestParam(required = false) List<String> affectedLineNames,
+            @RequestParam(required = true) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime date,
+            @RequestParam(required = true) INCIDENCE_STATUS status,
+            @RequestParam(required = true) List<String> affectedLineNames,
             Model model) {
 
         
