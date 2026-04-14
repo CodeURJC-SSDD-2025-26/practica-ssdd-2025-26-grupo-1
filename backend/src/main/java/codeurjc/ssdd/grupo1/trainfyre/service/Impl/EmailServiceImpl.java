@@ -8,6 +8,8 @@ import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @Primary
 @Profile("mail")
@@ -17,7 +19,7 @@ public class EmailServiceImpl implements EmailService {
     private JavaMailSender mailSender;
 
     @Override
-    public void sendEmail(String to, String subject, String body) {
+    public void sendEmail(String[] to, String subject, String body) {
         SimpleMailMessage message = new SimpleMailMessage();
         message.setTo(to);
         message.setSubject(subject);

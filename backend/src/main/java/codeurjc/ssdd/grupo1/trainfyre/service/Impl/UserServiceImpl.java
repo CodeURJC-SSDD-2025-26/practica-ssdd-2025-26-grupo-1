@@ -22,6 +22,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
@@ -52,7 +53,7 @@ public class UserServiceImpl implements UserService{
                     newUser.setRole(Role.REGISTERED);
                     repository.save(newUser);
 
-                    this.notifyByEmail(newUser.getEmail(), "Te has registrado con el usuario, "+userRegistrationtDTO.username(), "Bienvenido a TrainFyre ⚡, ahora tendrás acceso a más servicios");
+                    this.notifyUserByEmail(new String[]{newUser.getEmail()}, "Te has registrado con el usuario, "+userRegistrationtDTO.username(), "Bienvenido a TrainFyre ⚡, ahora tendrás acceso a más servicios");
                 });
     }
 
@@ -71,7 +72,7 @@ public class UserServiceImpl implements UserService{
                     newUser.setRole(userDTO.role());
                     repository.save(newUser);
 
-                    this.notifyByEmail(newUser.getEmail(), "Un administrador a registrado una cuenta con este gmail a TrainFyre", "Este gmail es un mensaje generado automaticamente");
+                    this.notifyUserByEmail(new String[]{newUser.getEmail()}, "Un administrador a registrado una cuenta con este gmail a TrainFyre", "Este gmail es un mensaje generado automaticamente");
                 });
 
     }
@@ -181,7 +182,7 @@ public class UserServiceImpl implements UserService{
         return repository.findByUsername(username);
     }
 
-    private void notifyByEmail(String to, String subject, String body) {
+    private void notifyUserByEmail(String[] to, String subject, String body) {
         SecurityContext context = SecurityContextHolder.getContext();
         CompletableFuture.runAsync(() -> {
             SecurityContextHolder.setContext(context); // propagar contexto
