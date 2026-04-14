@@ -4,7 +4,9 @@ import codeurjc.ssdd.grupo1.trainfyre.data.model.Incidence;
 import codeurjc.ssdd.grupo1.trainfyre.data.model.Line;
 import codeurjc.ssdd.grupo1.trainfyre.data.repository.IncidenceRepository;
 import codeurjc.ssdd.grupo1.trainfyre.dto.IncidencesDTOs.*;
+import codeurjc.ssdd.grupo1.trainfyre.dto.LineDTO;
 import codeurjc.ssdd.grupo1.trainfyre.mapper.IncidenceMapper;
+import codeurjc.ssdd.grupo1.trainfyre.mapper.LineMapper;
 import codeurjc.ssdd.grupo1.trainfyre.service.IncidenceService;
 import codeurjc.ssdd.grupo1.trainfyre.service.LineService;
 import lombok.AllArgsConstructor;
@@ -26,7 +28,9 @@ import java.util.List;
 public class IncidenceServiceImpl implements IncidenceService {
     private IncidenceRepository incidenceRepository;
     private IncidenceMapper incidenceMapper;
+    private LineMapper lineMapper;
     private ObjectMapper jsonMapper;
+    private LineService lineService;
 
     @Transactional
     public IncidenceDTO createIncidence(IncidenceRegistrationDTO incidenceRegistrationDTO) {
@@ -115,18 +119,27 @@ public class IncidenceServiceImpl implements IncidenceService {
     }
 
     public String generatePieChartJSON() {
-        // TODO: placeholder
-        List<PieChartInfo> data = List.of(
-            new PieChartInfo("Línea 1", 10),
-            new PieChartInfo("Línea 2", 10),
-            new PieChartInfo("Línea 3", 10),
-            new PieChartInfo("Línea 4", 10),
-            new PieChartInfo("Línea 5", 10),
-            new PieChartInfo("Línea 6", 10),
-            new PieChartInfo("Línea 7", 10),
-            new PieChartInfo("Línea 8", 30)
-        );
+        List<LineDTO> allLines = lineService.getAllLines();
+        double allIncidencesCountingAllLines = allLines.stream()
+            .mapToDouble(line -> getAllIncidencesAffectingLine(lineMapper.toLine(line)).size())
+            .sum();
+        List<PieChartInfo> data = new ArrayList<>();
 
+        if (allIncidencesCountingAllLines > 0) {
+            for (LineDTO line: allLines) {
+                if (allIncidencesCountingAllLines > 0) {
+                    data.add(new PieChartInfo(line.name(),
+                        (getAllIncidencesAffectingLine(lineMapper.toLine(line)).size() / allIncidencesCountingAllLines) * 100));
+                } else {
+                    data.add(new PieChartInfo(line.name(), 0.0));
+                }
+            }
+
+            return jsonMapper.writeValueAsString(data);
+        }
+
+        data.add(new PieChartInfo("No hay incidencias registradas", 100));
+        
         return jsonMapper.writeValueAsString(data);
     }
 
