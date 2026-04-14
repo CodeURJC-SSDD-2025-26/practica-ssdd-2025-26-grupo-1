@@ -1,4 +1,3 @@
-/*
 export async function genericPartialLoader(fileRoute, elementID){
 
     try{
@@ -10,4 +9,3 @@ export async function genericPartialLoader(fileRoute, elementID){
     }
 
 }
-*/
