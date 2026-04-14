@@ -12,6 +12,8 @@ import codeurjc.ssdd.grupo1.trainfyre.service.LineService;
 import lombok.AllArgsConstructor;
 import tools.jackson.databind.ObjectMapper;
 import jakarta.transaction.Transactional;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -99,6 +101,10 @@ public class IncidenceServiceImpl implements IncidenceService {
             ));
 
         incidenceRepository.delete(incidenceToDelete);
+    }
+
+    public Page<Incidence> findAll(Pageable pageable) {
+        return incidenceRepository.findAll(pageable);
     }
 
     @Override

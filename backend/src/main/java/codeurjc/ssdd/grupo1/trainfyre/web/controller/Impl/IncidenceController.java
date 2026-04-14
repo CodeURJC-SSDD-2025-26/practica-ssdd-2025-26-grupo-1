@@ -7,6 +7,7 @@ import lombok.extern.slf4j.Slf4j;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -15,13 +16,10 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.server.ResponseStatusException;
 import org.springframework.ui.Model;
 import org.springframework.web.multipart.MultipartFile;
 
-import codeurjc.ssdd.grupo1.trainfyre.dto.LineDTO;
-import codeurjc.ssdd.grupo1.trainfyre.data.model.Alert;
 import codeurjc.ssdd.grupo1.trainfyre.data.model.Incidence;
 import codeurjc.ssdd.grupo1.trainfyre.data.model.Line;
 import codeurjc.ssdd.grupo1.trainfyre.data.repository.IncidenceRepository;
@@ -44,7 +42,6 @@ public class IncidenceController {
     private final IncidenceService incidenceService;
     private final LineService lineService;
     private final LineMapper lineMapper;
-    private final IncidenceRepository incidenceRepository;
 
     private final UserService userService;
 
@@ -66,15 +63,14 @@ public class IncidenceController {
     }
 
     @GetMapping(value = "/admin/admin_panel_incidences")
-    public String showAdminPanel(Model model, Pageable page) {
+    public String showAdminPanel(Model model, @PageableDefault(page = 0, size = 5) Pageable page) {
         log.info("Loading admin panel");
 
-        List<Alert> alerts;
         Boolean hasPrev = false;
         Boolean hasNext = false;
         int prev = page.getPageNumber() - 1;
         int next = page.getPageNumber() + 1;
-        Page<Incidence> incidents= incidenceRepository.findAll(page);
+        Page<Incidence> incidents = incidenceService.findAll(page);
 
         model.addAttribute("title", "Admin Panel");
         model.addAttribute("lines", lineService.getAllLines());
