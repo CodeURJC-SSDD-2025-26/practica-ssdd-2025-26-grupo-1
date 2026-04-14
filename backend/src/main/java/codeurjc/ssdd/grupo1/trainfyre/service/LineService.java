@@ -1,5 +1,6 @@
 package codeurjc.ssdd.grupo1.trainfyre.service;
 
+import codeurjc.ssdd.grupo1.trainfyre.data.model.Line;
 import codeurjc.ssdd.grupo1.trainfyre.dto.LineDTO;
 
 import java.util.List;
@@ -8,6 +9,8 @@ public interface LineService {
     List<LineDTO> getAllLines();
 
     LineDTO getLineByName(String name);
+
+    Line findLineByName(String name);
 
     void updateLine(String oldName, String newName, String newDescription, String newColor);
 

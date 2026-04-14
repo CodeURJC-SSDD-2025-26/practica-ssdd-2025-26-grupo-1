@@ -43,6 +43,17 @@ public class LineImpl implements LineService {
             ));
     }
 
+    @Override
+    public Line findLineByName(String lineName) {
+        if (lineName == null) {
+            return null;
+        }
+        return repository.findByName(lineName)
+                .orElseThrow(() -> new ResponseStatusException(
+                HttpStatus.NOT_FOUND, "No se encontró la línea con nombre: " + lineName
+            ));
+    }
+
     //UPDATE
     @Override
     @Transactional

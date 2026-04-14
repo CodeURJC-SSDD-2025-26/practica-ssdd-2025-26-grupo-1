@@ -19,6 +19,7 @@ public interface IncidenceService {
     Page<Incidence> findAll(Pageable pageable);
     List<IncidenceDTO> getAllIncidences();
     List<Incidence> getAllIncidencesWithID();
+    List<IncidenceDTO> getAllIncidencesAffectingLineAsDTO(Line line);
     List<Incidence> getAllIncidencesAffectingLine(Line line);
     String generatePieChartJSON();
     String generateHeatmapJSON();

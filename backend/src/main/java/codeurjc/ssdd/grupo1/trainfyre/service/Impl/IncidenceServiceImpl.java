@@ -119,6 +119,13 @@ public class IncidenceServiceImpl implements IncidenceService {
                 .toList();
     }
 
+    @Override
+    public List<IncidenceDTO> getAllIncidencesAffectingLineAsDTO(Line line) {
+        return this.incidenceRepository.findByAffectedLinesContaining(line).stream()
+                .map(this.incidenceMapper::toIncidenceDTO)
+                .toList();
+    }
+
     public List<Incidence> getAllIncidencesAffectingLine(Line line) {
         return this.incidenceRepository.findByAffectedLinesContaining(line);
     }
