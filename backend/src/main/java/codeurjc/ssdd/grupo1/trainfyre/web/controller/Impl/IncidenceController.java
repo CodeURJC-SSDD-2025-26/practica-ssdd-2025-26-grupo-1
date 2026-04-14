@@ -5,6 +5,8 @@ import codeurjc.ssdd.grupo1.trainfyre.service.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -19,8 +21,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.multipart.MultipartFile;
 
 import codeurjc.ssdd.grupo1.trainfyre.dto.LineDTO;
+import codeurjc.ssdd.grupo1.trainfyre.data.model.Alert;
+import codeurjc.ssdd.grupo1.trainfyre.data.model.Incidence;
 import codeurjc.ssdd.grupo1.trainfyre.data.model.Line;
-
+import codeurjc.ssdd.grupo1.trainfyre.data.repository.IncidenceRepository;
 import codeurjc.ssdd.grupo1.trainfyre.service.IncidenceService;
 import codeurjc.ssdd.grupo1.trainfyre.service.LineService;
 import codeurjc.ssdd.grupo1.trainfyre.mapper.LineMapper;
@@ -40,9 +44,10 @@ public class IncidenceController {
     private final IncidenceService incidenceService;
     private final LineService lineService;
     private final LineMapper lineMapper;
+    private final IncidenceRepository incidenceRepository;
 
     private final UserService userService;
-    
+
     @GetMapping(value = "/incidences")
     public String getIncidences(Model model) {
         log.info("Loading incidences page");
@@ -61,18 +66,32 @@ public class IncidenceController {
     }
 
     @GetMapping(value = "/admin/admin_panel_incidences")
-    public String showAdminPanel(Model model) {
+    public String showAdminPanel(Model model, Pageable page) {
         log.info("Loading admin panel");
+
+        List<Alert> alerts;
+        Boolean hasPrev = false;
+        Boolean hasNext = false;
+        int prev = page.getPageNumber() - 1;
+        int next = page.getPageNumber() + 1;
+        Page<Incidence> incidents= incidenceRepository.findAll(page);
 
         model.addAttribute("title", "Admin Panel");
         model.addAttribute("lines", lineService.getAllLines());
 
         List<Map<String, Object>> incidences = incidenceService.getAllIncidencesWithID().stream()
-            .map(incidence -> Map.<String, Object>of(
-                "incidence", incidence
-            ))
+                .map(incidence -> Map.<String, Object>of(
+                        "incidence", incidence))
                 .toList();
-        model.addAttribute("incidences", incidences);
+
+        hasPrev = page.getPageNumber() >= 1;
+        hasNext = (page.getPageNumber() + 1) * page.getPageSize() < incidences.size();
+
+        model.addAttribute("incidences", incidents);
+        model.addAttribute("hasPrevious", hasPrev);
+        model.addAttribute("hasNext", hasNext);
+        model.addAttribute("previous", prev);
+        model.addAttribute("next", next);
 
         return "admin_panel_incidences";
     }
@@ -88,6 +107,8 @@ public class IncidenceController {
             @RequestParam(required = false) List<String> affectedLineNames,
             Model model) {
 
+        
+
         log.info("Admin creating new incidence");
         model.addAttribute("title", "Admin Panel");
         model.addAttribute("lines", lineService.getAllLines());
@@ -100,14 +121,14 @@ public class IncidenceController {
                 : null;
 
         byte[] imageData = null;
-        if (updatedImage != null){
+        if (updatedImage != null) {
             try {
                 imageData = updatedImage.getBytes();
             } catch (IOException e) {
                 throw new RuntimeException(e + "error en la lectura del archivo");
             }
         }
-        
+
         IncidenceRegistrationDTO dto = new IncidenceRegistrationDTO(
                 incidenceLevel,
                 incidenceType,
@@ -115,8 +136,7 @@ public class IncidenceController {
                 date,
                 status,
                 imageData,
-                affectedLines
-        );
+                affectedLines);
 
         try {
             IncidenceDTO newIncidence = incidenceService.createIncidence(dto);
@@ -151,19 +171,19 @@ public class IncidenceController {
 
     @PostMapping(value = "admin/admin_panel_incidences/update")
     public String updateIncidenceFromAdminPanel(@RequestParam Long id,
-        @RequestParam(required = false) MultipartFile updatedImage,
-        @RequestParam(required = false) INCIDENCE_LEVEL incidenceLevel,
-        @RequestParam(required = false) INCIDENCE_TYPE incidenceType,
-        @RequestParam(required = false) String description,
-        @RequestParam(required = false) INCIDENCE_STATUS status,
-        Model model) {
+            @RequestParam(required = false) MultipartFile updatedImage,
+            @RequestParam(required = false) INCIDENCE_LEVEL incidenceLevel,
+            @RequestParam(required = false) INCIDENCE_TYPE incidenceType,
+            @RequestParam(required = false) String description,
+            @RequestParam(required = false) INCIDENCE_STATUS status,
+            Model model) {
 
         log.info("Admin updating incidence with id: {}", id);
         model.addAttribute("title", "Admin Panel");
         model.addAttribute("lines", lineService.getAllLines());
 
         byte[] imageData = null;
-        if (updatedImage != null){
+        if (updatedImage != null) {
             try {
                 imageData = updatedImage.getBytes();
             } catch (IOException e) {
@@ -178,8 +198,7 @@ public class IncidenceController {
                 null,
                 status,
                 imageData,
-                null
-        );
+                null);
 
         try {
             incidenceService.updateIncidence(id, updatedImage, incidenceRegistrationDTO);
