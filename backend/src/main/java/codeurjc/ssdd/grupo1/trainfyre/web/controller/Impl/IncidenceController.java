@@ -155,30 +155,30 @@ public class IncidenceController {
         @RequestParam(required = false) INCIDENCE_LEVEL incidenceLevel,
         @RequestParam(required = false) INCIDENCE_TYPE incidenceType,
         @RequestParam(required = false) String description,
-        @RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime date,
         @RequestParam(required = false) INCIDENCE_STATUS status,
-        @RequestParam(required = false) List<String> affectedLineNames,
         Model model) {
 
         log.info("Admin updating incidence with id: {}", id);
         model.addAttribute("title", "Admin Panel");
         model.addAttribute("lines", lineService.getAllLines());
 
-        List<Line> affectedLines = affectedLineNames != null
-        ? affectedLineNames.stream()
-                .map(lineService::getLineByName)
-                .map(lineMapper::toLine)
-                .toList()
-        : null;
+        byte[] imageData = null;
+        if (updatedImage != null){
+            try {
+                imageData = updatedImage.getBytes();
+            } catch (IOException e) {
+                throw new RuntimeException(e + "error en la lectura del archivo");
+            }
+        }
 
         IncidenceRegistrationDTO incidenceRegistrationDTO = new IncidenceRegistrationDTO(
                 incidenceLevel,
                 incidenceType,
                 description,
-                date,
-                status,
                 null,
-                affectedLines
+                status,
+                imageData,
+                null
         );
 
         try {
