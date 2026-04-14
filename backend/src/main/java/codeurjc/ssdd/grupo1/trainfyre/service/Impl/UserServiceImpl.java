@@ -111,9 +111,6 @@ public class UserServiceImpl implements UserService{
         if (newUserData.password() != null && !newUserData.password().isBlank()) {
             appUser.setPassword(passwordEncoder.encode(newUserData.password()));
         }
-        if(newUserData.role() != null){
-            appUser.setRole(newUserData.role());
-        }
         if(updatedImage != null){
             byte[] imageData;
             try {
