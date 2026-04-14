@@ -37,14 +37,37 @@
             {{/interactiveMapScript}}
 
             <div class="col-lg-3 col-md-4 p-0">
-                <div class="ms-3"> <h2 class="h4">Últimas incidencias:</h2>
-                    <p>Incidencia 1</p>
-                    <p>Incidencia 2</p>
-                    <p>Incidencia 3</p>
-                    <p>Incidencia 4</p>
-                </div>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th class="td_center">Fecha</th>
+                        <th class="td_center">Líneas</th>
+                        <th class="td_center">Severidad</th>
+                        <th class="td_center">Tipo</th>
+                        <th class="td_center">Descripción</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#incidences}}
+                        <tr>
+                        <td class="td_center">{{date}}</td>
+                        <td class="td_center">
+                            {{#affectedLines}}
+                            {{name}}
+                            {{/affectedLines}}
+                        </td>
+                        <td class="td_center">{{incidenceLevel}}</td>
+                        <td class="td_center">{{incidenceType}}</td>
+                        <td>{{description}}</td>    
+                    {{/incidences}}
+                    {{^incidences}}
+                        <tr>
+                        <td colspan="7" class="td_center">No hay incidencias registradas.</td>
+                        </tr>
+                    {{/incidences}}
+                    </tbody>
+                </table>
             </div>
-
         </div>
     </main>
 </body>
