@@ -32,7 +32,6 @@ public class LineImpl implements LineService {
     }
 
     @Override
-    @Transactional
     public LineDTO getLineByName(String lineName) {
         if (lineName == null) {
             return null;
