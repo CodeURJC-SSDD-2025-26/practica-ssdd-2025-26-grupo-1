@@ -64,7 +64,6 @@ public class UserServiceImpl implements UserService{
                 .orElseThrow(() -> new UsernameNotFoundException("Error al registrarse: " + userDTO.username()));
     }
 
-    @Transactional
     public UserInfoDTO findUser(UserDetails userDetails) {
 
         if (userDetails == null){
