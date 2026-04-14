@@ -12,7 +12,6 @@ import codeurjc.ssdd.grupo1.trainfyre.service.LineService;
 import lombok.AllArgsConstructor;
 import tools.jackson.databind.ObjectMapper;
 import jakarta.transaction.Transactional;
-import java.util.Random;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -139,16 +138,17 @@ public class IncidenceServiceImpl implements IncidenceService {
         }
 
         data.add(new PieChartInfo("No hay incidencias registradas", 100));
-        
+
         return jsonMapper.writeValueAsString(data);
     }
 
     public String generateHeatmapJSON() {
-        // TODO: placeholder
         HeatmapInfo heatmap = new HeatmapInfo();
+        List<LineDTO> allLines = lineService.getAllLines();
+        int allLinesNumber = allLines.size();
 
         heatmap.setTitle("INCIDENCIAS SEMANALES");
-        heatmap.setRows(10);
+        heatmap.setRows(allLinesNumber);
         heatmap.setColumns(7);
 
         heatmap.setRowLabels(List.of(
@@ -165,19 +165,61 @@ public class IncidenceServiceImpl implements IncidenceService {
             "Lunes","Martes","Miércoles","Jueves","Viernes","Sábado","Domingo"
         ));
 
-        heatmap.setCells(generateHeatmapCells(10, 7));
+        heatmap.setCells(generateHeatmapCells(allLines));
 
         return jsonMapper.writeValueAsString(heatmap);
     }
 
-    private List<Cell> generateHeatmapCells(int rows, int columns) {
+    private List<Cell> generateHeatmapCells(List<LineDTO> allLines) {
         List<Cell> cellList = new ArrayList<>();
-        int numberOfCells = rows * columns;
+        int i = 0;
 
-        Random random = new Random(); // TODO: placeholder
+        for (LineDTO line: allLines) {
+            int mondayIncidences = 0;
+            int tuesdayIncidences = 0;
+            int wednesdayIncidences = 0;
+            int thursdayIncidences = 0;
+            int fridayIncidences = 0;
+            int saturdayIncidences = 0;
+            int sundayIncidences = 0;
+            List<Incidence> allIncidences = getAllIncidencesAffectingLine(lineMapper.toLine(line));
 
-        for (int i = 0; i < numberOfCells; i++) {
-            cellList.add(new Cell(i, random.nextInt(20)));
+            for (Incidence incidence: allIncidences) {
+                switch (incidence.getDate().getDayOfWeek()) {
+                    case MONDAY:
+                        mondayIncidences++;
+                        break;
+                    case TUESDAY:
+                        tuesdayIncidences++;
+                        break;
+                    case WEDNESDAY:
+                        wednesdayIncidences++;
+                        break;
+                    case THURSDAY:
+                        thursdayIncidences++;
+                        break;
+                    case FRIDAY:
+                        fridayIncidences++;
+                        break;
+                    case SATURDAY:
+                        saturdayIncidences++;
+                        break;
+                    case SUNDAY:
+                        sundayIncidences++;
+                        break;
+                    default:
+                        break;
+                }
+            }
+
+            cellList.add(new Cell(i, mondayIncidences));
+            cellList.add(new Cell(i + 1, tuesdayIncidences));
+            cellList.add(new Cell(i + 2, wednesdayIncidences));
+            cellList.add(new Cell(i + 3, thursdayIncidences));
+            cellList.add(new Cell(i + 4, fridayIncidences));
+            cellList.add(new Cell(i + 5, saturdayIncidences));
+            cellList.add(new Cell(i + 6, sundayIncidences));
+            i++;
         }
 
         return cellList;
