@@ -22,7 +22,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import codeurjc.ssdd.grupo1.trainfyre.data.model.Incidence;
 import codeurjc.ssdd.grupo1.trainfyre.data.model.Line;
-import codeurjc.ssdd.grupo1.trainfyre.data.repository.IncidenceRepository;
 import codeurjc.ssdd.grupo1.trainfyre.service.IncidenceService;
 import codeurjc.ssdd.grupo1.trainfyre.service.LineService;
 import codeurjc.ssdd.grupo1.trainfyre.mapper.LineMapper;
