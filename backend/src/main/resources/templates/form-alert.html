@@ -38,6 +38,9 @@
                     <div class="form-group col-auto">
                         <h2>Añadir alerta</h2>
 
+                        {{#problem}}
+                        <h3>{{problem}}</h3>
+                        {{/problem}}
 
                         <label class="form-label" for="lines">Línea:</label>
                         <select class="form-control" id="date" name="line">
