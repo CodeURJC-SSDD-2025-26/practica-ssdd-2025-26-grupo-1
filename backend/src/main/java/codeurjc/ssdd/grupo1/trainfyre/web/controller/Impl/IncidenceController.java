@@ -212,7 +212,12 @@ public class IncidenceController {
         return "redirect:/admin/admin_panel_incidences";
     }
 
+    // Método para notificar a los usuarios afectados por una incidencia de forma asincrona no bloqueante
     private void notificateIncidence(IncidenceDTO incidence) {
+        if (incidence.status() != INCIDENCE_STATUS.ACTIVE) {
+            log.info("Incidence with id {} is not active, skipping notification", incidence.id());
+            return;
+        }
         SecurityContext context = SecurityContextHolder.getContext();
         CompletableFuture.runAsync(() -> {
             SecurityContextHolder.setContext(context); // propagar contexto

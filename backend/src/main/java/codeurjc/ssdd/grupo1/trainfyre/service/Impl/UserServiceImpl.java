@@ -1,7 +1,9 @@
 package codeurjc.ssdd.grupo1.trainfyre.service.Impl;
 
 import codeurjc.ssdd.grupo1.trainfyre.data.model.AppUser;
+import codeurjc.ssdd.grupo1.trainfyre.data.model.Line;
 import codeurjc.ssdd.grupo1.trainfyre.data.repository.UserRepository;
+import codeurjc.ssdd.grupo1.trainfyre.data.repository.projection.UserAlertsCountView;
 import codeurjc.ssdd.grupo1.trainfyre.dto.IncidencesDTOs.IncidenceDTO;
 import codeurjc.ssdd.grupo1.trainfyre.dto.Role;
 import codeurjc.ssdd.grupo1.trainfyre.dto.UsersDTOs.UserDTO;
@@ -164,15 +166,52 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public void notifyIncidenceToAffectedUsers(IncidenceDTO incidenceDTO) {
-        //TODO
         log.info("Notificando a los usuarios afectados por la incidencia: {}", incidenceDTO.description());
-        try {
-            Thread.sleep(20000); // Simular tiempo de procesamiento
-            log.info("Notificación enviada a los usuarios afectados por la incidencia: {}", incidenceDTO.description());
-        } catch (InterruptedException e) {
-            log.error("Error al notificar a los usuarios afectados por la incidencia: {}", e.getMessage());
-            Thread.currentThread().interrupt();
+
+        List<String> lineNames = incidenceDTO.affectedLines() == null
+                ? List.of()
+                : incidenceDTO.affectedLines().stream()
+                  .map(Line::getName)
+                  .filter(name -> name != null && !name.isBlank())
+                  .distinct()
+                  .toList();
+
+        if (lineNames.isEmpty()) {
+            log.warn("La incidencia {} no tiene líneas afectadas; no se enviarán notificaciones.", incidenceDTO.id());
+            return;
         }
+        String linesText = String.join(", ", lineNames);
+
+        this.getUsersGroupedByAlerts(incidenceDTO, lineNames)
+                    .forEach(user -> {
+                        String subject = "Notificación de incidencia en líneas: " + linesText;
+                        String body = "Estimado/a " + user.getUsername() + ",\n\n" +
+                                "Le informamos que se ha producido una incidencia en las líneas: " + linesText +
+                                " que coincide con sus alertas configuradas.\n" +
+                                "Descripción de la incidencia: " + incidenceDTO.description() + "\n" +
+                                "Fecha y hora de la incidencia: " + incidenceDTO.date() + "\n\n" +
+                                "Le recomendamos revisar su configuración de alertas para estas líneas y tomar las precauciones necesarias.\n\n" +
+                                "Atentamente,\n" +
+                                "El equipo de TrainFyre";
+
+                        this.notifyUserByEmail(new String[]{user.getEmail()}, subject, body);
+                    });
+
+            log.info("Notificación enviada a los usuarios afectados por la incidencia: {}", incidenceDTO.description());
+
+    }
+
+    private List<UserAlertsCountView> getUsersGroupedByAlerts(IncidenceDTO incidenceDTO, List<String> lineNames) {
+        String incDate = incidenceDTO.date().toLocalDate().toString();
+        String incHour = incidenceDTO.date().toLocalTime().withSecond(0).withNano(0).toString();
+        if (incHour.length() > 5) incHour = incHour.substring(0, 5);
+
+        return repository.findUsersWithMatchingAlertsGrouped(
+                incidenceDTO.id(),
+                lineNames,
+                incDate,
+                incHour
+        );
     }
 
     private Optional<AppUser> findUserByUsername(String username) {
