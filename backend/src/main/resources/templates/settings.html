@@ -45,6 +45,9 @@
             </div>
         </div>
         <form id="settings-form" action="/registered/settings" method="POST" enctype="multipart/form-data">
+
+            <input type="hidden" name="{{csrf.parameterName}}" value="{{csrf.token}}">
+
             <div class="justify-content-center px-5 pt-3">
                 <h2 class="form-title">Información personal</h2>
 

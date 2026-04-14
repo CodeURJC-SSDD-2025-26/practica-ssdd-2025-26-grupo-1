@@ -5,6 +5,9 @@
 {{/ error}}
 
 <form role="form" action="/login" method="post">
+
+    <input type="hidden" name="{{csrf.parameterName}}" value="{{csrf.token}}">
+
     <div class="row d-flex justify-content-center gap-3 mb-1 ms-3 me-3 mt-5">
         <div class="form-group col-10">
             <h2 class="form-title">Inicio de sesión</h2>

@@ -7,6 +7,8 @@ spring:
   # Mustache
   mustache:
     suffix: .html
+    servlet:
+      expose-request-attributes: true
 
   # H2 Console
   autoconfigure:

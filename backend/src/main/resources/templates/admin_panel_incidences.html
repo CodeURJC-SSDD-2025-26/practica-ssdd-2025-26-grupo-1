@@ -65,6 +65,8 @@
 
       <form id="addForm" action="/admin/admin_panel_incidences/add" method="POST" enctype="multipart/form-data">
 
+        <input type="hidden" name="{{csrf.parameterName}}" value="{{csrf.token}}">
+
         <div class="modal-body">
 
           <div class="mb-3">

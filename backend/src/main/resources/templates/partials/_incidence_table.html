@@ -45,6 +45,7 @@
               </td>
               <td class="td_center">
                 <form action="/admin/admin_panel_incidences/delete" method="post" class="d-inline" onsubmit="return confirm('¿Está seguro de querer eliminarlo?')">
+                  <input type="hidden" name="{{csrf.parameterName}}" value="{{csrf.token}}">
                   <input type="hidden" name="incidenceID" value="{{incidenceID}}">
                   <button type="submit" class="btn btn-link p-0">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-ban" viewBox="0 0 16 16">
@@ -76,6 +77,8 @@
       </div>
 
       <form id="editForm" action="/admin/admin_panel_incidences/update" method="POST" enctype="multipart/form-data">
+
+        <input type="hidden" name="{{csrf.parameterName}}" value="{{csrf.token}}">
 
         <input type="hidden" name="incidenceID" id="edit-incidenceID">
 
@@ -132,17 +135,19 @@
     const editModal = document.getElementById('editModal');
     editModal.addEventListener('show.bs.modal', (event) => {
       const button = event.relatedTarget;
-      const incidenceID = button.dataset.incidenceId;
+      const id = button.dataset.id;
       const incidenceLevel = button.dataset.incidenceLevel;
       const incidenceType = button.dataset.incidenceType;
       const description = button.dataset.description;
+      const date = button.dataset.date;
       const status = button.dataset.status;
       const affectedLines = JSON.parse(button.dataset.affectedLines || '[]');
 
-      document.getElementById('edit-incidenceID').value = incidenceID;
+      document.getElementById('edit-id').value = id;
       document.getElementById('edit-incidenceLevel').value = incidenceLevel;
       document.getElementById('edit-incidenceType').value = incidenceType;
       document.getElementById('edit-description').value = description;
+      document.getElementById('edit-date').value = date;
       document.getElementById('edit-status').value = status;
 
       const lineSelect = document.getElementById('edit-lines');

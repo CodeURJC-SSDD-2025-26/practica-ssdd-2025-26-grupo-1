@@ -33,6 +33,7 @@
           </td>
           <td class="td_center">
             <form action="/admin/admin_panel_lines/delete" method="post" style="display:inline;">
+              <input type="hidden" name="{{csrf.parameterName}}" value="{{csrf.token}}">
               <input type="hidden" name="linename" value="{{line.name}}">
               <input type="hidden" name="description" value="{{line.description}}">
               <input type="hidden" name="color" value="{{line.color}}">
@@ -64,6 +65,7 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
       </div>
       <form action="/admin/admin_panel_lines/update" method="POST" enctype="multipart/form-data">
+        <input type="hidden" name="{{csrf.parameterName}}" value="{{csrf.token}}">
         <input type="hidden" id="oldName" name="oldName">
 
         <div class="modal-body">

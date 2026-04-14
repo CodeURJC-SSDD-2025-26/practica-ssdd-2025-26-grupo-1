@@ -18,6 +18,8 @@
 
         <form action="admin_panel.html" target="_blank">
 
+            <input type="hidden" name="{{csrf.parameterName}}" value="{{csrf.token}}">
+
             <!--Lines-->
             <div class="row">
                 <div class="d-flex flex-wrap justify-content-center gap-3 mb-4">

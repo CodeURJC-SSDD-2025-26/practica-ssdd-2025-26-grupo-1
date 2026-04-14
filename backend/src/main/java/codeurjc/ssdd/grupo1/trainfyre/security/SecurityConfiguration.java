@@ -8,6 +8,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.csrf.CsrfTokenRequestAttributeHandler;
 
 @Configuration
 @EnableWebSecurity
@@ -21,6 +22,7 @@ public class SecurityConfiguration {
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+        CsrfTokenRequestAttributeHandler requestHandler = new CsrfTokenRequestAttributeHandler();
 
         http
                 .authorizeHttpRequests(authorize -> authorize
@@ -42,9 +44,7 @@ public class SecurityConfiguration {
                 .logout(logout -> logout.logoutUrl("/logout").logoutSuccessUrl("/successful_logout"))
                 //Para poder cargar la consola h2
                 .headers(headers -> headers.frameOptions(f -> f.sameOrigin()))
-
-                .csrf( csrf -> csrf.disable());
-
+                .csrf(csrf -> csrf.csrfTokenRequestHandler(requestHandler));
 
         return http.build();
     }

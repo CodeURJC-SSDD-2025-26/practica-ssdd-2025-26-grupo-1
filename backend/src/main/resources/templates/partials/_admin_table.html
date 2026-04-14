@@ -36,6 +36,7 @@
           </td>
           <td class="td_center">
             <form action="/admin/admin_panel/delete" method="post" style="display:inline;">
+              <input type="hidden" name="{{csrf.parameterName}}" value="{{csrf.token}}">
               <input type="hidden" name="username" value="{{user.username}}">
               <input type="hidden" name="email" value="{{user.email}}">
               <input type="hidden" name="role" value="{{user.role}}">
@@ -70,6 +71,7 @@
       </div>
       <!-- 1. enctype multipart para soportar subida de imagen -->
       <form action="/admin/admin_panel/update" method="POST" enctype="multipart/form-data">
+        <input type="hidden" name="{{csrf.parameterName}}" value="{{csrf.token}}">
         <input type="hidden" id="originalUsername" name="oldUsername">
 
         <div class="modal-body">
