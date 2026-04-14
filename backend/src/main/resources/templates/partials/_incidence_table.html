@@ -16,7 +16,7 @@
         <tbody>
           {{#incidences}}
             <tr>
-              <td class="td_center">{{id}}</td>
+              <td class="td_center">{{incidenceID}}</td>
               <td class="td_center">
                 {{#affectedLines}}
                   {{name}}
@@ -24,13 +24,15 @@
               </td>
               <td class="td_center">{{incidenceLevel}}</td>
               <td class="td_center">{{incidenceType}}</td>
-              <td class="td_center">Ver más</td>
+              <td class="td_center">
+                <a href="/admin/incidence/{{incidenceID}}">Ver más</a>
+              </td>
               <td class="td_center">
                 <button type="button"
                 class="btn btn-link p-0 border-0 bg-transparent btn-edit"
                 data-bs-toggle="modal"
                 data-bs-target="#editModal"
-                data-id="{{id}}"
+                data-incidence-id="{{incidenceID}}"
                 data-incidence-level="{{incidenceLevel}}"
                 data-incidence-type="{{incidenceType}}"
                 data-description="{{description}}"
@@ -43,7 +45,7 @@
               </td>
               <td class="td_center">
                 <form action="/admin/admin_panel_incidences/delete" method="post" class="d-inline" onsubmit="return confirm('¿Está seguro de querer eliminarlo?')">
-                  <input type="hidden" name="id" value="{{id}}">
+                  <input type="hidden" name="incidenceID" value="{{incidenceID}}">
                   <button type="submit" class="btn btn-link p-0">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-ban" viewBox="0 0 16 16">
                       <path d="M15 8a6.97 6.97 0 0 0-1.71-4.584l-9.874 9.875A7 7 0 0 0 15 8M2.71 12.584l9.874-9.875a7 7 0 0 0-9.874 9.874ZM16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0"/>
@@ -75,7 +77,7 @@
 
       <form id="editForm" action="/admin/admin_panel_incidences/update" method="POST" enctype="multipart/form-data">
 
-        <input type="hidden" name="id" id="edit-id">
+        <input type="hidden" name="incidenceID" id="edit-incidenceID">
 
         <div class="modal-body">
 
@@ -130,19 +132,17 @@
     const editModal = document.getElementById('editModal');
     editModal.addEventListener('show.bs.modal', (event) => {
       const button = event.relatedTarget;
-      const id = button.dataset.id;
+      const incidenceID = button.dataset.incidenceId;
       const incidenceLevel = button.dataset.incidenceLevel;
       const incidenceType = button.dataset.incidenceType;
       const description = button.dataset.description;
-      const date = button.dataset.date;
       const status = button.dataset.status;
       const affectedLines = JSON.parse(button.dataset.affectedLines || '[]');
 
-      document.getElementById('edit-id').value = id;
+      document.getElementById('edit-incidenceID').value = incidenceID;
       document.getElementById('edit-incidenceLevel').value = incidenceLevel;
       document.getElementById('edit-incidenceType').value = incidenceType;
       document.getElementById('edit-description').value = description;
-      document.getElementById('edit-date').value = date;
       document.getElementById('edit-status').value = status;
 
       const lineSelect = document.getElementById('edit-lines');

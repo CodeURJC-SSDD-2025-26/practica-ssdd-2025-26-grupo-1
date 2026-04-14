@@ -7,6 +7,7 @@ import codeurjc.ssdd.grupo1.trainfyre.data.model.Line;
 import java.util.List;
 
 public record IncidenceRegistrationDTO (
+    String incidenceID,
     INCIDENCE_LEVEL incidenceLevel,
     INCIDENCE_TYPE incidenceType,
     String description,

@@ -8,6 +8,7 @@ import java.util.List;
 
 public record IncidenceDTO (
     Long id,
+    String incidenceID,
     INCIDENCE_LEVEL incidenceLevel,
     INCIDENCE_TYPE incidenceType,
     String description,

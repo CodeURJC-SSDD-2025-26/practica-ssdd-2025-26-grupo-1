@@ -37,6 +37,7 @@ public class IncidenceServiceImpl implements IncidenceService {
     public IncidenceDTO createIncidence(IncidenceRegistrationDTO incidenceRegistrationDTO) {
         Incidence incidence = new Incidence();
 
+        incidence.setIncidenceID(incidenceRegistrationDTO.incidenceID());
         incidence.setIncidenceLevel(incidenceRegistrationDTO.incidenceLevel());
         incidence.setIncidenceType(incidenceRegistrationDTO.incidenceType());
         incidence.setDescription(incidenceRegistrationDTO.description());
@@ -51,10 +52,10 @@ public class IncidenceServiceImpl implements IncidenceService {
     }
 
     @Transactional
-    public void updateIncidence(Long id, MultipartFile updatedImage, IncidenceRegistrationDTO incidenceRegistrationDTO) {
-        Incidence incidenceToUpdate = incidenceRepository.findById(id)
+    public void updateIncidence(MultipartFile updatedImage, IncidenceRegistrationDTO incidenceRegistrationDTO) {
+        Incidence incidenceToUpdate = incidenceRepository.findByIncidenceID(incidenceRegistrationDTO.incidenceID())
                 .orElseThrow(() -> new ResponseStatusException(
-                HttpStatus.NOT_FOUND, "Incidencia no encontrada: " + id));
+                HttpStatus.NOT_FOUND, "Incidencia no encontrada: " + incidenceRegistrationDTO.incidenceID()));
 
         if (incidenceRegistrationDTO.incidenceLevel() != null) {
             incidenceToUpdate.setIncidenceLevel(incidenceRegistrationDTO.incidenceLevel());
@@ -66,10 +67,6 @@ public class IncidenceServiceImpl implements IncidenceService {
 
         if (incidenceRegistrationDTO.description() != null && !incidenceRegistrationDTO.description().isBlank()) {
             incidenceToUpdate.setDescription(incidenceRegistrationDTO.description());
-        }
-
-        if (incidenceRegistrationDTO.date() != null) {
-            incidenceToUpdate.setDate(incidenceRegistrationDTO.date());
         }
 
         if (incidenceRegistrationDTO.status() != null) {
@@ -86,21 +83,24 @@ public class IncidenceServiceImpl implements IncidenceService {
             incidenceToUpdate.setImage(imageData);
         }
 
-        if (incidenceRegistrationDTO.affectedLines() != null) {
-            incidenceToUpdate.setAffectedLines(incidenceRegistrationDTO.affectedLines());
-        }
-
         incidenceRepository.save(incidenceToUpdate);
     }
 
     @Transactional
-    public void deleteIncidence(Long id) {
-        Incidence incidenceToDelete = incidenceRepository.findById(id)
+    public void deleteIncidence(String incidenceID) {
+        Incidence incidenceToDelete = incidenceRepository.findByIncidenceID(incidenceID)
             .orElseThrow(() -> new ResponseStatusException(
-                HttpStatus.NOT_FOUND, "No se encontró la incidencia con ID: " + id
+                HttpStatus.NOT_FOUND, "No se encontró la incidencia con ID: " + incidenceID
             ));
 
         incidenceRepository.delete(incidenceToDelete);
+    }
+
+    public IncidenceDTO getIncidenceWithID(String incidenceID) {
+        return incidenceMapper.toIncidenceDTO(this.incidenceRepository.findByIncidenceID(incidenceID)
+            .orElseThrow(() -> new ResponseStatusException(
+                HttpStatus.NOT_FOUND, "No se encontró la incidencia con ID: " + incidenceID
+            )));
     }
 
     public Page<Incidence> findAll(Pageable pageable) {
@@ -111,11 +111,6 @@ public class IncidenceServiceImpl implements IncidenceService {
     public List<IncidenceDTO> getAllIncidences() {
         return this.incidenceRepository.findAll().stream()
                 .map(this.incidenceMapper::toIncidenceDTO)
-                .toList();
-    }
-
-    public List<Incidence> getAllIncidencesWithID() {
-        return this.incidenceRepository.findAll().stream()
                 .toList();
     }
 

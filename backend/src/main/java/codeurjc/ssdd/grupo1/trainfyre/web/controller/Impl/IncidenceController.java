@@ -14,6 +14,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.server.ResponseStatusException;
@@ -24,6 +25,7 @@ import codeurjc.ssdd.grupo1.trainfyre.data.model.Incidence;
 import codeurjc.ssdd.grupo1.trainfyre.data.model.Line;
 import codeurjc.ssdd.grupo1.trainfyre.service.IncidenceService;
 import codeurjc.ssdd.grupo1.trainfyre.service.LineService;
+import codeurjc.ssdd.grupo1.trainfyre.mapper.IncidenceMapper;
 import codeurjc.ssdd.grupo1.trainfyre.mapper.LineMapper;
 
 import java.io.IOException;
@@ -41,7 +43,7 @@ public class IncidenceController {
     private final IncidenceService incidenceService;
     private final LineService lineService;
     private final LineMapper lineMapper;
-
+    private final IncidenceMapper incidenceMapper;
     private final UserService userService;
 
     @GetMapping(value = "/incidences")
@@ -74,7 +76,7 @@ public class IncidenceController {
         model.addAttribute("title", "Admin Panel");
         model.addAttribute("lines", lineService.getAllLines());
 
-        List<Map<String, Object>> incidences = incidenceService.getAllIncidencesWithID().stream()
+        List<Map<String, Object>> incidences = incidenceService.getAllIncidences().stream()
                 .map(incidence -> Map.<String, Object>of(
                         "incidence", incidence))
                 .toList();
@@ -91,8 +93,16 @@ public class IncidenceController {
         return "admin_panel_incidences";
     }
 
+    @GetMapping("/admin/incidence/{incidenceID}")
+    public String showIncidenceDetails(@PathVariable String incidenceID, Model model) {
+        Incidence incidence = incidenceMapper.toIncidence(incidenceService.getIncidenceWithID(incidenceID));
+        model.addAttribute("incidence", incidence);
+        return "incidence_page";
+    }
+
     @PostMapping(value = "/admin/admin_panel_incidences/add")
     public String createIncidenceFromAdminPanel(
+            @RequestParam(required = true) String incidenceID,
             @RequestParam(required = false) MultipartFile updatedImage,
             @RequestParam(required = true) INCIDENCE_LEVEL incidenceLevel,
             @RequestParam(required = true) INCIDENCE_TYPE incidenceType,
@@ -103,7 +113,6 @@ public class IncidenceController {
             Model model) {
 
         
-
         log.info("Admin creating new incidence");
         model.addAttribute("title", "Admin Panel");
         model.addAttribute("lines", lineService.getAllLines());
@@ -125,6 +134,7 @@ public class IncidenceController {
         }
 
         IncidenceRegistrationDTO dto = new IncidenceRegistrationDTO(
+                incidenceID,
                 incidenceLevel,
                 incidenceType,
                 description,
@@ -147,17 +157,17 @@ public class IncidenceController {
     }
 
     @PostMapping(value = "/admin/admin_panel_incidences/delete")
-    public String deleteIncidenceFromAdminPanel(@RequestParam Long id, Model model) {
-        log.info("Admin deleting incidence with id: {}", id);
+    public String deleteIncidenceFromAdminPanel(@RequestParam String incidenceID, Model model) {
+        log.info("Admin deleting incidence with id: {}", incidenceID);
 
         model.addAttribute("title", "Admin Panel");
 
         try {
-            incidenceService.deleteIncidence(id);
-            log.info("Incidence with id {} deleted successfully", id);
+            incidenceService.deleteIncidence(incidenceID);
+            log.info("Incidence with id {} deleted successfully", incidenceID);
         } catch (ResponseStatusException e) {
-            log.error("Error deleting incidence with id {}: {}", id, e.getReason());
-            model.addAttribute("error", "No se encontró la incidencia con ID: " + id);
+            log.error("Error deleting incidence with id {}: {}", incidenceID, e.getReason());
+            model.addAttribute("error", "No se encontró la incidencia con ID: " + incidenceID);
             return "admin_panel_incidences";
         }
 
@@ -165,7 +175,7 @@ public class IncidenceController {
     }
 
     @PostMapping(value = "admin/admin_panel_incidences/update")
-    public String updateIncidenceFromAdminPanel(@RequestParam Long id,
+    public String updateIncidenceFromAdminPanel(@RequestParam(required = true) String incidenceID,
             @RequestParam(required = false) MultipartFile updatedImage,
             @RequestParam(required = false) INCIDENCE_LEVEL incidenceLevel,
             @RequestParam(required = false) INCIDENCE_TYPE incidenceType,
@@ -173,7 +183,7 @@ public class IncidenceController {
             @RequestParam(required = false) INCIDENCE_STATUS status,
             Model model) {
 
-        log.info("Admin updating incidence with id: {}", id);
+        log.info("Admin updating incidence with id: {}", incidenceID);
         model.addAttribute("title", "Admin Panel");
         model.addAttribute("lines", lineService.getAllLines());
 
@@ -187,6 +197,7 @@ public class IncidenceController {
         }
 
         IncidenceRegistrationDTO incidenceRegistrationDTO = new IncidenceRegistrationDTO(
+                incidenceID,
                 incidenceLevel,
                 incidenceType,
                 description,
@@ -196,11 +207,11 @@ public class IncidenceController {
                 null);
 
         try {
-            incidenceService.updateIncidence(id, updatedImage, incidenceRegistrationDTO);
-            log.info("Incidence with id {} updated successfully", id);
+            incidenceService.updateIncidence(updatedImage, incidenceRegistrationDTO);
+            log.info("Incidence with id {} updated successfully", incidenceID);
         } catch (ResponseStatusException e) {
-            log.error("Error updating incidence with id {}: {}", id, e.getReason());
-            model.addAttribute("error", "No se encontró la incidencia con ID: " + id);
+            log.error("Error updating incidence with id {}: {}", incidenceID, e.getReason());
+            model.addAttribute("error", "No se encontró la incidencia con ID: " + incidenceID);
             return "admin_panel_incidences";
         }
 

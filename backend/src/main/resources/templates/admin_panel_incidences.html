@@ -68,6 +68,11 @@
         <div class="modal-body">
 
           <div class="mb-3">
+            <label for="add-incidenceID" class="form-label">ID</label>
+            <input type="text" class="form-control" id="add-incidenceID" name="incidenceID" required>
+          </div>
+
+          <div class="mb-3">
             <label for="add-lines" class="form-label">Líneas</label>
             <select class="form-control" id="add-lines" name="affectedLineNames" multiple required>
               {{#lines}}

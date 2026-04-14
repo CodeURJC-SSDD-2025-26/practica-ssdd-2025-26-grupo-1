@@ -13,12 +13,12 @@ import org.springframework.data.domain.Pageable;
 
 public interface IncidenceService {
     IncidenceDTO createIncidence(IncidenceRegistrationDTO incidenceRegistrationDTO);
-    void updateIncidence(Long id, MultipartFile updatedImage, IncidenceRegistrationDTO incidenceRegistrationDTO);
-    void deleteIncidence(Long id);
+    void updateIncidence(MultipartFile updatedImage, IncidenceRegistrationDTO incidenceRegistrationDTO);
+    void deleteIncidence(String incidenceID);
 
+    IncidenceDTO getIncidenceWithID(String incidenceID);
     Page<Incidence> findAll(Pageable pageable);
     List<IncidenceDTO> getAllIncidences();
-    List<Incidence> getAllIncidencesWithID();
     List<IncidenceDTO> getAllIncidencesAffectingLineAsDTO(Line line);
     List<Incidence> getAllIncidencesAffectingLine(Line line);
     String generatePieChartJSON();

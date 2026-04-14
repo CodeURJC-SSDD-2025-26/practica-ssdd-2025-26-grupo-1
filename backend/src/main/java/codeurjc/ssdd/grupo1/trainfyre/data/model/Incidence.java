@@ -26,8 +26,11 @@ public class Incidence {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(unique=true)
+    private String incidenceID;
+
     @Column(nullable = false)
-    INCIDENCE_TYPE incidenceType;
+    private INCIDENCE_TYPE incidenceType;
 
     @Column(nullable = false)
     private INCIDENCE_LEVEL incidenceLevel;
