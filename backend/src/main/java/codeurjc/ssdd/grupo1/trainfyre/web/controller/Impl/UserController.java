@@ -73,9 +73,17 @@ public class UserController {
 
         log.info("Registration petition {}", userRegistrationtDTO.toString());
 
-        model.addAttribute("title", "Succesful registration");
+        try {
+            userService.createUser(userRegistrationtDTO);
+        } catch (IllegalArgumentException e) {
+            log.error("Error al registrarse: {}", e.getMessage());
+            model.addAttribute("title", "Error");
+            model.addAttribute("status", 400);
+            model.addAttribute("error", e.getMessage());
+            return "error";
+        }
 
-        userService.createUser(userRegistrationtDTO);
+        model.addAttribute("title", "Successful registration");
         return "successful_registration";
     }
 
@@ -143,7 +151,15 @@ public class UserController {
     public String addUser(@ModelAttribute("User")UserDTO userDTO, Model model) {
         log.info("Adding user {}", userDTO.toString());
 
-        userService.createUser(userDTO);
+        try {
+            userService.createUser(userDTO);
+        } catch (IllegalArgumentException e) {
+            log.error("Error al añadir usuario: {}", e.getMessage());
+            model.addAttribute("title", "Error");
+            model.addAttribute("status", 400);
+            model.addAttribute("error", e.getMessage());
+            return "error";
+        }
 
         model.addAttribute("title", "Admin Panel");
         model.addAttribute("roles", Role.values());

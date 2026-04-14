@@ -1,9 +1,13 @@
 package codeurjc.ssdd.grupo1.trainfyre.web.controller.Impl;
 
+import codeurjc.ssdd.grupo1.trainfyre.dto.IncidencesDTOs.*;
+import codeurjc.ssdd.grupo1.trainfyre.service.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.security.core.context.SecurityContext;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,10 +19,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.multipart.MultipartFile;
 
 import codeurjc.ssdd.grupo1.trainfyre.dto.LineDTO;
-import codeurjc.ssdd.grupo1.trainfyre.dto.IncidencesDTOs.INCIDENCE_LEVEL;
-import codeurjc.ssdd.grupo1.trainfyre.dto.IncidencesDTOs.INCIDENCE_STATUS;
-import codeurjc.ssdd.grupo1.trainfyre.dto.IncidencesDTOs.INCIDENCE_TYPE;
-import codeurjc.ssdd.grupo1.trainfyre.dto.IncidencesDTOs.IncidenceRegistrationDTO;
 import codeurjc.ssdd.grupo1.trainfyre.data.model.Line;
 
 import codeurjc.ssdd.grupo1.trainfyre.service.IncidenceService;
@@ -29,6 +29,7 @@ import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.CompletableFuture;
 
 @Controller
 @Validated
@@ -39,6 +40,8 @@ public class IncidenceController {
     private final IncidenceService incidenceService;
     private final LineService lineService;
     private final LineMapper lineMapper;
+
+    private final UserService userService;
     
     @GetMapping(value = "/incidences")
     public String getIncidences(Model model) {
@@ -116,7 +119,8 @@ public class IncidenceController {
         );
 
         try {
-            incidenceService.createIncidence(dto);
+            IncidenceDTO newIncidence = incidenceService.createIncidence(dto);
+            notificateIncidence(newIncidence);
             log.info("Incidence created successfully");
         } catch (ResponseStatusException e) {
             log.error("Error creating incidence: {}", e.getReason());
@@ -187,5 +191,13 @@ public class IncidenceController {
         }
 
         return "redirect:/admin/admin_panel_incidences";
+    }
+
+    private void notificateIncidence(IncidenceDTO incidence) {
+        SecurityContext context = SecurityContextHolder.getContext();
+        CompletableFuture.runAsync(() -> {
+            SecurityContextHolder.setContext(context); // propagar contexto
+            userService.notifyIncidenceToAffectedUsers(incidence);
+        });
     }
 }

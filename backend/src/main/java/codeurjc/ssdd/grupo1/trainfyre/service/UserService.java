@@ -1,5 +1,6 @@
 package codeurjc.ssdd.grupo1.trainfyre.service;
 
+import codeurjc.ssdd.grupo1.trainfyre.dto.IncidencesDTOs.IncidenceDTO;
 import codeurjc.ssdd.grupo1.trainfyre.dto.UsersDTOs.UserDTO;
 import codeurjc.ssdd.grupo1.trainfyre.dto.UsersDTOs.UserInfoDTO;
 import codeurjc.ssdd.grupo1.trainfyre.dto.UsersDTOs.UserRegistrationtDTO;
@@ -26,4 +27,7 @@ public interface UserService {
 
     //DELETE
     void deleteUser(UserInfoDTO userInfoDTO);
+
+    //NOTIFY
+    void notifyIncidenceToAffectedUsers(IncidenceDTO incidenceDTO);
 }
