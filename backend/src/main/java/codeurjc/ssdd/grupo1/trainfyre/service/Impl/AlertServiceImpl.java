@@ -2,7 +2,6 @@ package codeurjc.ssdd.grupo1.trainfyre.service.Impl;
 
 import codeurjc.ssdd.grupo1.trainfyre.data.model.Alert;
 import codeurjc.ssdd.grupo1.trainfyre.data.model.AppUser;
-import codeurjc.ssdd.grupo1.trainfyre.data.model.Incidence;
 import codeurjc.ssdd.grupo1.trainfyre.data.repository.AlertRepository;
 import codeurjc.ssdd.grupo1.trainfyre.data.repository.UserRepository;
 import codeurjc.ssdd.grupo1.trainfyre.dto.AlertDTO;
@@ -23,7 +22,7 @@ public class AlertServiceImpl implements AlertService{
 
     private AlertRepository alertRepository;
     private AlertMapper alertMapper;
-    private UserRepository userRepository;
+    //private UserRepository userRepository; <-- @ClaramenteYo Is not used, if you want to add it again use it somewhere or remove it.
 
     @Transactional
     public AlertDTO registerAlert(AlertRegistrationDTO alertrDTO, AppUser appUser) {

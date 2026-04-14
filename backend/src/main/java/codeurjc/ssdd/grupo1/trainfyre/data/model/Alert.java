@@ -4,9 +4,6 @@ package codeurjc.ssdd.grupo1.trainfyre.data.model;
 import jakarta.persistence.*;
 import lombok.Data;
 
-import java.time.LocalDate;
-import java.time.LocalTime;
-
 import codeurjc.ssdd.grupo1.trainfyre.dto.IncidencesDTOs.INCIDENCE_LEVEL;
 
 @Entity

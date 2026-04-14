@@ -1,5 +1,4 @@
 package codeurjc.ssdd.grupo1.trainfyre.dto;
-import java.awt.Color;
 import java.util.List;
 
 import codeurjc.ssdd.grupo1.trainfyre.data.model.Station;

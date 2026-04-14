@@ -8,7 +8,6 @@ import codeurjc.ssdd.grupo1.trainfyre.data.repository.LineRepository;
 import codeurjc.ssdd.grupo1.trainfyre.data.repository.UserRepository;
 import codeurjc.ssdd.grupo1.trainfyre.dto.AlertRegistrationDTO;
 import codeurjc.ssdd.grupo1.trainfyre.dto.UsersDTOs.UserInfoDTO;
-import codeurjc.ssdd.grupo1.trainfyre.mapper.Impl.AlertDtoToAlert;
 import codeurjc.ssdd.grupo1.trainfyre.service.AlertService;
 import codeurjc.ssdd.grupo1.trainfyre.service.UserService;
 import lombok.RequiredArgsConstructor;
@@ -17,7 +16,6 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
