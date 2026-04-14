@@ -145,7 +145,7 @@ jobs:
           echo "═══════════════════════════════════════════════════════════════"
         timeout-minutes: 30
 
-      - name: ⏭️ SKIP: No tests encontrados
+      - name: "⏭️ SKIP: No tests encontrados"
         if: needs.check-tests.outputs.tests_exist == 'false'
         run: |
           echo ""
