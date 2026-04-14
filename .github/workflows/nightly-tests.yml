@@ -1,0 +1,249 @@
+name: 🌙 Nightly Tests - TrainFyre Backend
+
+on:
+  # Trigger automático: Cada noche a las 03:00 AM (hora de Madrid/España)
+  schedule:
+    - cron: '0 2 * * *'  # UTC-1 → 03:00 Madrid (ajusta según horario de verano/invierno)
+  
+  # Trigger manual desde GitHub Actions UI
+  workflow_dispatch:
+
+env:
+  JAVA_VERSION: '21'
+  MAVEN_VERSION: '3.9.6'
+  REGISTRY: 'ghcr.io'
+  IMAGE_NAME: 'trainfyre-backend'
+
+jobs:
+  
+  # ============================================================================
+  # PASO 1: VERIFICAR EXISTENCIA DE TESTS
+  # ============================================================================
+  check-tests:
+    name: 📊 Verificar Tests
+    runs-on: ubuntu-latest
+    outputs:
+      tests_exist: ${{ steps.check.outputs.exists }}
+    steps:
+      - name: 📥 Checkout Code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: 🔍 Verificar existencia de archivos de test
+        id: check
+        run: |
+          if find Backend/src/test/java -name "*Test.java" -o -name "*Tests.java" | grep -q .; then
+            echo "exists=true" >> $GITHUB_OUTPUT
+            echo "✅ Tests encontrados"
+          else
+            echo "exists=false" >> $GITHUB_OUTPUT
+            echo "⚠️ No hay tests en src/test/java"
+          fi
+
+  # ============================================================================
+  # PASO 2: INSTALAR Y CACHEAR MAVEN DEPENDENCIES
+  # ============================================================================
+  setup-cache:
+    name: ⚡ Setup & Cache Maven
+    runs-on: ubuntu-latest
+    steps:
+      - name: 📥 Checkout Code
+        uses: actions/checkout@v4
+
+      - name: ☕ Setup Java JDK 21
+        uses: actions/setup-java@v4
+        with:
+          java-version: ${{ env.JAVA_VERSION }}
+          distribution: 'temurin'
+          cache: 'maven'
+          cache-dependency-path: 'Backend/pom.xml'
+
+      - name: 📦 Cache Maven Dependencies
+        uses: actions/cache@v4
+        with:
+          path: ~/.m2/repository
+          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+          restore-keys: |
+            ${{ runner.os }}-maven-
+
+      - name: 🔄 Descargar Dependencias
+        run: |
+          cd Backend
+          mvn dependency:resolve -DskipTests
+
+  # ============================================================================
+  # PASO 3: COMPILAR Y EJECUTAR TESTS (CON MYSQL EN SERVICE CONTAINER)
+  # ============================================================================
+  run-tests:
+    name: 🧪 Ejecutar Tests Nightly
+    needs: [check-tests, setup-cache]
+    runs-on: ubuntu-latest
+    
+    # Service Container para MySQL (si se requiere integración)
+    services:
+      mysql:
+        image: mysql:8.0
+        env:
+          MYSQL_ROOT_PASSWORD: root_password
+          MYSQL_DATABASE: trainfyre_test
+          MYSQL_USER: trainfyre_user
+          MYSQL_PASSWORD: trainfyre_password
+        options: >-
+          --health-cmd="mysqladmin ping -h localhost"
+          --health-interval=10s
+          --health-timeout=5s
+          --health-retries=3
+        ports:
+          - 3306:3306
+
+    steps:
+      - name: 📥 Checkout Code
+        uses: actions/checkout@v4
+
+      - name: ☕ Setup Java JDK 21
+        uses: actions/setup-java@v4
+        with:
+          java-version: ${{ env.JAVA_VERSION }}
+          distribution: 'temurin'
+          cache: 'maven'
+          cache-dependency-path: 'Backend/pom.xml'
+
+      - name: ⏳ Esperar a que MySQL esté listo
+        run: |
+          sleep 15
+          until nc -z localhost 3306; do
+            echo "MySQL no está listo... esperando..."
+            sleep 5
+          done
+          echo "✅ MySQL está disponible"
+        timeout-minutes: 2
+
+      - name: 🚀 Ejecutar Tests Maven
+        if: needs.check-tests.outputs.tests_exist == 'true'
+        run: |
+          cd Backend
+          mvn clean test \
+            -DskipITs=false \
+            -Dtest="*Test,*Tests" \
+            -Dmaven.test.failure.ignore=false \
+            -Dspring.datasource.url=jdbc:mysql://localhost:3306/trainfyre_test \
+            -Dspring.datasource.username=trainfyre_user \
+            -Dspring.datasource.password=trainfyre_password \
+            -X
+        timeout-minutes: 30
+
+      - name: ⏭️ SKIP: Tests no encontrados
+        if: needs.check-tests.outputs.tests_exist == 'false'
+        run: |
+          echo "═══════════════════════════════════════════════════════════════"
+          echo "⚠️  SKIP: No tests found"
+          echo "═══════════════════════════════════════════════════════════════"
+          echo ""
+          echo "📌 Información:"
+          echo "   • El workflow se ejecutó correctamente"
+          echo "   • No hay archivos de test en Backend/src/test/java"
+          echo "   • Para activar tests reales, añade archivos test en:"
+          echo "     Backend/src/test/java/codeurjc/ssdd/grupo1/trainfyre/"
+          echo ""
+          echo "✅ Este es un estado ESPERADO (no es un ERROR)"
+          echo "═══════════════════════════════════════════════════════════════"
+          exit 0
+
+      - name: 📊 Generar Reportes Surefire
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: surefire-reports
+          path: Backend/target/surefire-reports/
+          if-no-files-found: warn
+          retention-days: 30
+
+      - name: 📈 Publicar Reportes JUnit
+        if: always()
+        uses: EnricoMi/publish-unit-test-result-action@v2
+        with:
+          files: Backend/target/surefire-reports/TEST-*.xml
+          check_name: '🧪 JUnit Test Results'
+          comment_title: '📊 Test Report'
+        continue-on-error: true
+
+  # ============================================================================
+  # PASO 4: GENERAR REPORTE DE ERRORES EN CASO DE FALLO
+  # ============================================================================
+  test-failure-report:
+    name: 🔴 Reporte de Errores (Si hay fallo)
+    if: failure() && needs.run-tests.result == 'failure'
+    needs: run-tests
+    runs-on: ubuntu-latest
+    steps:
+      - name: 📥 Checkout Code
+        uses: actions/checkout@v4
+
+      - name: 🔍 Descargar Reportes de Fallos
+        uses: actions/download-artifact@v4
+        with:
+          name: surefire-reports
+          path: test-reports/
+        continue-on-error: true
+
+      - name: 📋 Generar Resumen de Errores
+        run: |
+          echo "═══════════════════════════════════════════════════════════════"
+          echo "❌ RESUMEN DE ERRORES EN TESTS NIGHTLY"
+          echo "═══════════════════════════════════════════════════════════════"
+          echo ""
+          echo "📅 Fecha/Hora: $(date -u +'%Y-%m-%d %H:%M:%S UTC')"
+          echo "🏃 Workflow: ${{ github.workflow }}"
+          echo "📌 Evento: ${{ github.event_name }}"
+          echo "🔗 Ejecutor: ${{ runner.os }} (${{ runner.arch }})"
+          echo ""
+          echo "❌ LOGS DE ERRORES:"
+          echo "───────────────────────────────────────────────────────────────"
+          if [ -f test-reports/FAILURES.txt ]; then
+            cat test-reports/FAILURES.txt
+          else
+            echo "⚠️ No se encontraron reportes de fallos detallados"
+            echo "📌 Revisa los artefactos descargados para más información"
+          fi
+          echo ""
+          echo "📦 ARTEFACTOS GENERADOS:"
+          ls -lah test-reports/ 2>/dev/null || echo "   (No hay reportes disponibles)"
+          echo ""
+          echo "═══════════════════════════════════════════════════════════════"
+          exit 1
+
+      - name: 💬 Comentar en el Commit (Opcional)
+        if: github.event_name == 'push'
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: `❌ **NIGHTLY TEST FAILED** ⛔\n\n**Revisa los reportes en Actions para más detalles:**\n- 📊 Surefire Reports: Descarga los artefactos\n- 🔗 [Ver workflow completo](${context.payload.repository.html_url}/actions/runs/${context.runId})`
+            })
+        continue-on-error: true
+
+  # ============================================================================
+  # PASO 5: NOTIFICACIÓN DE ÉXITO
+  # ============================================================================
+  test-success-notify:
+    name: ✅ Notificación de Éxito
+    if: success()
+    needs: [run-tests, check-tests]
+    runs-on: ubuntu-latest
+    steps:
+      - name: 🎉 Tests Completados Exitosamente
+        run: |
+          echo "═══════════════════════════════════════════════════════════════"
+          echo "✅ NIGHTLY TESTS - COMPLETED SUCCESSFULLY"
+          echo "═══════════════════════════════════════════════════════════════"
+          echo ""
+          echo "📅 Fecha/Hora: $(date -u +'%Y-%m-%d %H:%M:%S UTC')"
+          echo "✨ Estado: All tests passed"
+          echo "🧪 Tests ejecutados: $(if [ '${{ needs.check-tests.outputs.tests_exist }}' == 'true' ]; then echo 'SÍ'; else echo 'SKIP (no tests)'; fi)"
+          echo ""
+          echo "═══════════════════════════════════════════════════════════════"
