@@ -26,7 +26,7 @@ public class SecurityConfiguration {
                 .authorizeHttpRequests(authorize -> authorize
                         .requestMatchers("/css/**", "/static/js/**", "/img/**",
                                 "/", "/logout", "/h2-console/**", "/incidences",
-                                "/login", "/index", "/successful_logout",
+                                "/login", "/index/**", "/successful_logout",
                                 "/stations", "/register", "/error", "/js/**")
                                 .permitAll()
                         .requestMatchers("/admin/**").hasRole(Role.ADMIN.name())
