@@ -64,7 +64,7 @@
 
           <div class="mb-3">
             <label for="add-lines" class="form-label">Líneas</label>
-            <select class="form-control" id="add-lines" name="affectedLineNames" multiple>
+            <select class="form-control" id="add-lines" name="affectedLineNames" multiple required>
               {{#lines}}
                 <option value="{{name}}">{{name}}</option>
               {{/lines}}
