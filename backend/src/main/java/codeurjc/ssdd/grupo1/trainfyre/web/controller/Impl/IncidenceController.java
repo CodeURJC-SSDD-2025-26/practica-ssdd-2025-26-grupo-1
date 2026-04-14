@@ -62,6 +62,7 @@ public class IncidenceController {
         log.info("Loading admin panel");
 
         model.addAttribute("title", "Admin Panel");
+        model.addAttribute("lines", lineService.getAllLines());
 
         List<Map<String, Object>> incidences = incidenceService.getAllIncidencesWithID().stream()
             .map(incidence -> Map.<String, Object>of(

@@ -41,6 +41,10 @@ public class IncidenceServiceImpl implements IncidenceService {
 
         Incidence incidenceSaved = incidenceRepository.save(incidence);
 
+        // TODO
+        // Primero pasar a IncidenceInfoDTO (todo menos ID).
+        // Llamar a método de Pablo de inform/alert users.
+
         return incidenceMapper.toIncidenceDTO(incidenceSaved);
     }
 
