@@ -7,7 +7,6 @@ import java.util.Collections;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import codeurjc.ssdd.grupo1.trainfyre.data.model.Line;
 import codeurjc.ssdd.grupo1.trainfyre.dto.IncidencesDTOs.IncidenceDTO;
-import codeurjc.ssdd.grupo1.trainfyre.mapper.LineMapper;
 import codeurjc.ssdd.grupo1.trainfyre.service.IncidenceService;
 import codeurjc.ssdd.grupo1.trainfyre.service.LineService;
 
@@ -31,9 +29,6 @@ public class HomeController {
 
     @Autowired
     private LineService lineService;
-
-    @Autowired
-    private LineMapper lineMapper;
 
     @GetMapping({"/", "index"})
     public String index(Model model) {
@@ -58,6 +53,7 @@ public class HomeController {
 
         model.addAttribute("title", "Index");
         model.addAttribute("interactiveMapScript", "pages/index.js");
+        model.addAttribute("lineName", lineName);
 
         try {
             Line line = lineService.findLineByName(lineName);

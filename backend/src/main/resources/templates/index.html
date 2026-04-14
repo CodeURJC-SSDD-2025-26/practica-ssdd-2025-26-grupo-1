@@ -61,9 +61,16 @@
                         <td>{{description}}</td>    
                     {{/incidences}}
                     {{^incidences}}
-                        <tr>
-                        <td colspan="7" class="td_center">No hay incidencias registradas.</td>
-                        </tr>
+                        {{#lineName}}
+                            <tr>
+                            <td colspan="7" class="td_center">No hay incidencias registradas en {{lineName}}</td>
+                            </tr>
+                        {{/lineName}}
+                        {{^lineName}}
+                            <tr>
+                            <td colspan="7" class="td_center">No hay incidencias registradas</td>
+                            </tr>
+                        {{/lineName}}
                     {{/incidences}}
                     </tbody>
                 </table>
