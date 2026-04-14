@@ -73,8 +73,10 @@ public class UserController {
 
         log.info("Registration petition {}", userRegistrationtDTO.toString());
 
+        model.addAttribute("title", "Succesful registration");
+
         userService.createUser(userRegistrationtDTO);
-        return "index";
+        return "successful_registration";
     }
 
     @GetMapping(value = "/registered/settings")

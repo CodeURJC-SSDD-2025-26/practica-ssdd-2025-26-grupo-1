@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>{{title}}</title>
+
+    <!-- Globales, siempre presentes -->
+    {{#globalStyles}}
+    <link rel="stylesheet" href="{{.}}">
+    {{/globalStyles}}
+    {{#globalScripts}}
+    <script src="{{.}}"></script>
+    {{/globalScripts}}
+
+    <!-- Específicos de página, solo si el controller los envía -->
+    {{#pageStyles}}
+    <link rel="stylesheet" href="/css/{{.}}">
+    {{/pageStyles}}
+    {{#pageScripts}}
+    <script src="/js/{{.}}" defer></script>
+    {{/pageScripts}}
+
+</head>
+
+{{# Layout }}
+<body>
+<main class="container-main">
+    <div class="d-flex justify-content-center align-items-center pb-3 gap-4">
+        {{^ error }}
+        <h1>Se ha creado tu cuenta correctamente</h1>
+        <br>
+        <h2>Loggeate para acceder a más funcionalidades</h2>
+        {{/ error }}
+
+        {{# error }}
+        <h1>{{error}}</h1>
+        {{/ error }}
+    </div>
+</main>
+</body>
+{{/ Layout }}
+
+</html>
