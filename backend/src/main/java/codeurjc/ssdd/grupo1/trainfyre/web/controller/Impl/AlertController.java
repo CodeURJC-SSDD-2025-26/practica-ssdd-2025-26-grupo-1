@@ -6,7 +6,9 @@ import codeurjc.ssdd.grupo1.trainfyre.data.model.Line;
 import codeurjc.ssdd.grupo1.trainfyre.data.repository.AlertRepository;
 import codeurjc.ssdd.grupo1.trainfyre.data.repository.LineRepository;
 import codeurjc.ssdd.grupo1.trainfyre.data.repository.UserRepository;
+import codeurjc.ssdd.grupo1.trainfyre.dto.AlertDTO;
 import codeurjc.ssdd.grupo1.trainfyre.dto.AlertRegistrationDTO;
+import codeurjc.ssdd.grupo1.trainfyre.dto.LineDTO;
 import codeurjc.ssdd.grupo1.trainfyre.dto.UsersDTOs.UserInfoDTO;
 import codeurjc.ssdd.grupo1.trainfyre.service.AlertService;
 import codeurjc.ssdd.grupo1.trainfyre.service.UserService;
@@ -252,6 +254,7 @@ public class AlertController {
         String error = null;
         Alert currentAlert;
 
+        AlertDTO alertDto;
         Line linereal;
         LocalDate start;
         LocalDate end;
@@ -273,14 +276,18 @@ public class AlertController {
             return "error";
         }
 
+        alertDto = new AlertDTO(Long.parseLong(id), lineO.get(), startDate, endDate, min, max, new AppUser());
+
+
         if (alertO.isEmpty()) {// No se encuentra la alerta.
             error = "No se encuentra la alerta.";
             model.addAttribute("error", error);
             return "error";
         }
 
-        // Obtain the alert to modify it.
+        // Obtain the id to modify the alert.
         currentAlert = alertO.get();
+
 
         String[] startDay = startDate.split("-");
         String[] endDay = endDate.split("-");
@@ -330,15 +337,7 @@ public class AlertController {
         }
 
         // Update the alert.
-        linereal = lineO.get();
-        currentAlert.setLine(linereal);
-        currentAlert.setStartDate(startDate);
-        currentAlert.setEndDate(endDate);
-        currentAlert.setStartHour(min);
-        currentAlert.setEndHour(max);
-
-        // Save the alert.
-        alertRepository.save(currentAlert);
+        alertService.updateAlert(alertDto);
 
         model.addAttribute("title", "Alert modified");
 
@@ -365,20 +364,7 @@ public class AlertController {
         int next = page.getPageNumber() + 1;
 
         // Get the alert and delete it.
-        alertO = alertRepository.findById(currentAlertId);
-
-        if (alertO.isEmpty()) {// Alert not found.
-            error = "Alerta no encontrada.";
-            model.addAttribute("error", error);
-            return "error";
-        }
-
-        // Delete alert.
-        currentAlert = alertO.get();
-        currentAlert.setLine(null);
-        currentAlert.setUser(null);
-        alertRepository.save(currentAlert);
-        alertRepository.delete(currentAlert);
+        alertService.deleteAlert(Long.parseLong(id));
 
         if (userO.isPresent()) {
             // Obtain the user get the alerts.
