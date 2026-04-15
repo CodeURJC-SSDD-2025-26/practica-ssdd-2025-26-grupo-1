@@ -42,9 +42,8 @@
                     <tr>
                         <th class="td_center">Fecha</th>
                         <th class="td_center">Líneas</th>
-                        <th class="td_center">Severidad</th>
-                        <th class="td_center">Tipo</th>
                         <th class="td_center">Descripción</th>
+                        <th class="td_center">Ver más</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -56,9 +55,11 @@
                             {{name}}
                             {{/affectedLines}}
                         </td>
-                        <td class="td_center">{{incidenceLevel}}</td>
-                        <td class="td_center">{{incidenceType}}</td>
-                        <td>{{description}}</td>    
+                        <td>{{description}}</td>
+                        <td class="td_center">
+                            <a href="/registered/incidence/{{incidenceID}}">Ver más</a>
+                        </td>
+                        </tr>
                     {{/incidences}}
                     {{^incidences}}
                         {{#lineName}}
