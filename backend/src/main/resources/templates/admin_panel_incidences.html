@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8">
+    <title>{{title}}</title>
+
+    <!-- Globales, siempre presentes -->
+    {{#globalStyles}}
+    <link rel="stylesheet" href="{{.}}">
+    {{/globalStyles}}
+    {{#globalScripts}}
+    <script src="{{.}}"></script>
+    {{/globalScripts}}
+  </head>
+
+  {{# Layout }}
+  <body>
+    {{> /partials/_subheader}}
+
+    <main class="container-main">
+      <div class="d-flex justify-content-between mb-2 ms-1">
+        <div class="ms-4">
+          {{#hasPrevious}}
+          <a href="/admin/admin_panel_incidences?page={{previous}}&size=5" class="btn btn-primary me-2">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-left-fill" viewBox="0 0 16 16">
+              <path d="m3.86 8.753 5.482 4.796c.646.566 1.658.106 1.658-.753V3.204a1 1 0 0 0-1.659-.753l-5.48 4.796a1 1 0 0 0 0 1.506z"/>
+            </svg>
+          </a>
+          {{/hasPrevious}}
+
+          {{#hasNext}}
+          <a href="/admin/admin_panel_incidences?page={{next}}&size=5" class="btn btn-primary me-2">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-right-fill" viewBox="0 0 16 16">
+              <path d="m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z"/>
+            </svg>
+          </a>
+          {{/hasNext}}
+        </div>
+      
+        <div class="me-4">
+          <button type="button"
+            class="btn btn-primary me-2"
+            data-bs-toggle="modal"
+            data-bs-target="#addModal">
+            Nueva incidencia
+          </button>
+        </div>
+      </div>
+
+      {{> /partials/_incidence_table}}
+    </main>
+  </body>
+  {{/ Layout }}
+
+</html>
+
+<!-- Modal de creación de incidencia -->
+<div class="modal fade" id="addModal" tabindex="-1" aria-labelledby="addModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="mb-0 text-uppercase text-center text-white" id="addModalLabel">Nueva incidencia</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+      </div>
+
+      <form id="addForm" action="/admin/admin_panel_incidences/add" method="POST" enctype="multipart/form-data">
+
+        <input type="hidden" name="{{csrf.parameterName}}" value="{{csrf.token}}">
+
+        <div class="modal-body">
+
+          <div class="mb-3">
+            <label for="add-incidenceID" class="form-label">ID</label>
+            <input type="text" class="form-control" id="add-incidenceID" name="incidenceID" required>
+          </div>
+
+          <div class="mb-3">
+            <label for="add-lines" class="form-label">Líneas</label>
+            <select class="form-control" id="add-lines" name="affectedLineNames" multiple required>
+              {{#lines}}
+                <option value="{{name}}">{{name}}</option>
+              {{/lines}}
+            </select>
+          </div>
+
+          <div class="mb-3">
+            <label for="add-incidenceLevel" class="form-label">Severidad</label>
+            <select class="form-control" id="add-incidenceLevel" name="incidenceLevel" required>
+              <option value="" disabled selected>Selecciona una severidad</option>
+              <option value="LOW">Leve</option>
+              <option value="MEDIUM">Moderado</option>
+              <option value="HIGH">Alto</option>
+            </select>
+          </div>
+
+          <div class="mb-3">
+            <label for="add-incidenceType" class="form-label">Tipo</label>
+            <select class="form-select" id="add-incidenceType" name="incidenceType" required>
+              <option value="" disabled selected>Selecciona un tipo</option>
+              <option value="MAINTENANCE">Mantenimiento</option>
+              <option value="ACCIDENT">Accidente</option>
+              <option value="OTHERS">Otro</option>
+            </select>
+          </div>
+
+          <div class="mb-3">
+            <label for="add-description" class="form-label">Descripción</label>
+            <textarea class="form-control" id="add-description" name="description" rows="3"></textarea>
+          </div>
+
+          <div class="mb-3">
+            <label for="add-date" class="form-label">Fecha y hora</label>
+            <input type="datetime-local" class="form-control" id="add-date" name="date" required>
+          </div>
+
+          <div class="mb-3">
+            <label for="add-status" class="form-label">Estado</label>
+            <select class="form-select" id="add-status" name="status" required>
+              <option value="" disabled selected>Selecciona un estado</option>
+              <option value="ACTIVE">Activo</option>
+              <option value="CLOSED">Cerrado</option>
+            </select>
+          </div>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+          <button type="submit" class="btn btn-primary">Crear incidencia</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

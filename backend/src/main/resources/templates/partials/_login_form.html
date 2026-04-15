@@ -1,0 +1,40 @@
+{{# error}}
+    <div id="login-error" class=badge-warning>
+        {{error}}
+    </div>
+{{/ error}}
+
+<form role="form" action="/login" method="post">
+
+    <input type="hidden" name="{{csrf.parameterName}}" value="{{csrf.token}}">
+
+    <div class="row d-flex justify-content-center gap-3 mb-1 ms-3 me-3 mt-5">
+        <div class="form-group col-10">
+            <h2 class="form-title">Inicio de sesión</h2>
+        </div>
+    </div>
+
+    <!--email-->
+    <div class="row d-flex justify-content-center gap-3 mb-4 ms-3 me-3">
+        <div class="form-group col-10">
+            <label for="username" class="form-label">Nombre de usuario</label>
+            <input type="text" class="form-control" id="username" required placeholder="Inserte su nombre de usuario" name="username">
+        </div>
+    </div>
+
+    <!--Password-->
+    <div class="row d-flex justify-content-center gap-3 mb-4 ms-3 me-3">
+        <div class="form-group col-10">
+            <label for="pwd" class="form-label">Contraseña</label>
+            <input type="password" class="form-control" id="pwd" required placeholder="Inserte su contraseña" name="password">
+        </div>
+    </div>
+
+    <!--Button row-->
+    <div class="row d-flex justify-content-center gap-3 mb-4 ms-3 me-3">
+        <div class="col-auto mt-2">
+            <button type="submit" class="btn btn-primary">Confirmar</button>
+        </div>
+    </div>
+    
+</form>

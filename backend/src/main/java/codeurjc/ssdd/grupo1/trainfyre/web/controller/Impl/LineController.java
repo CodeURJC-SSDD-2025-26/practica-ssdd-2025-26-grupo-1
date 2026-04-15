@@ -1,0 +1,78 @@
+package codeurjc.ssdd.grupo1.trainfyre.web.controller.Impl;
+
+import codeurjc.ssdd.grupo1.trainfyre.service.LineService;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+
+import java.util.List;
+import java.util.Map;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+@Controller
+@Validated
+@RequiredArgsConstructor
+@Slf4j
+public class LineController{
+    private final LineService lineService;
+
+    @GetMapping(value = "/admin/admin_panel_lines")
+    public String showAdminPanel(Model model) {
+        log.info("Loading admin lines panel");
+
+        model.addAttribute("title", "Admin Lines Panel");
+
+        List<Map<String, Object>> lines = lineService.getAllLines().stream()
+            .map(line -> Map.<String, Object>of(
+                "line", line
+            ))
+                .toList();
+        model.addAttribute("lines", lines);
+
+        return "admin_panel_lines";
+    }
+
+    @PostMapping(value = "/admin/admin_panel_lines/delete")
+    public String deleteLineFromAdminPanel(
+        @RequestParam String linename, 
+        Model model
+    ) {
+        lineService.deleteLine(linename);
+
+        return "redirect:/admin/admin_panel_lines";
+    }
+
+    @PostMapping(value = "admin/admin_panel_lines/update")
+    public String updateLine(
+        @RequestParam String oldName, 
+        @RequestParam String newName, 
+        @RequestParam String description,
+        @RequestParam String color,
+        Model model
+    ) {
+        log.info("Admin Updating line {}, to {}", oldName, newName);
+
+        lineService.updateLine(oldName, newName, description, color);
+
+        return "redirect:/admin/admin_panel_lines";
+    }
+
+    @PostMapping(value = "admin/admin_panel_lines/add")
+    public String addLine(
+        @RequestParam String newName, 
+        @RequestParam String newDescription,
+        @RequestParam String newColor,
+        Model model
+    ) {
+        log.info("Admin add line {}", newName);
+
+        lineService.addLine(newName, newDescription, newColor);
+
+        return "redirect:/admin/admin_panel_lines";
+    }
+}

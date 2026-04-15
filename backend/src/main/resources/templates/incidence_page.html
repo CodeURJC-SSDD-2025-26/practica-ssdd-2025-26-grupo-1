@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="author" content="alexgogb" />
+    <title>{{title}}</title>
+
+    <!-- Globales, siempre presentes -->
+    {{#globalStyles}}
+    <link rel="stylesheet" href="{{.}}">
+    {{/globalStyles}}
+    {{#globalScripts}}
+    <script src="{{.}}"></script>
+    {{/globalScripts}}
+</head>
+
+ {{# Layout }}
+<body>
+
+    {{# incidence }}
+    <main class="container-main">
+        <div class="d-flex justify-content-center align-items-center pb-3 gap-4">
+            <div class="col-auto">
+                <img src="{{incidenceImage}}" width="128" height="128" class="img-fluid" />
+            </div>
+        </div>
+
+        <hr class="mt-3 col-10">
+
+        <div class="row d-flex justify-content-center align-items-center pb-3 gap-4">
+            <div class="col-auto">
+                <h1>Incidencia {{incidenceID}}</h1>
+            </div>
+        </div>
+
+        <div class="row d-flex justify-content-center align-items-center pb-3 gap-4">
+            <div class="col-auto">
+                <h2>Fecha</h2>
+            </div>
+        </div>
+
+        <div class="row d-flex justify-content-center align-items-center pb-3 gap-4">
+            <div class="col-auto">
+                <p>{{date}}</p>
+            </div>
+        </div>
+
+        <div class="row d-flex justify-content-center align-items-center pb-3 gap-4">
+            <div class="col-auto">
+                <h2>Líneas afectadas</h2>
+            </div>
+        </div>
+
+        <div class="row d-flex justify-content-center align-items-center pb-3 gap-4">
+            <div class="col-auto">
+                <p>
+                    {{#affectedLines}}
+                        {{name}}
+                    {{/affectedLines}}
+                </p>
+            </div>
+        </div>
+
+        <div class="row d-flex justify-content-center align-items-center pb-3 gap-4">
+            <div class="col-auto">
+                <h2>Severidad</h2>
+            </div>
+        </div>
+
+        <div class="row d-flex justify-content-center align-items-center pb-3 gap-4">
+            <div class="col-auto">
+                <p>{{incidenceLevel}}</p>
+            </div>
+        </div>
+
+        <div class="row d-flex justify-content-center align-items-center pb-3 gap-4">
+            <div class="col-auto">
+                <h2>Tipo</h2>
+            </div>
+        </div>
+
+        <div class="row d-flex justify-content-center align-items-center pb-3 gap-4">
+            <div class="col-auto">
+                <p>{{incidenceType}}</p>
+            </div>
+        </div>
+
+        <div class="row d-flex justify-content-center align-items-center pb-3 gap-4">
+            <div class="col-auto">
+                <h2>Descripción de la incidencia</h2>
+            </div>
+        </div>
+
+        <div class="row d-flex justify-content-center align-items-center pb-3 gap-4">
+            <div class="col-auto">
+                <p>{{description}}</p>
+            </div>
+        </div>
+
+        {{/ incidence}}
+
+        {{^ incidence}}
+            <div class="row d-flex justify-content-center align-items-center pb-3 gap-4">
+                <div class="col-auto">
+                    <h2>No se ha encontrado la incidencia con ID: {{incidenceID}}</h2>
+                </div>
+            </div>
+        {{/ incidence}}
+
+    </main>
+
+</body>
+{{/ Layout }}
+
+</html>
