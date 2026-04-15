@@ -16,27 +16,28 @@
         <tbody>
           {{#incidences}}
             <tr>
-              <td class="td_center">{{incidenceID}}</td>
+              <td class="td_center">{{incidence.incidenceID}}</td>
               <td class="td_center">
-                {{#affectedLines}}
+                {{#incidence.affectedLines}}
                   {{name}}
-                {{/affectedLines}}
+                {{/incidence.affectedLines}}
               </td>
-              <td class="td_center">{{incidenceLevel}}</td>
-              <td class="td_center">{{incidenceType}}</td>
+              <td class="td_center">{{incidence.incidenceLevel}}</td>
+              <td class="td_center">{{incidence.incidenceType}}</td>
               <td class="td_center">
-                <a href="/registered/incidence/{{incidenceID}}">Ver más</a>
+                <a href="/registered/incidence/{{incidence.incidenceID}}">Ver más</a>
               </td>
               <td class="td_center">
                 <button type="button"
                 class="btn btn-link p-0 border-0 bg-transparent btn-edit"
                 data-bs-toggle="modal"
                 data-bs-target="#editModal"
-                data-incidence-id="{{incidenceID}}"
-                data-incidence-level="{{incidenceLevel}}"
-                data-incidence-type="{{incidenceType}}"
-                data-description="{{description}}"
-                data-status="{{status}}">
+                data-incidence-id="{{incidence.incidenceID}}"
+                data-incidence-level="{{incidence.incidenceLevel}}"
+                data-incidence-type="{{incidence.incidenceType}}"
+                data-description="{{incidence.description}}"
+                data-image="{{image}}"
+                data-status="{{incidence.status}}">
                   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
                     <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
                     <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z"/>
@@ -46,7 +47,7 @@
               <td class="td_center">
                 <form action="/admin/admin_panel_incidences/delete" method="post" class="d-inline" onsubmit="return confirm('¿Está seguro de querer eliminarlo?')">
                   <input type="hidden" name="{{csrf.parameterName}}" value="{{csrf.token}}">
-                  <input type="hidden" name="incidenceID" value="{{incidenceID}}">
+                  <input type="hidden" name="incidenceId" value="{{incidence.incidenceID}}">
                   <button type="submit" class="btn btn-link p-0">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-ban" viewBox="0 0 16 16">
                       <path d="M15 8a6.97 6.97 0 0 0-1.71-4.584l-9.874 9.875A7 7 0 0 0 15 8M2.71 12.584l9.874-9.875a7 7 0 0 0-9.874 9.874ZM16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0"/>
@@ -80,7 +81,7 @@
 
         <input type="hidden" name="{{csrf.parameterName}}" value="{{csrf.token}}">
 
-        <input type="hidden" name="incidenceID" id="edit-incidenceID">
+        <input type="hidden" name="incidenceId" id="edit-incidenceId">
 
         <div class="modal-body">
 
@@ -116,8 +117,18 @@
           </div>
 
           <div class="mb-3">
-            <label for="edit-image" class="form-label">Imagen</label>
-            <input type="file" class="form-control" id="edit-image" name="updatedImage" accept="image/*">
+            <label for="edit-image" class="form-label">Foto de incidencia</label>
+            <input type="file"
+                   class="form-control-file"
+                   id="edit-image"
+                   name="updatedImage"
+                   accept="image/*">
+            <!-- Preview de la imagen actual -->
+            <div class="mt-2">
+              <small class="text-muted">Imagen actual:</small><br>
+              <img id="currentImagePreview" src="" alt="Imagen actual" width="60" height="60"
+                   class="mt-1 rounded" style="object-fit: cover;">
+            </div>
           </div>
 
         </div>
@@ -135,15 +146,19 @@
     const editModal = document.getElementById('editModal');
     editModal.addEventListener('show.bs.modal', (event) => {
       const button = event.relatedTarget;
-      const id = button.dataset.id;
+      const incidenceId = button.dataset.incidenceId;
       const incidenceLevel = button.dataset.incidenceLevel;
       const incidenceType = button.dataset.incidenceType;
       const description = button.dataset.description;
       const date = button.dataset.date;
       const status = button.dataset.status;
       const affectedLines = JSON.parse(button.dataset.affectedLines || '[]');
+      // Mostrar preview de la imagen actual
+      const preview = document.getElementById('currentImagePreview');
+      preview.src = button.dataset.image || '';
+      preview.style.display = button.dataset.image ? 'inline-block' : 'none';
 
-      document.getElementById('edit-id').value = id;
+      document.getElementById('edit-incidenceId').value = incidenceId;
       document.getElementById('edit-incidenceLevel').value = incidenceLevel;
       document.getElementById('edit-incidenceType').value = incidenceType;
       document.getElementById('edit-description').value = description;

@@ -73,7 +73,7 @@ public class IncidenceServiceImpl implements IncidenceService {
             incidenceToUpdate.setStatus(incidenceRegistrationDTO.status());
         }
 
-        if (updatedImage != null){
+        if (updatedImage != null && !updatedImage.isEmpty()) {
             byte[] imageData;
             try {
                 imageData = updatedImage.getBytes();

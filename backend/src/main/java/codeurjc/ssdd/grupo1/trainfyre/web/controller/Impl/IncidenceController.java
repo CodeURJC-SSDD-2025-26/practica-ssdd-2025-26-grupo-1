@@ -72,20 +72,25 @@ public class IncidenceController {
         Boolean hasNext = false;
         int prev = page.getPageNumber() - 1;
         int next = page.getPageNumber() + 1;
-        Page<Incidence> incidents = incidenceService.findAll(page);
+        Page<Incidence> incidences = incidenceService.findAll(page);
+        List<Incidence> incidencesPageList = incidences.getContent();
 
         model.addAttribute("title", "Admin Panel");
         model.addAttribute("lines", lineService.getAllLines());
 
-        List<Map<String, Object>> incidences = incidenceService.getAllIncidences().stream()
-                .map(incidence -> Map.<String, Object>of(
-                        "incidence", incidence))
+        List<Map<String, Object>> incidencesToShow = incidencesPageList.stream()
+                .map(incidence -> Map.of(
+                        "incidence", incidence,
+                        "image", incidence.getImage() != null
+                                ? "data:image/png;base64," +Base64.getEncoder().encodeToString(incidence.getImage())
+                                : ""
+                ))
                 .toList();
 
         hasPrev = page.getPageNumber() >= 1;
-        hasNext = (page.getPageNumber() + 1) * page.getPageSize() < incidences.size();
+        hasNext = (page.getPageNumber() + 1) * page.getPageSize() < incidenceService.getAllIncidences().size();
 
-        model.addAttribute("incidences", incidents);
+        model.addAttribute("incidences", incidencesToShow);
         model.addAttribute("hasPrevious", hasPrev);
         model.addAttribute("hasNext", hasNext);
         model.addAttribute("previous", prev);
@@ -172,7 +177,7 @@ public class IncidenceController {
     }
 
     @PostMapping(value = "admin/admin_panel_incidences/update")
-    public String updateIncidenceFromAdminPanel(@RequestParam(required = true) String incidenceID,
+    public String updateIncidenceFromAdminPanel(@RequestParam(required = true) String incidenceId,
             @RequestParam(required = false) MultipartFile updatedImage,
             @RequestParam(required = false) INCIDENCE_LEVEL incidenceLevel,
             @RequestParam(required = false) INCIDENCE_TYPE incidenceType,
@@ -180,7 +185,7 @@ public class IncidenceController {
             @RequestParam(required = false) INCIDENCE_STATUS status,
             Model model) {
 
-        log.info("Admin updating incidence with id: {}", incidenceID);
+        log.info("Admin updating incidence with id: {}", incidenceId);
         model.addAttribute("title", "Admin Panel");
         model.addAttribute("lines", lineService.getAllLines());
 
@@ -194,7 +199,7 @@ public class IncidenceController {
         }
 
         IncidenceRegistrationDTO incidenceRegistrationDTO = new IncidenceRegistrationDTO(
-                incidenceID,
+                incidenceId,
                 incidenceLevel,
                 incidenceType,
                 description,
@@ -205,10 +210,10 @@ public class IncidenceController {
 
         try {
             incidenceService.updateIncidence(updatedImage, incidenceRegistrationDTO);
-            log.info("Incidence with id {} updated successfully", incidenceID);
+            log.info("Incidence with id {} updated successfully", incidenceId);
         } catch (ResponseStatusException e) {
-            log.error("Error updating incidence with id {}: {}", incidenceID, e.getReason());
-            model.addAttribute("error", "No se encontró la incidencia con ID: " + incidenceID);
+            log.error("Error updating incidence with id {}: {}", incidenceId, e.getReason());
+            model.addAttribute("error", "No se encontró la incidencia con ID: " + incidenceId);
             return "admin_panel_incidences";
         }
 
