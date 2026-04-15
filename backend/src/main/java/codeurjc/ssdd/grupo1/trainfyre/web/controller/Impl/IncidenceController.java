@@ -32,6 +32,7 @@ import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Map;
+import java.util.Base64;
 import java.util.concurrent.CompletableFuture;
 
 @Controller
@@ -93,17 +94,22 @@ public class IncidenceController {
         return "admin_panel_incidences";
     }
 
-    @GetMapping("/admin/incidence/{incidenceID}")
+    @GetMapping("/registered/incidence/{incidenceID}")
     public String showIncidenceDetails(@PathVariable String incidenceID, Model model) {
         Incidence incidence = incidenceMapper.toIncidence(incidenceService.getIncidenceWithID(incidenceID));
+
+        model.addAttribute("title", "Incidence" + incidenceID);
         model.addAttribute("incidence", incidence);
+        model.addAttribute("incidenceImage", incidence.getImage() != null
+                    ? "data:image/png;base64," + Base64.getEncoder().encodeToString(incidence.getImage())
+                    : "");
+
         return "incidence_page";
     }
 
     @PostMapping(value = "/admin/admin_panel_incidences/add")
     public String createIncidenceFromAdminPanel(
             @RequestParam(required = true) String incidenceID,
-            @RequestParam(required = false) MultipartFile updatedImage,
             @RequestParam(required = true) INCIDENCE_LEVEL incidenceLevel,
             @RequestParam(required = true) INCIDENCE_TYPE incidenceType,
             @RequestParam(required = false) String description,
@@ -124,15 +130,6 @@ public class IncidenceController {
                         .toList()
                 : null;
 
-        byte[] imageData = null;
-        if (updatedImage != null) {
-            try {
-                imageData = updatedImage.getBytes();
-            } catch (IOException e) {
-                throw new RuntimeException(e + "error en la lectura del archivo");
-            }
-        }
-
         IncidenceRegistrationDTO dto = new IncidenceRegistrationDTO(
                 incidenceID,
                 incidenceLevel,
@@ -140,7 +137,7 @@ public class IncidenceController {
                 description,
                 date,
                 status,
-                imageData,
+                null,
                 affectedLines);
 
         try {
