@@ -108,6 +108,7 @@ public class IncidenceController {
         model.addAttribute("incidenceImage", incidence.getImage() != null
                     ? "data:image/png;base64," + Base64.getEncoder().encodeToString(incidence.getImage())
                     : "");
+        model.addAttribute("incidenceDate", incidence.getDate().toString().replace("T", " "));
 
         return "incidence_page";
     }
@@ -159,17 +160,17 @@ public class IncidenceController {
     }
 
     @PostMapping(value = "/admin/admin_panel_incidences/delete")
-    public String deleteIncidenceFromAdminPanel(@RequestParam String incidenceID, Model model) {
-        log.info("Admin deleting incidence with id: {}", incidenceID);
+    public String deleteIncidenceFromAdminPanel(@RequestParam String incidenceId, Model model) {
+        log.info("Admin deleting incidence with id: {}", incidenceId);
 
         model.addAttribute("title", "Admin Panel");
 
         try {
-            incidenceService.deleteIncidence(incidenceID);
-            log.info("Incidence with id {} deleted successfully", incidenceID);
+            incidenceService.deleteIncidence(incidenceId);
+            log.info("Incidence with id {} deleted successfully", incidenceId);
         } catch (ResponseStatusException e) {
-            log.error("Error deleting incidence with id {}: {}", incidenceID, e.getReason());
-            model.addAttribute("error", "No se encontró la incidencia con ID: " + incidenceID);
+            log.error("Error deleting incidence with id {}: {}", incidenceId, e.getReason());
+            model.addAttribute("error", "No se encontró la incidencia con ID: " + incidenceId);
             return "admin_panel_incidences";
         }
 
