@@ -3,13 +3,14 @@ package codeurjc.ssdd.grupo1.trainfyre.service.Impl;
 import codeurjc.ssdd.grupo1.trainfyre.data.model.Alert;
 import codeurjc.ssdd.grupo1.trainfyre.data.model.AppUser;
 import codeurjc.ssdd.grupo1.trainfyre.data.repository.AlertRepository;
-import codeurjc.ssdd.grupo1.trainfyre.data.repository.UserRepository;
 import codeurjc.ssdd.grupo1.trainfyre.dto.AlertDTO;
 import codeurjc.ssdd.grupo1.trainfyre.dto.AlertRegistrationDTO;
 import codeurjc.ssdd.grupo1.trainfyre.mapper.AlertMapper;
 import codeurjc.ssdd.grupo1.trainfyre.service.AlertService;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
+
+import java.util.Optional;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -46,12 +47,42 @@ public class AlertServiceImpl implements AlertService{
     }
 
     @Transactional
+    public AlertDTO updateAlert(AlertDTO alertrDTO) {
+
+        Alert currentAlert;
+        Optional<Alert> currentAlertO = alertRepository.findById(alertrDTO.id());
+
+        if (!currentAlertO.isPresent()) {
+            throw(new UsernameNotFoundException("Error al actualizar: "));
+        }
+
+        currentAlert = currentAlertO.get();
+        currentAlert.setLine(alertrDTO.line());
+        currentAlert.setStartDate(alertrDTO.startDate());
+        currentAlert.setEndDate(alertrDTO.endDate());
+        currentAlert.setStartHour(alertrDTO.startHour());
+        currentAlert.setEndHour(alertrDTO.endHour());
+
+        alertRepository.save(currentAlert);
+
+        return alertRepository.findByLineAndStartDateAndEndDate(alertrDTO.line(), alertrDTO.startDate(), alertrDTO.endDate())
+                .map(alertMapper::alertToDTO)
+                .orElseThrow(() -> new UsernameNotFoundException("Error al actualizar: "));
+                
+    }
+
+    @Transactional
     public void deleteAlert(Long id) {
         Alert alertToDelete = alertRepository.findById(id)
             .orElseThrow(() -> new ResponseStatusException(
                 HttpStatus.NOT_FOUND, "No se encontró la incidencia con ID: " + id
             ));
 
+        //Delete dependencies.
+        alertToDelete.setUser(null);
+        alertToDelete.setLine(null);
+
+        //Delete alert.
         alertRepository.delete(alertToDelete);
     }
 }

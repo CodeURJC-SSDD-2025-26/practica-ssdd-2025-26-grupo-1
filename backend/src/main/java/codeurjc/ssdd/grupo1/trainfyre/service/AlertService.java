@@ -9,4 +9,6 @@ public interface AlertService {
     AlertDTO registerAlert(AlertRegistrationDTO alertRegistrationtDTO, AppUser user);
 
     public void deleteAlert(Long id);
+
+    public AlertDTO updateAlert(AlertDTO alertrDto);
 }
