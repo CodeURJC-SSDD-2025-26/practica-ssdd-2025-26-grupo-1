@@ -23,6 +23,7 @@ import org.springframework.web.server.ResponseStatusException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @AllArgsConstructor
@@ -134,11 +135,9 @@ public class IncidenceServiceImpl implements IncidenceService {
 
         if (allIncidencesCountingAllLines > 0) {
             for (LineDTO line: allLines) {
-                if (allIncidencesCountingAllLines > 0) {
+                if (!getAllIncidencesAffectingLine(lineMapper.toLine(line)).isEmpty()) {
                     data.add(new PieChartInfo(line.name(),
-                        (getAllIncidencesAffectingLine(lineMapper.toLine(line)).size() / allIncidencesCountingAllLines) * 100));
-                } else {
-                    data.add(new PieChartInfo(line.name(), 0.0));
+                        Math.round((getAllIncidencesAffectingLine(lineMapper.toLine(line)).size() / allIncidencesCountingAllLines) * 100 * 100.0) / 100.0));
                 }
             }
 
@@ -159,10 +158,7 @@ public class IncidenceServiceImpl implements IncidenceService {
         heatmap.setRows(allLinesNumber);
         heatmap.setColumns(7);
 
-        heatmap.setRowLabels(List.of(
-            "C-1","C-2","C-3","C-4","C-5",
-            "C-7","C-8","C-9","C-10","CIVIS"
-        ));
+        heatmap.setRowLabels(allLines.stream().map(LineDTO::name).toList());
 
         heatmap.setRowColors(List.of(
             "rgb(50, 214, 255)", "green", "purple", "blue", "rgb(255, 230, 0)",
