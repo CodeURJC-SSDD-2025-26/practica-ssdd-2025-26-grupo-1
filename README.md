@@ -132,72 +132,145 @@ Diagrama que muestra cómo se navega entre las diferentes páginas de la aplicac
 
 ![Diagrama de Navegación](images/navigation-diagram.png)
 
-> [Descripción opcional del flujo de navegación: Ej: "El usuario puede acceder desde la página principal a todas las secciones mediante el menú de navegación. Los usuarios anónimos solo tienen acceso a las páginas públicas, mientras que los registrados pueden acceder a su perfil y panel de usuario."]
+Unregistered users can visualize the index page, which contains an interactive map and last incidences. Additionally, they can visit the log in and register pages. Registered users can access the statistics page, their settings and their personal alert page. Administrators can access the admin panel to add, modify and remove incidences, users and lines.
 
 ### **Capturas de Pantalla y Descripción de Páginas**
 
-#### **1. Página Principal / Home**
-![Página Principal](images/home-page.png)
+#### **1. Main page / Index**
+![Página Principal](images/index.png)
 
-> [Descripción breve: Ej: "Página de inicio que muestra los productos destacados, categorías principales y un banner promocional. Incluye barra de navegación y acceso a registro/login para usuarios no autenticados."]
+> Main page to see the last incidences in any line using an intuitive map.
 
-#### **AQUÍ AÑADIR EL RESTO DE PÁGINAS**
+#### **2. Register form**
+![Página Principal](images/form-register.png)
+
+> Form to create an account for a new user.
+
+#### **3. Login form**
+![Página Principal](images/login.png)
+
+> Form to let users log in with their data and password.
+
+#### **4. Alert table**
+![Página Principal](images/user-alerts.png)
+
+> Table with the alerts set by the user and the option to create new ones, as well as modify existing ones.
+
+#### **5. Alert form**
+![Página Principal](images/form-alert.png)
+
+> Form to let users define new alerts by their starting and ending dates, as well as their timetable.
+
+#### **6. User settings**
+![Página Principal](images/settings.png)
+
+> Page with the user's data and the option to change it.
+
+#### **7. Session ended**
+![Página Principal](images/session-end.png)
+
+> Confirmation of a successful logout.
+
+#### **8. Incidence statistics**
+![Página Principal](images/incidences1.png)
+![Página Principal](images/incidences2.png)
+![Página Principal](images/incidences3.png)
+![Página Principal](images/incidences4.png)
+
+> Page with different graphs to show valuable information about the incidences.
+
+#### **9. Administrator table - Users**
+![Página Principal](images/admin-table-users.png)
+
+> Table with the users and their information, as well as the option to modify or remove them.
+
+#### **10. Administrator table - Incidences**
+![Página Principal](images/admin-table-incidence.png)
+
+> Table with the incidences and their information, as well as the option to modify, create or remove them.
+
+#### **11. Administrator table - Lines**
+![Página Principal](images/admin-table-lines.png)
+
+> Table with the lines and their information, as well as the option to modify, create or remove them.
+
+#### **12. Incidence form**
+![Página Principal](images/form-incidence.png)
+
+> Form to create new incidences with the affected lines, a description and more information.
+
+#### **13. Line form**
+![Página Principal](images/form-line.png)
+
+> Form to create new lines with their name and location.
+
+#### **14. Incidence information**
+![Página Principal](images/incidence-page.png)
+
+> Page with extended information about an incidence.
+
+#### **Extra 1. Header**
+![Página Principal](images/header.png)
+
+> Header present in every page.
+
+#### **Extra 2. Footer**
+![Página Principal](images/footer.png)
+
+> Footer present in every page.
 
 ### **Participación de Miembros en la Práctica 1**
 
-#### **Alumno 1 - [Nombre Completo]**
-
-[Descripción de las tareas y responsabilidades principales del alumno en el proyecto]
+#### **Alumno 1 - [Weisheng Zheng]**
 
 | Nº    | Commits      | Files      |
 |:------------: |:------------:| :------------:|
-|1| [Descripción commit 1](URL_commit_1)  | [Archivo1](URL_archivo_1)   |
-|2| [Descripción commit 2](URL_commit_2)  | [Archivo2](URL_archivo_2)   |
-|3| [Descripción commit 3](URL_commit_3)  | [Archivo3](URL_archivo_3)   |
-|4| [Descripción commit 4](URL_commit_4)  | [Archivo4](URL_archivo_4)   |
-|5| [Descripción commit 5](URL_commit_5)  | [Archivo5](URL_archivo_5)   |
+|1| [Lógica JavaScript para el mapa interactivo](https://github.com/CodeURJC-SSDD-2025-26/practica-ssdd-2025-26-grupo-1/commit/6aad309d67bf9040ecc62cef8fd93e9dca53a5e2)  | [interactive-map.js](https://github.com/CodeURJC-SSDD-2025-26/practica-ssdd-2025-26-grupo-1/blob/fc34148b30c20c3b2da0ba677c2b57829c4c46d8/TrainFyre/src/main/resources/js/components/interactive-map.js)   |
+|2| [Lógica JavaScript del heatmap implementado](https://github.com/CodeURJC-SSDD-2025-26/practica-ssdd-2025-26-grupo-1/commit/fd69ce32604245e9a60c681669748bc8ffa9de77)  | [heatmap.js](https://github.com/CodeURJC-SSDD-2025-26/practica-ssdd-2025-26-grupo-1/blob/fc34148b30c20c3b2da0ba677c2b57829c4c46d8/TrainFyre/src/main/resources/js/components/heatmap.js)   |
+|3| [Implementación de la página index](https://github.com/CodeURJC-SSDD-2025-26/practica-ssdd-2025-26-grupo-1/commit/100c4152b7ec25e36efe1826f2928c2b697b27d9)  | [index.html](https://github.com/CodeURJC-SSDD-2025-26/practica-ssdd-2025-26-grupo-1/blob/fc34148b30c20c3b2da0ba677c2b57829c4c46d8/TrainFyre/src/main/resources/templates/index.html)   |
+|4| [Implementación pop-up partial](https://github.com/CodeURJC-SSDD-2025-26/practica-ssdd-2025-26-grupo-1/commit/d0000f5c50de222387d6d9dfa152f9bfc0a0b171)  | [_pop_up.html](https://github.com/CodeURJC-SSDD-2025-26/practica-ssdd-2025-26-grupo-1/blob/fc34148b30c20c3b2da0ba677c2b57829c4c46d8/TrainFyre/src/main/resources/templates/partials/_pop_up.html)   |
+|5| [Creación de mapa de Cercanías SVG](https://github.com/CodeURJC-SSDD-2025-26/practica-ssdd-2025-26-grupo-1/commit/5970597215174c4f1acec276bb352f05db6437a7)  | [_interactive_map.html](https://github.com/CodeURJC-SSDD-2025-26/practica-ssdd-2025-26-grupo-1/blob/fc34148b30c20c3b2da0ba677c2b57829c4c46d8/TrainFyre/src/main/resources/templates/partials/_interactive_map.html)   |
 
 ---
 
-#### **Alumno 2 - [Nombre Completo]**
-
-[Descripción de las tareas y responsabilidades principales del alumno en el proyecto]
+#### **Alumno 2 - [Alejandro González Blanco]**
 
 | Nº    | Commits      | Files      |
 |:------------: |:------------:| :------------:|
-|1| [Descripción commit 1](URL_commit_1)  | [Archivo1](URL_archivo_1)   |
-|2| [Descripción commit 2](URL_commit_2)  | [Archivo2](URL_archivo_2)   |
-|3| [Descripción commit 3](URL_commit_3)  | [Archivo3](URL_archivo_3)   |
-|4| [Descripción commit 4](URL_commit_4)  | [Archivo4](URL_archivo_4)   |
-|5| [Descripción commit 5](URL_commit_5)  | [Archivo5](URL_archivo_5)   |
+|1| [En este commit creé el header.](https://github.com/CodeURJC-SSDD-2025-26/ssdd-2025-26-project-base/commit/a190e28ee9f6cdb5b3fcdb773283b6b48a43d807)  | [_header.html](https://github.com/CodeURJC-SSDD-2025-26/practica-ssdd-2025-26-grupo-1/blob/main/TrainFyre/src/main/resources/templates/partials/_header.html)   |
+|2| [En este commit creé la configuración.](https://github.com/CodeURJC-SSDD-2025-26/ssdd-2025-26-project-base/commit/6a4da71396adb1b3d0123c76da7e2c2800b40b79)  | [settings.html](https://github.com/CodeURJC-SSDD-2025-26/practica-ssdd-2025-26-grupo-1/blob/main/TrainFyre/src/main/resources/templates/settings.html)   |
+|3| [En este commit creé el panel de administrador.](https://github.com/CodeURJC-SSDD-2025-26/ssdd-2025-26-project-base/commit/7ff88c29c7fafcf64a26baf17a313d5ef288f63e)  | [admin_panel.html](https://github.com/CodeURJC-SSDD-2025-26/practica-ssdd-2025-26-grupo-1/blob/main/TrainFyre/src/main/resources/templates/admin_panel.html)   |
+|4| [En este commit creé el JS para activar o desactivar la configuración.](https://github.com/CodeURJC-SSDD-2025-26/ssdd-2025-26-project-base/commit/eff1077e5052e0b169066a94a41390a9d8433a24)  | [change-settings.js](https://github.com/CodeURJC-SSDD-2025-26/practica-ssdd-2025-26-grupo-1/blob/main/TrainFyre/src/main/resources/js/components/change-settings.js)   |
+|5| [En este commit creé el subheader.](https://github.com/CodeURJC-SSDD-2025-26/ssdd-2025-26-project-base/commit/75880dec3f724931aeb25f75b51750cedbc21e9c)  | [_subheader.html](https://github.com/CodeURJC-SSDD-2025-26/practica-ssdd-2025-26-grupo-1/blob/main/TrainFyre/src/main/resources/templates/partials/_subheader.html)   |
+
+---
+Mis demás commits son arreglando cosas en otros archivos y mejorando el estilo.
+
+#### **Alumno 3 - [Pablo Sainz López]**
+
+Plantear y establecer la estructura del proyecto. Mirar comprobar y mejorar la calidad del código además de crear las paginas y partials correspondientes.
+
+| Nº    | Commits      | Files      |
+|:------------: |:------------:| :------------:|
+|1| [Creé el footer y dos partials para mostrar datos](https://github.com/CodeURJC-SSDD-2025-26/ssdd-2025-26-project-base/commit/a8ddbda5bff10326f19160e985c6c81a246cc0cd)  | [footer](https://github.com/CodeURJC-SSDD-2025-26/practica-ssdd-2025-26-grupo-1/blob/main/TrainFyre/src/main/resources/templates/partials/_footer.html) [grafico de barras](https://github.com/CodeURJC-SSDD-2025-26/practica-ssdd-2025-26-grupo-1/blob/main/TrainFyre/src/main/resources/templates/partials/_bar_graph.html) [grafico tarta](https://github.com/CodeURJC-SSDD-2025-26/practica-ssdd-2025-26-grupo-1/blob/main/TrainFyre/src/main/resources/templates/partials/_pie_graph.html)  |
+|2| [Creé la página de incidencias](https://github.com/CodeURJC-SSDD-2025-26/ssdd-2025-26-project-base/commit/c880ee0af238c3004853853d9ed03a523c7d69aa)  | [Incidencias](https://github.com/CodeURJC-SSDD-2025-26/practica-ssdd-2025-26-grupo-1/blob/main/TrainFyre/src/main/resources/templates/incidencies.html)   |
+|3| [Creé el código js para cargar páginas y partials de forma automática y estandarizada y reorganicé el proyecto en sucesivos comits](https://github.com/CodeURJC-SSDD-2025-26/ssdd-2025-26-project-base/commit/d51fff9a6d2b687896edab73e6d360c4249d0faf)  | [Cargador genérico](https://github.com/CodeURJC-SSDD-2025-26/practica-ssdd-2025-26-grupo-1/blob/main/TrainFyre/src/main/resources/js/utils/genericPartialLoader.js)   |
+|4| [Arreglé el mapa interactivo y mejoré su código](https://github.com/CodeURJC-SSDD-2025-26/ssdd-2025-26-project-base/commit/a462ef17ec78ca5211cd96439e4b2af6733b77b5)  | [Js del mapa](https://github.com/CodeURJC-SSDD-2025-26/practica-ssdd-2025-26-grupo-1/blob/main/TrainFyre/src/main/resources/js/components/interactive-map.js)|
+|5| [Creé el CSS para empezar a trabajar con un CSS común](https://github.com/CodeURJC-SSDD-2025-26/ssdd-2025-26-project-base/commit/3cd0949ed2f928d70e86a872e63d6712e1cdca60)  | [CSS](https://github.com/CodeURJC-SSDD-2025-26/practica-ssdd-2025-26-grupo-1/blob/main/TrainFyre/src/main/resources/static/css/style.css)   |
 
 ---
 
-#### **Alumno 3 - [Nombre Completo]**
+#### **Alumno 4 - Daniel Montes Jiménez**
 
-[Descripción de las tareas y responsabilidades principales del alumno en el proyecto]
-
-| Nº    | Commits      | Files      |
-|:------------: |:------------:| :------------:|
-|1| [Descripción commit 1](URL_commit_1)  | [Archivo1](URL_archivo_1)   |
-|2| [Descripción commit 2](URL_commit_2)  | [Archivo2](URL_archivo_2)   |
-|3| [Descripción commit 3](URL_commit_3)  | [Archivo3](URL_archivo_3)   |
-|4| [Descripción commit 4](URL_commit_4)  | [Archivo4](URL_archivo_4)   |
-|5| [Descripción commit 5](URL_commit_5)  | [Archivo5](URL_archivo_5)   |
-
----
-
-#### **Alumno 4 - [Nombre Completo]**
-
-[Descripción de las tareas y responsabilidades principales del alumno en el proyecto]
+Responsible for every form and table (except for the users table and the settings page), as well as the script used in the alert form to link the sliders with the time imputs. This script also prevents impossible time ranges (for example, from 6:00 to 3:00). 
 
 | Nº    | Commits      | Files      |
 |:------------: |:------------:| :------------:|
-|1| [Descripción commit 1](URL_commit_1)  | [Archivo1](URL_archivo_1)   |
-|2| [Descripción commit 2](URL_commit_2)  | [Archivo2](URL_archivo_2)   |
-|3| [Descripción commit 3](URL_commit_3)  | [Archivo3](URL_archivo_3)   |
-|4| [Descripción commit 4](URL_commit_4)  | [Archivo4](URL_archivo_4)   |
-|5| [Descripción commit 5](URL_commit_5)  | [Archivo5](URL_archivo_5)   |
+|1| [Added javascript with the logic for the future slider in the alert form.](https://github.com/CodeURJC-SSDD-2025-26/ssdd-2025-26-project-base/commit/88f86f763a0f8f6e1999b671aa6f845cd240c51f) 88f86f763a0f8f6e1999b671aa6f845cd240c51f  | [Script for the sliders](https://github.com/CodeURJC-SSDD-2025-26/ssdd-2025-26-project-base/commit/88f86f763a0f8f6e1999b671aa6f845cd240c51f#diff-dc117f66b6191f28f4718305eab6a599d23f2f19c7c9e5e3be6f4dda50fef165)   |
+|2| [Added a new table to show your alerts and modify them.](https://github.com/CodeURJC-SSDD-2025-26/ssdd-2025-26-project-base/commit/0714c887ca4caddf7ea4bc87ffca7b5c69cf96a4) 0714c887ca4caddf7ea4bc87ffca7b5c69cf96a4  | [Tabla de alertas](https://github.com/CodeURJC-SSDD-2025-26/ssdd-2025-26-project-base/commit/0714c887ca4caddf7ea4bc87ffca7b5c69cf96a4#diff-1c7f9094d31a03777ba6db5f1429727dd9f97f17da81565e64ba28ffd4e8ba74)   |
+|3| [Made the admin table change tables when pressing their respective buttons.](https://github.com/CodeURJC-SSDD-2025-26/ssdd-2025-26-project-base/commit/876476fe435b8b4184544539cf3c97a8baaae963) 876476fe435b8b4184544539cf3c97a8baaae963  | [Incidence table](https://github.com/CodeURJC-SSDD-2025-26/ssdd-2025-26-project-base/commit/876476fe435b8b4184544539cf3c97a8baaae963#diff-336a8c7130c9afc1a303fb0cbd04347c2c38118dd688b449b2e2b9d6156a290c) [Tabla de líneas](https://github.com/CodeURJC-SSDD-2025-26/ssdd-2025-26-project-base/commit/876476fe435b8b4184544539cf3c97a8baaae963#diff-859a1f6c0feb102b3d41c912ac70ab5fc693cde7c33a2b77badf7d27a2df682e)  |
+|4| [Added a form for incidences.](https://github.com/CodeURJC-SSDD-2025-26/ssdd-2025-26-project-base/commit/e92e047d296a22caaf5677a2e7051f41b49ce26a) e92e047d296a22caaf5677a2e7051f41b49ce26a  | [Incidence form](https://github.com/CodeURJC-SSDD-2025-26/ssdd-2025-26-project-base/commit/e92e047d296a22caaf5677a2e7051f41b49ce26a#diff-70fec7aa0d301d5bad4248e395e152fe319430452e812e1c1c4ae70df7b6e657)   |
+|5| [Added a template for the login form.](https://github.com/CodeURJC-SSDD-2025-26/ssdd-2025-26-project-base/commit/3feabe72a0912ac7a105e4bd0589b2093a987cba) 3feabe72a0912ac7a105e4bd0589b2093a987cba  | [Login form template](https://github.com/CodeURJC-SSDD-2025-26/ssdd-2025-26-project-base/commit/3feabe72a0912ac7a105e4bd0589b2093a987cba#diff-84c6d7f18eead306434a8b039abeda0e602e23c7be107ebc21d6b9a35e65a771)   |
 
 ---
 
@@ -449,3 +522,13 @@ Diagrama actualizado incluyendo los @RestController y su relación con los @Serv
 |5| [Descripción commit 5](URL_commit_5)  | [Archivo5](URL_archivo_5)   |
 
 ---
+
+
+
+
+
+
+
+
+
+
