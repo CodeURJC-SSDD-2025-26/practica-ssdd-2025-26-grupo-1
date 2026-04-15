@@ -44,7 +44,8 @@ public class SecurityConfiguration {
                 .logout(logout -> logout.logoutUrl("/logout").logoutSuccessUrl("/successful_logout"))
                 //Para poder cargar la consola h2
                 .headers(headers -> headers.frameOptions(f -> f.sameOrigin()))
-                .csrf(csrf -> csrf.csrfTokenRequestHandler(requestHandler));
+                .csrf(csrf -> csrf.csrfTokenRequestHandler(requestHandler)
+                        .ignoringRequestMatchers("/h2-console/**"));
 
         return http.build();
     }
