@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{title}}</title>
+    <!-- Globales, siempre presentes -->
+    {{#globalStyles}}
+    <link rel="stylesheet" href="{{.}}">
+    {{/globalStyles}}
+    {{#globalScripts}}
+    <script src="{{.}}"></script>
+    {{/globalScripts}}
+</head>
+{{# Layout }}
+<body>
+
+    <!-- MAIN -->
+    <main class="container-main">
+
+        <!-- Texto -->
+        <div class="d-flex justify-content-center align-items-center ms-3">
+            <div class="col-12">
+                <h1>Estadísticas de las incidencias</h1>
+                <p>Aquí podrás encontrar todas las estadisticas de las incidencias del sistema.</p>
+            </div>
+        </div>
+
+        <hr>
+
+        <!-- Texto -->
+        <div class="d-flex justify-content-center align-items-center ms-5">
+            <div class="col-12">
+                <h2>Porcentaje de incidencias por línea</h2>
+                <p>Muestra el porcentaje de incidencias de cada línea dentro de un rango de tiempo determinado.</p>
+            </div>
+        </div>
+
+
+        <!-- Grafico circular -->
+        <script>
+            const piechart_info = {{{ piechart_json }}} || {};
+        </script>
+        {{> /partials/_pie_graph}}
+        {{#piechartScript}}
+            <script src="/js/{{.}}" defer></script>
+        {{/piechartScript}}
+
+        <!-- Texto -->
+        <div class="d-flex justify-content-center align-items-center mt-5 ms-5">
+            <div class="col-12">
+                <h2>Retraso promedio de las líneas</h2>
+                <p>Muestra el retraso promedio de cada línea en un periodo de tiempo.</p>
+            </div>
+        </div>
+
+        <!-- Grafico Barras -->
+        {{> /partials/_bar_graph}}
+
+
+        <!-- Texto -->
+        <div class="d-flex justify-content-center align-items-center mt-5 ms-5">
+            <div class="col-12">
+                <h2>Mapa de calor de incidencias por líneas y tiempo</h2>
+                <p>Muestra en un mapa de calor las incidencias por linea en un rango de tiempo determinado</p>
+            </div>
+        </div>
+
+        <!-- Mapa de calor -->
+        <script>
+            const heatmap_info = {{{ heatmap_json }}} || {};
+        </script>
+        <div class="container mt-4" id = "_heatmap_graph"></div>
+        {{#heatmapScript}}
+            <script src="/js/{{.}}" defer></script>
+        {{/heatmapScript}}
+
+    </main>
+
+    <!-- Footer -->
+    <div id="_footer"></div>
+
+</body>
+{{/ Layout }}
+
+</html>

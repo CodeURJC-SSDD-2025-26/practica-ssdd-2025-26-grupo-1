@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8">
+    <title>{{title}}</title>
+
+    <!-- Globales, siempre presentes -->
+    {{#globalStyles}}
+    <link rel="stylesheet" href="{{.}}">
+    {{/globalStyles}}
+    {{#globalScripts}}
+    <script src="{{.}}"></script>
+    {{/globalScripts}}
+
+    <!-- Específicos de página, solo si el controller los envía -->
+    {{#pageStyles}}
+    <link rel="stylesheet" href="/css/{{.}}">
+    {{/pageStyles}}
+    {{#pageScripts}}
+    <script src="/js/{{.}}" defer></script>
+    {{/pageScripts}}
+  </head>
+
+  {{# Layout }}
+  <body>
+    
+    {{> /partials/_subheader}}
+
+    <main class="container-main">
+      <div class="d-flex justify-content-end mb-2 ms-1">
+        <div class="ms-4 me-4">
+          <button type="button" class="btn btn-primary me-2" data-bs-toggle="modal" data-bs-target="#addModal">
+            Añadir línea
+          </button>
+        </div>
+      </div>
+
+      {{> /partials/_line_table}}
+
+    </main>
+
+    <!-- Footer -->
+    <div id="_footer"></div>
+
+    <div class="modal fade" id="addModal" tabindex="-1" aria-labelledby="addModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header bg-success text-white">
+            <h5 class="mb-0 text-uppercase text-white" id="addModalLabel">Añadir Nueva Línea</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+          </div>
+          <form action="/admin/admin_panel_lines/add" method="POST">
+
+            <input type="hidden" name="{{csrf.parameterName}}" value="{{csrf.token}}">
+
+            <div class="modal-body">
+              <div class="mb-3">
+                <label for="newName" class="form-label">Nombre de línea</label>
+                <input type="text" class="form-control" id="newName" name="newName" placeholder="Ej: Línea 1" required>
+              </div>
+
+              <div class="mb-3">
+                <label for="newDescription" class="form-label">Descripción</label>
+                <input type="text" class="form-control" id="newDescription" name="newDescription" placeholder="Ej: Pinar de Chamartín - Valdecarros" required>
+              </div>
+
+              <div class="mb-3">
+                <label for="newColor" class="form-label">Color</label>
+                <input type="color" class="form-control" id="newColor" name="newColor" placeholder="Ej: FF0000 (hexadecimal sin #)" required>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+              <button type="submit" class="btn btn-success">Crear Línea</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </body>
+  {{/ Layout }}
+
+  <script>
+    document.getElementById('addModal').addEventListener('show.bs.modal', function (event) {
+      document.getElementById('newName').value = '';
+      document.getElementById('newDescription').value = '';
+      document.getElementById('newColor').value = '';
+    });
+  </script>
+</html>

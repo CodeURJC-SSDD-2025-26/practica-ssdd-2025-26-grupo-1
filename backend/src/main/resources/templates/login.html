@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>{{title}}</title>
+
+  <!-- Globales, siempre presentes -->
+  {{#globalStyles}}
+  <link rel="stylesheet" href="{{.}}">
+  {{/globalStyles}}
+  {{#globalScripts}}
+  <script src="{{.}}"></script>
+  {{/globalScripts}}
+
+</head>
+{{# Layout }}
+<body>
+  <main>
+
+    {{> /partials/_login_form}}
+
+  </main>
+</body>
+{{/ Layout }}
+</html>

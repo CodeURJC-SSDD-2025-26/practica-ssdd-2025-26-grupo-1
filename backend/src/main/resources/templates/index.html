@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>{{title}}</title>
+
+    <!-- Globales, siempre presentes -->
+    {{#globalStyles}}
+    <link rel="stylesheet" href="{{.}}">
+    {{/globalStyles}}
+    {{#globalScripts}}
+    <script src="{{.}}"></script>
+    {{/globalScripts}}
+</head>
+
+{{#Layout}}
+<body>
+    <main class="container-main">
+        <!--Summary-->
+        <div class="row text-center ms-3 me-3">
+            <h1>Bienvenido a TrainFyre</h1>
+            <p>
+                Utiliza esta página web para estar al día de las incidencias de Renfe. Regístrate para crear alertas
+                personalizadas y que nada te pille por sorpresa.
+            </p>
+        </div>
+
+        <!--Interactive map and news-->
+        <div class="row mt-5 justify-content-center">
+            
+            <div class="col-lg-7 col-md-8 p-0"> 
+                {{> /partials/_interactive_map}}
+            </div>
+            {{#interactiveMapScript}}
+                <script type="module" src="/js/{{.}}" defer></script>
+            {{/interactiveMapScript}}
+
+            <div class="col-lg-3 col-md-4 p-0">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th class="td_center">Fecha</th>
+                        <th class="td_center">Líneas</th>
+                        <th class="td_center">Severidad</th>
+                        <th class="td_center">Tipo</th>
+                        <th class="td_center">Descripción</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#incidences}}
+                        <tr>
+                        <td class="td_center">{{date}}</td>
+                        <td class="td_center">
+                            {{#affectedLines}}
+                            {{name}}
+                            {{/affectedLines}}
+                        </td>
+                        <td class="td_center">{{incidenceLevel}}</td>
+                        <td class="td_center">{{incidenceType}}</td>
+                        <td>{{description}}</td>    
+                    {{/incidences}}
+                    {{^incidences}}
+                        {{#lineName}}
+                            <tr>
+                            <td colspan="7" class="td_center">No hay incidencias registradas en {{lineName}}</td>
+                            </tr>
+                        {{/lineName}}
+                        {{^lineName}}
+                            <tr>
+                            <td colspan="7" class="td_center">No hay incidencias registradas</td>
+                            </tr>
+                        {{/lineName}}
+                    {{/incidences}}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+</body>
+{{/Layout}}
+
+</html>
