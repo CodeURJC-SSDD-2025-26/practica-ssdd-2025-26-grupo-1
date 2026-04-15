@@ -5,9 +5,7 @@ import codeurjc.ssdd.grupo1.trainfyre.data.model.Line;
 
 public record AlertDTO(
 
-        String id,
-
-        String title,
+        Long id,
 
         Line line,
 
