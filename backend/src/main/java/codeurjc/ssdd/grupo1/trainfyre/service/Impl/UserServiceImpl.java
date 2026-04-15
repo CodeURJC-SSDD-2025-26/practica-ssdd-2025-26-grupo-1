@@ -24,10 +24,11 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 @Service
 @AllArgsConstructor
@@ -42,6 +43,11 @@ public class UserServiceImpl implements UserService{
 
     @Transactional
     public void createUser(UserRegistrationtDTO userRegistrationtDTO) {
+
+        if (!isAValidEmail(userRegistrationtDTO.email())){
+            throw new IllegalArgumentException("Error al registrarse. el gmail no es un gmail válido " + userRegistrationtDTO.email());
+        }
+
         Optional<AppUser> appUser = this.findUserByUsername(userRegistrationtDTO.username());
         appUser.ifPresentOrElse(
                 user -> {
@@ -61,6 +67,11 @@ public class UserServiceImpl implements UserService{
 
     @Transactional
     public void createUser(UserDTO userDTO){
+
+        if (!isAValidEmail(userDTO.email())){
+            throw new IllegalArgumentException("Error al registrarse. el gmail no es un gmail válido " + userDTO.email());
+        }
+
         Optional<AppUser> appUser = this.findUserByUsername(userDTO.username());
         appUser.ifPresentOrElse(
                 user -> {
@@ -113,7 +124,7 @@ public class UserServiceImpl implements UserService{
         if (newUserData.password() != null && !newUserData.password().isBlank()) {
             appUser.setPassword(passwordEncoder.encode(newUserData.password()));
         }
-        if(updatedImage != null){
+        if(updatedImage != null && !updatedImage.isEmpty()){
             byte[] imageData;
             try {
                 imageData = updatedImage.getBytes();
@@ -224,5 +235,14 @@ public class UserServiceImpl implements UserService{
             SecurityContextHolder.setContext(context); // propagar contexto
             emailService.sendEmail(to, subject, body);
         });
+    }
+
+    private static boolean isAValidEmail(String email) {
+        String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$";
+
+        Pattern pattern = Pattern.compile(emailRegex);
+        Matcher matcher = pattern.matcher(email);
+
+        return matcher.matches();
     }
 }
