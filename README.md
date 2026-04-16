@@ -431,15 +431,15 @@ Por ultimo, cambios en el front relacionados con mi responsabilidad (Users) de l
 
 #### **Alumno 4 - [Daniel Montes Jiménez]**
 
-I made all functionalities related to the Alert entity: adding alerts (preventing impossible time ranges), alert modifications and removal. They are visible in a table separated in pages of five alerts, with them ordered by the line they cover.
+I made all functionalities related to the Alert entity: adding alerts (preventing impossible time ranges), alert modifications (keeping track of the previous values for a pleasant user experience, reverting to these values in case an impossible time range is included, etc.) and removal. Also made both the alert table and the incidence table pageable, with 5 elements in each page. The alerts are shown ordered by the line they cover.
 
 | Nº    | Commits      | Files      |
 |:------------: |:------------:| :------------:|
-|1| [Added alert modification functionality]([URL_commit_1](https://github.com/CodeURJC-SSDD-2025-26/practica-ssdd-2025-26-grupo-1/commit/6948ff7c29b2ddc66c20aa7d2c512a395e7b5844#diff-a003b874c2bf0ff3cc4ff57f7208fb90a00f40fffa4d4f14cc6ee4fdb4d661d4))  | [Alert Controller](backend/src/main/java/codeurjc/ssdd/grupo1/trainfyre/web/controller/Impl/AlertController.java)   |
-|2| [Descripción commit 2](URL_commit_2)  | [Archivo2](URL_archivo_2)   |
-|3| [Descripción commit 3](URL_commit_3)  | [Archivo3](URL_archivo_3)   |
-|4| [Descripción commit 4](URL_commit_4)  | [Archivo4](URL_archivo_4)   |
-|5| [Descripción commit 5](URL_commit_5)  | [Archivo5](URL_archivo_5)   |
+|1| [Added alert modification functionality](https://github.com/CodeURJC-SSDD-2025-26/practica-ssdd-2025-26-grupo-1/commit/6948ff7c29b2ddc66c20aa7d2c512a395e7b5844#diff-a003b874c2bf0ff3cc4ff57f7208fb90a00f40fffa4d4f14cc6ee4fdb4d661d4)  | [Alert Controller](backend/src/main/java/codeurjc/ssdd/grupo1/trainfyre/web/controller/Impl/AlertController.java)   |
+|2| [Impossible time ranges prevention](https://github.com/CodeURJC-SSDD-2025-26/practica-ssdd-2025-26-grupo-1/commit/620fef2d4876252a3b108793c7f4637fee10c02f)  | [Alert Controller](https://github.com/CodeURJC-SSDD-2025-26/practica-ssdd-2025-26-grupo-1/commit/620fef2d4876252a3b108793c7f4637fee10c02f)  and [Form Alert](backend/src/main/resources/templates/form-alert.html) |
+|3| [Added alert removal functionality](https://github.com/CodeURJC-SSDD-2025-26/practica-ssdd-2025-26-grupo-1/commit/4034b2ae97f6ea487b63475a304514bb64cda6a5)  | [Alert Controller](backend/src/main/java/codeurjc/ssdd/grupo1/trainfyre/web/controller/Impl/AlertController.java)   |
+|4| [Added alert modification functionality](https://github.com/CodeURJC-SSDD-2025-26/practica-ssdd-2025-26-grupo-1/commit/6948ff7c29b2ddc66c20aa7d2c512a395e7b5844)  | [Alert Controller](backend/src/main/java/codeurjc/ssdd/grupo1/trainfyre/web/controller/Impl/AlertController.java)   |
+|5| [Finished the alert registration (this fuction has several commits dedicated to it: proper acces to the lines and colors, service and controller modifications, fixes, etc.)](https://github.com/CodeURJC-SSDD-2025-26/practica-ssdd-2025-26-grupo-1/commit/b09522c54b204f4b8e8674e354926c42064e92d2)  | [Alert Controller](backend/src/main/java/codeurjc/ssdd/grupo1/trainfyre/web/controller/Impl/AlertController.java)   |
 
 ---
 
