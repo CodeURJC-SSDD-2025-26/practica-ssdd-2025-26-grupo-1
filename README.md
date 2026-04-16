@@ -290,35 +290,83 @@ Solo si han cambiado.
 
 #### **Requisitos Previos**
 - **Java**: versión 21 o superior
-- **Maven**: versión 3.8 o superior
-- **MySQL**: versión 8.0 o superior
+- **Maven**: versión 4.0 o superior
+- **MySQL**: Ninguna, está embebida (H2)
 - **Git**: para clonar el repositorio
+- **Lombok**
+- **MapStruct**
+
 
 #### **Pasos para ejecutar la aplicación**
-
+>[!CAUTION]
+> Actualmente no me ha dado tiempo a probarlo, podria estar mal alguno de los pasos
 1. **Clonar el repositorio**
    ```bash
-   git clone https://github.com/[usuario]/[nombre-repositorio].git
-   cd [nombre-repositorio]
+   git https://github.com/CodeURJC-SSDD-2025-26/practica-ssdd-2025-26-grupo-1.git
+   cd practica-ssdd-2025-26-grupo-1
    ```
+2. **Verificar versión de Java**
+    ```bash
+   java -version
+   ```
+3. **Compilar e instalar las dependencias**
+    ```bash
+   mvn clean install
+   ```
+4. **Ejecutar la aplicación**
+    
+    La aplicación se puede lanzar directamente con la 
+    configuración predeterminada, como:
+    ```bash
+   mvn spring-boot:run
+   ```
+   También existen perfiles para lanzarse en distintas configuraciones, más información más abajo, para lanzar perfiles específicos:
+    ```bash
+   mvn spring-boot:run -Dspring-boot.run.profiles=[perfil]
+   ```
+5. **Acceso a la aplicación**  
+    Acceder mediante el navegador ingresando: https://localhost:8443/
 
-2. **AQUÍ INDICAR LO SIGUIENTES PASOS**
+#### Perfiles de la aplicación y sus funcionalidades/info
+La aplicación tiene varios archivos yml para tener varios 
+perfiles y posteriormente poder separar configuraciones y o 
+activar/desactivar servicios, dependencias etc.
+Aunque evidentemente se cuenta con un application.yml para configuraciones comunes.
+
+**Perfiles**:
+* prod: perfil preparado para produccion (despligue de la app),
+    actualmente solo desactiva la base de datos H2
+* dev: perfil preparado para desarrollo y pruebas, cargará un banner.txt distinto
+    como confirmación visual. (Anteriormente creaba además un usuario, __deprecated__)
+* mail: activa las notificaciones por mail (smtp), es necesario pasar un 
+    gmail y una contraseña (no usar la contraseña normal del correo, utilizar
+  una contraseña de aplicación, más info en: https://support.google.com/mail/answer/185833?hl=es) 
+  Estos valores se pasaran como variables de entorno con los nombres: MAIL_USERNAME y MAIL_PASSWORD respectivamente
+  . Estas variables deberian de tomar los valores NO_CARGADO por defecto si no se especifican.  
+  >[!WARNING]
+  >  Actualmente no se como se deberian pasar estas variables de entorno si se ejecuta directamente desde la terminal como indica este README.
 
 #### **Credenciales de prueba**
 - **Usuario Admin**: usuario: `admin`, contraseña: `admin`
-- **Usuario Registrado**: usuario: `user`, contraseña: `user`
+- **Usuario Registrado**: usuario: `user`, contraseña: `password`
 
 ### **Diagrama de Entidades de Base de Datos**
 
 Diagrama mostrando las entidades, sus campos y relaciones:
+>[!NOTE] 
+> El siguiente diagrama se ha sacado utilizando la gráfica que proporciona intellij para bases de datos
 
 ![Diagrama Entidad-Relación](images/database-diagram.png)
 
-> [Descripción opcional: Ej: "El diagrama muestra las 4 entidades principales: Usuario, Producto, Pedido y Categoría, con sus respectivos atributos y relaciones 1:N y N:M."]
+> [Descripción opcional: Ej: "El diagrama muestra las 4 entidades principales: Usuario(AppUser), Alert, Incidence y Line, con sus respectivos atributos y relaciones 1:N y N:M. También la clase stations que al final se implemento solo para realizar pruebas y como ejemplo para la implementación"]
 
 ### **Diagrama de Clases y Templates**
 
 Diagrama de clases de la aplicación con diferenciación por colores o secciones:
+
+>[!NOTE]
+> Nuevamente he utilizado intellij para mostrar todas las dependencias para poder visualizarlas de forma real.
+> Estas relaciones pueden cambiar, como maximo solo se puede garantizar que la foto era valida para el momento en el que se actualizó su archivo
 
 ![Diagrama de Clases](images/classes-diagram.png)
 
@@ -354,17 +402,30 @@ Diagrama de clases de la aplicación con diferenciación por colores o secciones
 
 ---
 
-#### **Alumno 3 - [Nombre Completo]**
+#### **Alumno 3 - [Escipion48 (Pablo Sainz López)]**
 
-[Descripción de las tareas y responsabilidades principales del alumno en el proyecto]
+##### En cuanto al proyecto:
+Gestión del proyecto, planteamiento de la arquitectura, división de tareas, estandarización (creación de un ejemplo (Stations) para un desarrollo estandarizado y más rápido.), entre otros.
 
-| Nº    | Commits      | Files      |
-|:------------: |:------------:| :------------:|
-|1| [Descripción commit 1](URL_commit_1)  | [Archivo1](URL_archivo_1)   |
-|2| [Descripción commit 2](URL_commit_2)  | [Archivo2](URL_archivo_2)   |
-|3| [Descripción commit 3](URL_commit_3)  | [Archivo3](URL_archivo_3)   |
-|4| [Descripción commit 4](URL_commit_4)  | [Archivo4](URL_archivo_4)   |
-|5| [Descripción commit 5](URL_commit_5)  | [Archivo5](URL_archivo_5)   |
+##### En cuanto al código:
+Carpetas de security y config total o casi en su totalidad. 
+Clases relacionadas con Users (controllers, services, entity etc).
+Los servicios implementados para el funcionamiento de smtp y la gestión de la autenticación.
+Los archivos relacionados con un estandar común / plantilla.
+Demás archivos como archivos de configuración .yml para permitir varios perfiles a la vez.
+Por ultimo, cambios en el front relacionados con mi responsabilidad (Users) de la práctica.
+
+
+>[!NOTE] 
+> Nuevamente es imposible que suba todos los comits, sin embargo mostraré 5 importante relacionados con lo comentado más arriba. He intentado que los commit sean lo más descriptivos y concisos posibles para mejor comprobación.
+
+| Nº    |                                                                                                                                              Commits                                                                                                                                              |                                                                                                                             Files                                                                                                                              |
+|:------------: |:-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
+|1|                                                                                                                                    [Implementación de SMTP](https://github.com/CodeURJC-SSDD-2025-26/practica-ssdd-2025-26-grupo-1/commit/8c23ac531516333ad7141482d35a780e850144e0)                                                                                                                                     |                                                                                                  [Servicio de email para mandar mensajer smtp](https://github.com/CodeURJC-SSDD-2025-26/practica-ssdd-2025-26-grupo-1/commit/8c23ac531516333ad7141482d35a780e850144e0#diff-bef6b4517dcfa0b12130891362f91ba054f18f680b591686cff0702ae8121264)                                                                                                  |
+|2|                       [En este dia a partir de este commit se implemento gran parte del código de user, principalmente el relacionado con el CRUD](https://github.com/CodeURJC-SSDD-2025-26/practica-ssdd-2025-26-grupo-1/commit/715ee32050e775091a0d79a8e120b926d1778cfc)                        |                          [UserService](https://github.com/CodeURJC-SSDD-2025-26/practica-ssdd-2025-26-grupo-1/commit/4e43ba4fa691efa87191d8acc2440d4912134b68#diff-bf9faeda228cf3ef66985315f92dcd4217ac98af3483f20ce284e6cfc57aa57c)                           |
+|3| [Implementación de security para autenticación y autorización y carga de usuarios en base de datos](https://github.com/CodeURJC-SSDD-2025-26/practica-ssdd-2025-26-grupo-1/commit/7c598901b7a273ddd47386f67fe504128102fe65#diff-2772dfcbbbbb2a76fcaf66f572ea06631a3049e978121e19e58a073349e5ecaf) | [Nuevamente muchos archivos asociados, link de UserLoader](https://github.com/CodeURJC-SSDD-2025-26/practica-ssdd-2025-26-grupo-1/blob/7c598901b7a273ddd47386f67fe504128102fe65/backend/src/main/java/codeurjc/ssdd/grupo1/trainfyre/DatabaseUsersLoader.java) |
+|4|                                                               [Controller model advice y base de datos H2](https://github.com/CodeURJC-SSDD-2025-26/practica-ssdd-2025-26-grupo-1/commit/955ebb1e23558693136ceb14eea77fcc842ebd05)                                                                |                  [GlobarModelAttributesAdvice](https://github.com/CodeURJC-SSDD-2025-26/practica-ssdd-2025-26-grupo-1/commit/955ebb1e23558693136ceb14eea77fcc842ebd05#diff-9ca4451de068971dc8f8f366624a1127e42ecb1ab79e59df0c3a4e49fb81346a)                   |
+|5|                                                      [Creación de la estructura del proyecto y plantilla de ejemplo](https://github.com/CodeURJC-SSDD-2025-26/practica-ssdd-2025-26-grupo-1/commit/ae6d2f89d48137349242dd676b077c1580f739f3)                                                      |                                                                  [Ejemplo de archivo subido](backend/src/main/java/codeurjc/ssdd/grupo1/trainfyre/web/controller/Impl/StationController.java)                                                                  |
 
 ---
 
