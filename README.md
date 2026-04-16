@@ -429,13 +429,13 @@ Por ultimo, cambios en el front relacionados con mi responsabilidad (Users) de l
 
 ---
 
-#### **Alumno 4 - [Nombre Completo]**
+#### **Alumno 4 - [Daniel Montes Jiménez]**
 
-[Descripción de las tareas y responsabilidades principales del alumno en el proyecto]
+I made all functionalities related to the Alert entity: adding alerts (preventing impossible time ranges), alert modifications and removal. They are visible in a table separated in pages of five alerts, with them ordered by the line they cover.
 
 | Nº    | Commits      | Files      |
 |:------------: |:------------:| :------------:|
-|1| [Descripción commit 1](URL_commit_1)  | [Archivo1](URL_archivo_1)   |
+|1| [Added alert modification functionality]([URL_commit_1](https://github.com/CodeURJC-SSDD-2025-26/practica-ssdd-2025-26-grupo-1/commit/6948ff7c29b2ddc66c20aa7d2c512a395e7b5844#diff-a003b874c2bf0ff3cc4ff57f7208fb90a00f40fffa4d4f14cc6ee4fdb4d661d4))  | [Alert Controller](backend/src/main/java/codeurjc/ssdd/grupo1/trainfyre/web/controller/Impl/AlertController.java)   |
 |2| [Descripción commit 2](URL_commit_2)  | [Archivo2](URL_archivo_2)   |
 |3| [Descripción commit 3](URL_commit_3)  | [Archivo3](URL_archivo_3)   |
 |4| [Descripción commit 4](URL_commit_4)  | [Archivo4](URL_archivo_4)   |
