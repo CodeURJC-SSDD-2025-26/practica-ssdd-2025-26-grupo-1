@@ -374,17 +374,17 @@ Diagrama de clases de la aplicación con diferenciación por colores o secciones
 
 ### **Participación de Miembros en la Práctica 2**
 
-#### **Alumno 1 - [Nombre Completo]**
+#### **Alumno 1 - Weisheng Zheng**
 
-[Descripción de las tareas y responsabilidades principales del alumno en el proyecto]
+Clases relaccionadas con Lines, arreglar problemas relaccionados con la visualización de las páginas, aparotaciones al correcto funcionamiento de la página index, tanto al mapa como al filtrado de las incidencias por linea
 
 | Nº    | Commits      | Files      |
 |:------------: |:------------:| :------------:|
-|1| [Descripción commit 1](URL_commit_1)  | [Archivo1](URL_archivo_1)   |
-|2| [Descripción commit 2](URL_commit_2)  | [Archivo2](URL_archivo_2)   |
-|3| [Descripción commit 3](URL_commit_3)  | [Archivo3](URL_archivo_3)   |
-|4| [Descripción commit 4](URL_commit_4)  | [Archivo4](URL_archivo_4)   |
-|5| [Descripción commit 5](URL_commit_5)  | [Archivo5](URL_archivo_5)   |
+|1| [Resultado final de las aportaciones a index, aunque hay muchas aportaciones previas](https://github.com/CodeURJC-SSDD-2025-26/practica-ssdd-2025-26-grupo-1/commit/b3b6ee2f300dfbd1d1e06341d756c10af297042e)  | [Index.html](https://github.com/CodeURJC-SSDD-2025-26/practica-ssdd-2025-26-grupo-1/blob/main/backend/src/main/resources/templates/index.html)   |
+|2| [Resultado final de la página tabla de lineas, también han habido muchas aportaciones previas](https://github.com/CodeURJC-SSDD-2025-26/practica-ssdd-2025-26-grupo-1/commit/470276a89292c1454e49b87816d16d883d638823)  | [_line_table.html](https://github.com/CodeURJC-SSDD-2025-26/practica-ssdd-2025-26-grupo-1/blob/main/backend/src/main/resources/templates/partials/_line_table.html)   |
+|3| [Estructura básica para todos los archivos relaccionados con lines: DTO, service, controller, mapper](https://github.com/CodeURJC-SSDD-2025-26/practica-ssdd-2025-26-grupo-1/commit/bdebed553c48f0497953687b38bf11fb8730c661)  | [Practicamente todas las carpetas relaccionadas con Lines](https://github.com/CodeURJC-SSDD-2025-26/practica-ssdd-2025-26-grupo-1/tree/main/backend/src/main/java/codeurjc/ssdd/grupo1/trainfyre)   |
+|4| [Aportación de smoke test para saber que el último commit es funcional](https://github.com/CodeURJC-SSDD-2025-26/practica-ssdd-2025-26-grupo-1/commit/ab9d1623b6a9eb761c846529ba8523082e05a89d)  | [No existe en el resultado final porque no era pertenece a la practica en si](URL_archivo_4)   |
+|5| [Servicios para trabajar con linea, updadate y delete](https://github.com/CodeURJC-SSDD-2025-26/practica-ssdd-2025-26-grupo-1/commit/0be4150f277bea8471d11db9546f2ef00df88654)  | [LineImpl.java](https://github.com/CodeURJC-SSDD-2025-26/practica-ssdd-2025-26-grupo-1/blob/main/backend/src/main/java/codeurjc/ssdd/grupo1/trainfyre/service/Impl/LineImpl.java)   |
 
 ---
 
