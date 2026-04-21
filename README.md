@@ -388,17 +388,19 @@ Clases relaccionadas con Lines, arreglar problemas relaccionados con la visualiz
 
 ---
 
-#### **Alumno 2 - [Nombre Completo]**
+#### **Alumno 2 - [Alejandro González Blanco (alexgogb)]**
 
-[Descripción de las tareas y responsabilidades principales del alumno en el proyecto]
+He desarrollado todos los sistemas relacionados con incidencias, incluidas las clases Java y las páginas HTML asociadas.
+Asimismo, he creado los gráficos de incidencias, que se muestran en la página mediante archivos JSON; y la página de error.
+Los commits mostrados a continuación son los que dieron comienzo a lo realizado y el código final está en la práctica.
 
 | Nº    | Commits      | Files      |
 |:------------: |:------------:| :------------:|
-|1| [Descripción commit 1](URL_commit_1)  | [Archivo1](URL_archivo_1)   |
-|2| [Descripción commit 2](URL_commit_2)  | [Archivo2](URL_archivo_2)   |
-|3| [Descripción commit 3](URL_commit_3)  | [Archivo3](URL_archivo_3)   |
-|4| [Descripción commit 4](URL_commit_4)  | [Archivo4](URL_archivo_4)   |
-|5| [Descripción commit 5](URL_commit_5)  | [Archivo5](URL_archivo_5)   |
+|1| [Creación de IncidenceController](https://github.com/CodeURJC-SSDD-2025-26/practica-ssdd-2025-26-grupo-1/commit/75ff9fc0c37a141b1198cf0d9a64f04b828d7f0d)  | [IncidenceController](https://github.com/CodeURJC-SSDD-2025-26/practica-ssdd-2025-26-grupo-1/blob/main/backend/src/main/java/codeurjc/ssdd/grupo1/trainfyre/web/controller/Impl/IncidenceController.java)   |
+|2| [Creación de IncidenceService](https://github.com/CodeURJC-SSDD-2025-26/practica-ssdd-2025-26-grupo-1/commit/8d57f2f3569311490df4afba5994f0414f0dff30)  | [IncidenceService](https://github.com/CodeURJC-SSDD-2025-26/practica-ssdd-2025-26-grupo-1/blob/main/backend/src/main/java/codeurjc/ssdd/grupo1/trainfyre/service/Impl/IncidenceServiceImpl.java)   |
+|3| [Gráfico circular](https://github.com/CodeURJC-SSDD-2025-26/practica-ssdd-2025-26-grupo-1/commit/ccf218a83e4f490a47455ddd4885b2d1a143fb20)  | [Pie Chart](https://github.com/CodeURJC-SSDD-2025-26/practica-ssdd-2025-26-grupo-1/blob/main/backend/src/main/resources/static/js/components/pie-chart.js)   |
+|4| [Panel de administración](https://github.com/CodeURJC-SSDD-2025-26/practica-ssdd-2025-26-grupo-1/commit/244b86802589867722a5a04ff6ff5169639a075f)  | [Admin Panel](https://github.com/CodeURJC-SSDD-2025-26/practica-ssdd-2025-26-grupo-1/blob/main/backend/src/main/resources/templates/admin_panel_incidences.html)   |
+|5| [Mapa de calor](https://github.com/CodeURJC-SSDD-2025-26/practica-ssdd-2025-26-grupo-1/commit/b868f0ef62f084b834b6419013e70c94fc3efb5f)  | [Heatmap](https://github.com/CodeURJC-SSDD-2025-26/practica-ssdd-2025-26-grupo-1/tree/main/backend/src/main/java/codeurjc/ssdd/grupo1/trainfyre)   |
 
 ---
 
