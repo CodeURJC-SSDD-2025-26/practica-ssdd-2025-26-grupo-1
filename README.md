@@ -280,11 +280,11 @@ Responsible for every form and table (except for the users table and the setting
 
 #### **Diagrama de Navegación**
 
-Solo si ha cambiado.
+Solo añadidas pantallas confirmando la adición de elementos.
 
 #### **Capturas de Pantalla Actualizadas**
 
-Solo si han cambiado.
+Se sigue aplicando el diagrama de la práctica anterior.
 
 ### **Instrucciones de Ejecución**
 
@@ -368,9 +368,8 @@ Diagrama de clases de la aplicación con diferenciación por colores o secciones
 > Nuevamente he utilizado intellij para mostrar todas las dependencias para poder visualizarlas de forma real.
 > Estas relaciones pueden cambiar, como maximo solo se puede garantizar que la foto era valida para el momento en el que se actualizó su archivo
 
-![Diagrama de Clases](images/classes-diagram.png)
+![Diagrama de Clases](images/Diagrama_clases.drawio.png)
 
-> [Descripción opcional del diagrama y relaciones principales]
 
 ### **Participación de Miembros en la Práctica 2**
 
