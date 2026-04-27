@@ -101,6 +101,17 @@ public class UserServiceImpl implements UserService{
 
     }
 
+    public UserDTO giveUser(UserDetails userDetails) {
+        if (userDetails == null){
+            return null;
+        }
+
+        return this.findUserByUsername(userDetails.getUsername())
+                .map(userMapper::userToDTO)
+                .orElseThrow(() -> new UsernameNotFoundException("Error al obtener el usuario: " + userDetails.getUsername()));
+
+    }
+
     @Override
     public List<UserInfoDTO> findAllUsers() {
         return this.repository.findAll().stream()
