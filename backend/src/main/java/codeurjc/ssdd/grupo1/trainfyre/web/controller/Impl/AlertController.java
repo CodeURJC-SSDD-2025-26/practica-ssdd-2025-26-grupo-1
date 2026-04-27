@@ -9,8 +9,13 @@ import codeurjc.ssdd.grupo1.trainfyre.data.repository.UserRepository;
 import codeurjc.ssdd.grupo1.trainfyre.dto.AlertDTO;
 import codeurjc.ssdd.grupo1.trainfyre.dto.AlertRegistrationDTO;
 import codeurjc.ssdd.grupo1.trainfyre.dto.LineDTO;
+import codeurjc.ssdd.grupo1.trainfyre.dto.UsersDTOs.UserDTO;
 import codeurjc.ssdd.grupo1.trainfyre.dto.UsersDTOs.UserInfoDTO;
+import codeurjc.ssdd.grupo1.trainfyre.mapper.AlertMapper;
+import codeurjc.ssdd.grupo1.trainfyre.mapper.LineMapper;
+import codeurjc.ssdd.grupo1.trainfyre.mapper.UserMapper;
 import codeurjc.ssdd.grupo1.trainfyre.service.AlertService;
+import codeurjc.ssdd.grupo1.trainfyre.service.LineService;
 import codeurjc.ssdd.grupo1.trainfyre.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.LoggerFactory;
@@ -22,6 +27,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.slf4j.Logger;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -45,15 +51,19 @@ public class AlertController {
 
     // private final Impl.AlertDtoToAlert alertDtoToAlert;
 
-    private final AlertRepository alertRepository;
-
     private final Logger logger = LoggerFactory.getLogger(AlertController.class);
 
     private final LineRepository lineRepository;
     private final UserRepository userRepository;
 
     private final AlertService alertService;
+
     private final UserService userService;
+    private final LineService lineService;
+
+    private final UserMapper userMapper;
+    private final LineMapper lineMapper;
+    private final AlertMapper alertMapper;
 
     /*
      * AlertController(Impl.AlertDtoToAlert alertDtoToAlert) {
@@ -105,26 +115,20 @@ public class AlertController {
         String error = null;
 
         // Get the alert to modify.
-        Optional<Alert> alert = alertRepository.findById(ident);
-        Alert currentAlert;
+        Alert alert = alertMapper.alertDTOToAlert(alertService.getAlert(ident));
+        AlertDTO currentAlert;
         String[] listStart;
         String[] listEnd;
 
         int startTime;
         int endTime;
 
-        if (alert.isEmpty()) {// Alert not found.
-            error = "Alert not found.";
-            model.addAttribute(error, "error");
-            return "error";
-        }
-
         // I get the alert and translate the times to input values.
-        currentAlert = alert.get();
-        listStart = currentAlert.getStartHour().split(":");
+        currentAlert = alertMapper.alertToDTO(alert);
+        listStart = alert.getStartHour().split(":");
         startTime = Integer.parseInt(listStart[0]) * 60 + Integer.parseInt(listStart[1]);
 
-        listEnd = currentAlert.getEndHour().split(":");
+        listEnd = alert.getEndHour().split(":");
         endTime = Integer.parseInt(listEnd[0]) * 60 + Integer.parseInt(listEnd[1]);
 
         // I need the repository to get the line.
@@ -138,13 +142,15 @@ public class AlertController {
         // Include modify indication.
         model.addAttribute("modify", true);
         // Include alert.
-        model.addAttribute("alert", currentAlert);
+        model.addAttribute("currentAlert", currentAlert);
         // Add the start and end times in slider language.
         model.addAttribute("startTime", Integer.toString(startTime));
         model.addAttribute("endTime", Integer.toString(endTime));
 
-        model.addAttribute("startInput", currentAlert.getStartHour());
-        model.addAttribute("endInput", currentAlert.getEndHour());
+        model.addAttribute("startInput", currentAlert.startHour());
+        model.addAttribute("endInput", currentAlert.endHour());
+
+        model.addAttribute("alert", currentAlert);
 
         return "form-alert";
     }
@@ -158,7 +164,7 @@ public class AlertController {
         LocalDate end;
         String error = null;
 
-        AppUser appUser;
+        UserDTO userDto = userService.giveUser(user);
         Line linereal;
 
         // First I check if the date range makes sense.
@@ -184,24 +190,15 @@ public class AlertController {
         }
 
         // Get the line from the DB.
-        Optional<Line> lineO = lineRepository.findByName(line);
-        if (lineO.isEmpty()) {
-            error = "Línea no encontrada.";
-        } else {// Associate the alert to the user.
-            linereal = lineO.get();
-            UserInfoDTO useriDto = userService.findUser(user);
-            Optional<AppUser> userO = userRepository.findByUsername(useriDto.username());
+        LineDTO lineDto = lineService.getLineByName(line);
 
-            if (userO.isPresent()) {
-                // Obtain the user and add the alert.
-                appUser = userO.get();
-                AlertRegistrationDTO alertDto = new AlertRegistrationDTO(linereal, startDate, endDate, min, max,
-                        appUser);
-                alertService.registerAlert(alertDto, appUser);
-            } else {
-                error = "Usuario no encontrado.";
-            }
-        }
+        // Associate the alert to the user.
+
+        AlertRegistrationDTO alertDto = new AlertRegistrationDTO(lineMapper.toLine(lineDto), startDate, endDate, min,
+                max,
+                userMapper.userDTOToAppUser(userDto));
+        alertService.registerAlert(alertDto, userDto);
+
         model.addAttribute("title", "Alert added");
 
         return "alert_added";
@@ -209,38 +206,27 @@ public class AlertController {
 
     @GetMapping(value = "/alert/table")
     public String alertTable(Model model, @AuthenticationPrincipal UserDetails user, Pageable page) {
-        AppUser appUser;
         Boolean thereIs = false;
         UserInfoDTO useriDto = userService.findUser(user);
-        Optional<AppUser> userO = userRepository.findByUsername(useriDto.username());
-        List<Alert> alerts;
+        UserDTO userO = userService.giveUser(user);
+        Page<AlertDTO> alerts;
 
         Boolean hasPrev = false;
         Boolean hasNext = false;
         int prev = page.getPageNumber() - 1;
         int next = page.getPageNumber() + 1;
 
+        alerts = alertService.getPage(userO, page);
+
         model.addAttribute("title", "Alert table");
 
-        if (userO.isPresent()) {
-            // Obtain the user get the alerts.
-            appUser = userO.get();
-            alerts = alertRepository.findByUserOrderByLine(appUser, page);
-            if (!alerts.isEmpty()) {
-                thereIs = true;
-            }
-
-            model.addAttribute("alerts", alerts);
-        } else {// User not found.
-            return "error";
-        }
-
         hasPrev = page.getPageNumber() >= 1;
-        hasNext = (page.getPageNumber() + 1) * page.getPageSize() < alertRepository.findByUser(appUser).size();
+        hasNext = page.getPageNumber() < alerts.getTotalPages() - 1;
         model.addAttribute("hasPrev", hasPrev);
         model.addAttribute("hasNext", hasNext);
         model.addAttribute("prev", prev);
         model.addAttribute("next", next);
+        model.addAttribute("alerts", alerts);
 
         model.addAttribute("thereIs", thereIs);
         return "user_alerts";
@@ -250,11 +236,10 @@ public class AlertController {
     public String formModified(Model model, @RequestParam String line, @RequestParam String startDate,
             @RequestParam String endDate, @RequestParam String min, @RequestParam String max, @RequestParam String id) {
         Long currentAlertId = Long.parseLong(id);
-        Optional<Alert> alertO = alertRepository.findById(currentAlertId);
+        AlertDTO alertDto = alertService.getAlert(currentAlertId);
         String error = null;
-        Alert currentAlert;
+        AlertDTO currentAlert = alertService.getAlert(currentAlertId);
 
-        AlertDTO alertDto;
         Line linereal;
         LocalDate start;
         LocalDate end;
@@ -266,28 +251,14 @@ public class AlertController {
         String[] listEnd;
 
         // First I check if the date range makes sense.
-        
 
         // Get the line from the DB.
-        Optional<Line> lineO = lineRepository.findByName(line);
-        if (lineO.isEmpty()) {
-            error = "Línea no encontrada.";
-            model.addAttribute("error", error);
-            return "error";
-        }
+        LineDTO lineDto = lineService.getLineByName(line);
 
-        alertDto = new AlertDTO(Long.parseLong(id), lineO.get(), startDate, endDate, min, max, new AppUser());
-
-
-        if (alertO.isEmpty()) {// No se encuentra la alerta.
-            error = "No se encuentra la alerta.";
-            model.addAttribute("error", error);
-            return "error";
-        }
+        alertDto = new AlertDTO(Long.parseLong(id), lineMapper.toLine(lineDto), startDate, endDate, min, max,
+                new AppUser());
 
         // Obtain the id to modify the alert.
-        currentAlert = alertO.get();
-
 
         String[] startDay = startDate.split("-");
         String[] endDay = endDate.split("-");
@@ -296,10 +267,10 @@ public class AlertController {
                 Integer.parseInt(startDay[2]));
         end = LocalDate.of(Integer.parseInt(endDay[0]), Integer.parseInt(endDay[1]), Integer.parseInt(endDay[2]));
 
-        listStart = currentAlert.getStartHour().split(":");
+        listStart = currentAlert.startHour().split(":");
         startTime = Integer.parseInt(listStart[0]) * 60 + Integer.parseInt(listStart[1]);
 
-        listEnd = currentAlert.getEndHour().split(":");
+        listEnd = currentAlert.endHour().split(":");
         endTime = Integer.parseInt(listEnd[0]) * 60 + Integer.parseInt(listEnd[1]);
 
         if (end.compareTo(start) < 0) {// Impossible range.
@@ -324,14 +295,14 @@ public class AlertController {
             model.addAttribute("startTime", start);
             model.addAttribute("endTime", end);
 
-            model.addAttribute("startDate", currentAlert.getStartDate());
-            model.addAttribute("endDate", currentAlert.getEndDate());
+            model.addAttribute("startDate", currentAlert.startDate());
+            model.addAttribute("endDate", currentAlert.endDate());
 
             model.addAttribute("startTime", startTime);
             model.addAttribute("endTime", endTime);
 
-            model.addAttribute("startInput", currentAlert.getStartHour());
-            model.addAttribute("endInput", currentAlert.getEndHour());
+            model.addAttribute("startInput", currentAlert.startHour());
+            model.addAttribute("endInput", currentAlert.endHour());
 
             return "form-alert";
         }
@@ -354,8 +325,8 @@ public class AlertController {
         AppUser appUser;
         Boolean thereIs = false;
         UserInfoDTO useriDto = userService.findUser(user);
-        Optional<AppUser> userO = userRepository.findByUsername(useriDto.username());
-        List<Alert> alerts;
+        UserDTO userDto = userService.giveUser(user);
+        Page<AlertDTO> alerts;
         Alert currentAlert;
 
         Boolean hasPrev = false;
@@ -366,23 +337,12 @@ public class AlertController {
         // Get the alert and delete it.
         alertService.deleteAlert(Long.parseLong(id));
 
-        if (userO.isPresent()) {
-            // Obtain the user get the alerts.
-            appUser = userO.get();
-            alerts = alertRepository.findByUserOrderByLine(appUser, page);
-            if (!alerts.isEmpty()) {
-                thereIs = true;
-            }
-
-            model.addAttribute("alerts", alerts);
-        } else {// User not found.
-            error = "Usuario no encontrado.";
-            model.addAttribute("error", error);
-            return "error";
-        }
+        alerts = alertService.getPage(userDto, page);
 
         hasPrev = page.getPageNumber() >= 1;
-        hasNext = (page.getPageNumber() + 1) * page.getPageSize() < alertRepository.findByUser(appUser).size();
+        hasNext = page.getPageNumber() < alerts.getTotalPages() - 1;
+
+        model.addAttribute("alerts", alerts);
 
         model.addAttribute("hasPrev", hasPrev);
         model.addAttribute("hasNext", hasNext);
