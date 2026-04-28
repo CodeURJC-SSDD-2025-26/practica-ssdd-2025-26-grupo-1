@@ -3,9 +3,6 @@ package codeurjc.ssdd.grupo1.trainfyre.web.controller.Impl;
 import codeurjc.ssdd.grupo1.trainfyre.data.model.Alert;
 import codeurjc.ssdd.grupo1.trainfyre.data.model.AppUser;
 import codeurjc.ssdd.grupo1.trainfyre.data.model.Line;
-import codeurjc.ssdd.grupo1.trainfyre.data.repository.AlertRepository;
-import codeurjc.ssdd.grupo1.trainfyre.data.repository.LineRepository;
-import codeurjc.ssdd.grupo1.trainfyre.data.repository.UserRepository;
 import codeurjc.ssdd.grupo1.trainfyre.dto.AlertDTO;
 import codeurjc.ssdd.grupo1.trainfyre.dto.AlertRegistrationDTO;
 import codeurjc.ssdd.grupo1.trainfyre.dto.LineDTO;
@@ -41,20 +38,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 @RequiredArgsConstructor
 public class AlertController {
 
-    /*
-     * private final Impl.AlertDtoToAlert alertDtoToAlert_1;
-     * 
-     * private final Impl.AlertDtoToAlert alertDtoToAlert;
-     */
-
-    // private final Impl.AlertDtoToAlert alertDtoToAlert;
-
-    // private final Impl.AlertDtoToAlert alertDtoToAlert;
-
     private final Logger logger = LoggerFactory.getLogger(AlertController.class);
-
-    private final LineRepository lineRepository;
-    private final UserRepository userRepository;
 
     private final AlertService alertService;
 
@@ -65,39 +49,13 @@ public class AlertController {
     private final LineMapper lineMapper;
     private final AlertMapper alertMapper;
 
-    /*
-     * AlertController(Impl.AlertDtoToAlert alertDtoToAlert) {
-     * this.alertDtoToAlert = alertDtoToAlert;
-     * }
-     */
-
-    /*
-     * AlertController(Impl.AlertDtoToAlert alertDtoToAlert) {
-     * this.alertDtoToAlert = alertDtoToAlert;
-     * }
-     */
-
-    /*
-     * AlertController(Impl.AlertDtoToAlert alertDtoToAlert, Impl.AlertDtoToAlert
-     * alertDtoToAlert_1) {
-     * this.alertDtoToAlert = alertDtoToAlert;
-     * this.alertDtoToAlert_1 = alertDtoToAlert_1;
-     * }
-     */
-
-    /*
-     * AlertController(AlertRepository alertRepository) {
-     * this.alertRepository = alertRepository;
-     * }
-     */
-
     @GetMapping(value = "/alert/form")
     public String formAlert(Model model) {
 
         logger.info("getAlerts");
 
-        // I need the repository to get the line.
-        model.addAttribute("lines", lineRepository.findAll());
+        // I need the lines.
+        model.addAttribute("lines", lineService.getAllLines());
 
         // Include the slider.js
         model.addAttribute("pageScriptsBottom", List.of("components/slider.js"));
@@ -131,8 +89,8 @@ public class AlertController {
         listEnd = alert.getEndHour().split(":");
         endTime = Integer.parseInt(listEnd[0]) * 60 + Integer.parseInt(listEnd[1]);
 
-        // I need the repository to get the line.
-        model.addAttribute("lines", lineRepository.findAll());
+        // I need the repository to get the lines.
+        model.addAttribute("lines", lineService.getAllLines());
         // Include the slider.js
         model.addAttribute("pageScriptsBottom", List.of("components/slider.js"));
         // Include title.
@@ -168,16 +126,9 @@ public class AlertController {
         Line linereal;
 
         // First I check if the date range makes sense.
-        String[] startDay = startDate.split("-");
-        String[] endDay = endDate.split("-");
-
-        start = LocalDate.of(Integer.parseInt(startDay[0]), Integer.parseInt(startDay[1]),
-                Integer.parseInt(startDay[2]));
-        end = LocalDate.of(Integer.parseInt(endDay[0]), Integer.parseInt(endDay[1]), Integer.parseInt(endDay[2]));
-
-        if (end.compareTo(start) < 0) {// Impossible range.
-            // I need the repository to get the line.
-            model.addAttribute("lines", lineRepository.findAll());
+        if (!alertService.isValidDate(startDate, endDate)) {// Impossible range.
+            // I need the repository to get the lines.
+            model.addAttribute("lines", lineService.getAllLines());
 
             // Include the slider.js
             model.addAttribute("pageScriptsBottom", List.of("components/slider.js"));
@@ -260,22 +211,16 @@ public class AlertController {
 
         // Obtain the id to modify the alert.
 
-        String[] startDay = startDate.split("-");
-        String[] endDay = endDate.split("-");
-
-        start = LocalDate.of(Integer.parseInt(startDay[0]), Integer.parseInt(startDay[1]),
-                Integer.parseInt(startDay[2]));
-        end = LocalDate.of(Integer.parseInt(endDay[0]), Integer.parseInt(endDay[1]), Integer.parseInt(endDay[2]));
-
         listStart = currentAlert.startHour().split(":");
         startTime = Integer.parseInt(listStart[0]) * 60 + Integer.parseInt(listStart[1]);
 
         listEnd = currentAlert.endHour().split(":");
         endTime = Integer.parseInt(listEnd[0]) * 60 + Integer.parseInt(listEnd[1]);
 
-        if (end.compareTo(start) < 0) {// Impossible range.
+        //First I check if the dates are valid.
+        if (!alertService.isValidDate(startDate, endDate)) {// Impossible range.
             // I need the repository to get the line.
-            model.addAttribute("lines", lineRepository.findAll());
+            model.addAttribute("lines", lineService.getAllLines());
 
             // Include the slider.js
             model.addAttribute("pageScriptsBottom", List.of("components/slider.js"));
@@ -292,14 +237,11 @@ public class AlertController {
             // Include alert.
             model.addAttribute("alert", currentAlert);
             // Add the start and end times in slider language.
-            model.addAttribute("startTime", start);
-            model.addAttribute("endTime", end);
+            model.addAttribute("startTime", startTime);
+            model.addAttribute("endTime", endTime);
 
             model.addAttribute("startDate", currentAlert.startDate());
             model.addAttribute("endDate", currentAlert.endDate());
-
-            model.addAttribute("startTime", startTime);
-            model.addAttribute("endTime", endTime);
 
             model.addAttribute("startInput", currentAlert.startHour());
             model.addAttribute("endInput", currentAlert.endHour());
