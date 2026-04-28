@@ -1,25 +1,22 @@
 package codeurjc.ssdd.grupo1.trainfyre.service.Impl;
 
 import codeurjc.ssdd.grupo1.trainfyre.data.model.Alert;
-import codeurjc.ssdd.grupo1.trainfyre.data.model.AppUser;
 import codeurjc.ssdd.grupo1.trainfyre.data.repository.AlertRepository;
 import codeurjc.ssdd.grupo1.trainfyre.dto.AlertDTO;
 import codeurjc.ssdd.grupo1.trainfyre.dto.AlertRegistrationDTO;
 import codeurjc.ssdd.grupo1.trainfyre.dto.UsersDTOs.UserDTO;
-import codeurjc.ssdd.grupo1.trainfyre.dto.UsersDTOs.UserInfoDTO;
 import codeurjc.ssdd.grupo1.trainfyre.mapper.AlertMapper;
-import codeurjc.ssdd.grupo1.trainfyre.mapper.Impl.AlertToDto;
 import codeurjc.ssdd.grupo1.trainfyre.mapper.UserMapper;
 import codeurjc.ssdd.grupo1.trainfyre.service.AlertService;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 
+import java.time.LocalDate;
 import java.util.Optional;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
@@ -28,18 +25,9 @@ import org.springframework.web.server.ResponseStatusException;
 @AllArgsConstructor
 public class AlertServiceImpl implements AlertService {
 
-    /* private final Impl.AlertToDto alertToDto; */
     private AlertRepository alertRepository;
     private AlertMapper alertMapper;
     private UserMapper userMapper;
-    // private UserRepository userRepository; <-- @ClaramenteYo Is not used, if you
-    // want to add it again use it somewhere or remove it.
-
-    /*
-     * AlertServiceImpl(Impl.AlertToDto alertToDto) {
-     * alertMapper.alertToDto = alertToDto;
-     * }
-     */
 
     @Transactional
     public AlertDTO registerAlert(AlertRegistrationDTO alertrDTO, UserDTO appUser) {
@@ -51,8 +39,6 @@ public class AlertServiceImpl implements AlertService {
         alert.setStartHour(alertrDTO.startHour());
         alert.setEndHour(alertrDTO.endHour());
         alert.setUser(userMapper.userDTOToAppUser(appUser));
-
-        //alert.setUser(appUser);
 
         alertRepository.save(alert);
 
@@ -113,5 +99,18 @@ public class AlertServiceImpl implements AlertService {
                 .map(alertMapper::alertToDTO)
                 .orElseThrow(() -> new UsernameNotFoundException("Error al obtener la alerta: "));
 
+    }
+
+    public Boolean isValidDate(String start, String end) {
+        String[] startDay = start.split("-");
+        String[] endDay = end.split("-");
+        LocalDate startDate;
+        LocalDate endDate;
+
+        startDate = LocalDate.of(Integer.parseInt(startDay[0]), Integer.parseInt(startDay[1]),
+                Integer.parseInt(startDay[2]));
+        endDate = LocalDate.of(Integer.parseInt(endDay[0]), Integer.parseInt(endDay[1]), Integer.parseInt(endDay[2]));
+
+        return (end.compareTo(start) >= 0);
     }
 }

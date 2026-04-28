@@ -21,4 +21,6 @@ public interface AlertService {
     public Page<AlertDTO> getPage(UserDTO user, Pageable page); 
 
     public AlertDTO getAlert(long id);
+
+    public Boolean isValidDate(String start, String end);
 }
