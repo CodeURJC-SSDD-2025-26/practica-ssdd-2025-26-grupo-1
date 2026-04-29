@@ -1,0 +1,27 @@
+package codeurjc.ssdd.grupo1.trainfyre.appservice.service;
+
+import java.util.List;
+
+import org.springframework.web.multipart.MultipartFile;
+
+import codeurjc.ssdd.grupo1.trainfyre.appservice.data.model.Incidence;
+import codeurjc.ssdd.grupo1.trainfyre.appservice.data.model.Line;
+import codeurjc.ssdd.grupo1.trainfyre.appservice.dto.IncidencesDTOs.IncidenceDTO;
+import codeurjc.ssdd.grupo1.trainfyre.appservice.dto.IncidencesDTOs.IncidenceRegistrationDTO;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+
+public interface IncidenceService {
+    IncidenceDTO createIncidence(IncidenceRegistrationDTO incidenceRegistrationDTO);
+    void updateIncidence(MultipartFile updatedImage, IncidenceRegistrationDTO incidenceRegistrationDTO);
+    void deleteIncidence(String incidenceID);
+    public Page<IncidenceDTO> getPage(Pageable page);
+
+    IncidenceDTO getIncidenceWithID(String incidenceID);
+    Page<Incidence> findAll(Pageable pageable);
+    List<IncidenceDTO> getAllIncidences();
+    List<IncidenceDTO> getAllIncidencesAffectingLineAsDTO(Line line);
+    List<Incidence> getAllIncidencesAffectingLine(Line line);
+    String generatePieChartJSON();
+    String generateHeatmapJSON();
+}

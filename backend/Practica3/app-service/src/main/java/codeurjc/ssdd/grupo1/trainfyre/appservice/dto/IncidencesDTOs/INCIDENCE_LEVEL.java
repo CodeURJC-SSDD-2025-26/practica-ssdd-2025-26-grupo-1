@@ -1,0 +1,14 @@
+package codeurjc.ssdd.grupo1.trainfyre.appservice.dto.IncidencesDTOs;
+
+import jakarta.persistence.EnumeratedValue;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+
+@Getter
+@RequiredArgsConstructor
+public enum INCIDENCE_LEVEL {
+    LOW(1), MEDIUM(2), HIGH(3);
+
+    @EnumeratedValue
+    private final int value;
+}

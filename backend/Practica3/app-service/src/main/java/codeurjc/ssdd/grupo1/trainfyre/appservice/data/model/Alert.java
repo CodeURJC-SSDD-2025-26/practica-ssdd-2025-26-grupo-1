@@ -1,0 +1,39 @@
+package codeurjc.ssdd.grupo1.trainfyre.appservice.data.model;
+
+
+import codeurjc.ssdd.grupo1.trainfyre.appservice.dto.IncidencesDTOs.INCIDENCE_LEVEL;
+import jakarta.persistence.*;
+import lombok.Data;
+
+@Entity
+@Data
+@Table(name = "alert")
+public class Alert {
+
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "line_id")
+    private Line line;
+
+    private INCIDENCE_LEVEL minimun_incidence_level;
+
+    @Column(nullable = false)
+    private String startDate;
+
+    @Column(nullable = true)
+    private String endDate; //if this value is null it will be treated as there is no end date (infinite)
+
+    @Column(nullable = false)
+    private String startHour;
+
+    @Column(nullable = false)
+    private String endHour;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private AppUser user;
+}
