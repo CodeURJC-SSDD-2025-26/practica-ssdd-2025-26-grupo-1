@@ -72,7 +72,7 @@ public class IncidenceController {
         Boolean hasNext = false;
         int prev = page.getPageNumber() - 1;
         int next = page.getPageNumber() + 1;
-        Page<Incidence> incidences = incidenceService.findAll(page);
+        Page<Incidence> incidences = incidenceService.getPage(page).map(inc -> incidenceMapper.toIncidence(inc));
         List<Incidence> incidencesPageList = incidences.getContent();
 
         model.addAttribute("title", "Admin Panel");
@@ -88,7 +88,7 @@ public class IncidenceController {
                 .toList();
 
         hasPrev = page.getPageNumber() >= 1;
-        hasNext = (page.getPageNumber() + 1) * page.getPageSize() < incidenceService.getAllIncidences().size();
+        hasNext = page.getPageNumber() < incidences.getTotalPages() - 1;
 
         model.addAttribute("incidences", incidencesToShow);
         model.addAttribute("hasPrevious", hasPrev);
