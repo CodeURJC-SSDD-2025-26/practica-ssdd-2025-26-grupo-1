@@ -15,6 +15,7 @@ public interface IncidenceService {
     IncidenceDTO createIncidence(IncidenceRegistrationDTO incidenceRegistrationDTO);
     void updateIncidence(MultipartFile updatedImage, IncidenceRegistrationDTO incidenceRegistrationDTO);
     void deleteIncidence(String incidenceID);
+    public Page<IncidenceDTO> getPage(Pageable page);
 
     IncidenceDTO getIncidenceWithID(String incidenceID);
     Page<Incidence> findAll(Pageable pageable);

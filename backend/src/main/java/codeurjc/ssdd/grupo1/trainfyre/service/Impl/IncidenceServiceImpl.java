@@ -97,6 +97,12 @@ public class IncidenceServiceImpl implements IncidenceService {
         incidenceRepository.delete(incidenceToDelete);
     }
 
+    @Transactional
+    public Page<IncidenceDTO> getPage(Pageable page) {
+        Page<IncidenceDTO> truePage = incidenceRepository.findAll(page).map(thing -> incidenceMapper.toIncidenceDTO(thing));
+        return truePage;
+    }
+
     public IncidenceDTO getIncidenceWithID(String incidenceID) {
         return incidenceMapper.toIncidenceDTO(this.incidenceRepository.findByIncidenceID(incidenceID)
             .orElseThrow(() -> new ResponseStatusException(
