@@ -42,6 +42,7 @@ public class UserServiceImpl implements UserService{
     private EmailService emailService;
 
     @Transactional
+    @Override
     public void createUser(UserRegistrationtDTO userRegistrationtDTO) {
 
         if (!isAValidEmail(userRegistrationtDTO.email())){
@@ -66,6 +67,7 @@ public class UserServiceImpl implements UserService{
     }
 
     @Transactional
+    @Override
     public void createUser(UserDTO userDTO){
 
         if (!isAValidEmail(userDTO.email())){
@@ -90,6 +92,7 @@ public class UserServiceImpl implements UserService{
 
     }
 
+    @Override
     public UserInfoDTO findUser(UserDetails userDetails) {
         if (userDetails == null){
             return null;
@@ -101,6 +104,7 @@ public class UserServiceImpl implements UserService{
 
     }
 
+    @Override
     public UserDTO giveUser(UserDetails userDetails) {
         if (userDetails == null){
             return null;

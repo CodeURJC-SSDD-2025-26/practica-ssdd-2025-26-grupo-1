@@ -18,7 +18,7 @@ public interface UserService {
     //READ
     UserInfoDTO findUser(UserDetails userDetails);
 
-    public UserDTO giveUser(UserDetails userDetails);
+    UserDTO giveUser(UserDetails userDetails);
 
     List<UserInfoDTO> findAllUsers();
 
