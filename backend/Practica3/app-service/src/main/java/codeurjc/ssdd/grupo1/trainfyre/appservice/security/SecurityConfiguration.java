@@ -52,7 +52,7 @@ public class SecurityConfiguration {
                 //Para poder cargar la consola h2
                 .headers(headers -> headers.frameOptions(f -> f.sameOrigin()))
                 .csrf(csrf -> csrf.csrfTokenRequestHandler(requestHandler)
-                        .ignoringRequestMatchers("/h2-console/**"));
+                        .ignoringRequestMatchers("/h2-console/**", "/api/**"));
 
         return http.build();
     }
