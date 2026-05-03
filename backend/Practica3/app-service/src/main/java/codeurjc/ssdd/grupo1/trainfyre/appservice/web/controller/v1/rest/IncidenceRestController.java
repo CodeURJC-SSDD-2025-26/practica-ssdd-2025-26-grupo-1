@@ -30,6 +30,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.http.MediaType;
 
 import java.util.List;
 import java.io.IOException;
@@ -61,6 +62,24 @@ public class IncidenceRestController {
         log.info("GET /api/incidences/{}", incidenceId);
         IncidenceDTO incidence = incidenceService.getIncidenceWithID(incidenceId);
         return ResponseEntity.ok(incidence);
+    }
+
+    @GetMapping("/charts/piechart")
+    public ResponseEntity<String> getPieChartData() {
+        log.info("GET /api/incidences/charts/piechart");
+        String json = incidenceService.generatePieChartJSON();
+        return ResponseEntity.ok()
+                .contentType(MediaType.APPLICATION_JSON)
+                .body(json);
+    }
+
+    @GetMapping("/charts/heatmap")
+    public ResponseEntity<String> getHeatmapData() {
+        log.info("GET /api/incidences/charts/heatmap");
+        String json = incidenceService.generateHeatmapJSON();
+        return ResponseEntity.ok()
+                .contentType(MediaType.APPLICATION_JSON)
+                .body(json);
     }
 
     @PostMapping
