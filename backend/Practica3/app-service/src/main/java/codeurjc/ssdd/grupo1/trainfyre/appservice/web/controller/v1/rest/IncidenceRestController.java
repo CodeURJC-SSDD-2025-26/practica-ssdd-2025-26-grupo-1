@@ -16,6 +16,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 
 import codeurjc.ssdd.grupo1.trainfyre.appservice.service.IncidenceService;
 import codeurjc.ssdd.grupo1.trainfyre.appservice.service.LineService;
@@ -24,11 +25,13 @@ import codeurjc.ssdd.grupo1.trainfyre.appservice.service.UserService;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
 
 import java.util.List;
+import java.io.IOException;
 import java.util.concurrent.CompletableFuture;
 
 import codeurjc.ssdd.grupo1.trainfyre.appservice.data.model.Line;
@@ -92,6 +95,40 @@ public class IncidenceRestController {
         notificateIncidence(created);
 
         return ResponseEntity.status(HttpStatus.CREATED).body(created);
+    }
+
+    @PutMapping("/{incidenceId}")
+    public ResponseEntity<IncidenceDTO> updateIncidence(
+            @PathVariable String incidenceId,
+            @RequestParam(required = false) MultipartFile updatedImage,
+            @RequestParam(required = false) INCIDENCE_LEVEL incidenceLevel,
+            @RequestParam(required = false) INCIDENCE_TYPE incidenceType,
+            @RequestParam(required = false) String description,
+            @RequestParam(required = false) INCIDENCE_STATUS status) throws IOException {
+
+        log.info("PUT /api/incidences/{}", incidenceId);
+
+        byte[] imageData;
+        if (updatedImage != null) {
+            imageData = updatedImage.getBytes();
+        } else {
+            imageData = null;
+        }
+
+        IncidenceRegistrationDTO dto = new IncidenceRegistrationDTO(
+                incidenceId,
+                incidenceLevel,
+                incidenceType,
+                description,
+                null,
+                status,
+                imageData,
+                null);
+
+        incidenceService.updateIncidence(updatedImage, dto);
+
+        IncidenceDTO updated = incidenceService.getIncidenceWithID(incidenceId);
+        return ResponseEntity.ok(updated);
     }
 
     // Método para notificar a los usuarios afectados por una incidencia de forma asincrona no bloqueante
