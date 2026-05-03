@@ -13,6 +13,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -129,6 +130,13 @@ public class IncidenceRestController {
 
         IncidenceDTO updated = incidenceService.getIncidenceWithID(incidenceId);
         return ResponseEntity.ok(updated);
+    }
+
+    @DeleteMapping("/{incidenceId}")
+    public ResponseEntity<Void> deleteIncidence(@PathVariable String incidenceId) {
+        log.info("DELETE /api/incidences/{}", incidenceId);
+        incidenceService.deleteIncidence(incidenceId);
+        return ResponseEntity.noContent().build();
     }
 
     // Método para notificar a los usuarios afectados por una incidencia de forma asincrona no bloqueante
