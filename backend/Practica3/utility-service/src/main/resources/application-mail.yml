@@ -1,0 +1,13 @@
+spring:
+  #Email configuration
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: ${MAIL_USERNAME:NO_CARGADO}
+    password: ${MAIL_PASSWORD:NO_CARGADO}
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
