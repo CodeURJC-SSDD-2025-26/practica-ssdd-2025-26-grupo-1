@@ -1,6 +1,14 @@
+# https configuration
+server:
+  port: 8443
+  ssl:
+    key-store: classpath:keystore.jks
+    key-store-password: password
+    key-password: password
+
 spring:
   application:
-    name: TrainFyre #trainfyre-app-service
+    name: trainfyre-app-service
   banner:
     location: banner.txt
 
@@ -33,14 +41,9 @@ spring:
       ddl-auto: create-drop
     show-sql: true
     defer-datasource-initialization: true
-
-# https configuration
-server:
-  port: 8443
-  ssl:
-    key-store: classpath:keystore.jks
-    key-store-password: password
-    key-password: password
+    properties:
+      hibernate:
+        format_sql: true
 
   # Sesion, de momento no se usa
   servlet:
@@ -51,7 +54,26 @@ server:
         http-only: true
         same-site: strict
 
+# Configuration for the email service de trainfyre-utility-service
+email:
+  service:
+    url: http://localhost:8080
+
 #    Swagger UI configuration
 springdoc:
   swagger-ui:
     path: /trainfyre-app-service/swagger-ui.html
+
+# Logging configuration
+logging:
+  level:
+    org:
+      springframework:
+        security: DEBUG
+        web: DEBUG
+      hibernate:
+        SQL: DEBUG
+        type:
+          descriptor:
+            sql:
+              BasicBinder: TRACE
