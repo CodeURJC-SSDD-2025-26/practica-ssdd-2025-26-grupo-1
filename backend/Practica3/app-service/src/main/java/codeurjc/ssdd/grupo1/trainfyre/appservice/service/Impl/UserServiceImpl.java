@@ -89,10 +89,10 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public UserInfoDTO findUserById(Long id){
+    public UserInfoDTO findUser(Long id){
         if(id == null) throw new IllegalArgumentException("Error, el id especificado es un null");
 
-        return userRepository.findById(id)
+        return this.findUserById(id)
                 .map(userMapper::userToUserInfoDTO)
                 .orElseThrow(() -> new UsernameNotFoundException("Error al obtener el usuario: " + id));
     }
@@ -148,6 +148,28 @@ public class UserServiceImpl implements UserService{
 
     @Override
     @Transactional
+    public UserInfoDTO updateUser(Long id, UserDTO newUser){
+        AppUser appUser = this.findUserById(id)
+                .orElseThrow(() -> new UsernameNotFoundException(
+                        "Usuario no encontrado con la id: " + id));
+
+        if (newUser.username() != null && !newUser.username().isBlank()) {
+            appUser.setUsername(newUser.username());
+        }
+        if (newUser.email() != null && !newUser.email().isBlank()) {
+            appUser.setEmail(newUser.email());
+        }
+        if(newUser.role() != null){
+            appUser.setRole(newUser.role());
+        }
+
+        repository.save(appUser);
+
+        return new UserInfoDTO(appUser.getUsername(), appUser.getEmail(), appUser.getRole(), appUser.getImage(), appUser.getAlerts());
+    }
+
+    @Override
+    @Transactional
     public void updateUser(String oldUserName, MultipartFile updatedImage, UserInfoDTO newUserData){
         AppUser appUser = this.findUserByUsername(oldUserName)
                 .orElseThrow(() -> new UsernameNotFoundException(
@@ -181,6 +203,15 @@ public class UserServiceImpl implements UserService{
                 .orElseThrow(() -> new UsernameNotFoundException("Error, usuario no encontrado: " + userInfoDTO.username()));
 
         repository.delete(appUser);
+    }
+
+    @Override
+    public UserInfoDTO deleteUser(Long id){
+        AppUser appUser = this.findUserById(id)
+                .orElseThrow(() -> new UsernameNotFoundException("Error, usuario no encontrado con el id: " + id));
+
+        repository.delete(appUser);
+        return new UserInfoDTO(appUser.getUsername(), appUser.getEmail(), appUser.getRole(), appUser.getImage(), appUser.getAlerts());
     }
 
     @Override
@@ -235,6 +266,10 @@ public class UserServiceImpl implements UserService{
 
     private Optional<AppUser> findUserByUsername(String username) {
         return repository.findByUsername(username);
+    }
+
+    private Optional<AppUser> findUserById(Long id){
+        return repository.findById(id);
     }
 
     private void notifyUserByEmail(String[] to, String subject, String body) {
