@@ -18,6 +18,8 @@ public interface UserService {
     //READ
     UserInfoDTO findUser(UserDetails userDetails);
 
+    UserInfoDTO findUserById(Long id);
+
     UserDTO giveUser(UserDetails userDetails);
 
     List<UserInfoDTO> findAllUsers();

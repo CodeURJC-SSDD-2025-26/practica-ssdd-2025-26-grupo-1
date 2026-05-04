@@ -35,6 +35,7 @@ import java.util.regex.Pattern;
 @Slf4j
 public class UserServiceImpl implements UserService{
 
+    private final UserRepository userRepository;
     private UserRepository repository;
     private UserMapper userMapper;
     private PasswordEncoder passwordEncoder;
@@ -85,6 +86,15 @@ public class UserServiceImpl implements UserService{
                 .map(userMapper::userToUserInfoDTO)
                 .orElseThrow(() -> new UsernameNotFoundException("Error al obtener el usuario: " + userDetails.getUsername()));
 
+    }
+
+    @Override
+    public UserInfoDTO findUserById(Long id){
+        if(id == null) throw new IllegalArgumentException("Error, el id especificado es un null");
+
+        return userRepository.findById(id)
+                .map(userMapper::userToUserInfoDTO)
+                .orElseThrow(() -> new UsernameNotFoundException("Error al obtener el usuario: " + id));
     }
 
     @Override
