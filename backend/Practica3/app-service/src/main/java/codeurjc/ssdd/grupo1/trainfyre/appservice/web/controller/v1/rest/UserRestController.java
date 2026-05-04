@@ -30,12 +30,12 @@ public class UserRestController {
         return userService.findAllUsers();
     }
 
-    /*
+
     @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
     @Operation(description = "Gets an specified user by id")
     public UserInfoDTO getUser(@PathVariable("id") Long id){
-
-    }*/
+        return userService.findUserById(id);
+    }
 
 }
