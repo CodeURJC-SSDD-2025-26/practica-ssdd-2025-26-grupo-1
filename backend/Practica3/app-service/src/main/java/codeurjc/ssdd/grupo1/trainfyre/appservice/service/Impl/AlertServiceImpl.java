@@ -4,15 +4,18 @@ import codeurjc.ssdd.grupo1.trainfyre.appservice.data.model.Alert;
 import codeurjc.ssdd.grupo1.trainfyre.appservice.data.repository.AlertRepository;
 import codeurjc.ssdd.grupo1.trainfyre.appservice.dto.AlertDTO;
 import codeurjc.ssdd.grupo1.trainfyre.appservice.dto.AlertRegistrationDTO;
+import codeurjc.ssdd.grupo1.trainfyre.appservice.dto.AlertShowDTO;
 import codeurjc.ssdd.grupo1.trainfyre.appservice.dto.UsersDTOs.UserDTO;
 import codeurjc.ssdd.grupo1.trainfyre.appservice.mapper.AlertMapper;
 import codeurjc.ssdd.grupo1.trainfyre.appservice.mapper.UserMapper;
 import codeurjc.ssdd.grupo1.trainfyre.appservice.service.AlertService;
+import codeurjc.ssdd.grupo1.trainfyre.appservice.service.LineService;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
@@ -27,12 +30,13 @@ public class AlertServiceImpl implements AlertService {
     private AlertRepository alertRepository;
     private AlertMapper alertMapper;
     private UserMapper userMapper;
+    private LineService lineService;
 
     @Transactional
     public AlertDTO registerAlert(AlertRegistrationDTO alertrDTO, UserDTO appUser) {
 
         Alert alert = new Alert();
-        alert.setLine(alertrDTO.line());
+        alert.setLine(lineService.findLineByName(alertrDTO.line()));
         alert.setStartDate(alertrDTO.startDate());
         alert.setEndDate(alertrDTO.endDate());
         alert.setStartHour(alertrDTO.startHour());
@@ -42,7 +46,7 @@ public class AlertServiceImpl implements AlertService {
         alertRepository.save(alert);
 
         return alertRepository
-                .findByLineAndStartDateAndEndDate(alertrDTO.line(), alertrDTO.startDate(), alertrDTO.endDate())
+                .findByLineAndStartDateAndEndDate(lineService.findLineByName(alertrDTO.line()), alertrDTO.startDate(), alertrDTO.endDate())
                 .map(alertMapper::alertToDTO)
                 .orElseThrow(() -> new UsernameNotFoundException("Error al registrarse: "));
 
@@ -88,8 +92,24 @@ public class AlertServiceImpl implements AlertService {
         alertRepository.delete(alertToDelete);
     }
 
+    public ResponseEntity<AlertShowDTO> deleteAlertRest(Long id) {
+        Optional<Alert> alerto = alertRepository.findById(id);
+        if (alerto.isPresent()) {
+        Alert alert = alerto.get();
+        alertRepository.deleteById(id);
+        return ResponseEntity.ok(alertMapper.alertToShowDto(alert));
+        } else {
+        return ResponseEntity.notFound().build();
+        }
+    }
+
     public Page<AlertDTO> getPage(UserDTO user, Pageable page) {
         return alertRepository.findByUserOrderByLine(userMapper.userDTOToAppUser(user), page)
+                .map(alert -> alertMapper.alertToDTO(alert));
+    }
+
+    public Page<AlertDTO> getPageNUser(Pageable page) {
+        return alertRepository.findAll(page)
                 .map(alert -> alertMapper.alertToDTO(alert));
     }
 
