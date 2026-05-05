@@ -5,8 +5,9 @@ import codeurjc.ssdd.grupo1.trainfyre.appservice.data.model.Line;
 
 public record AlertRegistrationDTO(
 
+
         //We don't have LineDTO yet.
-        Line line, 
+        String line, 
 
         String startDate,
         
@@ -14,7 +15,5 @@ public record AlertRegistrationDTO(
 
         String startHour,
 
-        String endHour,
-
-        AppUser user
+        String endHour
 ){}
