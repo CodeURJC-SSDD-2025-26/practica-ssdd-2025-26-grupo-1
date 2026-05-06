@@ -460,7 +460,7 @@ I made all functionalities related to the Alert entity: adding alerts (preventin
 
 Diagrama actualizado incluyendo los @RestController y su relación con los @Service compartidos:
 
-![Diagrama de Clases Actualizado](images/complete-classes-diagram.png)
+![Diagrama de Clases Actualizado](images/classes-diagram.png)
 
 ### **Instrucciones de Ejecución con Docker**
 
