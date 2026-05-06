@@ -1,5 +1,6 @@
 package codeurjc.ssdd.grupo1.trainfyre.appservice.web.controller.v1;
 
+import codeurjc.ssdd.grupo1.trainfyre.appservice.config.DefaultImages;
 import codeurjc.ssdd.grupo1.trainfyre.appservice.dto.Role;
 import codeurjc.ssdd.grupo1.trainfyre.appservice.dto.UsersDTOs.UserDTO;
 import codeurjc.ssdd.grupo1.trainfyre.appservice.dto.UsersDTOs.UserInfoDTO;
@@ -23,7 +24,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.util.Base64;
 import java.util.List;
 import java.util.Map;
 
@@ -34,6 +34,7 @@ import java.util.Map;
 public class UserController {
 
     private final UserService userService;
+    private final DefaultImages defaultImages;
 
     @GetMapping(value = "/login")
     public String login(@RequestParam(value = "error", required = false) String error, Model model) {
@@ -138,9 +139,9 @@ public class UserController {
         List<Map<String, Object>> users = userService.findAllUsers().stream()
                 .map(user -> Map.of(
                         "user", user,
-                        "image", user.image() != null
-                                ? "data:image/png;base64," +Base64.getEncoder().encodeToString(user.image())
-                                : ""
+                        "image", user.profileImageId() != null
+                                ? "/api/v1/images/" + user.profileImageId()
+                                : "/api/v1/images/" + defaultImages.getDefaultProfileImageId()
                 ))
                 .toList();
         model.addAttribute("users", users);
@@ -169,9 +170,9 @@ public class UserController {
         List<Map<String, Object>> users = userService.findAllUsers().stream()
                 .map(user -> Map.of(
                         "user", user,
-                        "image", user.image() != null
-                                ? "data:image/png;base64," +Base64.getEncoder().encodeToString(user.image())
-                                : ""
+                        "image", user.profileImageId() != null
+                                ? "/api/v1/images/" + user.profileImageId()
+                                : "/api/v1/images/" + defaultImages.getDefaultProfileImageId()
                 ))
                 .toList();
         model.addAttribute("users", users);
@@ -189,9 +190,9 @@ public class UserController {
         List<Map<String, Object>> users = userService.findAllUsers().stream()
                 .map(user -> Map.of(
                         "user", user,
-                        "image", user.image() != null
-                                ? "data:image/png;base64," +Base64.getEncoder().encodeToString(user.image())
-                                : ""
+                        "image", user.profileImageId() != null
+                                ? "/api/v1/images/" + user.profileImageId()
+                                : "/api/v1/images/" + defaultImages.getDefaultProfileImageId()
                 ))
                 .toList();
         model.addAttribute("users", users);
@@ -212,9 +213,9 @@ public class UserController {
         List<Map<String, Object>> users = userService.findAllUsers().stream()
                 .map(user -> Map.of(
                         "user", user,
-                        "image", user.image() != null
-                                ? "data:image/png;base64," +Base64.getEncoder().encodeToString(user.image())
-                                : ""
+                        "image", user.profileImageId() != null
+                                ? "/api/v1/images/" + user.profileImageId()
+                                : "/api/v1/images/" + defaultImages.getDefaultProfileImageId()
                 ))
                 .toList();
         model.addAttribute("users", users);

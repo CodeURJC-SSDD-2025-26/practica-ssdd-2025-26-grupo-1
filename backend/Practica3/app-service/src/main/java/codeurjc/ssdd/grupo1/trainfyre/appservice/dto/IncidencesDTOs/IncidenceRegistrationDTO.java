@@ -12,6 +12,6 @@ public record IncidenceRegistrationDTO (
     String description,
     LocalDateTime date,
     INCIDENCE_STATUS status,
-    byte[] image,
+    Long incidenceImageId,
     List<Line> affectedLines
 ) {}

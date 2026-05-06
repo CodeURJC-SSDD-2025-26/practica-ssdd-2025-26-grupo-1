@@ -1,5 +1,6 @@
 package codeurjc.ssdd.grupo1.trainfyre.appservice.web.controller.v1;
 
+import codeurjc.ssdd.grupo1.trainfyre.appservice.config.DefaultImages;
 import codeurjc.ssdd.grupo1.trainfyre.appservice.dto.IncidencesDTOs.*;
 import codeurjc.ssdd.grupo1.trainfyre.appservice.service.UserService;
 import lombok.RequiredArgsConstructor;
@@ -32,7 +33,6 @@ import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Map;
-import java.util.Base64;
 import java.util.concurrent.CompletableFuture;
 
 @Controller
@@ -46,6 +46,7 @@ public class IncidenceController {
     private final LineMapper lineMapper;
     private final IncidenceMapper incidenceMapper;
     private final UserService userService;
+    private final DefaultImages defaultImages;
 
     @GetMapping(value = "/incidences")
     public String getIncidences(Model model) {
@@ -81,9 +82,9 @@ public class IncidenceController {
         List<Map<String, Object>> incidencesToShow = incidencesPageList.stream()
                 .map(incidence -> Map.of(
                         "incidence", incidence,
-                        "image", incidence.getImage() != null
-                                ? "data:image/png;base64," +Base64.getEncoder().encodeToString(incidence.getImage())
-                                : ""
+                        "image", incidence.getIncidenceImage() != null
+                                ? "/api/v1/images/" + incidence.getIncidenceImage().getId()
+                                : "/api/v1/images/" + defaultImages.getDefaultIncidenceImageId()
                 ))
                 .toList();
 
@@ -101,14 +102,16 @@ public class IncidenceController {
 
     @GetMapping("/registered/incidence/{incidenceID}")
     public String showIncidenceDetails(@PathVariable String incidenceID, Model model) {
-        Incidence incidence = incidenceMapper.toIncidence(incidenceService.getIncidenceWithID(incidenceID));
+        IncidenceDTO incidenceDTO = incidenceService.getIncidenceWithID(incidenceID);
+
+        String incidenceImageUrl = incidenceDTO.incidenceImageId() != null
+                    ? "/api/v1/images/" + incidenceDTO.incidenceImageId()
+                    : "/api/v1/images/" + defaultImages.getDefaultIncidenceImageId();
 
         model.addAttribute("title", "Incidence" + incidenceID);
-        model.addAttribute("incidence", incidence);
-        model.addAttribute("incidenceImage", incidence.getImage() != null
-                    ? "data:image/png;base64," + Base64.getEncoder().encodeToString(incidence.getImage())
-                    : "");
-        model.addAttribute("incidenceDate", incidence.getDate().toString().replace("T", " "));
+        model.addAttribute("incidence", incidenceDTO);
+        model.addAttribute("incidenceImage", incidenceImageUrl);
+        model.addAttribute("incidenceDate", incidenceDTO.date().toString().replace("T", " "));
 
         return "incidence_page";
     }
@@ -190,15 +193,6 @@ public class IncidenceController {
         model.addAttribute("title", "Admin Panel");
         model.addAttribute("lines", lineService.getAllLines());
 
-        byte[] imageData = null;
-        if (updatedImage != null) {
-            try {
-                imageData = updatedImage.getBytes();
-            } catch (IOException e) {
-                throw new RuntimeException(e + "error en la lectura del archivo");
-            }
-        }
-
         IncidenceRegistrationDTO incidenceRegistrationDTO = new IncidenceRegistrationDTO(
                 incidenceId,
                 incidenceLevel,
@@ -206,7 +200,7 @@ public class IncidenceController {
                 description,
                 null,
                 status,
-                imageData,
+                null,
                 null);
 
         try {

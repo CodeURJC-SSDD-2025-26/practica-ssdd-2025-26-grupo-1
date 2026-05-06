@@ -1,6 +1,7 @@
 package codeurjc.ssdd.grupo1.trainfyre.appservice.service.Impl;
 
 import codeurjc.ssdd.grupo1.trainfyre.appservice.data.model.AppUser;
+import codeurjc.ssdd.grupo1.trainfyre.appservice.data.model.Image;
 import codeurjc.ssdd.grupo1.trainfyre.appservice.data.model.Line;
 import codeurjc.ssdd.grupo1.trainfyre.appservice.data.repository.UserRepository;
 import codeurjc.ssdd.grupo1.trainfyre.appservice.data.repository.projection.UserAlertsCountView;
@@ -10,6 +11,7 @@ import codeurjc.ssdd.grupo1.trainfyre.appservice.dto.UsersDTOs.UserDTO;
 import codeurjc.ssdd.grupo1.trainfyre.appservice.dto.UsersDTOs.UserInfoDTO;
 import codeurjc.ssdd.grupo1.trainfyre.appservice.dto.UsersDTOs.UserRegistrationtDTO;
 import codeurjc.ssdd.grupo1.trainfyre.appservice.mapper.UserMapper;
+import codeurjc.ssdd.grupo1.trainfyre.appservice.service.ImagenService;
 import codeurjc.ssdd.grupo1.trainfyre.appservice.service.UtilityService;
 import codeurjc.ssdd.grupo1.trainfyre.appservice.service.UserService;
 import jakarta.transaction.Transactional;
@@ -43,6 +45,7 @@ public class UserServiceImpl implements UserService{
     private PasswordEncoder passwordEncoder;
     private AuthenticatorUserService authenticatorUserService;
     private UtilityService utilityService;
+    private ImagenService imagenService;
 
     @Transactional
     @Override
@@ -147,7 +150,11 @@ public class UserServiceImpl implements UserService{
             } catch (IOException e) {
                 throw new RuntimeException(e + "error en la lectura del archivo");
             }
-            appUser.setImage(imageData);
+            codeurjc.ssdd.grupo1.trainfyre.appservice.dto.ImageDTO savedImageDTO = imagenService.createImage(new codeurjc.ssdd.grupo1.trainfyre.appservice.dto.ImageDTO(null, imageData));
+            Image savedImage = new Image();
+            savedImage.setId(savedImageDTO.id());
+            savedImage.setImage(imageData);
+            appUser.setProfileImage(savedImage);
         }
 
         repository.save(appUser);
@@ -173,7 +180,7 @@ public class UserServiceImpl implements UserService{
 
         repository.save(appUser);
 
-        return new UserInfoDTO(appUser.getUsername(), appUser.getEmail(), appUser.getRole(), appUser.getImage(), appUser.getAlerts());
+        return new UserInfoDTO(appUser.getUsername(), appUser.getEmail(), appUser.getRole(), appUser.getProfileImage() != null ? appUser.getProfileImage().getId() : null, appUser.getAlerts());
     }
 
     @Override
@@ -199,7 +206,11 @@ public class UserServiceImpl implements UserService{
             } catch (IOException e) {
                 throw new RuntimeException(e + "error en la lectura del archivo");
             }
-            appUser.setImage(imageData);
+            codeurjc.ssdd.grupo1.trainfyre.appservice.dto.ImageDTO savedImageDTO = imagenService.createImage(new codeurjc.ssdd.grupo1.trainfyre.appservice.dto.ImageDTO(null, imageData));
+            Image savedImage = new Image();
+            savedImage.setId(savedImageDTO.id());
+            savedImage.setImage(imageData);
+            appUser.setProfileImage(savedImage);
         }
 
         repository.save(appUser);
@@ -219,7 +230,7 @@ public class UserServiceImpl implements UserService{
                 .orElseThrow(() -> new UsernameNotFoundException("Error, usuario no encontrado con el id: " + id));
 
         repository.delete(appUser);
-        return new UserInfoDTO(appUser.getUsername(), appUser.getEmail(), appUser.getRole(), appUser.getImage(), appUser.getAlerts());
+        return new UserInfoDTO(appUser.getUsername(), appUser.getEmail(), appUser.getRole(), appUser.getProfileImage() != null ? appUser.getProfileImage().getId() : null, appUser.getAlerts());
     }
 
     @Override

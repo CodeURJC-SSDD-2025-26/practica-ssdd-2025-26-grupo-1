@@ -1,7 +1,6 @@
 package codeurjc.ssdd.grupo1.trainfyre.appservice.data.model;
 
 
-import codeurjc.ssdd.grupo1.trainfyre.appservice.config.DefaultImageLoader;
 import codeurjc.ssdd.grupo1.trainfyre.appservice.dto.Role;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -35,17 +34,9 @@ public class AppUser {
     @Column(nullable = true)
     private String email;
 
-    @Lob
-    @Builder.Default
-    @Column(name = "profile_picture")
-    private byte[] image = DefaultImageLoader.getDefaultProfileImage();
-
-    @PrePersist
-    public void ensureDefaultImage() {
-        if (this.image == null) {
-            this.image = DefaultImageLoader.getDefaultProfileImage();
-        }
-    }
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "profile_image_id")
+    private Image profileImage;
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy="user")
     private List<Alert> alerts;

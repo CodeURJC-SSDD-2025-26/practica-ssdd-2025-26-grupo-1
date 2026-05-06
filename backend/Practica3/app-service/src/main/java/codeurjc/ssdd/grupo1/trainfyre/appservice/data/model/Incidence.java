@@ -1,7 +1,6 @@
 package codeurjc.ssdd.grupo1.trainfyre.appservice.data.model;
 
 
-import codeurjc.ssdd.grupo1.trainfyre.appservice.config.DefaultImageLoader;
 import codeurjc.ssdd.grupo1.trainfyre.appservice.dto.IncidencesDTOs.INCIDENCE_LEVEL;
 import codeurjc.ssdd.grupo1.trainfyre.appservice.dto.IncidencesDTOs.INCIDENCE_STATUS;
 import codeurjc.ssdd.grupo1.trainfyre.appservice.dto.IncidencesDTOs.INCIDENCE_TYPE;
@@ -44,17 +43,9 @@ public class Incidence {
     @Column(nullable = false)
     private INCIDENCE_STATUS status;
 
-    @Lob
-    @Builder.Default
-    @Column(name = "incidence_image")
-    private byte[] image = DefaultImageLoader.getDefaultIncidenceImage();
-
-    @PrePersist
-    public void ensureDefaultImage() {
-        if (this.image == null) {
-            this.image = DefaultImageLoader.getDefaultIncidenceImage();
-        }
-    }
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "incidence_image_id")
+    private Image incidenceImage;
 
     @ManyToMany
     @JoinTable(

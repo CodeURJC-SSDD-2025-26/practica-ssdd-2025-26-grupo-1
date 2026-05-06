@@ -128,13 +128,6 @@ public class IncidenceRestController {
 
         log.info("PUT /api/v1/incidencies/{}", incidenceId);
 
-        byte[] imageData;
-        if (updatedImage != null) {
-            imageData = updatedImage.getBytes();
-        } else {
-            imageData = null;
-        }
-
         IncidenceRegistrationDTO dto = new IncidenceRegistrationDTO(
                 incidenceId,
                 incidenceLevel,
@@ -142,7 +135,7 @@ public class IncidenceRestController {
                 description,
                 null,
                 status,
-                imageData,
+                null,
                 null);
 
         incidenceService.updateIncidence(updatedImage, dto);

@@ -1,12 +1,15 @@
 package codeurjc.ssdd.grupo1.trainfyre.appservice.service.Impl;
 
+import codeurjc.ssdd.grupo1.trainfyre.appservice.data.model.Image;
 import codeurjc.ssdd.grupo1.trainfyre.appservice.data.model.Incidence;
 import codeurjc.ssdd.grupo1.trainfyre.appservice.data.model.Line;
 import codeurjc.ssdd.grupo1.trainfyre.appservice.data.repository.IncidenceRepository;
+import codeurjc.ssdd.grupo1.trainfyre.appservice.dto.ImageDTO;
 import codeurjc.ssdd.grupo1.trainfyre.appservice.dto.IncidencesDTOs.*;
 import codeurjc.ssdd.grupo1.trainfyre.appservice.dto.LineDTO;
 import codeurjc.ssdd.grupo1.trainfyre.appservice.mapper.IncidenceMapper;
 import codeurjc.ssdd.grupo1.trainfyre.appservice.mapper.LineMapper;
+import codeurjc.ssdd.grupo1.trainfyre.appservice.service.ImagenService;
 import codeurjc.ssdd.grupo1.trainfyre.appservice.service.IncidenceService;
 import codeurjc.ssdd.grupo1.trainfyre.appservice.service.LineService;
 import jakarta.transaction.Transactional;
@@ -31,6 +34,7 @@ public class IncidenceServiceImpl implements IncidenceService {
     private LineMapper lineMapper;
     private ObjectMapper jsonMapper;
     private LineService lineService;
+    private ImagenService imagenService;
 
     @Transactional
     public IncidenceDTO createIncidence(IncidenceRegistrationDTO incidenceRegistrationDTO) {
@@ -42,7 +46,6 @@ public class IncidenceServiceImpl implements IncidenceService {
         incidence.setDescription(incidenceRegistrationDTO.description());
         incidence.setDate(incidenceRegistrationDTO.date());
         incidence.setStatus(incidenceRegistrationDTO.status());
-        incidence.setImage(incidenceRegistrationDTO.image());
         incidence.setAffectedLines(incidenceRegistrationDTO.affectedLines());
 
         Incidence incidenceSaved = incidenceRepository.save(incidence);
@@ -79,7 +82,11 @@ public class IncidenceServiceImpl implements IncidenceService {
             } catch (IOException e) {
                 throw new RuntimeException(e + "error en la lectura del archivo");
             }
-            incidenceToUpdate.setImage(imageData);
+            ImageDTO savedImageDTO = imagenService.createImage(new ImageDTO(null, imageData));
+            Image savedImage = new Image();
+            savedImage.setId(savedImageDTO.id());
+            savedImage.setImage(imageData);
+            incidenceToUpdate.setIncidenceImage(savedImage);
         }
 
         incidenceRepository.save(incidenceToUpdate);

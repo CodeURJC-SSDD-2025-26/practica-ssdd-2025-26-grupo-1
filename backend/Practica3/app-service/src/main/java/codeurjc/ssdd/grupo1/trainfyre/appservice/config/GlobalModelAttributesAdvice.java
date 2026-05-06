@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import java.io.IOException;
 import java.io.Writer;
 import java.util.Arrays;
-import java.util.Base64;
 
 
 @ControllerAdvice
@@ -24,6 +23,7 @@ public class GlobalModelAttributesAdvice {
 
     private final Mustache.Compiler mustacheCompiler;
     private final UserService userService;
+    private final DefaultImages defaultImages;
 
     @ModelAttribute
     public void globalAttributes(Model model, @AuthenticationPrincipal UserDetails user) {
@@ -38,16 +38,18 @@ public class GlobalModelAttributesAdvice {
             model.addAttribute("username", userInfo.username());
             model.addAttribute("email", userInfo.email());
             model.addAttribute("role", userInfo.role());
-            String base64 = Base64.getEncoder().encodeToString(userInfo.image());
-            model.addAttribute("profile_picture", "data:image/png;base64," + base64);
+            if (userInfo.profileImageId() != null) {
+                model.addAttribute("profile_picture", "/api/v1/images/" + userInfo.profileImageId());
+            } else {
+                model.addAttribute("profile_picture", "/api/v1/images/" + defaultImages.getDefaultProfileImageId());
+            }
             model.addAttribute("alerts", Arrays.asList(userInfo.alerts()));
             if(userInfo.role() == Role.ADMIN) {
                 model.addAttribute("admin", true);
             }
         }
 
-        String base64 = Base64.getEncoder().encodeToString(DefaultImageLoader.defaultLogoImage);
-        model.addAttribute("logo", "data:image/png;base64," + base64);
+        model.addAttribute("logo", "/api/v1/images/" + defaultImages.getDefaultLogoImageId());
     }
 
     @ModelAttribute("Layout")

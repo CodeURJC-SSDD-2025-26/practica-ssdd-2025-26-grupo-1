@@ -10,7 +10,7 @@ public record UserInfoDTO(
     String username,
     String email,
     Role role,
-    byte[] image,
+    Long profileImageId,
     List<Alert> alerts
 
 ) {}
