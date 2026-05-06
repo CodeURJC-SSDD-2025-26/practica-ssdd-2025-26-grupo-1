@@ -9,6 +9,7 @@ import codeurjc.ssdd.grupo1.trainfyre.appservice.dto.AlertShowDTO;
 import codeurjc.ssdd.grupo1.trainfyre.appservice.dto.UsersDTOs.UserDTO;
 import codeurjc.ssdd.grupo1.trainfyre.appservice.mapper.AlertMapper;
 import codeurjc.ssdd.grupo1.trainfyre.appservice.mapper.UserMapper;
+import codeurjc.ssdd.grupo1.trainfyre.appservice.mapper.Impl.AlertMapperShow;
 import codeurjc.ssdd.grupo1.trainfyre.appservice.service.AlertService;
 import codeurjc.ssdd.grupo1.trainfyre.appservice.service.LineService;
 import codeurjc.ssdd.grupo1.trainfyre.appservice.service.UserService;
@@ -31,6 +32,7 @@ public class AlertServiceImpl implements AlertService {
 
     private AlertRepository alertRepository;
     private AlertMapper alertMapper;
+    private AlertMapperShow alertMapperS;
     private UserMapper userMapper;
     private LineService lineService;
     private UserService userService;
@@ -97,7 +99,7 @@ public class AlertServiceImpl implements AlertService {
 
             alertRepository.save(currentAlert);
             
-            return ResponseEntity.ok(alertMapper.alertToShowDto(currentAlert));
+            return ResponseEntity.ok(alertMapperS.alertToShowDTO(currentAlert));
         }
     }
 
@@ -118,10 +120,12 @@ public class AlertServiceImpl implements AlertService {
 
     public ResponseEntity<AlertShowDTO> deleteAlertRest(Long id) {
         Optional<Alert> alerto = alertRepository.findById(id);
+        AlertShowDTO alertS;
         if (alerto.isPresent()) {
         Alert alert = alerto.get();
         alertRepository.deleteById(id);
-        return ResponseEntity.ok(alertMapper.alertToShowDto(alert));
+        alertS = alertMapperS.alertToShowDTO(alert);
+        return ResponseEntity.ok(alertS);
         } else {
         return ResponseEntity.notFound().build();
         }
@@ -154,7 +158,7 @@ public class AlertServiceImpl implements AlertService {
                 Integer.parseInt(startDay[2]));
         endDate = LocalDate.of(Integer.parseInt(endDay[0]), Integer.parseInt(endDay[1]), Integer.parseInt(endDay[2]));
 
-        return (end.compareTo(start) >= 0);
+        return (endDate.compareTo(startDate) >= 0);
     }
 
     public Boolean isValidTimeRange(String start, String end) {

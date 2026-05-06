@@ -7,7 +7,7 @@ public record AlertShowDTO(
 
         Long id,
 
-        Line line,
+        String line,
 
         String startDate,
         

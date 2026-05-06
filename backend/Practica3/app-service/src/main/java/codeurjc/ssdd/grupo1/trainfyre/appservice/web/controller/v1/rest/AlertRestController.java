@@ -26,6 +26,7 @@ import codeurjc.ssdd.grupo1.trainfyre.appservice.dto.AlertRegistrationDTO;
 import codeurjc.ssdd.grupo1.trainfyre.appservice.dto.AlertShowDTO;
 import codeurjc.ssdd.grupo1.trainfyre.appservice.dto.UsersDTOs.UserDTO;
 import codeurjc.ssdd.grupo1.trainfyre.appservice.mapper.AlertMapper;
+import codeurjc.ssdd.grupo1.trainfyre.appservice.mapper.Impl.AlertMapperShow;
 import codeurjc.ssdd.grupo1.trainfyre.appservice.service.AlertService;
 import codeurjc.ssdd.grupo1.trainfyre.appservice.service.UserService;
 import jakarta.servlet.http.HttpServletRequest;
@@ -33,6 +34,9 @@ import jakarta.servlet.http.HttpServletRequest;
 @RestController
 @RequestMapping("/api/v1/")
 public class AlertRestController {
+
+    @Autowired
+    AlertMapperShow alertMapperS;
 
     @Autowired
     AlertMapper alertMapper;
@@ -47,7 +51,7 @@ public class AlertRestController {
     public Page<AlertShowDTO> getAlerts(@AuthenticationPrincipal UserDetails user, @PathVariable Pageable page) {
         UserDTO userDto = userService.giveUser(user);
         Page<AlertDTO> list = alertService.getPage(userDto, page);
-        return list.map(thing -> alertMapper.alertDTOtoShowDto(thing));
+        return list.map(thing -> alertMapperS.alertToShowDTO(alertMapper.alertDTOToAlert(thing)));
     }
 
 
@@ -59,7 +63,7 @@ public class AlertRestController {
         if (!alertService.isValidTimeRange(alert.startHour(), alert.endHour()) || !alertService.isValidDate(alert.startDate(), alert.endDate())) {//Impossible time range.
             throw  new IllegalArgumentException("No se puede poner un instante inicial posterior al final.");
         } else {
-            AlertShowDTO alertDto = alertMapper.alertDTOtoShowDto(alertService.registerAlert(alert, userDto));
+            AlertShowDTO alertDto = alertMapperS.alertToShowDTO(alertMapper.alertDTOToAlert(alertService.registerAlert(alert, userDto)));
             URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
                 .buildAndExpand(alertDto.id()).toUri();
             return ResponseEntity.created(location).body(alert);

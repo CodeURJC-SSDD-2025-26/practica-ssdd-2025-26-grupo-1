@@ -17,9 +17,9 @@ public interface AlertMapper {
 
     AlertDTO alertToDTO(Alert alert);
 
-    AlertShowDTO alertDTOtoShowDto(AlertDTO alert);
+    //AlertShowDTO alertDTOtoShowDto(AlertDTO alert);
 
-    AlertShowDTO alertToShowDto(Alert alert);
+    //AlertShowDTO alertToShowDto(Alert alert);
 
     //AlertRegistrationDTO ShowDTOtoRegistrationDto(AlertShowDTO alert);
 }
