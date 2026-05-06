@@ -1,1 +1,11 @@
-services: { }
+services:
+  utility-service:
+    build:
+      context: .
+      dockerfile: DockerFile
+    ports:
+        - "8080:8080"
+    env_file:
+      - .env
+    environment:
+      - SPRING_PROFILES_ACTIVE=${SPRING_PROFILES_ACTIVE:-mail}

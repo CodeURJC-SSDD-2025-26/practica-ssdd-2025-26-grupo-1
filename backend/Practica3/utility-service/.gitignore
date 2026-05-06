@@ -5,6 +5,8 @@ target/
 .mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
 !**/src/test/**/target/
+api-docs/.openapi-generator
+api-docs/.openapi-generator-ignore
 
 ### STS ###
 .apt_generated
