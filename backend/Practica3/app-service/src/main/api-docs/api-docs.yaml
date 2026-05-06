@@ -1,0 +1,942 @@
+openapi: 3.1.0
+info:
+  title: OpenAPI definition
+  version: v0
+servers:
+- url: https://localhost:8443
+  description: Generated server url
+tags:
+- name: Image-Controller
+  description: Servicios de visualizacion de imagenes
+- name: Line-Controller
+  description: Servicios de gestión y configuración de lineas
+- name: User-Controller
+  description: Servicios de gestión y configuración de Usuarios
+- name: Auth-Controller
+  description: Servicios de autenticación y autorización JWT
+- name: Alert-Controller
+  description: Servicios de gestión y configuración de alertas
+paths:
+  /api/v1/users:
+    get:
+      tags:
+      - User-Controller
+      description: Gets all users paginated
+      operationId: getUsers
+      parameters:
+      - name: page
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int32
+          default: 0
+      - name: size
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int32
+          default: 10
+      - name: sort
+        in: query
+        required: false
+        schema:
+          type: array
+          default:
+          - id
+          - asc
+          items:
+            type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/PageUserInfoDTO"
+    put:
+      tags:
+      - User-Controller
+      description: Updates an specified user
+      operationId: putUser
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: integer
+              format: int64
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/UserInfoDTO"
+    post:
+      tags:
+      - User-Controller
+      description: Creates a new user
+      operationId: postUser
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UserDTO"
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/UserInfoDTO"
+  /api/v1/lines:
+    get:
+      tags:
+      - Line-Controller
+      description: Get all lines
+      operationId: getAllLines
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/LineDTO"
+    put:
+      tags:
+      - Line-Controller
+      description: update line
+      operationId: updateLine
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/LineUpdateRequestDTO"
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/LineDTO"
+    post:
+      tags:
+      - Line-Controller
+      description: add line
+      operationId: addLine
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/LineCreateRequestDTO"
+        required: true
+      responses:
+        "201":
+          description: Created
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/LineDTO"
+  /api/v1/incidencies/{incidenceId}:
+    get:
+      tags:
+      - incidence-rest-controller
+      operationId: getIncidenceById
+      parameters:
+      - name: incidenceId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/IncidenceDTO"
+    put:
+      tags:
+      - incidence-rest-controller
+      operationId: updateIncidence
+      parameters:
+      - name: incidenceId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: incidenceLevel
+        in: query
+        required: false
+        schema:
+          type: string
+          enum:
+          - LOW
+          - MEDIUM
+          - HIGH
+      - name: incidenceType
+        in: query
+        required: false
+        schema:
+          type: string
+          enum:
+          - MAINTENANCE
+          - ACCIDENT
+          - OTHERS
+      - name: description
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: status
+        in: query
+        required: false
+        schema:
+          type: string
+          enum:
+          - CLOSED
+          - ACTIVE
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                updatedImage:
+                  type: string
+                  format: binary
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/IncidenceDTO"
+    delete:
+      tags:
+      - incidence-rest-controller
+      operationId: deleteIncidence
+      parameters:
+      - name: incidenceId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+  /api/v1/alerts/{idu}:
+    put:
+      tags:
+      - Alert-Controller
+      operationId: replaceAlert
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AlertRegistrationDTO"
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/AlertShowDTO"
+  /api/v1/incidencies:
+    get:
+      tags:
+      - incidence-rest-controller
+      operationId: getAllIncidences
+      parameters:
+      - name: pageable
+        in: query
+        required: true
+        schema:
+          $ref: "#/components/schemas/Pageable"
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/PageIncidenceDTO"
+    post:
+      tags:
+      - incidence-rest-controller
+      operationId: createIncidence
+      parameters:
+      - name: incidenceID
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: incidenceLevel
+        in: query
+        required: true
+        schema:
+          type: string
+          enum:
+          - LOW
+          - MEDIUM
+          - HIGH
+      - name: incidenceType
+        in: query
+        required: true
+        schema:
+          type: string
+          enum:
+          - MAINTENANCE
+          - ACCIDENT
+          - OTHERS
+      - name: description
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: date
+        in: query
+        required: true
+        schema:
+          type: string
+          format: date-time
+      - name: status
+        in: query
+        required: true
+        schema:
+          type: string
+          enum:
+          - CLOSED
+          - ACTIVE
+      - name: affectedLineNames
+        in: query
+        required: true
+        schema:
+          type: array
+          items:
+            type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/IncidenceDTO"
+  /api/v1/auth/refresh:
+    post:
+      tags:
+      - Auth-Controller
+      operationId: refresh
+      parameters:
+      - name: refreshToken
+        in: cookie
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/AuthResponse"
+  /api/v1/auth/logout:
+    post:
+      tags:
+      - Auth-Controller
+      operationId: logout
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: string
+  /api/v1/auth/login:
+    post:
+      tags:
+      - Auth-Controller
+      operationId: login
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/LoginRequest"
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/AuthResponse"
+  /api/v1/alerts:
+    post:
+      tags:
+      - Alert-Controller
+      operationId: createAlert
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AlertRegistrationDTO"
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/AlertShowDTO"
+  /api/v1/users/{id}:
+    get:
+      tags:
+      - User-Controller
+      description: Gets an specified user by id
+      operationId: getUser
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/UserInfoDTO"
+    delete:
+      tags:
+      - User-Controller
+      description: Deletes an specified user
+      operationId: deleteUser
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/UserInfoDTO"
+  /api/v1/lines/{name}:
+    get:
+      tags:
+      - Line-Controller
+      description: Get line by name
+      operationId: getLineByName
+      parameters:
+      - name: name
+        in: path
+        description: Nombre linea
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/LineDTO"
+    delete:
+      tags:
+      - Line-Controller
+      description: delete line
+      operationId: deleteLine
+      parameters:
+      - name: name
+        in: path
+        description: Nombre linea
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+  /api/v1/incidencies/charts/piechart:
+    get:
+      tags:
+      - incidence-rest-controller
+      operationId: getPieChartData
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: string
+  /api/v1/incidencies/charts/heatmap:
+    get:
+      tags:
+      - incidence-rest-controller
+      operationId: getHeatmapData
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: string
+  /api/v1/images/{id}:
+    get:
+      tags:
+      - Image-Controller
+      description: Get image by id
+      operationId: getImage
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: string
+                format: byte
+  /api/v1/alerts/{page}/{size}:
+    get:
+      tags:
+      - Alert-Controller
+      operationId: getAlerts
+      parameters:
+      - name: page
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: size
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/PageAlertShowDTO"
+  /api/v1/alerts/{id}:
+    delete:
+      tags:
+      - Alert-Controller
+      operationId: deleteAlert
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/AlertShowDTO"
+components:
+  schemas:
+    UserDTO:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        username:
+          type: string
+        password:
+          type: string
+        email:
+          type: string
+        role:
+          type: string
+          enum:
+          - ANNONYMOUS
+          - REGISTERED
+          - ADMIN
+    Alert:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        line:
+          $ref: "#/components/schemas/Line"
+        minimun_incidence_level:
+          type: string
+          enum:
+          - LOW
+          - MEDIUM
+          - HIGH
+        startDate:
+          type: string
+        endDate:
+          type: string
+        startHour:
+          type: string
+        endHour:
+          type: string
+        user:
+          $ref: "#/components/schemas/AppUser"
+    AppUser:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        username:
+          type: string
+        password:
+          type: string
+        role:
+          type: string
+          enum:
+          - ANNONYMOUS
+          - REGISTERED
+          - ADMIN
+        email:
+          type: string
+        profileImage:
+          $ref: "#/components/schemas/Image"
+        alerts:
+          type: array
+          items:
+            $ref: "#/components/schemas/Alert"
+    Image:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        image:
+          type: string
+          format: byte
+    Line:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+        description:
+          type: string
+        color:
+          type: string
+        stations:
+          type: array
+          items:
+            $ref: "#/components/schemas/Station"
+    Station:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+        address:
+          type: string
+    UserInfoDTO:
+      type: object
+      properties:
+        username:
+          type: string
+        email:
+          type: string
+        role:
+          type: string
+          enum:
+          - ANNONYMOUS
+          - REGISTERED
+          - ADMIN
+        profileImageId:
+          type: integer
+          format: int64
+        alerts:
+          type: array
+          items:
+            $ref: "#/components/schemas/Alert"
+    LineUpdateRequestDTO:
+      type: object
+      properties:
+        oldName:
+          type: string
+        newName:
+          type: string
+        description:
+          type: string
+        color:
+          type: string
+    LineDTO:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+        description:
+          type: string
+        color:
+          type: string
+        stations:
+          type: array
+          items:
+            $ref: "#/components/schemas/Station"
+    IncidenceDTO:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        incidenceID:
+          type: string
+        incidenceLevel:
+          type: string
+          enum:
+          - LOW
+          - MEDIUM
+          - HIGH
+        incidenceType:
+          type: string
+          enum:
+          - MAINTENANCE
+          - ACCIDENT
+          - OTHERS
+        description:
+          type: string
+        date:
+          type: string
+          format: date-time
+        status:
+          type: string
+          enum:
+          - CLOSED
+          - ACTIVE
+        incidenceImageId:
+          type: integer
+          format: int64
+        affectedLines:
+          type: array
+          items:
+            $ref: "#/components/schemas/Line"
+    AlertRegistrationDTO:
+      type: object
+      properties:
+        line:
+          type: string
+        startDate:
+          type: string
+        endDate:
+          type: string
+        startHour:
+          type: string
+        endHour:
+          type: string
+    AlertShowDTO:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        line:
+          type: string
+        startDate:
+          type: string
+        endDate:
+          type: string
+        startHour:
+          type: string
+        endHour:
+          type: string
+    LineCreateRequestDTO:
+      type: object
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        color:
+          type: string
+    AuthResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          enum:
+          - SUCCESS
+          - FAILURE
+        message:
+          type: string
+        error:
+          type: string
+    LoginRequest:
+      type: object
+      properties:
+        username:
+          type: string
+        password:
+          type: string
+    PageUserInfoDTO:
+      type: object
+      properties:
+        totalPages:
+          type: integer
+          format: int32
+        totalElements:
+          type: integer
+          format: int64
+        first:
+          type: boolean
+        last:
+          type: boolean
+        size:
+          type: integer
+          format: int32
+        content:
+          type: array
+          items:
+            $ref: "#/components/schemas/UserInfoDTO"
+        number:
+          type: integer
+          format: int32
+        sort:
+          $ref: "#/components/schemas/SortObject"
+        numberOfElements:
+          type: integer
+          format: int32
+        pageable:
+          $ref: "#/components/schemas/PageableObject"
+        empty:
+          type: boolean
+    PageableObject:
+      type: object
+      properties:
+        offset:
+          type: integer
+          format: int64
+        sort:
+          $ref: "#/components/schemas/SortObject"
+        unpaged:
+          type: boolean
+        paged:
+          type: boolean
+        pageNumber:
+          type: integer
+          format: int32
+        pageSize:
+          type: integer
+          format: int32
+    SortObject:
+      type: object
+      properties:
+        empty:
+          type: boolean
+        sorted:
+          type: boolean
+        unsorted:
+          type: boolean
+    Pageable:
+      type: object
+      properties:
+        page:
+          type: integer
+          format: int32
+          minimum: 0
+        size:
+          type: integer
+          format: int32
+          minimum: 1
+        sort:
+          type: array
+          items:
+            type: string
+    PageIncidenceDTO:
+      type: object
+      properties:
+        totalPages:
+          type: integer
+          format: int32
+        totalElements:
+          type: integer
+          format: int64
+        first:
+          type: boolean
+        last:
+          type: boolean
+        size:
+          type: integer
+          format: int32
+        content:
+          type: array
+          items:
+            $ref: "#/components/schemas/IncidenceDTO"
+        number:
+          type: integer
+          format: int32
+        sort:
+          $ref: "#/components/schemas/SortObject"
+        numberOfElements:
+          type: integer
+          format: int32
+        pageable:
+          $ref: "#/components/schemas/PageableObject"
+        empty:
+          type: boolean
+    PageAlertShowDTO:
+      type: object
+      properties:
+        totalPages:
+          type: integer
+          format: int32
+        totalElements:
+          type: integer
+          format: int64
+        first:
+          type: boolean
+        last:
+          type: boolean
+        size:
+          type: integer
+          format: int32
+        content:
+          type: array
+          items:
+            $ref: "#/components/schemas/AlertShowDTO"
+        number:
+          type: integer
+          format: int32
+        sort:
+          $ref: "#/components/schemas/SortObject"
+        numberOfElements:
+          type: integer
+          format: int32
+        pageable:
+          $ref: "#/components/schemas/PageableObject"
+        empty:
+          type: boolean
