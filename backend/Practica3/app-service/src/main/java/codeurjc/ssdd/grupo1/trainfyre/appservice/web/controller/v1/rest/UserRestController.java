@@ -6,6 +6,10 @@ import codeurjc.ssdd.grupo1.trainfyre.appservice.service.UserService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -23,9 +27,18 @@ public class UserRestController {
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
-    @Operation(description = "Gets all users")
-    public List<UserInfoDTO> getUsers() {
-        return userService.findAllUsers();
+    @Operation(description = "Gets all users paginated")
+    public Page<UserInfoDTO> getUsers(@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "10") int size, @RequestParam(defaultValue = "id,asc") String[] sort) {
+        Pageable pageable = PageRequest.of(page, size,
+                Sort.by(
+                        Sort.Order.by(sort[0]).with(
+                                sort.length > 1 && "desc".equalsIgnoreCase(sort[1])
+                                        ? Sort.Direction.DESC
+                                        : Sort.Direction.ASC
+                        )
+                )
+        );
+        return userService.findAllUsers(pageable);
     }
 
     @GetMapping("/{id}")

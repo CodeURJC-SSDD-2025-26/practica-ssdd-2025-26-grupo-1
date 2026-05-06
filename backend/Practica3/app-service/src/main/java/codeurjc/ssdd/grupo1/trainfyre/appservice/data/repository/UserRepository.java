@@ -2,6 +2,8 @@ package codeurjc.ssdd.grupo1.trainfyre.appservice.data.repository;
 
 import codeurjc.ssdd.grupo1.trainfyre.appservice.data.model.AppUser;
 import codeurjc.ssdd.grupo1.trainfyre.appservice.data.repository.projection.UserAlertsCountView;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -40,4 +42,6 @@ public interface UserRepository extends JpaRepository<AppUser, Long> {
             @Param("incDate") String incDate,   // yyyy-MM-dd
             @Param("incHour") String incHour    // HH:mm
     );
+
+    Page<AppUser> findAll(Pageable pageable);
 }

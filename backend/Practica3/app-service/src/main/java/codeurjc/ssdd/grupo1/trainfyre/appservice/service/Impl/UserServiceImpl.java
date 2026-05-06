@@ -15,6 +15,8 @@ import codeurjc.ssdd.grupo1.trainfyre.appservice.service.UserService;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -114,6 +116,12 @@ public class UserServiceImpl implements UserService{
         return this.repository.findAll().stream()
                 .map(this.userMapper::userToUserInfoDTO)
                 .toList();
+    }
+
+    @Override
+    public Page<UserInfoDTO> findAllUsers(Pageable pageable) {
+        return this.repository.findAll(pageable)
+                .map(this.userMapper::userToUserInfoDTO);
     }
 
     @Override
