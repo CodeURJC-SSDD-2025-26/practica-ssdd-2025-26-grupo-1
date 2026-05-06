@@ -1,0 +1,32 @@
+services:
+  app-service:
+    build:
+      context: ./app-service
+      dockerfile: DockerFile
+    container_name: app-service
+    ports:
+      - "8443:8443"
+    env_file:
+      - ./app-service/.env
+    environment:
+      #SPRING_PROFILES_ACTIVE: ${SPRING_PROFILES_ACTIVE:-prod}
+      DB_HOST: ${DB_HOST}
+      DB_PORT: ${DB_PORT}
+      DB_NAME: ${DB_NAME}
+      DB_USERNAME: ${DB_USERNAME}
+      DB_PASSWORD: ${DB_PASSWORD}
+      JWT_SECRET: ${JWT_SECRET}
+      SSL_KEYSTORE_PASSWORD: ${SSL_KEYSTORE_PASSWORD}
+      SSL_KEY_ALIAS: ${SSL_KEY_ALIAS}
+    restart: unless-stopped
+
+  utility-service:
+    build:
+      context: ./utility-service
+      dockerfile: DockerFile
+    container_name: utility-service
+    ports:
+      - "8080:8080"
+    env_file:
+      - ./utility-service/.env
+    restart: unless-stopped
