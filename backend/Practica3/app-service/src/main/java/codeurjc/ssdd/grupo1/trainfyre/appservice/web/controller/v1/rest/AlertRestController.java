@@ -1,0 +1,92 @@
+package codeurjc.ssdd.grupo1.trainfyre.appservice.web.controller.v1.rest;
+
+import java.net.URI;
+import java.util.Collection;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+
+import codeurjc.ssdd.grupo1.trainfyre.appservice.dto.AlertDTO;
+import codeurjc.ssdd.grupo1.trainfyre.appservice.dto.AlertRegistrationDTO;
+import codeurjc.ssdd.grupo1.trainfyre.appservice.dto.AlertShowDTO;
+import codeurjc.ssdd.grupo1.trainfyre.appservice.dto.UsersDTOs.UserDTO;
+import codeurjc.ssdd.grupo1.trainfyre.appservice.mapper.AlertMapper;
+import codeurjc.ssdd.grupo1.trainfyre.appservice.mapper.Impl.AlertMapperShow;
+import codeurjc.ssdd.grupo1.trainfyre.appservice.service.AlertService;
+import codeurjc.ssdd.grupo1.trainfyre.appservice.service.UserService;
+import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.servlet.http.HttpServletRequest;
+import lombok.RequiredArgsConstructor;
+
+@RestController
+@Validated
+@RequiredArgsConstructor
+@Tag(name = "Alert-Controller", description = "Servicios de gestión y configuración de alertas")
+@RequestMapping("/api/v1/")
+public class AlertRestController {
+
+    private final AlertMapperShow alertMapperS;
+
+    private final AlertMapper alertMapper;
+
+    private final AlertService alertService;
+
+    private final UserService userService;
+
+    @GetMapping("/alerts/{page}/{size}")
+    public Page<AlertShowDTO> getAlerts(@AuthenticationPrincipal UserDetails user, @PathVariable int page, @PathVariable int size) {
+        Pageable pageable = PageRequest.of(page, size);
+        UserDTO userDto = userService.giveUser(user);
+        Page<AlertDTO> list = alertService.getPage(userDto, pageable);
+        return list.map(thing -> alertMapperS.alertToShowDTO(alertMapper.alertDTOToAlert(thing)));
+    }
+
+
+    @PostMapping("/alerts")
+    public ResponseEntity<AlertShowDTO> createAlert(@AuthenticationPrincipal UserDetails user, @RequestBody AlertRegistrationDTO alert) {
+        UserDTO userDto = userService.giveUser(user);
+        
+
+        if (!alertService.isValidTimeRange(alert.startHour(), alert.endHour()) || !alertService.isValidDate(alert.startDate(), alert.endDate())) {//Impossible time range.
+            throw  new IllegalArgumentException("No se puede poner un instante inicial posterior al final.");
+        } else {
+            AlertShowDTO alertDto = alertMapperS.alertToShowDTO(alertMapper.alertDTOToAlert(alertService.registerAlert(alert, userDto)));
+            URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
+                .buildAndExpand(alertDto.id()).toUri();
+            return ResponseEntity.created(location).body(alertDto);
+        }
+    }
+
+    @DeleteMapping("/alerts/{id}")
+    public ResponseEntity<AlertShowDTO> deleteAlert(@PathVariable long id) {
+        return alertService.deleteAlertRest(id);
+    }
+
+    @PutMapping("/alerts/{idu}")
+    public ResponseEntity<AlertShowDTO> replaceAlert(@AuthenticationPrincipal UserDetails user, @PathVariable long id, 
+    @RequestBody AlertRegistrationDTO updatedAlert) {
+        UserDTO userDto = userService.giveUser(user);
+        if (!alertService.isValidTimeRange(updatedAlert.startHour(), updatedAlert.endHour()) || !alertService.isValidDate(updatedAlert.startDate(), updatedAlert.endDate())) {//Impossible time range.
+            throw  new IllegalArgumentException("No se puede poner un instante inicial posterior al final.");
+        } else {
+            return alertService.updateAlert(userDto, id, updatedAlert);
+        }     
+    }
+}
