@@ -1,7 +1,6 @@
 package codeurjc.ssdd.grupo1.trainfyre.appservice.service.Impl;
 
 import codeurjc.ssdd.grupo1.trainfyre.appservice.data.model.Alert;
-import codeurjc.ssdd.grupo1.trainfyre.appservice.data.model.AppUser;
 import codeurjc.ssdd.grupo1.trainfyre.appservice.data.repository.AlertRepository;
 import codeurjc.ssdd.grupo1.trainfyre.appservice.dto.AlertDTO;
 import codeurjc.ssdd.grupo1.trainfyre.appservice.dto.AlertRegistrationDTO;
@@ -12,7 +11,6 @@ import codeurjc.ssdd.grupo1.trainfyre.appservice.mapper.UserMapper;
 import codeurjc.ssdd.grupo1.trainfyre.appservice.mapper.Impl.AlertMapperShow;
 import codeurjc.ssdd.grupo1.trainfyre.appservice.service.AlertService;
 import codeurjc.ssdd.grupo1.trainfyre.appservice.service.LineService;
-import codeurjc.ssdd.grupo1.trainfyre.appservice.service.UserService;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -32,10 +30,9 @@ public class AlertServiceImpl implements AlertService {
 
     private AlertRepository alertRepository;
     private AlertMapper alertMapper;
-    private AlertMapperShow alertMapperS;
+    private AlertMapperShow alertMapperS = new AlertMapperShow();
     private UserMapper userMapper;
     private LineService lineService;
-    private UserService userService;
 
     @Transactional
     public AlertDTO registerAlert(AlertRegistrationDTO alertrDTO, UserDTO appUser) {
