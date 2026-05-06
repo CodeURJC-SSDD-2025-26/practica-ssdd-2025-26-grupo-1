@@ -19,6 +19,6 @@ public class Image {
     private Long id;
 
     @Lob
-    @Column(nullable = false)
+    @Column(nullable = false, columnDefinition = "LONGBLOB")
     private byte[] image;
 }

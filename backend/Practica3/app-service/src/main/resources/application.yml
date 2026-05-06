@@ -28,17 +28,18 @@ spring:
       settings:
         web-allow-others: false
 
-  # Datasource H2 en memoria
+  # Datasource MySQL
   datasource:
-    url: jdbc:h2:mem:trainfyre
-    driver-class-name: org.h2.Driver
-    username: admin
-    password:
+      url: ${SPRING_DATASOURCE_URL:jdbc:mysql://localhost:3306/trainfyre}
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      username: ${DB_USERNAME:user}
+      password: ${DB_PASSWORD:pass}
+
 
   # JPA
   jpa:
     hibernate:
-      ddl-auto: create-drop
+      ddl-auto: update
     show-sql: true
     defer-datasource-initialization: true
     properties:
@@ -57,7 +58,7 @@ spring:
 # Configuration for the email service de trainfyre-utility-service
 email:
   service:
-    url: http://localhost:8080
+    url: ${EMAIL_SERVICE_URL:http://localhost:8080}
 
 #    Swagger UI configuration
 springdoc:
