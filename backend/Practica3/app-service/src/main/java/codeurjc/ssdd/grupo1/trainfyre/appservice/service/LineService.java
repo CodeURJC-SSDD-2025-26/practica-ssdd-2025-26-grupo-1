@@ -12,9 +12,9 @@ public interface LineService {
 
     Line findLineByName(String name);
 
-    void updateLine(String oldName, String newName, String newDescription, String newColor);
+    LineDTO updateLine(String oldName, String newName, String newDescription, String newColor);
 
     void deleteLine(String name);
 
-    void addLine(String name, String description, String color);
+    LineDTO addLine(String name, String description, String color);
 }
