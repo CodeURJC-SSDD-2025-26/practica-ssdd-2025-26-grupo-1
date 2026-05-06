@@ -31,4 +31,6 @@ public interface AlertService {
     public AlertDTO getAlert(long id);
 
     public Boolean isValidDate(String start, String end);
+
+    public Boolean isValidTimeRange(String start, String end);
 }

@@ -54,10 +54,16 @@ public class AlertRestController {
     @PostMapping("/alerts/")
     public ResponseEntity<AlertRegistrationDTO> createAlert(@AuthenticationPrincipal UserDetails user, @RequestBody AlertRegistrationDTO alert) {
         UserDTO userDto = userService.giveUser(user);
-        AlertShowDTO alertDto = alertMapper.alertDTOtoShowDto(alertService.registerAlert(alert, userDto));
-        URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
-            .buildAndExpand(alertDto.id()).toUri();
-        return ResponseEntity.created(location).body(alert);
+        
+
+        if (!alertService.isValidTimeRange(alert.startHour(), alert.endHour()) || !alertService.isValidDate(alert.startDate(), alert.endDate())) {//Impossible time range.
+            throw  new IllegalArgumentException("No se puede poner un instante inicial posterior al final.");
+        } else {
+            AlertShowDTO alertDto = alertMapper.alertDTOtoShowDto(alertService.registerAlert(alert, userDto));
+            URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
+                .buildAndExpand(alertDto.id()).toUri();
+            return ResponseEntity.created(location).body(alert);
+        }
     }
 
     @DeleteMapping("/alerts/{id}")
@@ -69,6 +75,10 @@ public class AlertRestController {
     public ResponseEntity<AlertShowDTO> replaceAlert(@AuthenticationPrincipal UserDetails user, @PathVariable long id, 
     @RequestBody AlertRegistrationDTO updatedAlert) {
         UserDTO userDto = userService.giveUser(user);
-        return alertService.updateAlert(userDto, id, updatedAlert);
+        if (!alertService.isValidTimeRange(updatedAlert.startHour(), updatedAlert.endHour()) || !alertService.isValidDate(updatedAlert.startDate(), updatedAlert.endDate())) {//Impossible time range.
+            throw  new IllegalArgumentException("No se puede poner un instante inicial posterior al final.");
+        } else {
+            return alertService.updateAlert(userDto, id, updatedAlert);
+        }     
     }
 }

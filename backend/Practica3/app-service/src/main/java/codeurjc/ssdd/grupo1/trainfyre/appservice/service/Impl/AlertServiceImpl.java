@@ -156,4 +156,20 @@ public class AlertServiceImpl implements AlertService {
 
         return (end.compareTo(start) >= 0);
     }
+
+    public Boolean isValidTimeRange(String start, String end) {
+        Integer totalStart;
+        Integer totalEnd;
+        String[] startsplitted = start.split(":");
+        String[] endsplitted = end.split(":");
+        
+        totalStart = Integer.parseInt(startsplitted[0]) * 60 + Integer.parseInt(startsplitted[1]);
+        totalEnd = Integer.parseInt(endsplitted[0]) * 60 + Integer.parseInt(endsplitted[1]);
+
+        if (totalStart > totalEnd) {
+            return false;
+        } else {
+            return true;
+        }
+    }
 }
