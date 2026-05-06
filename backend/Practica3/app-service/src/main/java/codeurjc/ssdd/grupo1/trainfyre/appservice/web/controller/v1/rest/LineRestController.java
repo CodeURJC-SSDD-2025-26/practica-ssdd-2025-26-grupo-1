@@ -29,7 +29,6 @@ public class LineRestController {
     @GetMapping 
     @ResponseStatus(HttpStatus.OK)
     @Operation(description = "Get all lines")
-	@PreAuthorize("hasRole('ADMIN')")
     public List<LineDTO> getAllLines() {
 		return lineService.getAllLines();
     }
@@ -37,7 +36,6 @@ public class LineRestController {
     @GetMapping (value = "/{name}")
     @ResponseStatus(HttpStatus.OK)
     @Operation(description = "Get line by name")
-	@PreAuthorize("hasRole('ADMIN')")
     public LineDTO getLineByName(@Valid @PathVariable @Parameter(description = "Nombre linea", required = true) String name) {
 		return lineService.getLineByName(name);
     }
@@ -45,7 +43,6 @@ public class LineRestController {
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
 	@Operation(description = "add line")
-	@PreAuthorize("hasRole('ADMIN')")
 	public LineDTO addLine(@RequestBody LineCreateRequestDTO req) {
 		return lineService.addLine(req.name(), req.description(), req.color());
 	}
@@ -53,7 +50,6 @@ public class LineRestController {
 	@PutMapping
 	@ResponseStatus(HttpStatus.OK)
 	@Operation(description = "update line")
-	@PreAuthorize("hasRole('ADMIN')")
 	public LineDTO updateLine(@RequestBody LineUpdateRequestDTO req) {
 		return lineService.updateLine(req.oldName(), req.newName(), req.description(), req.color());
 	}
@@ -61,7 +57,6 @@ public class LineRestController {
 	@DeleteMapping("/{name}")
 	@ResponseStatus(HttpStatus.OK)
 	@Operation(description = "delete line")
-	@PreAuthorize("hasRole('ADMIN')") 
 	public void deleteLine(@Valid @PathVariable @Parameter(description = "Nombre linea", required = true) String name) {
 		lineService.deleteLine(name);
 	}
