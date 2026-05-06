@@ -39,7 +39,7 @@ import java.util.concurrent.CompletableFuture;
 import codeurjc.ssdd.grupo1.trainfyre.appservice.data.model.Line;
 
 @RestController
-@RequestMapping("/api/incidences")
+@RequestMapping("/api/v1/incidencies")
 @Validated
 @RequiredArgsConstructor
 @Slf4j
@@ -52,21 +52,21 @@ public class IncidenceRestController {
 
     @GetMapping
     public ResponseEntity<Page<IncidenceDTO>> getAllIncidences(@PageableDefault(page = 0, size = 5) Pageable pageable) {
-        log.info("GET /api/incidences");
+        log.info("GET /api/v1/incidencies");
         Page<IncidenceDTO> page = incidenceService.getPage(pageable);
         return ResponseEntity.ok(page);
     }
 
     @GetMapping("/{incidenceId}")
     public ResponseEntity<IncidenceDTO> getIncidenceById(@PathVariable String incidenceId) {
-        log.info("GET /api/incidences/{}", incidenceId);
+        log.info("GET /api/v1/incidencies/{}", incidenceId);
         IncidenceDTO incidence = incidenceService.getIncidenceWithID(incidenceId);
         return ResponseEntity.ok(incidence);
     }
 
     @GetMapping("/charts/piechart")
     public ResponseEntity<String> getPieChartData() {
-        log.info("GET /api/incidences/charts/piechart");
+        log.info("GET /api/v1/incidencies/charts/piechart");
         String json = incidenceService.generatePieChartJSON();
         return ResponseEntity.ok()
                 .contentType(MediaType.APPLICATION_JSON)
@@ -75,7 +75,7 @@ public class IncidenceRestController {
 
     @GetMapping("/charts/heatmap")
     public ResponseEntity<String> getHeatmapData() {
-        log.info("GET /api/incidences/charts/heatmap");
+        log.info("GET /api/v1/incidencies/charts/heatmap");
         String json = incidenceService.generateHeatmapJSON();
         return ResponseEntity.ok()
                 .contentType(MediaType.APPLICATION_JSON)
@@ -92,7 +92,7 @@ public class IncidenceRestController {
             @RequestParam INCIDENCE_STATUS status,
             @RequestParam List<String> affectedLineNames) {
 
-        log.info("POST /api/incidences. Incidence {}", incidenceID);
+        log.info("POST /api/v1/incidencies. Incidence {}", incidenceID);
 
         List<Line> affectedLines = affectedLineNames != null
                 ? affectedLineNames.stream()
@@ -126,7 +126,7 @@ public class IncidenceRestController {
             @RequestParam(required = false) String description,
             @RequestParam(required = false) INCIDENCE_STATUS status) throws IOException {
 
-        log.info("PUT /api/incidences/{}", incidenceId);
+        log.info("PUT /api/v1/incidencies/{}", incidenceId);
 
         byte[] imageData;
         if (updatedImage != null) {
@@ -153,7 +153,7 @@ public class IncidenceRestController {
 
     @DeleteMapping("/{incidenceId}")
     public ResponseEntity<Void> deleteIncidence(@PathVariable String incidenceId) {
-        log.info("DELETE /api/incidences/{}", incidenceId);
+        log.info("DELETE /api/v1/incidencies/{}", incidenceId);
         incidenceService.deleteIncidence(incidenceId);
         return ResponseEntity.noContent().build();
     }
