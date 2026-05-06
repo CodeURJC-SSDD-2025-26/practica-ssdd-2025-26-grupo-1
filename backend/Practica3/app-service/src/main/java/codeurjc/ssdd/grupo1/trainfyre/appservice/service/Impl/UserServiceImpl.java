@@ -10,7 +10,7 @@ import codeurjc.ssdd.grupo1.trainfyre.appservice.dto.UsersDTOs.UserDTO;
 import codeurjc.ssdd.grupo1.trainfyre.appservice.dto.UsersDTOs.UserInfoDTO;
 import codeurjc.ssdd.grupo1.trainfyre.appservice.dto.UsersDTOs.UserRegistrationtDTO;
 import codeurjc.ssdd.grupo1.trainfyre.appservice.mapper.UserMapper;
-import codeurjc.ssdd.grupo1.trainfyre.appservice.service.EmailServiceOLD;
+import codeurjc.ssdd.grupo1.trainfyre.appservice.service.UtilityService;
 import codeurjc.ssdd.grupo1.trainfyre.appservice.service.UserService;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
@@ -35,61 +35,45 @@ import java.util.regex.Pattern;
 @Slf4j
 public class UserServiceImpl implements UserService{
 
+    private final UserRepository userRepository;
     private UserRepository repository;
     private UserMapper userMapper;
     private PasswordEncoder passwordEncoder;
     private AuthenticatorUserService authenticatorUserService;
-    private EmailServiceOLD emailServiceOLD;
+    private UtilityService utilityService;
 
     @Transactional
     @Override
-    public void createUser(UserRegistrationtDTO userRegistrationtDTO) {
-
-        if (!isAValidEmail(userRegistrationtDTO.email())){
-            throw new IllegalArgumentException("Error al registrarse. el gmail no es un gmail válido " + userRegistrationtDTO.email());
-        }
-
-        Optional<AppUser> appUser = this.findUserByUsername(userRegistrationtDTO.username());
-        appUser.ifPresentOrElse(
-                user -> {
-                    throw new IllegalArgumentException("Error al registrarse. El nombre de usuario " + userRegistrationtDTO.username() + " ya existe" );
-                },
-                () -> {
-                    AppUser newUser = new AppUser();
-                    newUser.setUsername(userRegistrationtDTO.username());
-                    newUser.setEmail(userRegistrationtDTO.email());
-                    newUser.setPassword(passwordEncoder.encode(userRegistrationtDTO.password()));
-                    newUser.setRole(Role.REGISTERED);
-                    repository.save(newUser);
-
-                    this.notifyUserByEmail(new String[]{newUser.getEmail()}, "Te has registrado con el usuario, "+userRegistrationtDTO.username(), "Bienvenido a TrainFyre ⚡, ahora tendrás acceso a más servicios");
-                });
+    public UserInfoDTO registerUser(UserRegistrationtDTO userRegistrationtDTO) {
+        UserDTO registeredUser = new UserDTO(0L,  userRegistrationtDTO.username(), userRegistrationtDTO.password(), userRegistrationtDTO.email(), Role.REGISTERED);
+        return this.createUserWithEmailNotification(registeredUser, "Te has registrado con el usuario, "+userRegistrationtDTO.username(), "Bienvenido a TrainFyre ⚡, ahora tendrás acceso a más servicios");
     }
 
     @Transactional
     @Override
-    public void createUser(UserDTO userDTO){
+    public UserInfoDTO createUser(UserDTO userDTO){
+        return this.createUserWithEmailNotification(userDTO, "Un administrador a registrado una cuenta con este email a TrainFyre", "Este email es un mensaje generado automaticamente");
+    }
 
+    private UserInfoDTO createUserWithEmailNotification(UserDTO userDTO, String subject, String body){
         if (!isAValidEmail(userDTO.email())){
-            throw new IllegalArgumentException("Error al registrarse. el gmail no es un gmail válido " + userDTO.email());
+            throw new IllegalArgumentException("Error al registrarse. el email no es un email válido " + userDTO.email());
         }
 
         Optional<AppUser> appUser = this.findUserByUsername(userDTO.username());
-        appUser.ifPresentOrElse(
-                user -> {
-                    throw new IllegalArgumentException("Error al registrarse. El nombre de usuario  " + userDTO.username() + " ya existe");
-                },
-                () -> {
-                    AppUser newUser = new AppUser();
-                    newUser.setUsername(userDTO.username());
-                    newUser.setEmail(userDTO.email());
-                    newUser.setPassword(passwordEncoder.encode(userDTO.password()));
-                    newUser.setRole(userDTO.role());
-                    repository.save(newUser);
+        appUser.ifPresent(user -> {
+            throw new IllegalArgumentException("Error al registrarse. El nombre de usuario " + userDTO.username() + " ya existe");
+        });
 
-                    this.notifyUserByEmail(new String[]{newUser.getEmail()}, "Un administrador a registrado una cuenta con este gmail a TrainFyre", "Este gmail es un mensaje generado automaticamente");
-                });
+        AppUser newUser = new AppUser();
+        newUser.setUsername(userDTO.username());
+        newUser.setEmail(userDTO.email());
+        newUser.setPassword(passwordEncoder.encode(userDTO.password()));
+        newUser.setRole(userDTO.role());
+        AppUser savedUser = repository.save(newUser);
 
+        this.notifyUserByEmail(new String[]{newUser.getEmail()}, subject, body);
+        return userMapper.userToUserInfoDTO(savedUser);
     }
 
     @Override
@@ -102,6 +86,15 @@ public class UserServiceImpl implements UserService{
                 .map(userMapper::userToUserInfoDTO)
                 .orElseThrow(() -> new UsernameNotFoundException("Error al obtener el usuario: " + userDetails.getUsername()));
 
+    }
+
+    @Override
+    public UserInfoDTO findUser(Long id){
+        if(id == null) throw new IllegalArgumentException("Error, el id especificado es un null");
+
+        return this.findUserById(id)
+                .map(userMapper::userToUserInfoDTO)
+                .orElseThrow(() -> new UsernameNotFoundException("Error al obtener el usuario: " + id));
     }
 
     @Override
@@ -155,6 +148,28 @@ public class UserServiceImpl implements UserService{
 
     @Override
     @Transactional
+    public UserInfoDTO updateUser(Long id, UserDTO newUser){
+        AppUser appUser = this.findUserById(id)
+                .orElseThrow(() -> new UsernameNotFoundException(
+                        "Usuario no encontrado con la id: " + id));
+
+        if (newUser.username() != null && !newUser.username().isBlank()) {
+            appUser.setUsername(newUser.username());
+        }
+        if (newUser.email() != null && !newUser.email().isBlank()) {
+            appUser.setEmail(newUser.email());
+        }
+        if(newUser.role() != null){
+            appUser.setRole(newUser.role());
+        }
+
+        repository.save(appUser);
+
+        return new UserInfoDTO(appUser.getUsername(), appUser.getEmail(), appUser.getRole(), appUser.getImage(), appUser.getAlerts());
+    }
+
+    @Override
+    @Transactional
     public void updateUser(String oldUserName, MultipartFile updatedImage, UserInfoDTO newUserData){
         AppUser appUser = this.findUserByUsername(oldUserName)
                 .orElseThrow(() -> new UsernameNotFoundException(
@@ -188,6 +203,15 @@ public class UserServiceImpl implements UserService{
                 .orElseThrow(() -> new UsernameNotFoundException("Error, usuario no encontrado: " + userInfoDTO.username()));
 
         repository.delete(appUser);
+    }
+
+    @Override
+    public UserInfoDTO deleteUser(Long id){
+        AppUser appUser = this.findUserById(id)
+                .orElseThrow(() -> new UsernameNotFoundException("Error, usuario no encontrado con el id: " + id));
+
+        repository.delete(appUser);
+        return new UserInfoDTO(appUser.getUsername(), appUser.getEmail(), appUser.getRole(), appUser.getImage(), appUser.getAlerts());
     }
 
     @Override
@@ -244,11 +268,15 @@ public class UserServiceImpl implements UserService{
         return repository.findByUsername(username);
     }
 
+    private Optional<AppUser> findUserById(Long id){
+        return repository.findById(id);
+    }
+
     private void notifyUserByEmail(String[] to, String subject, String body) {
         SecurityContext context = SecurityContextHolder.getContext();
         CompletableFuture.runAsync(() -> {
             SecurityContextHolder.setContext(context); // propagar contexto
-            emailServiceOLD.sendEmail(to, subject, body);
+            utilityService.sendEmail(to, subject, body);
         });
     }
 

@@ -1,4 +1,6 @@
 HELP.md
+api-docs/.openapi-generator
+api-docs/.openapi-generator-ignore
 target/
 .mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
