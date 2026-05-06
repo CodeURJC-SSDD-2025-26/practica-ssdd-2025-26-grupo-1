@@ -41,7 +41,7 @@
         <script>
             const piechart_info = {{{ piechart_json }}} || {};
         </script>
-        {{> /partials/_pie_graph}}
+        {{> partials/_pie_graph}}
         {{#piechartScript}}
             <script src="/js/{{.}}" defer></script>
         {{/piechartScript}}
@@ -55,7 +55,7 @@
         </div>
 
         <!-- Grafico Barras -->
-        {{> /partials/_bar_graph}}
+        {{> partials/_bar_graph}}
 
 
         <!-- Texto -->
