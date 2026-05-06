@@ -1,6 +1,7 @@
 package codeurjc.ssdd.grupo1.trainfyre.appservice.service.Impl;
 
 import codeurjc.ssdd.grupo1.trainfyre.appservice.data.model.Alert;
+import codeurjc.ssdd.grupo1.trainfyre.appservice.data.model.AppUser;
 import codeurjc.ssdd.grupo1.trainfyre.appservice.data.repository.AlertRepository;
 import codeurjc.ssdd.grupo1.trainfyre.appservice.dto.AlertDTO;
 import codeurjc.ssdd.grupo1.trainfyre.appservice.dto.AlertRegistrationDTO;
@@ -10,6 +11,7 @@ import codeurjc.ssdd.grupo1.trainfyre.appservice.mapper.AlertMapper;
 import codeurjc.ssdd.grupo1.trainfyre.appservice.mapper.UserMapper;
 import codeurjc.ssdd.grupo1.trainfyre.appservice.service.AlertService;
 import codeurjc.ssdd.grupo1.trainfyre.appservice.service.LineService;
+import codeurjc.ssdd.grupo1.trainfyre.appservice.service.UserService;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -31,6 +33,7 @@ public class AlertServiceImpl implements AlertService {
     private AlertMapper alertMapper;
     private UserMapper userMapper;
     private LineService lineService;
+    private UserService userService;
 
     @Transactional
     public AlertDTO registerAlert(AlertRegistrationDTO alertrDTO, UserDTO appUser) {
@@ -77,6 +80,27 @@ public class AlertServiceImpl implements AlertService {
                 .orElseThrow(() -> new UsernameNotFoundException("Error al actualizar: "));
 
     }
+
+    @Transactional
+    public ResponseEntity<AlertShowDTO> updateAlert(UserDTO user, Long id, AlertRegistrationDTO alertrDto) {
+        Optional<Alert> alerto = alertRepository.findById(id);
+        Alert currentAlert;
+        if (!alerto.isPresent()) {
+            return ResponseEntity.notFound().build();
+        } else {
+            currentAlert = alerto.get();
+            currentAlert.setLine(lineService.findLineByName(alertrDto.line()));
+            currentAlert.setStartDate(alertrDto.startDate());
+            currentAlert.setEndDate(alertrDto.endDate());
+            currentAlert.setStartHour(alertrDto.startHour());
+            currentAlert.setEndHour(alertrDto.endHour());
+
+            alertRepository.save(currentAlert);
+            
+            return ResponseEntity.ok(alertMapper.alertToShowDto(currentAlert));
+        }
+    }
+
 
     @Transactional
     public void deleteAlert(Long id) {
