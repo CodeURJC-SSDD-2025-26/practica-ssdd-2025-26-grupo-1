@@ -11,96 +11,313 @@
     {
       "name": "LoginUser",
       "request": {
-        "method": "GET",
-        "header": []
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"username\": \"admin\",\r\n  \"password\": \"admin\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{baseUrl}}/auth/login",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "auth",
+            "login"
+          ]
+        }
       },
       "response": []
     },
     {
       "name": "AddC-1",
       "request": {
-        "method": "GET",
-        "header": []
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"name\": \"C-1\",\r\n  \"description\": \"1\",\r\n  \"color\": \"#000000\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{baseUrl}}/lines",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "lines"
+          ]
+        }
       },
       "response": []
     },
     {
       "name": "AddC-2",
       "request": {
-        "method": "GET",
-        "header": []
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"name\": \"C-2\",\r\n  \"description\": \"2\",\r\n  \"color\": \"#000000\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{baseUrl}}/lines",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "lines"
+          ]
+        }
       },
       "response": []
     },
     {
       "name": "AddC-3",
       "request": {
-        "method": "GET",
-        "header": []
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"name\": \"C-3\",\r\n  \"description\": \"3\",\r\n  \"color\": \"#000000\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{baseUrl}}/lines",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "lines"
+          ]
+        }
       },
       "response": []
     },
     {
       "name": "AddC-4",
       "request": {
-        "method": "GET",
-        "header": []
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"name\": \"C-4\",\r\n  \"description\": \"4\",\r\n  \"color\": \"#000000\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{baseUrl}}/lines",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "lines"
+          ]
+        }
       },
       "response": []
     },
     {
       "name": "AddC-5",
       "request": {
-        "method": "GET",
-        "header": []
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"name\": \"C-5\",\r\n  \"description\": \"5\",\r\n  \"color\": \"#000000\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{baseUrl}}/lines",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "lines"
+          ]
+        }
       },
       "response": []
     },
     {
       "name": "AddC-6",
       "request": {
-        "method": "GET",
-        "header": []
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"name\": \"C-6\",\r\n  \"description\": \"6\",\r\n  \"color\": \"#000000\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{baseUrl}}/lines",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "lines"
+          ]
+        }
       },
       "response": []
     },
     {
       "name": "AddC-7",
       "request": {
-        "method": "GET",
-        "header": []
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"name\": \"C-7\",\r\n  \"description\": \"7\",\r\n  \"color\": \"#000000\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{baseUrl}}/lines",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "lines"
+          ]
+        }
       },
       "response": []
     },
     {
       "name": "AddC-8",
       "request": {
-        "method": "GET",
-        "header": []
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"name\": \"C-8\",\r\n  \"description\": \"8\",\r\n  \"color\": \"#000000\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{baseUrl}}/lines",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "lines"
+          ]
+        }
       },
       "response": []
     },
     {
       "name": "AddC-9",
       "request": {
-        "method": "GET",
-        "header": []
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"name\": \"C-9\",\r\n  \"description\": \"9\",\r\n  \"color\": \"#000000\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{baseUrl}}/lines",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "lines"
+          ]
+        }
       },
       "response": []
     },
     {
       "name": "AddC-10",
       "request": {
-        "method": "GET",
-        "header": []
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"name\": \"C-10\",\r\n  \"description\": \"10\",\r\n  \"color\": \"#000000\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{baseUrl}}/lines",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "lines"
+          ]
+        }
       },
       "response": []
     },
     {
       "name": "AddCIVIS",
       "request": {
-        "method": "GET",
-        "header": []
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"name\": \"CIVIS\",\r\n  \"description\": \"Civis\",\r\n  \"color\": \"#000000\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{baseUrl}}/lines",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "lines"
+          ]
+        }
       },
       "response": []
     },
@@ -108,7 +325,16 @@
       "name": "ShowLines",
       "request": {
         "method": "GET",
-        "header": []
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/lines",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "lines"
+          ]
+        }
       },
       "response": []
     },
@@ -118,13 +344,15 @@
         {
           "listen": "test",
           "script": {
-            "type": "text/javascript",
             "exec": [
               "pm.test(\"Successful POST request\", function () {",
               "    pm.expect(pm.response.code).to.be.oneOf([200, 201]);",
               "});",
               ""
-            ]
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
           }
         }
       ],
@@ -133,7 +361,7 @@
         "header": [],
         "body": {
           "mode": "raw",
-          "raw": "{\n\t\"name\": \"Add your name in the body\"\n}",
+          "raw": "{\n  \"line\": \"C-1\",\n  \"startDate\": \"2025-12-12\",\n  \"endDate\": \"2025-12-13\",\n  \"startHour\": \"00:00\",\n  \"endHour\": \"12:30\"\n}",
           "options": {
             "raw": {
               "language": "json"
@@ -141,13 +369,12 @@
           }
         },
         "url": {
-          "raw": "postman-echo.com/post",
+          "raw": "{{baseUrl}}/alerts",
           "host": [
-            "postman-echo",
-            "com"
+            "{{baseUrl}}"
           ],
           "path": [
-            "post"
+            "alerts"
           ]
         },
         "description": "This is a POST request, submitting data to an API via the request body. This request submits JSON data, and the data is reflected in the response.\n\nA successful POST request typically returns a `200 OK` or `201 Created` response code."
@@ -160,13 +387,15 @@
         {
           "listen": "test",
           "script": {
-            "type": "text/javascript",
             "exec": [
               "pm.test(\"Successful POST request\", function () {",
               "    pm.expect(pm.response.code).to.be.oneOf([200, 201]);",
               "});",
               ""
-            ]
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
           }
         }
       ],
@@ -175,7 +404,7 @@
         "header": [],
         "body": {
           "mode": "raw",
-          "raw": "{\n\t\"name\": \"Add your name in the body\"\n}",
+          "raw": "{\n  \"line\": \"CIVIS\",\n  \"startDate\": \"2025-10-12\",\n  \"endDate\": \"2025-12-20\",\n  \"startHour\": \"01:05\",\n  \"endHour\": \"12:45\"\n}",
           "options": {
             "raw": {
               "language": "json"
@@ -183,13 +412,12 @@
           }
         },
         "url": {
-          "raw": "postman-echo.com/post",
+          "raw": "{{baseUrl}}/alerts",
           "host": [
-            "postman-echo",
-            "com"
+            "{{baseUrl}}"
           ],
           "path": [
-            "post"
+            "alerts"
           ]
         },
         "description": "This is a POST request, submitting data to an API via the request body. This request submits JSON data, and the data is reflected in the response.\n\nA successful POST request typically returns a `200 OK` or `201 Created` response code."
@@ -200,7 +428,17 @@
       "name": "ShowC-9",
       "request": {
         "method": "GET",
-        "header": []
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/lines/C-9",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "lines",
+            "C-9"
+          ]
+        }
       },
       "response": []
     },
@@ -208,7 +446,17 @@
       "name": "ShowC-7",
       "request": {
         "method": "GET",
-        "header": []
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/lines/C-7",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "lines",
+            "C-7"
+          ]
+        }
       },
       "response": []
     },
@@ -216,7 +464,18 @@
       "name": "ShowPiechart",
       "request": {
         "method": "GET",
-        "header": []
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/incidencies/charts/piechart",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "incidencies",
+            "charts",
+            "piechart"
+          ]
+        }
       },
       "response": []
     },
@@ -224,7 +483,18 @@
       "name": "ShowHeatMap",
       "request": {
         "method": "GET",
-        "header": []
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/incidencies/charts/heatmap",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "incidencies",
+            "charts",
+            "heatmap"
+          ]
+        }
       },
       "response": []
     },
@@ -232,23 +502,68 @@
       "name": "ShowIncidencies",
       "request": {
         "method": "GET",
-        "header": []
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/incidencies",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "incidencies"
+          ]
+        }
       },
       "response": []
     },
     {
       "name": "AddUser",
       "request": {
-        "method": "GET",
-        "header": []
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"id\": 10,\r\n  \"username\": \"Manolo\",\r\n  \"password\": \"manolo\",\r\n  \"email\": \"hola@adios.com\",\r\n  \"role\": \"ADMIN\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{baseUrl}}/users",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "users"
+          ]
+        }
       },
       "response": []
     },
     {
       "name": "AddUser2",
       "request": {
-        "method": "GET",
-        "header": []
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"id\": 20,\r\n  \"username\": \"Paco\",\r\n  \"password\": \"Paquez\",\r\n  \"email\": \"adios@hola.es\",\r\n  \"role\": \"ADMIN\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{baseUrl}}/users",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "users"
+          ]
+        }
       },
       "response": []
     }
