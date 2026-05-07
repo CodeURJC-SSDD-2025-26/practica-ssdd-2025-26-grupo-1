@@ -570,17 +570,17 @@ Desarrollo de la API REST para todo lo relacionado con incidencias. Desarrollo d
 
 ---
 
-#### **Alumno 4 - [Nombre Completo]**
+#### **Alumno 4 - [Daniel Montes Jiménez]**
 
-[Descripción de las tareas y responsabilidades principales del alumno en el proyecto]
+Responsable de la parte de API REST destinada a la gestión de las alertas, así como retoques a sus DTOs para unas consultas más sencillas en la API REST. Encargado de la colección Postman de consultas.
 
 | Nº    | Commits      | Files      |
 |:------------: |:------------:| :------------:|
-|1| [Descripción commit 1](URL_commit_1)  | [Archivo1](URL_archivo_1)   |
-|2| [Descripción commit 2](URL_commit_2)  | [Archivo2](URL_archivo_2)   |
-|3| [Descripción commit 3](URL_commit_3)  | [Archivo3](URL_archivo_3)   |
-|4| [Descripción commit 4](URL_commit_4)  | [Archivo4](URL_archivo_4)   |
-|5| [Descripción commit 5](URL_commit_5)  | [Archivo5](URL_archivo_5)   |
+|1| [Creación de la colección Postman](https://github.com/CodeURJC-SSDD-2025-26/practica-ssdd-2025-26-grupo-1/commit/10410fe216c4e5b622e7c91410a0af51d04945de)  | [Colección Postman](backend/Practica3/app-service/api.postman_collection.json)   |
+|2| [Creación de las funciones REST](https://github.com/CodeURJC-SSDD-2025-26/practica-ssdd-2025-26-grupo-1/commit/34a1f5b9a7e21a6b97a88446e0b6667de943637e)  | [Controlador REST de alertas](backend/Practica3/app-service/src/main/java/codeurjc/ssdd/grupo1/trainfyre/appservice/web/controller/v1/rest/AlertRestController.java)   |
+|3| [Creación de AlertShowDTO](https://github.com/CodeURJC-SSDD-2025-26/practica-ssdd-2025-26-grupo-1/commit/965d017a1a21e1b88f3885b43004dcd65c9226f6)  | [AlertShowDTO](backend/Practica3/app-service/src/main/java/codeurjc/ssdd/grupo1/trainfyre/appservice/dto/AlertShowDTO.java)   |
+|4| [Refactoring del controlador de alertas](https://github.com/CodeURJC-SSDD-2025-26/practica-ssdd-2025-26-grupo-1/commit/6de43fd3765764a69131dd6e95578d53ea5eaa3c)  | [Controlador de alertas](backend/src/main/java/codeurjc/ssdd/grupo1/trainfyre/web/controller/Impl/AlertController.java)   |
+|5| [Expansión auxiliar del servicio de alertas](https://github.com/CodeURJC-SSDD-2025-26/practica-ssdd-2025-26-grupo-1/commit/34b9091de845736b5c8565b830ac62743570b342)  | [Servicio de alertas](backend/Practica3/app-service/src/main/java/codeurjc/ssdd/grupo1/trainfyre/appservice/service/Impl/AlertServiceImpl.java)   |
 
 ---
 
