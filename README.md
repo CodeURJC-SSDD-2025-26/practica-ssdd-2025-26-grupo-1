@@ -556,17 +556,17 @@ Desarrollo de la API REST para todo lo relacionado con incidencias. Desarrollo d
 
 ---
 
-#### **Alumno 3 - [Nombre Completo]**
+#### **Alumno 3 - [Escipion48 (Pablo Sainz López)]**
 
-[Descripción de las tareas y responsabilidades principales del alumno en el proyecto]
+Organización y gestión del proyecto. Separación de utility service de app service. Crear los dockerfile y docker compose. Todos la implementación de user y email. La implementación de security y jwt entre otros. 
 
 | Nº    | Commits      | Files      |
 |:------------: |:------------:| :------------:|
-|1| [Descripción commit 1](URL_commit_1)  | [Archivo1](URL_archivo_1)   |
-|2| [Descripción commit 2](URL_commit_2)  | [Archivo2](URL_archivo_2)   |
-|3| [Descripción commit 3](URL_commit_3)  | [Archivo3](URL_archivo_3)   |
-|4| [Descripción commit 4](URL_commit_4)  | [Archivo4](URL_archivo_4)   |
-|5| [Descripción commit 5](URL_commit_5)  | [Archivo5](URL_archivo_5)   |
+|1| [Estructura del nuevo proyecto](https://github.com/CodeURJC-SSDD-2025-26/practica-ssdd-2025-26-grupo-1/commit/4c44e53fe934646fb530e2e94ac13cd61ac182cd)  | [App-service](https://github.com/CodeURJC-SSDD-2025-26/practica-ssdd-2025-26-grupo-1/commit/4c44e53fe934646fb530e2e94ac13cd61ac182cd#diff-27b96ad7699d151843802950dcdb85e9641476b3b05d7eb047aecab568faf4ac)   |
+|2| [Implementación de security](https://github.com/CodeURJC-SSDD-2025-26/practica-ssdd-2025-26-grupo-1/commit/ab8896ca48d23f8cb2a402480a9ae578b229d958)  | [Security](https://github.com/CodeURJC-SSDD-2025-26/practica-ssdd-2025-26-grupo-1/commit/ab8896ca48d23f8cb2a402480a9ae578b229d958#diff-6740d5164bbb3f619b276fe0f11a4eb550de71508f42ea17dcfc3d5d7bbd84dc)   |
+|3| [Implementación docker](https://github.com/CodeURJC-SSDD-2025-26/practica-ssdd-2025-26-grupo-1/commit/9358bb750caedbb3eec7a3453671b7da244c0922)  | [Docker compose](https://github.com/CodeURJC-SSDD-2025-26/practica-ssdd-2025-26-grupo-1/commit/9358bb750caedbb3eec7a3453671b7da244c0922#diff-8501e448d7be61a3f6eff4b35d45047a2cc98601a99d0558c66324c7825db19b)   |
+|4| [Endpoint de user](https://github.com/CodeURJC-SSDD-2025-26/practica-ssdd-2025-26-grupo-1/commit/64e7f24299746d1ee0a88174fefd588e267b07e0)  | [rest controller del user](https://github.com/CodeURJC-SSDD-2025-26/practica-ssdd-2025-26-grupo-1/commit/64e7f24299746d1ee0a88174fefd588e267b07e0#diff-5b0deb4e0cc83dceedf1e008d8fdebd780d5a16929256f5535ff8221f438938c)   |
+|5| [Refactorización del servicio de user](https://github.com/CodeURJC-SSDD-2025-26/practica-ssdd-2025-26-grupo-1/commit/8f9c5a31a54be220a5ec3f2d625821de7e9a7222)  | [User implementation](https://github.com/CodeURJC-SSDD-2025-26/practica-ssdd-2025-26-grupo-1/commit/8f9c5a31a54be220a5ec3f2d625821de7e9a7222#diff-79b81e06871ad9662db4ff5db5f51f1b2cae7f72af0e257895737b483390936b)   |
 
 ---
 
