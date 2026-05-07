@@ -15,6 +15,8 @@ import java.util.Optional;
 public interface AlertRepository extends JpaRepository<Alert, Long> {
     Optional<Alert> findByLineAndStartDateAndEndDate(Line lines, String start, String end);
 
+    Optional<Alert> findById(Long id);
+    
     Page<Alert> findAll(Pageable page);
     Page<Alert> findByUserOrderByLine(AppUser appUser, Pageable page);
     List<Alert> findByUser(AppUser appUser);

@@ -26,6 +26,7 @@ import java.util.Optional;
 import org.slf4j.Logger;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.annotation.Validated;
@@ -145,9 +146,9 @@ public class AlertController {
 
         // Associate the alert to the user.
 
-        AlertRegistrationDTO alertDto = new AlertRegistrationDTO(lineMapper.toLine(lineDto), startDate, endDate, min,
-                max,
-                userMapper.userDTOToAppUser(userDto));
+        AlertRegistrationDTO alertDto = new AlertRegistrationDTO(line, startDate, endDate, min,
+                max
+                );
         alertService.registerAlert(alertDto, userDto);
 
         model.addAttribute("title", "Alert added");
@@ -156,7 +157,7 @@ public class AlertController {
     }
 
     @GetMapping(value = "/alert/table")
-    public String alertTable(Model model, @AuthenticationPrincipal UserDetails user, Pageable page) {
+    public String alertTable(Model model, @AuthenticationPrincipal UserDetails user, @PageableDefault(page = 0, size = 5) Pageable page) {
         Boolean thereIs = false;
         UserInfoDTO useriDto = userService.findUser(user);
         UserDTO userO = userService.giveUser(user);
@@ -259,7 +260,7 @@ public class AlertController {
 
     @PostMapping(value = "alert/delete")
     public String deleteAlert(Model model, @RequestParam String id, @AuthenticationPrincipal UserDetails user,
-            Pageable page) {
+            @PageableDefault(page = 0, size = 5) Pageable page) {
         String error = null;
         Optional<Alert> alertO;
         Long currentAlertId = Long.parseLong(id);

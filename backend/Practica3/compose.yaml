@@ -1,5 +1,24 @@
 services:
+  db:
+    image: mysql:9.6
+    container_name: mysql-db
+    environment:
+      MYSQL_DATABASE: ${DB_NAME:-trainfyre}
+      MYSQL_USER: ${DB_USERNAME:-user}
+      MYSQL_PASSWORD: ${DB_PASSWORD:-pass}
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD:-rootpass}
+    volumes:
+      - mysql_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD-SHELL", "mysqladmin ping -h localhost -u root -p$${MYSQL_ROOT_PASSWORD}"]
+      interval: 5s
+      timeout: 5s
+      start_period: 10s
+      retries: 10
+    restart: unless-stopped
+
   app-service:
+    image: alexgogb/app-service:latest
     build:
       context: ./app-service
       dockerfile: DockerFile
@@ -9,24 +28,32 @@ services:
     env_file:
       - ./app-service/.env
     environment:
-      #SPRING_PROFILES_ACTIVE: ${SPRING_PROFILES_ACTIVE:-prod}
-      DB_HOST: ${DB_HOST}
-      DB_PORT: ${DB_PORT}
-      DB_NAME: ${DB_NAME}
-      DB_USERNAME: ${DB_USERNAME}
-      DB_PASSWORD: ${DB_PASSWORD}
-      JWT_SECRET: ${JWT_SECRET}
+      SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/${DB_NAME:-trainfyre}
+      SPRING_DATASOURCE_USERNAME: ${DB_USERNAME:-user}
+      SPRING_DATASOURCE_PASSWORD: ${DB_PASSWORD:-pass}
+      SPRING_DATASOURCE_DRIVER_CLASS_NAME: com.mysql.cj.jdbc.Driver
+      SPRING_JPA_HIBERNATE_DDL_AUTO: update
+      SPRING_JPA_DATABASE_PLATFORM: org.hibernate.dialect.MySQLDialect
+      JWT_SECRET: ${JWT_SECRET:-totally_secret_jwt_secret}
       SSL_KEYSTORE_PASSWORD: ${SSL_KEYSTORE_PASSWORD}
       SSL_KEY_ALIAS: ${SSL_KEY_ALIAS}
+      EMAIL_SERVICE_URL: http://utility-service:8080
+    depends_on:
+      db:
+        condition: service_healthy
     restart: unless-stopped
 
   utility-service:
+    image: alexgogb/utility-service:latest
     build:
       context: ./utility-service
       dockerfile: DockerFile
     container_name: utility-service
     ports:
       - "8080:8080"
-    env_file:
-      - ./utility-service/.env
+    environment:
+      SPRING_PROFILES_ACTIVE: ${SPRING_PROFILES_ACTIVE:-mail}
     restart: unless-stopped
+
+volumes:
+  mysql_data:
