@@ -529,17 +529,17 @@ Diagrama actualizado incluyendo los @RestController y su relación con los @Serv
 
 ### **Participación de Miembros en la Práctica 3**
 
-#### **Alumno 1 - [Nombre Completo]**
+#### **Alumno 1 - [Weisheng Zheng]**
 
-[Descripción de las tareas y responsabilidades principales del alumno en el proyecto]
+Desarrollo de la API REST para la gestión de líneas (CRUD completo), incluyendo controlador, servicios y modificación para retornar DTOs. Implementación de la gestión de imágenes para incidencias con su estructura completa (entidad, repositorio, servicio y API REST) y corrección de dependencias con la estructura anterior.
 
 | Nº    | Commits      | Files      |
 |:------------: |:------------:| :------------:|
-|1| [Descripción commit 1](URL_commit_1)  | [Archivo1](URL_archivo_1)   |
-|2| [Descripción commit 2](URL_commit_2)  | [Archivo2](URL_archivo_2)   |
-|3| [Descripción commit 3](URL_commit_3)  | [Archivo3](URL_archivo_3)   |
-|4| [Descripción commit 4](URL_commit_4)  | [Archivo4](URL_archivo_4)   |
-|5| [Descripción commit 5](URL_commit_5)  | [Archivo5](URL_archivo_5)   |
+|1| [API REST para gestión de líneas con operaciones CRUD](https://github.com/CodeURJC-SSDD-2025-26/practica-ssdd-2025-26-grupo-1/commit/87aab6a)  | [LineRestController.java](https://github.com/CodeURJC-SSDD-2025-26/practica-ssdd-2025-26-grupo-1/blob/develop/backend/Practica3/app-service/src/main/java/codeurjc/ssdd/grupo1/trainfyre/appservice/web/controller/v1/rest/LineRestController.java)   |
+|2| [Modificación del servicio de líneas para retornar DTOs](https://github.com/CodeURJC-SSDD-2025-26/practica-ssdd-2025-26-grupo-1/commit/14b35a4)  | [LineService.java](https://github.com/CodeURJC-SSDD-2025-26/practica-ssdd-2025-26-grupo-1/blob/develop/backend/Practica3/app-service/src/main/java/codeurjc/ssdd/grupo1/trainfyre/appservice/service/LineService.java)   |
+|3| [Implementación de la estructura de imágenes (entidad, repositorio, servicio, DTO)](https://github.com/CodeURJC-SSDD-2025-26/practica-ssdd-2025-26-grupo-1/commit/27837ea)  | [Image.java](https://github.com/CodeURJC-SSDD-2025-26/practica-ssdd-2025-26-grupo-1/blob/develop/backend/Practica3/app-service/src/main/java/codeurjc/ssdd/grupo1/trainfyre/appservice/data/model/Image.java), [ImageRepository.java](https://github.com/CodeURJC-SSDD-2025-26/practica-ssdd-2025-26-grupo-1/blob/develop/backend/Practica3/app-service/src/main/java/codeurjc/ssdd/grupo1/trainfyre/appservice/data/repository/ImageRepository.java), [ImagenService.java](https://github.com/CodeURJC-SSDD-2025-26/practica-ssdd-2025-26-grupo-1/blob/develop/backend/Practica3/app-service/src/main/java/codeurjc/ssdd/grupo1/trainfyre/appservice/service/ImagenService.java), [ImageDTO.java](https://github.com/CodeURJC-SSDD-2025-26/practica-ssdd-2025-26-grupo-1/blob/develop/backend/Practica3/app-service/src/main/java/codeurjc/ssdd/grupo1/trainfyre/appservice/dto/ImageDTO.java)   |
+|4| [API REST para gestión de imágenes](https://github.com/CodeURJC-SSDD-2025-26/practica-ssdd-2025-26-grupo-1/commit/27837ea)  | [ImageRestController.java](https://github.com/CodeURJC-SSDD-2025-26/practica-ssdd-2025-26-grupo-1/blob/develop/backend/Practica3/app-service/src/main/java/codeurjc/ssdd/grupo1/trainfyre/appservice/web/controller/v1/rest/ImageRestController.java)   |
+|5| [Corrección de dependencias entre la estructura antigua y la nueva de imágenes](https://github.com/CodeURJC-SSDD-2025-26/practica-ssdd-2025-26-grupo-1/commit/6f1c78d)  | [ImagenService.java](https://github.com/CodeURJC-SSDD-2025-26/practica-ssdd-2025-26-grupo-1/blob/develop/backend/Practica3/app-service/src/main/java/codeurjc/ssdd/grupo1/trainfyre/appservice/service/ImagenService.java), [IncidenceService.java](https://github.com/CodeURJC-SSDD-2025-26/practica-ssdd-2025-26-grupo-1/blob/develop/backend/Practica3/app-service/src/main/java/codeurjc/ssdd/grupo1/trainfyre/appservice/service/IncidenceService.java)   |
 
 ---
 
