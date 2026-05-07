@@ -449,12 +449,12 @@ I made all functionalities related to the Alert entity: adding alerts (preventin
 ### **Documentación de la API REST**
 
 #### **Especificación OpenAPI**
-📄 **[Especificación OpenAPI (YAML)](/api-docs/api-docs.yaml)**
+📄 **[Especificación OpenAPI (YAML)](/api-docs.yaml)**
 
 #### **Documentación HTML**
-📖 **[Documentación API REST (HTML)](https://raw.githack.com/[usuario]/[repositorio]/main/api-docs/api-docs.html)**
+📖 **Documentación API REST (HTML)**
 
-> La documentación de la API REST se encuentra en la carpeta `/api-docs` del repositorio. Se ha generado automáticamente con SpringDoc a partir de las anotaciones en el código Java.
+> La documentación de la API REST se encuentra en la carpeta `/api-docs` del repositorio. Se ha generado automáticamente con SpringDoc a partir de las anotaciones en el código Java. La documentación en formato HTML se puede consultar en la web.
 
 ### **Diagrama de Clases y Templates Actualizado**
 
@@ -515,15 +515,14 @@ Diagrama actualizado incluyendo los @RestController y su relación con los @Serv
 
 ### **URL de la Aplicación Desplegada**
 
-🌐 **URL de acceso**: `https://[nombre-app].etsii.urjc.es:8443`
+🌐 **URL de acceso**: `https://trainfyre.etsii.urjc.es:8443`
 
 #### **Credenciales de Usuarios de Ejemplo**
 
 | Rol | Usuario | Contraseña |
 |:---|:---|:---|
-| Administrador | admin | admin123 |
-| Usuario Registrado | user1 | user123 |
-| Usuario Registrado | user2 | user123 |
+| Admin | admin | admin123 |
+| Registered user | user | password |
 
 ### **OTRA DOCUMENTACIÓN ADICIONAL REQUERIDA EN LA PRÁCTICA**
 
@@ -543,17 +542,17 @@ Desarrollo de la API REST para la gestión de líneas (CRUD completo), incluyend
 
 ---
 
-#### **Alumno 2 - [Nombre Completo]**
+#### **Alumno 2 - [Alejandro González Blanco (alexgogb)]**
 
-[Descripción de las tareas y responsabilidades principales del alumno en el proyecto]
+Desarrollo de la API REST para todo lo relacionado con incidencias. Desarrollo de la API REST que devuelve información de los gráficos en formato JSON. Enlace de la página web con MySQL, sustituyendo H2 y haciendo que funcione por contenedores Docker. Creación de documentación para el proyecto. Elementos como DTOs o mappers fueron integrados anteriormente.
 
 | Nº    | Commits      | Files      |
 |:------------: |:------------:| :------------:|
-|1| [Descripción commit 1](URL_commit_1)  | [Archivo1](URL_archivo_1)   |
-|2| [Descripción commit 2](URL_commit_2)  | [Archivo2](URL_archivo_2)   |
-|3| [Descripción commit 3](URL_commit_3)  | [Archivo3](URL_archivo_3)   |
-|4| [Descripción commit 4](URL_commit_4)  | [Archivo4](URL_archivo_4)   |
-|5| [Descripción commit 5](URL_commit_5)  | [Archivo5](URL_archivo_5)   |
+|1| [CRUD API REST de incidencias (primer commit)](https://github.com/CodeURJC-SSDD-2025-26/practica-ssdd-2025-26-grupo-1/commit/869d1a074854ed5c82b92e219267f0b16a5a42fe)  | [IncidenceRestController](https://github.com/CodeURJC-SSDD-2025-26/practica-ssdd-2025-26-grupo-1/blob/develop/backend/Practica3/app-service/src/main/java/codeurjc/ssdd/grupo1/trainfyre/appservice/web/controller/v1/rest/IncidenceRestController.java)   |
+|2| [Información de gráficos con JSON](URL_commit_2)  | [Piechart/Heatmap](https://github.com/CodeURJC-SSDD-2025-26/practica-ssdd-2025-26-grupo-1/commit/1bff53689094826096d0e5a3ac85158a61d5fb3d)   |
+|3| [Enlace de la web a MySQL con contenedores Docker](https://github.com/CodeURJC-SSDD-2025-26/practica-ssdd-2025-26-grupo-1/commit/48b7222c33acdaa92abc858ce71a256aa5bae753)  | [compose.yaml](https://github.com/CodeURJC-SSDD-2025-26/practica-ssdd-2025-26-grupo-1/blob/develop/backend/Practica3/compose.yaml)   |
+|4| [Documentación (primer commit)](https://github.com/CodeURJC-SSDD-2025-26/practica-ssdd-2025-26-grupo-1/commit/1350ca8dee54f3d0918e06a67b7f40eb04e03a2d)  | [classes-diagram.png](https://github.com/CodeURJC-SSDD-2025-26/practica-ssdd-2025-26-grupo-1/blob/develop/images/classes-diagram.png)   |
+|5| [Seguridad de incidencias](https://github.com/CodeURJC-SSDD-2025-26/practica-ssdd-2025-26-grupo-1/commit/5dfd909ea582cced54baf1fd9f4c6fa69e7cc883)  | [SecurityConfiguration.java](https://github.com/CodeURJC-SSDD-2025-26/practica-ssdd-2025-26-grupo-1/blob/develop/backend/Practica3/app-service/src/main/java/codeurjc/ssdd/grupo1/trainfyre/appservice/security/SecurityConfiguration.java)   |
 
 ---
 

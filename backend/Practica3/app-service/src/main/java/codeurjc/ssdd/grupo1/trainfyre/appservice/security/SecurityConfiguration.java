@@ -68,7 +68,7 @@ public class SecurityConfiguration {
                         .requestMatchers(HttpMethod.POST,"/v1/incidencies").hasRole(Role.ADMIN.name())
                         .requestMatchers(HttpMethod.PUT,"/v1/incidencies/**").hasRole(Role.ADMIN.name())
                         .requestMatchers(HttpMethod.DELETE,"/v1/incidencies/**").hasRole(Role.ADMIN.name())
-                        .requestMatchers(HttpMethod.GET,"/v1/incidencies/**").hasRole(Role.REGISTERED.name())
+                        .requestMatchers(HttpMethod.GET,"/v1/incidencies", "/v1/incidencies/**").hasAnyRole(Role.REGISTERED.name(), Role.REGISTERED.name())
                         .anyRequest().authenticated()
                 );
 
